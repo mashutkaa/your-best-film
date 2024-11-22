@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./modal.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@600&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@600&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="modal-wrapper">
+      <h2 class="form-title">опитування</h2>
+      <p class="form-info">
+        надана вами інформація може зекономити вам час на пошуки потрібного
+        фільму*
+      </p>
+      <form action="">
+        <!-- ==================== ПЕРШЕ ПИТАННЯ ========================== -->
+        <div class="question-wrapper">
+          <div class="question-number-container">
+            <span class="question-number">1</span>
+          </div>
+          <div class="question-item">
+            <div class="mood-selection">
+              <div class="question-title">
+                <p class="required-field">*поле обов'язкове</p>
+                <p class="question">Який настрій у вас сьогодні?</p>
+              </div>
+              <div class="mood-options">
+                <label class="mood-option">
+                  <input type="radio" name="mood" value="Чудовий" />
+                  <div class="icon">
+                    <img src="./images/5307603774627505126 1@2x.png" alt="" />
+                  </div>
+                  <span>Чудовий</span>
+                </label>
+                <label class="mood-option">
+                  <input type="radio" name="mood" value="Нудно" />
+                  <div class="icon">
+                    <img src="./images/5307603774627505123 1@2x.png" alt="" />
+                  </div>
+                  <span>Нудно</span>
+                </label>
+                <label class="mood-option">
+                  <input type="radio" name="mood" value="Сумний" />
+                  <div class="icon">
+                    <img src="./images/5307603774627505125 1@2x.png" alt="" />
+                  </div>
+                  <span>Сумний</span>
+                </label>
+                <label class="mood-option">
+                  <input type="radio" name="mood" value="Втомлений" />
+                  <div class="icon">
+                    <img src="./images/5307603774627505124 1@2x.png" alt="" />
+                  </div>
+                  <span>Втомлений</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================================= -->
+        <!-- ==================== ДРУГЕ ПИТАННЯ ========================== -->
+        <div class="question-wrapper">
+          <div class="question-number-container">
+            <span class="question-number">2</span>
+          </div>
+          <div class="question-item">
+            <p class="required-field">*поле обов’язкове</p>
+
+            <p class="question">Яка тривалість фільму?</p>
+            <input
+              class="second-field"
+              type="range"
+              min="0"
+              max="7"
+              step="1"
+              value="0"
+              required
+            />
+            <div class="slider-labels">
+              <span>0 хв</span>
+              <span>1 год.</span>
+              <span>3 год.</span>
+              <span>5 год.</span>
+              <span>7 год.</span>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================================= -->
+        <!-- ==================== ТРЕТЄ ПИТАННЯ ========================== -->
+        <div class="question-wrapper">
+          <div class="question-number-container">
+            <span class="question-number">3</span>
+          </div>
+          <div class="question-item">
+            <p class="required-field">*поле обов’язкове</p>
+            <p class="question">Яка тривалість фільму?</p>
+
+            <label class="third-question-label">
+              <input
+                class="third-question-field"
+                type="radio"
+                name="movie-partner"
+                value="alone"
+              />
+              <span>Наодинці</span></label
+            >
+            <label class="third-question-label">
+              <input
+                class="third-question-field"
+                type="radio"
+                name="movie-partner"
+                value="friends"
+              />
+              <span>З друзями</span></label
+            >
+            <label class="third-question-label">
+              <input
+                class="third-question-field"
+                type="radio"
+                name="movie-partner"
+                value="partner"
+              />
+              <span>З другою половинкою</span></label
+            >
+            <label class="third-question-label">
+              <input
+                class="third-question-field"
+                type="radio"
+                name="movie-partner"
+                value="family"
+              />
+              <span>З родиною ( разом з дітьми )</span></label
+            >
+          </div>
+        </div>
+        <!-- ============================================================= -->
+        <!-- ==================== ЧЕТВЕРТЕ ПИТАННЯ ========================== -->
+        <!-- name, value -->
+        <div class="question-wrapper">
+          <div class="question-number-container">
+            <span class="question-number">4</span>
+          </div>
+          <div class="question-item">
+            <p class="question">Роки виходу фільму</p>
+            <label class="four-question-label">
+              <span>Не раніше</span>
+              <input
+                class="four-question-field"
+                type="text"
+                placeholder="1950"
+                name="year-min"
+                pattern="\d{4}"
+                
+              />
+            </label>
+            <label class="four-question-label">
+              <span>Не пізніше</span>
+              <input
+                class="four-question-field"
+                type="text"
+                placeholder="Поточний рік"
+                 name="year-max"
+                pattern="\d{4}"
+              />
+            </label>
+          </div>
+        </div>
+        <!-- ============================================================= -->
+        <!-- ==================== П'ЯТЕ ПИТАННЯ ========================== -->
+        <div class="question-wrapper">
+          <div class="question-number-container">
+            <span class="question-number">5</span>
+          </div>
+          <div class="question-item">
+            <p class="question">У якому жанрі шукатимемо фільм?</p>
+            <select class="five-question-select" name="genre" id="">
+              <option
+                class="five-question-select-item"
+                value=""
+                disabled
+                selected
+              >
+                Вибрати жанр
+              </option>
+              <option class="five-question-select-item" value="animation">
+                Анімаційний фільм
+              </option>
+              <option class="five-question-select-item" value="action">
+                Бойовик
+              </option>
+              <option class="five-question-select-item" value="western">
+                Вестерн
+              </option>
+              <option class="five-question-select-item" value="drama">
+                Драма
+              </option>
+              <option class="five-question-select-item" value="documentary">
+                Документальний
+              </option>
+            </select>
+          </div>
+        </div>
+        <!-- ============================================================= -->
+        <button class="button" type="submit">Отримати добірку фільмів</button>
+      </form>
+    </div>
+  </body>
+</html>
