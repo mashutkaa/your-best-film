@@ -192,7 +192,7 @@ body {
 .second-field-max {
   -webkit-appearance: none;
   appearance: none;
-  width: 100%;
+  width: 300px;
   top: 50%;
   position: absolute;
   transform: translateY(-50%);
@@ -244,9 +244,11 @@ body {
 .slider-labels {
   display: flex;
   justify-content: space-between;
+ 
   margin-top: 10px;
   font-size: 12px;
   color: white;
+   position: relative;
 }
 .question-item {
   position: relative;
@@ -258,7 +260,7 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+
 }
 
 .slider-labels span::after {
@@ -269,6 +271,23 @@ body {
   position: absolute;
   top: -29px; 
 }
+
+/* Позиціюємо кожну рисочку */
+
+
+.slider-labels span:nth-child(2) {
+  left: -14px; /* Позиція другого підпису */
+}
+
+.slider-labels span:nth-child(3) {
+  left: 3px /* Позиція третього підпису */
+}
+.slider-labels span:nth-child(4) {
+  left: 17px /* Позиція третього підпису */
+}
+
+
+
 
 /* Для першої рисочки */
 .slider-labels span:first-child::after {

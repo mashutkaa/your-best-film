@@ -179,9 +179,11 @@ window.addEventListener("DOMContentLoaded", function () {
 
           const sliderContainer =
             questionContainer.querySelector(".slider-labels");
-          element.answers.forEach((labelText) => {
+
+          element.answers.forEach((labelText, index) => {
             const labelElement = document.createElement("span");
             labelElement.textContent = labelText;
+
             sliderContainer.appendChild(labelElement);
           });
 
