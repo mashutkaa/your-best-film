@@ -1,0 +1,403 @@
+/* ---------- COMMON STYLES ----------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+/* p:last-child {
+  margin-bottom: 0;
+} */
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: currentColor;
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    color: white;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ---------- СТИЛІ КОНТЕЙНЕРА ------------- */
+.modal-wrapper {
+    width: 443px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 100px;
+    background-color: #01070a;
+    border: 1px solid white;
+    border-radius: 30px;
+    padding: 48px 46px;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.modal.hide {
+    display: none;
+}
+
+.question-wrapper {
+    display: flex;
+    margin-bottom: 40px;
+    /* gap: 15px; */
+}
+
+.question-wrapper:last-child {
+    margin: 0;
+}
+
+/* ---стилі тексту- */
+
+.form-title {
+    font-family: "Parkinsans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    text-transform: uppercase;
+    font-size: 24px;
+    padding-left: 30px;
+    margin-bottom: 7px;
+}
+
+.form-info {
+    font-size: 8px;
+    width: 245px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.required-field {
+    color: #bc0000;
+    font-size: 8px;
+    margin-bottom: 3px;
+}
+
+.question {
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+/* питання ФОРМИ */
+.question-number-container {
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+.question-number {
+    margin: 0;
+    padding: 15px;
+}
+
+.question-item {
+    margin-left: 20px;
+}
+
+/* ПЕРШЕ питання */
+
+/* Вибір настрою */
+.mood-options {
+    display: flex;
+    gap: 23px;
+}
+
+.mood-option {
+    text-align: center;
+    cursor: pointer;
+}
+
+.mood-option input {
+    display: none;
+}
+
+.mood-option .icon {
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.mood-option:hover .icon {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.mood-option span {
+    font-size: 8px;
+}
+
+/* Активний стан (коли вибрано) */
+.mood-option input:checked+.icon {
+    background-color: #ff4d4d;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.mood-option input:checked+.icon+span {
+    font-weight: bold;
+}
+
+/* ДРУГЕ ПИТАННЯ */
+
+/* Загальний стиль для контейнера слайдера */
+.slider-group {
+    position: relative;
+    width: 300px;
+    /* Ширина слайдера */
+    height: 40px;
+    margin: 20px 0;
+}
+
+/* Загальний стиль для доріжки */
+.second-field,
+.second-field-max {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    pointer-events: none;
+    /* Відключає взаємодію з основною доріжкою */
+    z-index: 1;
+}
+
+/* Доріжка слайдера */
+.second-field::-webkit-slider-runnable-track,
+.second-field-max::-webkit-slider-runnable-track {
+    height: 6px;
+    background: #ccc;
+    /* Колір неактивної частини */
+    border-radius: 3px;
+}
+
+.second-field::-moz-range-track,
+.second-field-max::-moz-range-track {
+    height: 6px;
+    background: #ccc;
+    border-radius: 3px;
+}
+
+/* Активна частина діапазону */
+.slider-group::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 6px;
+    background: #0078d7;
+    /* Колір активної частини */
+    z-index: 0;
+    border-radius: 3px;
+    left: calc(var(--lower-percent, 0) * 1%);
+    right: calc((100 - var(--upper-percent, 100)) * 1%);
+}
+
+/* Стилі для повзунків */
+.second-field::-webkit-slider-thumb,
+.second-field-max::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #0078d7;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+.second-field::-moz-range-thumb,
+.second-field-max::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #0078d7;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+/* Стилі для підписів */
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+}
+
+.slider-labels span {
+    position: relative;
+    top: -5px;
+}
+
+/* ТРЕТЄ ПИТАННЯ */
+
+.third-question-field+span {
+    display: inline-block;
+    margin-right: 6px;
+    padding: 6px 15px;
+    border: 1px solid white;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 8px;
+    font-weight: 200;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-bottom: 6px;
+}
+
+.third-question-field+span:hover {
+    background-color: #222;
+}
+
+.third-question-field {
+    display: none;
+}
+
+.third-question-field:checked+span {
+    background-color: #d9d9d966;
+    color: rgb(255, 255, 255);
+    border-color: white;
+    border-radius: 20px;
+}
+
+/* ЧЕТВЕРТЕ ПИТАННЯ */
+.four-question-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.four-question-label span {
+    font-size: 8px;
+    font-weight: 400;
+    color: white;
+}
+
+.four-question-field {
+    background: none;
+    border: 1px solid white;
+    color: white;
+    border-radius: 20px;
+    padding: 3px auto;
+    text-align: center;
+    font-size: 12px;
+    width: 83px;
+    height: 15px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.four-question-field::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 8px;
+}
+
+.question-item label input[type="text"]:focus {
+    outline: none;
+    border-color: #ffffff;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* П'ЯТЕ ПИТАННЯ */
+.five-question-select {
+    background: none;
+    color: white;
+    border-radius: 20px;
+    padding: 6px 15px;
+    border: 1px solid white;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.five-question-select:focus {
+    outline: none;
+    border-color: #ffffff;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+.five-question-select-item:hover {
+    background-color: #222;
+    /* фон для опції під курсором */
+    color: white;
+    /* текст опції */
+    cursor: pointer;
+}
+
+.five-question-select-item:disabled {
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.five-question-select:invalid {
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.five-question-select-item {
+    background: #01070a;
+}
+
+/* кнопка */
+.button {
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: white;
+    color: black;
+}
