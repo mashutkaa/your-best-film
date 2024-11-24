@@ -155,8 +155,8 @@ window.addEventListener("DOMContentLoaded", function () {
         case "radio": {
           for (let answerText of element.answers) {
             const answerTemplate = `
-                            <label class="third-question-label">
-                                <input class="third-question-field" type="radio" name="movie-partner" value="${answerText}" />
+                            <label class="radio-button-label">
+                                <input class="radio-button-field" type="radio" name="movie-partner" value="${answerText}" />
                                 <span>${answerText}</span>
                             </label>
                         `;
@@ -170,8 +170,8 @@ window.addEventListener("DOMContentLoaded", function () {
         case "range": {
           const sliderTemplate = `
                         <div class = "slider-group">
-                            <input id="lower-slider" class="second-field-min" type="range" min="0" max="7" step="1" value="0" required />
-                            <input id="upper-slider" class="second-field-max" type="range" min="0" max="7" step="1" value="7" required />
+                            <input id="lower-slider" class="lower-range-slider" type="range" min="0" max="7" step="1" value="0" required />
+                            <input id="upper-slider" class="upper-range-slider" type="range" min="0" max="7" step="1" value="7" required />
                         </div>
                         <div class="slider-labels"></div>
                     `;
@@ -197,9 +197,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
           for (let i = 0; i < lengthArray; i++) {
             const answerTemplate = `
-                            <label class="four-question-label">
+                            <label class="input-field-label">
                                 <span>${answerArray[i]}</span>
-                                <input class="four-question-field" type="text" placeholder="${placeholderArray[i]}" name="year-min-${i}" pattern="\d{4}" />
+                                <input class="text-input-field" type="text" placeholder="${placeholderArray[i]}" name="year-min-${i}" pattern="\d{4}" />
                             </label>
                         `;
 
@@ -215,11 +215,11 @@ window.addEventListener("DOMContentLoaded", function () {
             .map((e) => e[0].toUpperCase() + e.slice(1));
 
           const selectElement = document.createElement("select");
-          selectElement.className = "five-question-select";
+          selectElement.className = "genre-select";
           selectElement.name = "genre";
 
           const defaultOption = document.createElement("option");
-          defaultOption.className = "five-question-select-item";
+          defaultOption.className = "genre-select-option";
           defaultOption.value = "";
           defaultOption.disabled = true;
           defaultOption.selected = true;
@@ -228,7 +228,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
           options.forEach((answerText) => {
             const optionElement = document.createElement("option");
-            optionElement.className = "five-question-select-item";
+            optionElement.className = "genre-select-option";
             optionElement.textContent = answerText;
             selectElement.appendChild(optionElement);
           });
