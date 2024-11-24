@@ -182,77 +182,59 @@ body {
 .slider-group {
   position: relative;
   width: 300px;
-  /* Ширина слайдера */
-  height: 40px;
+  height: 5px;
   margin: 20px 0;
+  border: none;
 }
 
 /* Загальний стиль для доріжки */
-.second-field,
+.second-field-min,
 .second-field-max {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  position: absolute;
   top: 50%;
+  position: absolute;
   transform: translateY(-50%);
   background: transparent;
-  pointer-events: none;
-  /* Відключає взаємодію з основною доріжкою */
   z-index: 1;
 }
 
 /* Доріжка слайдера */
-.second-field::-webkit-slider-runnable-track,
+.second-field-min::-webkit-slider-runnable-track,
 .second-field-max::-webkit-slider-runnable-track {
-  height: 6px;
-  background: #ccc;
-  /* Колір неактивної частини */
+  height: 1px;
+  background: #ffffff;
   border-radius: 3px;
 }
 
-.second-field::-moz-range-track,
+.second-field-min::-moz-range-track,
 .second-field-max::-moz-range-track {
-  height: 6px;
-  background: #ccc;
+  height: 1px;
+  background: #ffffff;
   border-radius: 3px;
 }
 
-/* Активна частина діапазону */
-.slider-group::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 6px;
-  background: #0078d7;
-  /* Колір активної частини */
-  z-index: 0;
-  border-radius: 3px;
-  left: calc(var(--lower-percent, 0) * 1%);
-  right: calc((100 - var(--upper-percent, 100)) * 1%);
-}
-
-/* Стилі для повзунків */
-.second-field::-webkit-slider-thumb,
+/* Стилі для повзунка */
+.second-field-min::-webkit-slider-thumb,
 .second-field-max::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
-  background: #0078d7;
+  width: 9px;
+  height: 9px;
+  background: #ffffff;
   border-radius: 50%;
   border: 2px solid white;
   cursor: pointer;
   z-index: 2;
-  pointer-events: auto;
+  position: relative;
+  transform: translateY(-50%);
 }
-
-.second-field::-moz-range-thumb,
+.second-field-min::-moz-range-thumb,
 .second-field-max::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  background: #0078d7;
+  width: 9px;
+  height: 9px;
+  background: #ffffff;
   border-radius: 50%;
   border: 2px solid white;
   cursor: pointer;
@@ -264,14 +246,40 @@ body {
   justify-content: space-between;
   margin-top: 10px;
   font-size: 12px;
-  font-weight: 400;
   color: white;
 }
+.question-item {
+  position: relative;
+}
+
+/* стилі для рисочок */
 
 .slider-labels span {
   position: relative;
-  top: -5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.slider-labels span::after {
+  content: "";
+  width: 1px; 
+  height: 16px; 
+  background: white;
+  position: absolute;
+  top: -29px; 
+}
+
+/* Для першої рисочки */
+.slider-labels span:first-child::after {
+  left: 6px; 
+}
+
+/* Для останньої рисочки */
+.slider-labels span:last-child::after {
+  right: 2px; 
+}
+
 
 /* ТРЕТЄ ПИТАННЯ */
 
