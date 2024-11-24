@@ -50,14 +50,14 @@ window.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', () => {
             modal.classList.add('show');
             modal.classList.remove('hide');
-            document.body.style.overflow = 'hidden';
+            // document.body.style.overflow = 'hidden';
         });
     });
 
     function closeModal() {
         modal.classList.add('hide');
         modal.classList.remove('show');
-        document.body.style.overflow = '';
+        // document.body.style.overflow = '';
     }
 
     // закрити вікно, якщо натиснути на хрестик
