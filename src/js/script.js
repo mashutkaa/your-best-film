@@ -252,10 +252,27 @@ window.addEventListener("DOMContentLoaded", function () {
   formContainer.appendChild(submitButton);
 
   let result = [];
-  function userAnswer(question, answer) {
-    this.question = question;
-    this.answer = answer;
-  }
+
+  async function getMovieRecommendations() {
+    console.log("Відправка запиту...");
+    
+    const response = await fetch("http://localhost:3000/api/getMovieRecommendations", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(result)
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        console.log("Error: " + errorText);
+        return;
+    }
+
+    const recommendations = await response.json();
+    console.log(recommendations);
+}
 
   function sendResults(questions) {
     questions.forEach((element) => {
@@ -309,11 +326,15 @@ window.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      const newUserAnswer = new userAnswer(question, answer);
+      const newUserAnswer = {
+          question: question,
+          answer: answer
+      }
       result.push(newUserAnswer);
     });
 
     console.log(result);
+    getMovieRecommendations();
   }
 
   submitButton.addEventListener("click", () => sendResults(shortQuestions));
