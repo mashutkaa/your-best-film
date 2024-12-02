@@ -216,11 +216,10 @@ window.addEventListener("DOMContentLoaded", function () {
           break;
         }
 
-      
         case "option": {
           const options = element.answers
-            .split(", ") 
-            .map((e) => e[0].toUpperCase() + e.slice(1)); 
+            .split(", ")
+            .map((e) => e[0].toUpperCase() + e.slice(1));
 
           const checkboxWrapper = document.createElement("div");
           checkboxWrapper.className = "checkbox-options";
@@ -231,10 +230,10 @@ window.addEventListener("DOMContentLoaded", function () {
         <input class="checkbox-button-field" type="checkbox" name="genre" value="${option}" />
         <span>${option}</span>
       </label>`;
-            checkboxWrapper.innerHTML += answerTemplate; 
+            checkboxWrapper.innerHTML += answerTemplate;
           });
 
-          questionContainer.appendChild(checkboxWrapper); 
+          questionContainer.appendChild(checkboxWrapper);
           break;
         }
       }
@@ -369,7 +368,6 @@ window.addEventListener("DOMContentLoaded", function () {
           ).map((checkbox) => checkbox.value);
 
           if (selectedGenres.length === 0) {
-            
             answer = element.answers
               .split(", ")
               .map((e) => e[0].toUpperCase() + e.slice(1))
@@ -404,19 +402,12 @@ window.addEventListener("DOMContentLoaded", function () {
     const yearMax = yearInputMax.value.trim();
     let isValid = true;
 
+   
+
     errorInputMin.style.display = "none";
     errorInputMax.style.display = "none";
     yearInputMin.style.border = "1px solid white";
     yearInputMax.style.border = "1px solid white";
-
-    if (yearMin.value === "") {
-      yearInputMin.value = 1950;
-      isValid = true;
-    }
-    if (yearMin.value === "") {
-      yearInputMax.value = currentYear;
-      isValid = true;
-    }
 
     if (yearInputMin.validity.valid && yearInputMax.validity.valid) {
       errorInputMin.style.display = "none";
@@ -472,6 +463,22 @@ window.addEventListener("DOMContentLoaded", function () {
       errorInputMax.textContent = `Рік не може бути більше ${currentYear} року`;
       isValid = false;
     }
+    if (yearMin === "") {
+         errorInputMin.style.display = "none";
+         errorInputMax.style.display = "none";
+         yearInputMin.style.border = "1px solid white";
+         yearInputMax.style.border = "1px solid white";
+       yearInputMin.value = 1950;
+       isValid = true;
+     }
+    if (yearMax === "") {
+         errorInputMin.style.display = "none";
+         errorInputMax.style.display = "none";
+         yearInputMin.style.border = "1px solid white";
+         yearInputMax.style.border = "1px solid white";
+       yearInputMax.value = currentYear;
+       isValid = true;
+     }
     return isValid;
   }
 
