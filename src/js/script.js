@@ -191,9 +191,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
         case "input-fields": {
           const answerArray = element.answers;
-          const placeholderArray = element.placeholder;
-          const lengthArray = answerArray.length;
-
           // for (let i = 0; i < lengthArray; i++) {
           //   const answerTemplate =
           //                   <label class="input-field-label">
@@ -210,7 +207,7 @@ window.addEventListener("DOMContentLoaded", function () {
                                    <div class="error-input-min"></div>
                             </label>
                              <label class="input-field-label">
-                                <span>Не раніше</span>
+                                <span>Не пізніше</span>
                                 <input  id="year-max" class="text-input-field" type="number" placeholder="поточний рік" name="year-max" pattern="\d{4}"  min="1950" max="2024" />
                                    <div class="error-input-max"></div>
                             </label>`;
@@ -219,31 +216,25 @@ window.addEventListener("DOMContentLoaded", function () {
           break;
         }
 
+      
         case "option": {
           const options = element.answers
-            .split(", ")
-            .map((e) => e[0].toUpperCase() + e.slice(1));
+            .split(", ") 
+            .map((e) => e[0].toUpperCase() + e.slice(1)); 
 
-          const selectElement = document.createElement("select");
-          selectElement.className = "genre-select";
-          selectElement.name = "genre";
+          const checkboxWrapper = document.createElement("div");
+          checkboxWrapper.className = "checkbox-options";
 
-          const defaultOption = document.createElement("option");
-          defaultOption.className = "genre-select-option";
-          defaultOption.value = "";
-          defaultOption.disabled = true;
-          defaultOption.selected = true;
-          defaultOption.textContent = `${element.default}`;
-          selectElement.appendChild(defaultOption);
-
-          options.forEach((answerText) => {
-            const optionElement = document.createElement("option");
-            optionElement.className = "genre-select-option";
-            optionElement.textContent = answerText;
-            selectElement.appendChild(optionElement);
+          options.forEach((option) => {
+            const answerTemplate = ` 
+      <label class="checkbox-button-label">
+        <input class="checkbox-button-field" type="checkbox" name="genre" value="${option}" />
+        <span>${option}</span>
+      </label>`;
+            checkboxWrapper.innerHTML += answerTemplate; 
           });
 
-          questionContainer.appendChild(selectElement);
+          questionContainer.appendChild(checkboxWrapper); 
           break;
         }
       }
@@ -372,11 +363,20 @@ window.addEventListener("DOMContentLoaded", function () {
           break;
         }
 
-        case "option": {
-          const answers =
-            document.querySelector('select[name="genre"]').value || null;
+        case "checkbox": {
+          const selectedGenres = Array.from(
+            document.querySelectorAll('input[name="genre"]:checked')
+          ).map((checkbox) => checkbox.value);
 
-          answer = `${answers}`;
+          if (selectedGenres.length === 0) {
+            
+            answer = element.answers
+              .split(", ")
+              .map((e) => e[0].toUpperCase() + e.slice(1))
+              .join(", ");
+          } else {
+            answer = selectedGenres.join(", ");
+          }
           break;
         }
       }
@@ -392,94 +392,93 @@ window.addEventListener("DOMContentLoaded", function () {
     printMovieRecommendations();
   }
 
- const errorInputMin = document.querySelector(".error-input-min");
- const errorInputMax = document.querySelector(".error-input-max");
- const yearInputMin = document.querySelector("#year-min");
- const yearInputMax = document.querySelector("#year-max");
+  const errorInputMin = document.querySelector(".error-input-min");
+  const errorInputMax = document.querySelector(".error-input-max");
+  const yearInputMin = document.querySelector("#year-min");
+  const yearInputMax = document.querySelector("#year-max");
 
- // ВАЛІДАЦІЯ
- function validateYears() {
-   const currentYear = new Date().getFullYear();
-   const yearMin = yearInputMin.value.trim();
-   const yearMax = yearInputMax.value.trim();
-   let isValid = true;
+  // ВАЛІДАЦІЯ
+  function validateYears() {
+    const currentYear = new Date().getFullYear();
+    const yearMin = yearInputMin.value.trim();
+    const yearMax = yearInputMax.value.trim();
+    let isValid = true;
 
-   errorInputMin.style.display = "none";
-   errorInputMax.style.display = "none";
-   yearInputMin.style.border = "1px solid white";
-   yearInputMax.style.border = "1px solid white";
+    errorInputMin.style.display = "none";
+    errorInputMax.style.display = "none";
+    yearInputMin.style.border = "1px solid white";
+    yearInputMax.style.border = "1px solid white";
 
-   if (!yearMin) {
-     yearInputMin.value = 1950;
-     isValid = true;
-   }
-   if (!yearMax) {
-     yearInputMax.value = currentYear;
-     isValid = true;
-   }
+    if (yearMin.value === "") {
+      yearInputMin.value = 1950;
+      isValid = true;
+    }
+    if (yearMin.value === "") {
+      yearInputMax.value = currentYear;
+      isValid = true;
+    }
 
-   if (yearInputMin.validity.valid && yearInputMax.validity.valid) {
-     errorInputMin.style.display = "none";
-     errorInputMax.style.display = "none";
-     yearInputMin.style.border = "1px solid white";
-     yearInputMax.style.border = "1px solid white";
-     isValid = true;
-   }
+    if (yearInputMin.validity.valid && yearInputMax.validity.valid) {
+      errorInputMin.style.display = "none";
+      errorInputMax.style.display = "none";
+      yearInputMin.style.border = "1px solid white";
+      yearInputMax.style.border = "1px solid white";
+      isValid = true;
+    }
 
-   if (yearMin > yearMax) {
-     errorInputMin.style.display = "block";
-     errorInputMax.style.display = "block";
-     yearInputMin.style.border = "1px solid red";
-     yearInputMax.style.border = "1px solid red";
-     errorInputMin.textContent = "Перший рік має бути менший за другий";
-     isValid = false;
-   }
+    if (yearMin > yearMax) {
+      errorInputMin.style.display = "block";
+      errorInputMax.style.display = "block";
+      yearInputMin.style.border = "1px solid red";
+      yearInputMax.style.border = "1px solid red";
+      errorInputMin.textContent = "Перший рік має бути менший за другий";
+      isValid = false;
+    }
 
-   if (isNaN(yearMin)) {
-     errorInputMin.style.display = "block";
-     errorInputMin.textContent = "Введіть числове значення";
-     yearInputMin.style.border = "1px solid red";
-     isValid = false;
-   }
-   if (isNaN(yearMax)) {
-     errorInputMax.style.display = "block";
-     errorInputMax.textContent = "Введіть числове значення";
-     yearInputMax.style.border = "1px solid red";
-     isValid = false;
-   }
+    if (isNaN(yearMin)) {
+      errorInputMin.style.display = "block";
+      errorInputMin.textContent = "Введіть числове значення";
+      yearInputMin.style.border = "1px solid red";
+      isValid = false;
+    }
+    if (isNaN(yearMax)) {
+      errorInputMax.style.display = "block";
+      errorInputMax.textContent = "Введіть числове значення";
+      yearInputMax.style.border = "1px solid red";
+      isValid = false;
+    }
 
-   if (yearMin.length !== 4) {
-     errorInputMin.style.display = "block";
-     yearInputMin.style.border = "1px solid red";
-     errorInputMin.textContent = "Введіть правильний рік";
-     isValid = false;
-   }
-   if (yearMax.length !== 4) {
-     errorInputMax.style.display = "block";
-     yearInputMax.style.border = "1px solid red";
-     errorInputMax.textContent = "Введіть правильний рік";
-     isValid = false;
-   }
-   if (yearMin < 1950) {
-     errorInputMin.style.display = "block";
-     yearInputMin.style.border = "1px solid red";
-     errorInputMin.textContent = "Рік не може бути меншим за 1950";
-     isValid = false;
-   }
-   if (yearMax > currentYear) {
-     errorInputMax.style.display = "block";
-     yearInputMax.style.border = "1px solid red";
-     errorInputMax.textContent = `Рік не може бути більше ${currentYear} року`;
-     isValid = false;
-   }
-   return isValid;
- }
+    if (yearMin.length !== 4) {
+      errorInputMin.style.display = "block";
+      yearInputMin.style.border = "1px solid red";
+      errorInputMin.textContent = "Введіть правильний рік";
+      isValid = false;
+    }
+    if (yearMax.length !== 4) {
+      errorInputMax.style.display = "block";
+      yearInputMax.style.border = "1px solid red";
+      errorInputMax.textContent = "Введіть правильний рік";
+      isValid = false;
+    }
+    if (yearMin < 1950) {
+      errorInputMin.style.display = "block";
+      yearInputMin.style.border = "1px solid red";
+      errorInputMin.textContent = "Рік не може бути меншим за 1950";
+      isValid = false;
+    }
+    if (yearMax > currentYear) {
+      errorInputMax.style.display = "block";
+      yearInputMax.style.border = "1px solid red";
+      errorInputMax.textContent = `Рік не може бути більше ${currentYear} року`;
+      isValid = false;
+    }
+    return isValid;
+  }
 
- submitButton.addEventListener("click", (event) => {
-   event.preventDefault();
-   if (validateYears()) {
-     sendResults(shortQuestions);
-   }
- });
- 
+  submitButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (validateYears()) {
+      sendResults(shortQuestions);
+    }
+  });
 });
