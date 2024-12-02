@@ -136,8 +136,15 @@ window.addEventListener("DOMContentLoaded", function () {
           questionContainer.appendChild(moodWrapper);
           moodWrapper.classList = "mood-options";
 
+          let isMoodDefault;
           for (let i = 0; i < lengthArray; i++) {
-            const isMoodDefault = answers[i] === "Чудовий";
+            const savedValue = localStorage.getItem('radioMood');
+            if (savedValue) {
+              isMoodDefault = answers[i] === savedValue;
+            } else {
+              isMoodDefault = answers[i] === "Чудовий";
+            }
+            
             const answerTemplate = `
                             <label class="mood-option">
                                 <input type="radio" name="mood" value="${
@@ -157,8 +164,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
         case "radio": {
           for (let answerText of element.answers) {
-            const isPartnerDefault = answerText === "Наодинці";
-
+            let isPartnerDefault;
+            const savedValue = localStorage.getItem('radio');
+            if (savedValue) {
+              isPartnerDefault = answerText === savedValue;
+            } else {
+              isPartnerDefault = answerText === "Наодинці";
+            }
+            
             const answerTemplate = `
             <label class="radio-button-label">
                 <input class="radio-button-field" type="radio" name="movie-partner" value="${answerText}" ${
@@ -203,11 +216,11 @@ window.addEventListener("DOMContentLoaded", function () {
 
           for (let i = 0; i < lengthArray; i++) {
             const answerTemplate = `
-                            <label class="input-field-label">
-                                <span>${answerArray[i]}</span>
-                                <input class="text-input-field" type="text" placeholder="${placeholderArray[i]}" name="year-min-${i}" pattern="\d{4}" />
-                            </label>
-                        `;
+                <label class="input-field-label">
+                    <span>${answerArray[i]}</span>
+                    <input class="text-input-field" type="text" placeholder="${placeholderArray[i]}" name="year-min-${i}" pattern="\d{4}" />
+                </label>
+            `;
 
             questionContainer.innerHTML += answerTemplate;
           }
@@ -248,6 +261,49 @@ window.addEventListener("DOMContentLoaded", function () {
       headerContainer.appendChild(questionContainer);
     });
   }
+
+  // local Storage
+//   localStorage.setItem('number', 5);
+//   localStorage.getItem('number');
+//   localStorage.removeItem('number');
+//localStorage.clear();
+
+    const radioImgs = document.querySelectorAll('.mood-option input[type="radio"]'); // Отримуємо всі радіокнопки
+    radioImgs.forEach((radio) => {
+        radio.addEventListener('change', (event) => {
+            const selectedMood = event.target.value; // Отримуємо значення вибраного елемента
+            localStorage.setItem('radioMood', selectedMood); // Зберігаємо у localStorage
+        });
+    });
+
+    const radioFields = document.querySelectorAll('.radio-button-field');
+    radioFields.forEach((radio) => {
+        radio.addEventListener('change', (event) => {
+            const selectedRadio = event.target.value; // Отримуємо значення вибраного елемента
+            localStorage.setItem('radio', selectedRadio); // Зберігаємо у localStorage
+        });
+    });
+
+    const inputFields = document.querySelectorAll('.text-input-field');
+
+    inputFields.forEach((input, index) => {
+      // Встановлюємо збережене значення, якщо воно є
+      const savedValue = localStorage.getItem(`input-field-${index}`);
+      if (savedValue) {
+        input.value = savedValue;
+      }
+
+      // Додаємо обробник для збереження значення при зміні
+      input.addEventListener('change', (event) => {
+        const value = event.target.value;
+        localStorage.setItem(`input-field-${index}`, value); // Зберігаємо значення з унікальним ключем
+      });
+    });
+
+
+
+
+
 
   // кнопка для відправки результатів
   const submitButton = document.createElement("button");
@@ -324,7 +380,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     const recommendations = await response.json();
-    console.log(recommendations);
+    console.log(recommendations); // вивід відповіді
   }
 
   function sendResults(questions) {
@@ -393,7 +449,7 @@ window.addEventListener("DOMContentLoaded", function () {
   submitButton.addEventListener("click", () => sendResults(shortQuestions));
 });
 
-// ВАЛІДАЦІЯ
+// валідація
 function validateYears() {
   const yearMin = document.querySelector('input[name="year-min-0"]');
   const yearMax = document.querySelector('input[name="year-min-1"]');
