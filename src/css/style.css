@@ -189,7 +189,7 @@ body {
 
 /* Загальний стиль для доріжки */
 .lower-range-slider,
-.upper-range-slider{
+.upper-range-slider {
   -webkit-appearance: none;
   appearance: none;
   width: 300px;
@@ -244,11 +244,11 @@ body {
 .slider-labels {
   display: flex;
   justify-content: space-between;
- 
+
   margin-top: 10px;
   font-size: 12px;
   color: white;
-   position: relative;
+  position: relative;
 }
 .question-item {
   position: relative;
@@ -260,45 +260,39 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-
 }
 
 .slider-labels span::after {
   content: "";
-  width: 1px; 
-  height: 16px; 
+  width: 1px;
+  height: 16px;
   background: white;
   position: absolute;
-  top: -29px; 
+  top: -29px;
 }
 
 /* Позиціюємо кожну рисочку */
-
 
 .slider-labels span:nth-child(2) {
   left: -14px; /* Позиція другого підпису */
 }
 
 .slider-labels span:nth-child(3) {
-  left: 3px /* Позиція третього підпису */
+  left: 3px; /* Позиція третього підпису */
 }
 .slider-labels span:nth-child(4) {
-  left: 17px /* Позиція третього підпису */
+  left: 17px; /* Позиція третього підпису */
 }
-
-
-
 
 /* Для першої рисочки */
 .slider-labels span:first-child::after {
-  left: 6px; 
+  left: 6px;
 }
 
 /* Для останньої рисочки */
 .slider-labels span:last-child::after {
-  right: 2px; 
+  right: 2px;
 }
-
 
 /* ТРЕТЄ ПИТАННЯ */
 
@@ -333,11 +327,11 @@ body {
 
 /* ЧЕТВЕРТЕ ПИТАННЯ */
 .input-field-label {
-  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 10px;
+  display: block; /* змінили на block, щоб помилка була під полем вводу */
 }
 
 .input-field-label span {
@@ -445,3 +439,14 @@ body {
   font-size: 14px;
   margin-top: 5px;
 }
+
+.error-input-min, .error-input-max {
+  font-size: 8px;
+  color: red;
+  display: none; 
+  margin-top: 8px; 
+   margin-left: 0; 
+}
+
+
+
