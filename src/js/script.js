@@ -1,3 +1,5 @@
+// console.log('"hello":', "hello")
+
 // запитання
 const shortQuestions = [
   {
@@ -106,11 +108,9 @@ window.addEventListener("DOMContentLoaded", function () {
       headerContainer.classList.add("question-wrapper");
 
       //номер запитання
-      const numberTemplate = `
-                <div class="question-number-container">
+      const numberTemplate = `<div class="question-number-container">
                     <span class="question-number">${index + 1}</span>
-                </div>            
-            `;
+                </div>      `;
       headerContainer.innerHTML = numberTemplate;
 
       const questionContainer = document.createElement("div");
@@ -126,7 +126,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
       questionContainer.innerHTML = questionTemplate;
 
-      // відповіді
+      //  відповіді
       switch (element["type"]) {
         case "radio-mood": {
           const { img, answers } = element;
@@ -138,13 +138,12 @@ window.addEventListener("DOMContentLoaded", function () {
 
           let isMoodDefault;
           for (let i = 0; i < lengthArray; i++) {
-            const savedValue = localStorage.getItem('radioMood');
-            if (savedValue) {
-              isMoodDefault = answers[i] === savedValue;
+            const savedMood = localStorage.getItem('radioMood');
+            if (savedMood) {
+              isMoodDefault = answers[i] === savedMood;
             } else {
               isMoodDefault = answers[i] === "Чудовий";
             }
-            
             const answerTemplate = `
                             <label class="mood-option">
                                 <input type="radio" name="mood" value="${
@@ -154,8 +153,7 @@ window.addEventListener("DOMContentLoaded", function () {
                                     <img src="${img[i]}" alt="" />
                                 </div>
                                 <span>${answers[i]}</span>
-                            </label>
-                        `;
+                            </label>`;
             moodWrapper.innerHTML += answerTemplate;
           }
 
@@ -163,8 +161,8 @@ window.addEventListener("DOMContentLoaded", function () {
         }
 
         case "radio": {
+          let isPartnerDefault;
           for (let answerText of element.answers) {
-            let isPartnerDefault;
             const savedValue = localStorage.getItem('radio');
             if (savedValue) {
               isPartnerDefault = answerText === savedValue;
@@ -172,29 +170,28 @@ window.addEventListener("DOMContentLoaded", function () {
               isPartnerDefault = answerText === "Наодинці";
             }
             
+
             const answerTemplate = `
             <label class="radio-button-label">
                 <input class="radio-button-field" type="radio" name="movie-partner" value="${answerText}" ${
               isPartnerDefault ? "checked" : ""
             } />
                 <span>${answerText}</span>
-            </label>
-        `;
-
+            </label>`;
             questionContainer.innerHTML += answerTemplate;
           }
           break;
         }
 
         case "range": {
-          const sliderTemplate = `
-                        <div class = "slider-group">
+          const sliderTemplate = `   <div class = "slider-group">
                             <input id="lower-slider" class="lower-range-slider" type="range" min="0" max="7" step="1" value="0" required />
                             <input id="upper-slider" class="upper-range-slider" type="range" min="0" max="7" step="1" value="7" required />
                         </div>
-                        <div class="slider-labels"></div>
-                    `;
+                        <div class="slider-labels"></div>`;
           questionContainer.innerHTML += sliderTemplate;
+
+          
 
           const sliderContainer =
             questionContainer.querySelector(".slider-labels");
@@ -204,6 +201,8 @@ window.addEventListener("DOMContentLoaded", function () {
             labelElement.textContent = labelText;
 
             sliderContainer.appendChild(labelElement);
+
+            
           });
 
           break;
@@ -214,12 +213,22 @@ window.addEventListener("DOMContentLoaded", function () {
           const placeholderArray = element.placeholder;
           const lengthArray = answerArray.length;
 
+          const savedValues = [];
+
+          // Спочатку відновлюємо збережені значення з localStorage
+          for (let i = 0; i < lengthArray; i++) {
+            const savedValue = localStorage.getItem(`input-field-${i}`);
+            savedValues[i] = savedValue ? savedValue : ""; // Якщо значення є, зберігаємо його, якщо ні - порожній рядок
+          }
+
+          // Створюємо інпут-поля
           for (let i = 0; i < lengthArray; i++) {
             const answerTemplate = `
-                <label class="input-field-label">
-                    <span>${answerArray[i]}</span>
-                    <input class="text-input-field" type="text" placeholder="${placeholderArray[i]}" name="year-min-${i}" pattern="\d{4}" />
-                </label>
+              <label class="input-field-label">
+                <span>${answerArray[i]}</span>
+                <input class="text-input-field" type="text" placeholder="${placeholderArray[i]}" name="year-min-${i}" pattern="\\d{4}"
+                      value="${savedValues[i]}" /> <!-- Підставляємо значення із savedValues -->
+              </label>
             `;
 
             questionContainer.innerHTML += answerTemplate;
@@ -233,26 +242,24 @@ window.addEventListener("DOMContentLoaded", function () {
             .split(", ")
             .map((e) => e[0].toUpperCase() + e.slice(1));
 
-          const selectElement = document.createElement("select");
-          selectElement.className = "genre-select";
-          selectElement.name = "genre";
+          const checkboxWrapper = document.createElement("div");
+          checkboxWrapper.className = "checkbox-options";
 
-          const defaultOption = document.createElement("option");
-          defaultOption.className = "genre-select-option";
-          defaultOption.value = "";
-          defaultOption.disabled = true;
-          defaultOption.selected = true;
-          defaultOption.textContent = `${element.default}`;
-          selectElement.appendChild(defaultOption);
+          const savedOptions = localStorage.getItem('selectedOptions');
+          const savedOptionsArray = savedOptions ? savedOptions.split(",") : [];
 
-          options.forEach((answerText) => {
-            const optionElement = document.createElement("option");
-            optionElement.className = "genre-select-option";
-            optionElement.textContent = answerText;
-            selectElement.appendChild(optionElement);
+          options.forEach((option) => {
+            const isChecked = savedOptionsArray.includes(option);
+
+            const answerTemplate = ` 
+              <label class="checkbox-button-label">
+                <input class="checkbox-button-field" type="checkbox" name="genre" value="${option}" ${isChecked ? "checked" : ""} />
+                <span>${option}</span>
+              </label>`;
+            checkboxWrapper.innerHTML += answerTemplate;
           });
 
-          questionContainer.appendChild(selectElement);
+          questionContainer.appendChild(checkboxWrapper);
           break;
         }
       }
@@ -263,47 +270,54 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   // local Storage
-//   localStorage.setItem('number', 5);
-//   localStorage.getItem('number');
-//   localStorage.removeItem('number');
-//localStorage.clear();
 
-    const radioImgs = document.querySelectorAll('.mood-option input[type="radio"]'); // Отримуємо всі радіокнопки
-    radioImgs.forEach((radio) => {
-        radio.addEventListener('change', (event) => {
-            const selectedMood = event.target.value; // Отримуємо значення вибраного елемента
-            localStorage.setItem('radioMood', selectedMood); // Зберігаємо у localStorage
-        });
-    });
-
-    const radioFields = document.querySelectorAll('.radio-button-field');
-    radioFields.forEach((radio) => {
-        radio.addEventListener('change', (event) => {
-            const selectedRadio = event.target.value; // Отримуємо значення вибраного елемента
-            localStorage.setItem('radio', selectedRadio); // Зберігаємо у localStorage
-        });
-    });
-
-    const inputFields = document.querySelectorAll('.text-input-field');
-
-    inputFields.forEach((input, index) => {
-      // Встановлюємо збережене значення, якщо воно є
-      const savedValue = localStorage.getItem(`input-field-${index}`);
-      if (savedValue) {
-        input.value = savedValue;
-      }
-
-      // Додаємо обробник для збереження значення при зміні
-      input.addEventListener('change', (event) => {
-        const value = event.target.value;
-        localStorage.setItem(`input-field-${index}`, value); // Зберігаємо значення з унікальним ключем
+  const radioImgs = document.querySelectorAll('.mood-option input[type="radio"]'); // Отримуємо всі радіокнопки
+  radioImgs.forEach((radio) => {
+      radio.addEventListener('change', (event) => {
+          const selectedMood = event.target.value; // Отримуємо значення вибраного елемента
+          localStorage.setItem('radioMood', selectedMood);
       });
+  });
+
+  const radioFields = document.querySelectorAll('.radio-button-field');
+  radioFields.forEach((radio) => {
+      radio.addEventListener('change', (event) => {
+          const selectedRadio = event.target.value; 
+          localStorage.setItem('radio', selectedRadio); 
+      });
+  });
+
+  const inputFields = document.querySelectorAll('.text-input-field');
+  inputFields.forEach((input, index) => {
+    input.addEventListener('input', () => {
+      localStorage.setItem(`input-field-${index}`, input.value); // Зберігаємо значення у localStorage
     });
+  });
+
+  const checkboxFields = document.querySelectorAll('.checkbox-button-field');
+  checkboxFields.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+      const selectedOptions = [];
+      checkboxFields.forEach((checkbox) => {
+        if (checkbox.checked) {
+          selectedOptions.push(checkbox.value); // Додаємо вибрані значення в масив
+        }
+      });
+      localStorage.setItem('selectedOptions', selectedOptions.join(",")); // Зберігаємо вибрані опції як рядок, розділений комами
+    });
+  });
 
 
+  const lowerSlider = document.querySelector("#lower-slider");
+  const upperSlider = document.querySelector("#upper-slider");
 
+  lowerSlider.addEventListener("input", () => {
+    localStorage.setItem("lowerSliderValue", lowerSlider.value); // Зберігаємо значення нижнього слайдера
+  });
 
-
+  upperSlider.addEventListener("input", () => {
+    localStorage.setItem("upperSliderValue", upperSlider.value); // Зберігаємо значення верхнього слайдера
+  });
 
   // кнопка для відправки результатів
   const submitButton = document.createElement("button");
@@ -312,7 +326,7 @@ window.addEventListener("DOMContentLoaded", function () {
   submitButton.textContent = "Отримати добірку фільмів";
 
   formContainer.appendChild(submitButton);
-
+  
   let result = [];
 
   function getRandomMovie(index) {
@@ -417,20 +431,26 @@ window.addEventListener("DOMContentLoaded", function () {
         }
 
         case "input-fields": {
-          const answerMin =
-            document.querySelector('input[name="year-min-0"]').value || null;
-          const answerMax =
-            document.querySelector('input[name="year-min-1"]').value || null;
+          const answerMin = document.querySelector("#year-min").value || null;
+          const answerMax = document.querySelector("#year-max").value || null;
 
           answer = `Не раніше ${answerMin}, не пізніше: ${answerMax}`;
           break;
         }
 
-        case "option": {
-          const answers =
-            document.querySelector('select[name="genre"]').value || null;
+        case "checkbox": {
+          const selectedGenres = Array.from(
+            document.querySelectorAll('input[name="genre"]:checked')
+          ).map((checkbox) => checkbox.value);
 
-          answer = `${answers}`;
+          if (selectedGenres.length === 0) {
+            answer = element.answers
+              .split(", ")
+              .map((e) => e[0].toUpperCase() + e.slice(1))
+              .join(", ");
+          } else {
+            answer = selectedGenres.join(", ");
+          }
           break;
         }
       }
@@ -446,66 +466,76 @@ window.addEventListener("DOMContentLoaded", function () {
     printMovieRecommendations();
   }
 
-  submitButton.addEventListener("click", () => sendResults(shortQuestions));
+  const errorInputMin = document.querySelector(".error-input-min");
+  const errorInputMax = document.querySelector(".error-input-max");
+  const yearInputMin = document.querySelector("#year-min");
+  const yearInputMax = document.querySelector("#year-max");
+
+
+// ВАЛІДАЦІЯ
+  function validateYears() {
+    const yearMin = document.querySelector('input[name="year-min-0"]');
+    const yearMax = document.querySelector('input[name="year-min-1"]');
+
+    const yearMinValue = yearMin.value.trim();
+    const yearMaxValue = yearMax.value.trim();
+    const currentYear = new Date().getFullYear();
+    const defaultMinYear = 1950;
+
+    let errorMessages = [];
+
+    // Перевірка: чи введене значення містить рівно 4 цифри
+    if (yearMinValue && !/^\d{4}$/.test(yearMinValue)) {
+      errorMessages.push("Рік введено некоректно (має містити 4 цифри)");
+    }
+    if (yearMaxValue && !/^\d{4}$/.test(yearMaxValue)) {
+      errorMessages.push("Рік введено некоректно (має містити 4 цифри)");
+    }
+
+    // Перевірка: чи порядок років коректний
+    if (
+      yearMinValue &&
+      yearMaxValue &&
+      parseInt(yearMinValue) >= parseInt(yearMaxValue)
+    ) {
+      errorMessages.push("Перший рік має бути меншим за другий");
+    }
+
+    // Перевірка: чи відповідають роки заданим межам
+    if (yearMinValue && parseInt(yearMinValue) < defaultMinYear) {
+      errorMessages.push(`Перший рік не може бути меншим за ${defaultMinYear}`);
+    }
+    if (yearMaxValue && parseInt(yearMaxValue) > currentYear) {
+      errorMessages.push(`Другий рік не може бути більшим за ${currentYear}`);
+    }
+
+    // Виведення помилок
+    const errorContainer = document.querySelector(".error-message-container");
+    errorContainer.innerHTML = ""; // Очищення контейнера для помилок
+    if (errorMessages.length > 0) {
+      errorMessages.forEach((message) => {
+        const errorMessage = document.createElement("p");
+        errorMessage.classList.add("error-message");
+        errorMessage.textContent = message;
+        errorContainer.appendChild(errorMessage);
+      });
+      return false; // Якщо є помилки, форма не буде відправлена
+    }
+
+    return true; // Якщо помилок немає
+  }
+
+    //const submitBtn = document.querySelector(".button");
+    submitButton.addEventListener("click", (event) => {
+      event.preventDefault(); // Зупинити відправку форми за замовчуванням
+      
+      if (validateYears()) {
+        sendResults(shortQuestions);
+        localStorage.clear();
+      }
+  });
+  
 });
 
-// валідація
-function validateYears() {
-  const yearMin = document.querySelector('input[name="year-min-0"]');
-  const yearMax = document.querySelector('input[name="year-min-1"]');
 
-  const yearMinValue = yearMin.value.trim();
-  const yearMaxValue = yearMax.value.trim();
-  const currentYear = new Date().getFullYear();
-  const defaultMinYear = 1950;
 
-  let errorMessages = [];
-
-  // Перевірка: чи введене значення містить рівно 4 цифри
-  if (yearMinValue && !/^\d{4}$/.test(yearMinValue)) {
-    errorMessages.push("Рік введено некоректно (має містити 4 цифри)");
-  }
-  if (yearMaxValue && !/^\d{4}$/.test(yearMaxValue)) {
-    errorMessages.push("Рік введено некоректно (має містити 4 цифри)");
-  }
-
-  // Перевірка: чи порядок років коректний
-  if (
-    yearMinValue &&
-    yearMaxValue &&
-    parseInt(yearMinValue) >= parseInt(yearMaxValue)
-  ) {
-    errorMessages.push("Перший рік має бути меншим за другий");
-  }
-
-  // Перевірка: чи відповідають роки заданим межам
-  if (yearMinValue && parseInt(yearMinValue) < defaultMinYear) {
-    errorMessages.push(`Перший рік не може бути меншим за ${defaultMinYear}`);
-  }
-  if (yearMaxValue && parseInt(yearMaxValue) > currentYear) {
-    errorMessages.push(`Другий рік не може бути більшим за ${currentYear}`);
-  }
-
-  // Виведення помилок
-  const errorContainer = document.querySelector(".error-message-container");
-  errorContainer.innerHTML = ""; // Очищення контейнера для помилок
-  if (errorMessages.length > 0) {
-    errorMessages.forEach((message) => {
-      const errorMessage = document.createElement("p");
-      errorMessage.classList.add("error-message");
-      errorMessage.textContent = message;
-      errorContainer.appendChild(errorMessage);
-    });
-    return false; // Якщо є помилки, форма не буде відправлена
-  }
-
-  return true; // Якщо помилок немає
-}
-const submitButton = document.querySelector(".button");
-submitButton.addEventListener("click", (event) => {
-  event.preventDefault(); // Зупинити відправку форми за замовчуванням
-
-  if (validateYears()) {
-    sendResults(shortQuestions);
-  }
-});

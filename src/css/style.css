@@ -189,7 +189,7 @@ body {
 
 /* Загальний стиль для доріжки */
 .lower-range-slider,
-.upper-range-slider{
+.upper-range-slider {
   -webkit-appearance: none;
   appearance: none;
   width: 300px;
@@ -244,11 +244,11 @@ body {
 .slider-labels {
   display: flex;
   justify-content: space-between;
- 
+
   margin-top: 10px;
   font-size: 12px;
   color: white;
-   position: relative;
+  position: relative;
 }
 .question-item {
   position: relative;
@@ -260,45 +260,39 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-
 }
 
 .slider-labels span::after {
   content: "";
-  width: 1px; 
-  height: 16px; 
+  width: 1px;
+  height: 16px;
   background: white;
   position: absolute;
-  top: -29px; 
+  top: -29px;
 }
 
 /* Позиціюємо кожну рисочку */
-
 
 .slider-labels span:nth-child(2) {
   left: -14px; /* Позиція другого підпису */
 }
 
 .slider-labels span:nth-child(3) {
-  left: 3px /* Позиція третього підпису */
+  left: 3px; /* Позиція третього підпису */
 }
 .slider-labels span:nth-child(4) {
-  left: 17px /* Позиція третього підпису */
+  left: 17px; /* Позиція третього підпису */
 }
-
-
-
 
 /* Для першої рисочки */
 .slider-labels span:first-child::after {
-  left: 6px; 
+  left: 6px;
 }
 
 /* Для останньої рисочки */
 .slider-labels span:last-child::after {
-  right: 2px; 
+  right: 2px;
 }
-
 
 /* ТРЕТЄ ПИТАННЯ */
 
@@ -333,11 +327,11 @@ body {
 
 /* ЧЕТВЕРТЕ ПИТАННЯ */
 .input-field-label {
-  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 10px;
+  display: block; /* змінили на block, щоб помилка була під полем вводу */
 }
 
 .input-field-label span {
@@ -371,44 +365,46 @@ body {
 }
 
 /* П'ЯТЕ ПИТАННЯ */
-.genre-select {
-  background: none;
-  color: white;
-  border-radius: 20px;
+.checkbox-button-field + span{
+    display: inline-block;
+  margin-right: 6px;
   padding: 6px 15px;
   border: 1px solid white;
-  font-size: 10px;
+  border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
-}
-
-.genre-select:focus {
-  outline: none;
-  border-color: #ffffff;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-}
-
-.genre-select-option:hover {
-  background-color: #222;
-  /* фон для опції під курсором */
   color: white;
-  /* текст опції */
-  cursor: pointer;
-}
-
-.genre-select-option:disabled {
   font-size: 8px;
-  color: rgba(255, 255, 255, 0.6);
+  font-weight: 200;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-bottom: 6px;
+}
+.checkbox-button-field + span:hover {
+  background-color: #222;
+}
+.checkbox-button-field {
+  display: none;
+}
+.checkbox-button-field:checked + span {
+  background-color: #d9d9d966;
+  color: rgb(255, 255, 255);
+  border-color: white;
+  border-radius: 20px;
 }
 
-.genre-select:invalid {
-  font-size: 8px;
-  color: rgba(255, 255, 255, 0.6);
-}
 
-.genre-select-option {
-  background: #01070a;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* кнопка */
 .button {
@@ -445,3 +441,14 @@ body {
   font-size: 14px;
   margin-top: 5px;
 }
+
+.error-input-min, .error-input-max {
+  font-size: 8px;
+  color: red;
+  display: none; 
+  margin-top: 8px; 
+   margin-left: 0; 
+}
+
+
+
