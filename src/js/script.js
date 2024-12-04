@@ -53,42 +53,42 @@ const shortQuestions = [
 ];
 
 window.addEventListener("DOMContentLoaded", function () {
-  // Модальне вікно
+  // ---------------------------- Модальне вікно
 
   const modalTrigger = document.querySelectorAll("[data-modal]"),
     modal = document.querySelector(".modal"),
+    modalOverlay = document.querySelector(".modal-overlay"),
     modalCloseBtn = document.querySelector("[data-close]");
 
+  //відкрити модалку
+  function openModal() {
+    modal.classList.add("show");
+    modalOverlay.classList.add("show");
+    document.body.style.overflow = "hidden"; // Заблокувати прокручування
+  }
+  // Закрити модалку
+  function closeModal() {
+    modal.classList.remove("show");
+    modalOverlay.classList.remove("show");
+    document.body.style.overflow = ""; // Відновити прокручування
+  }
+  // Обробники подій для кнопок
   modalTrigger.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      modal.classList.add("show");
-      modal.classList.remove("hide");
-      // document.body.style.overflow = 'hidden';
-    });
+    btn.addEventListener("click", openModal);
   });
 
-  function closeModal() {
-    modal.classList.add("hide");
-    modal.classList.remove("show");
-    // document.body.style.overflow = '';
-  }
-
-  // закрити вікно, якщо натиснути на хрестик
   modalCloseBtn.addEventListener("click", closeModal);
 
-  // закрити вікно, якщо натиснути поза ним
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
+  // Закриття модалки при натисканні на оверлей
+  modalOverlay.addEventListener("click", closeModal);
 
-  // закрити вікно, якщо натиснути "Escape"
+  // Закриття модалки при натисканні клавіші Escape
   document.addEventListener("keydown", (e) => {
     if (e.code === "Escape" && modal.classList.contains("show")) {
       closeModal();
     }
   });
+  // ---------------------------- Модальне вікно
 
   // Коротке опитування
 
@@ -138,7 +138,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
           let isMoodDefault;
           for (let i = 0; i < lengthArray; i++) {
-            const savedMood = localStorage.getItem('radioMood');
+            const savedMood = localStorage.getItem("radioMood");
             if (savedMood) {
               isMoodDefault = answers[i] === savedMood;
             } else {
@@ -163,13 +163,12 @@ window.addEventListener("DOMContentLoaded", function () {
         case "radio": {
           let isPartnerDefault;
           for (let answerText of element.answers) {
-            const savedValue = localStorage.getItem('radio');
+            const savedValue = localStorage.getItem("radio");
             if (savedValue) {
               isPartnerDefault = answerText === savedValue;
             } else {
               isPartnerDefault = answerText === "Наодинці";
             }
-            
 
             const answerTemplate = `
             <label class="radio-button-label">
@@ -191,8 +190,6 @@ window.addEventListener("DOMContentLoaded", function () {
                         <div class="slider-labels"></div>`;
           questionContainer.innerHTML += sliderTemplate;
 
-          
-
           const sliderContainer =
             questionContainer.querySelector(".slider-labels");
 
@@ -201,8 +198,6 @@ window.addEventListener("DOMContentLoaded", function () {
             labelElement.textContent = labelText;
 
             sliderContainer.appendChild(labelElement);
-
-            
           });
 
           break;
@@ -245,7 +240,7 @@ window.addEventListener("DOMContentLoaded", function () {
           const checkboxWrapper = document.createElement("div");
           checkboxWrapper.className = "checkbox-options";
 
-          const savedOptions = localStorage.getItem('selectedOptions');
+          const savedOptions = localStorage.getItem("selectedOptions");
           const savedOptionsArray = savedOptions ? savedOptions.split(",") : [];
 
           options.forEach((option) => {
@@ -253,7 +248,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
             const answerTemplate = ` 
               <label class="checkbox-button-label">
-                <input class="checkbox-button-field" type="checkbox" name="genre" value="${option}" ${isChecked ? "checked" : ""} />
+                <input class="checkbox-button-field" type="checkbox" name="genre" value="${option}" ${
+              isChecked ? "checked" : ""
+            } />
                 <span>${option}</span>
               </label>`;
             checkboxWrapper.innerHTML += answerTemplate;
@@ -271,42 +268,43 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // local Storage
 
-  const radioImgs = document.querySelectorAll('.mood-option input[type="radio"]'); // Отримуємо всі радіокнопки
+  const radioImgs = document.querySelectorAll(
+    '.mood-option input[type="radio"]'
+  ); // Отримуємо всі радіокнопки
   radioImgs.forEach((radio) => {
-      radio.addEventListener('change', (event) => {
-          const selectedMood = event.target.value; // Отримуємо значення вибраного елемента
-          localStorage.setItem('radioMood', selectedMood);
-      });
+    radio.addEventListener("change", (event) => {
+      const selectedMood = event.target.value; // Отримуємо значення вибраного елемента
+      localStorage.setItem("radioMood", selectedMood);
+    });
   });
 
-  const radioFields = document.querySelectorAll('.radio-button-field');
+  const radioFields = document.querySelectorAll(".radio-button-field");
   radioFields.forEach((radio) => {
-      radio.addEventListener('change', (event) => {
-          const selectedRadio = event.target.value; 
-          localStorage.setItem('radio', selectedRadio); 
-      });
+    radio.addEventListener("change", (event) => {
+      const selectedRadio = event.target.value;
+      localStorage.setItem("radio", selectedRadio);
+    });
   });
 
-  const inputFields = document.querySelectorAll('.text-input-field');
+  const inputFields = document.querySelectorAll(".text-input-field");
   inputFields.forEach((input, index) => {
-    input.addEventListener('input', () => {
+    input.addEventListener("input", () => {
       localStorage.setItem(`input-field-${index}`, input.value); // Зберігаємо значення у localStorage
     });
   });
 
-  const checkboxFields = document.querySelectorAll('.checkbox-button-field');
+  const checkboxFields = document.querySelectorAll(".checkbox-button-field");
   checkboxFields.forEach((checkbox) => {
-    checkbox.addEventListener('change', () => {
+    checkbox.addEventListener("change", () => {
       const selectedOptions = [];
       checkboxFields.forEach((checkbox) => {
         if (checkbox.checked) {
           selectedOptions.push(checkbox.value); // Додаємо вибрані значення в масив
         }
       });
-      localStorage.setItem('selectedOptions', selectedOptions.join(",")); // Зберігаємо вибрані опції як рядок, розділений комами
+      localStorage.setItem("selectedOptions", selectedOptions.join(",")); // Зберігаємо вибрані опції як рядок, розділений комами
     });
   });
-
 
   const lowerSlider = document.querySelector("#lower-slider");
   const upperSlider = document.querySelector("#upper-slider");
@@ -326,7 +324,7 @@ window.addEventListener("DOMContentLoaded", function () {
   submitButton.textContent = "Отримати добірку фільмів";
 
   formContainer.appendChild(submitButton);
-  
+
   let result = [];
 
   function getRandomMovie(index) {
@@ -471,8 +469,7 @@ window.addEventListener("DOMContentLoaded", function () {
   const yearInputMin = document.querySelector("#year-min");
   const yearInputMax = document.querySelector("#year-max");
 
-
-// ВАЛІДАЦІЯ
+  // ВАЛІДАЦІЯ
   function validateYears() {
     const yearMin = document.querySelector('input[name="year-min-0"]');
     const yearMax = document.querySelector('input[name="year-min-1"]');
@@ -525,17 +522,14 @@ window.addEventListener("DOMContentLoaded", function () {
     return true; // Якщо помилок немає
   }
 
-    //const submitBtn = document.querySelector(".button");
-    submitButton.addEventListener("click", (event) => {
-      event.preventDefault(); // Зупинити відправку форми за замовчуванням
-      
-      if (validateYears()) {
-        sendResults(shortQuestions);
-        localStorage.clear();
-      }
+  //const submitBtn = document.querySelector(".button");
+  submitButton.addEventListener("click", (event) => {
+    event.preventDefault(); // Зупинити відправку форми за замовчуванням
+
+    if (validateYears()) {
+      sendResults(shortQuestions);
+      localStorage.clear();
+    }
   });
-  
+
 });
-
-
-

@@ -1,328 +1,188 @@
 body {
-    padding: 25px;
-    background-color: black;
+  padding: 25px;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-page-wrapper{
+    position: relative;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.logo{
     display: flex;
-    justify-content: center;
-    /* Центрує по горизонталі */
-    align-items: center;
-    /* Центрує по вертикалі */
 }
-
-.title {}
-
-.h {
-    transform: rotate(180deg);
-    position: fixed;
-    /* Фіксоване розташування */
-    top: -40px;
-    /* Відступ від верхнього краю */
-    left: 20px;
-    /* Відступ від лівого краю */
-    font-weight: bold;
-    font-size: 60px;
-    font-family: "Montserrat Alternates", sans-serif;
-    color: white;
-}
-
-.hh {
-    font-size: 30px;
-    position: absolute;
-    /* Фіксоване розташування */
-    top: 150px;
-    /* Відступ від верхнього краю */
-    left: -100px;
-    /* Відступ від лівого краю */
-    font-family: "Montserrat Alternates", sans-serif;
-    color: white;
-}
-
-.hhh {
-    font-size: 30px;
-    position: absolute;
-    /* Фіксоване розташування */
-    top: 600px;
-    /* Відступ від верхнього краю */
-    left: -150px;
-    /* Відступ від лівого краю */
-    font-family: "Montserrat Alternates", sans-serif;
-    color: white;
-}
-
-.hhhh {
-    font-size: 50px;
-    position: absolute;
-    /* Фіксоване розташування */
-    font-weight: bold;
-    top: 1000px;
-    /* Відступ від верхнього краю */
-    left: 790px;
-    /* Відступ від лівого краю */
-    font-family: "Montserrat Alternates", sans-serif;
-    color: white;
-    width: 500px;
-}
-
-.hhhhh {
-    font-size: 25px;
-    position: absolute;
-    /* Фіксоване розташування */
-    top: 1150px;
-    /* Відступ від верхнього краю */
-    left: 580px;
-    /* Відступ від лівого краю */
-    font-family: "Montserrat Alternates", sans-serif;
-    color: white;
-    text-align: center;
-    width: 700px;
-}
-
-.hhhhhh {
-    font-size: 25px;
-    position: absolute;
-    /* Фіксоване розташування */
-    top: 1800px;
-    /* Відступ від верхнього краю */
-    left: -50px;
-    /* Відступ від лівого краю */
-    font-family: "Montserrat Alternates", sans-serif;
-    color: white;
-    text-align: center;
-    width: 700px;
-}
-
-.hhhhhhh {
-    font-size: 25px;
-    position: absolute;
-    /* Фіксоване розташування */
-    top: 1850px;
-    /* Відступ від верхнього краю */
-    left: -700px;
-    /* Відступ від лівого краю */
-    font-family: "Montserrat Alternates", sans-serif;
-    color: white;
-    opacity: 0.5;
-    text-align: center;
-    width: 700px;
-}
-
 .secondary-text {
-    font-size: 16px;
-    position: fixed;
-    top: 20px;
-    left: 150px;
-    opacity: 0.5;
-    font-family: "Montserrat Alternates", sans-serif;
-    color: #FFFFFF;
+  font-size: 16px;
+  opacity: 0.5;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #ffffff;
 }
 
-#my-navigation {
-    display: flex;
-    justify-content: space-evenly;
-    list-style-type: none;
-    padding: 10px;
-    background: "dark";
-
-    /* Абсолютне позиціонування меню в правому верхньому куті*/
-    position: absolute;
-    top: 20px;
-    /* Відступ зверху */
-    left: 550px;
-    /* Відступ з правого боку */
-    z-index: 1000;
-    /* Щоб меню було вище за інший контент */
+.menu-items a {
+  text-decoration: none;
+  color: white;
+  padding: 10px 30px;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  transition: border-color 0.8s ease, color 0.8s ease;
+  display: inline-block;
+  
 }
 
-#my-navigation a {
-    text-decoration: none;
-    /* Прибирає підкреслення */
-    color: white;
-    /* Білий колір тексту */
-    padding: 10px 30px;
-    /* Відступи для збільшення ширини кнопки */
-    border: 2px solid transparent;
-    /* Початковий прозорий бордер */
-    border-radius: 25px;
-    /* Овальна форма */
-    transition: border-color 0.8s ease, color 0.8s ease;
-    /* Плавний перехід */
-    display: inline-block;
-    /* Забезпечує, щоб кнопка була інлайн-блоком */
-}
-
-/* Стиль при наведенні */
-#my-navigation a:hover {
-    border-color: white;
-    /*  Фіолетова обводка */
-    color: white;
-    /* Зміна кольору тексту при наведенні */
+.menu-items a:hover {
+  border-color: white;
+  color: white;
 }
 
 .menu-items {
-    display: flex;
-    font-family: "Montserrat Alternates", sans-serif;
-    gap: 50px;
-}
-
-.button {
-    background-color: black;
-    /* Синій колір кнопки */
-    font-family: "Montserrat Alternates", sans-serif;
-    color: white;
-    /* Білий текст */
-    border: 2px solid transparent;
-    padding: 5px 70px;
-    /* Відступи */
-    top: 625px;
-    /* Зміщення вниз */
-    left: 375px;
-    /* Зміщення вправо */
-    font-size: 30px;
-    /* Розмір тексту */
-    border-radius: 50px;
-    /* Закруглені кути */
-    transition: background-color 0.8s;
-    /* Анімація зміни кольору */
-    position: absolute;
-    /* Додає зміщення */
+  display: flex;
+  font-family: "Montserrat Alternates", sans-serif;
+  gap: 10px;
+  font-weight: 300;
 }
 
 
-.button:hover {
-    border-color: white;
-    /*  Фіолетова обводка */
-    color: white;
-    /* Зміна кольору тексту при наведенні */
-    transition: border-color 0.8s ease, color 0.8s ease;
+.main-title {
+  transform: rotate(180deg);
+  font-weight: bold;
+  font-size: 60px;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
 }
 
-.button1 {
-    background-color: black;
-    /* Синій колір кнопки */
-    font-family: "Montserrat Alternates", sans-serif;
-    color: white;
-    /* Білий текст */
-    border: 2px solid transparent;
-    padding: 5px 70px;
-    /* Відступи */
-    top: 1750px;
-    /* Зміщення вниз */
-    left: -50px;
-    /* Зміщення вправо */
-    font-size: 30px;
-    /* Розмір тексту */
-    border-radius: 50px;
-    /* Закруглені кути */
-    transition: background-color 0.8s;
-    /* Анімація зміни кольору */
-    position: absolute;
-    /* Додає зміщення */
-}
-
-
-.button1:hover {
-    border-color: white;
-    /*  Фіолетова обводка */
-    color: white;
-    /* Зміна кольору тексту при наведенні */
-    transition: border-color 0.8s ease, color 0.8s ease;
-}
-
-.white-line {
-    height: 2px;
-    /* Висота лінії */
-    background-color: white;
-    /* Колір лінії */
-    width: 100%;
-    /* Ширина лінії */
-    position: absolute;
-    /* Додає зміщення */
-    top: 800px;
-    /* Зміщення вниз */
-    left: -530px;
-    /* Зміщення вправо */
+.best-film-title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 30px;
+  display: block;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  margin-top: 20px;
 }
 
 .image-container {
-    position: absolute;
-    /* Додає зміщення */
-    top: 200px;
-    /* Зміщення вниз */
-    left: -400px;
-    /* Зміщення вправо */
-    display: flex;
-    /* Встановлюємо флекс-контейнер для горизонтального розташування зображень */
-    gap: 70px;
-    /* Відступ між зображеннями */
-    margin-top: 60px;
-    /* Відступ зверху */
-    justify-content: center;
-    /* Центруємо зображення по горизонталі */
+  display: flex;
+  gap: 50px;
+  margin-top: 60px;
+  justify-content: center;
 }
-
-/* Стилі для кожного зображення */
 .image {
-    width: 110px;
-    height: 300px;
-    border-radius: 50px;
-    /* Округлення кутів зображень */
-    overflow: hidden;
+  width: 110px;
+  height: 300px;
+  border-radius: 50px;
+  
+  overflow: hidden;
 }
 
 .image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Зображення покриває весь блок */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.image1 {
-    position: fixed;
-    /* Дозволяє переміщення */
-    top: 600px;
-    /* Початкове розташування */
-    left: 1100px;
-    /* Початкове розташування */
-    display: inline-block;
-    overflow: hidden;
+.choose-movie{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+.simple-survey {
+  font-size: 30px;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  margin-top: 5px;
 }
 
-.image1 img {
-    width: auto;
-    /* Зберігає реальну ширину */
-    height: auto;
-    /* Зберігає пропорції */
-    display: inline-block;
-    overflow: hidden;
+.btn-choose-a-movie {
+  background-color: black;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  border: 2px solid transparent;
+  padding: 5px 50px;
+  font-size: 30px;
+  border-radius: 50px;
+  transition: background-color 0.8s;
+  margin-left: 40px;
 }
 
-.image2 {
-    position: absolute;
-    /* Дозволяє переміщення */
-    top: 1000px;
-    /* Початкове розташування */
-    left: -500px;
-    /* Початкове розташування */
+.btn-choose-a-movie:hover {
+  border-color: white;
+  color: white;
+  transition: border-color 0.8s ease, color 0.8s ease;
 }
 
-.image2 img {
-    width: 1000px;
-    /* Зберігає реальну ширину */
-    height: 700px;
-    /* Зберігає пропорції */
+.hhhh {
+  font-size: 50px;
+  font-weight: bold;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  width: 500px;
 }
 
-.image3 {
-    position: absolute;
-    /* Дозволяє переміщення */
-    top: 1780px;
-    /* Початкове розташування */
-    left: 800px;
-    /* Початкове розташування */
+.hhhhh {
+  font-size: 25px;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  text-align: center;
+  width: 700px;
 }
 
-.image3 img {
-    width: 200px;
-    /* Зберігає реальну ширину */
-    height: 100px;
-    /* Зберігає пропорції */
+.hhhhhh {
+  font-size: 25px;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  text-align: center;
+  width: 700px;
 }
+
+.hhhhhhh {
+  font-size: 25px;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  opacity: 0.5;
+  text-align: center;
+  width: 700px;
+}
+
+
+
+.button1 {
+  background-color: black;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  border: 2px solid transparent;
+  padding: 5px 70px;
+  top: 1750px;
+  left: -50px;
+  font-size: 30px;
+  border-radius: 50px;
+  transition: background-color 0.8s;
+  position: absolute;
+}
+
+.button1:hover {
+  border-color: white;
+  color: white;
+  transition: border-color 0.8s ease, color 0.8s ease;
+}
+
+/* .white-line {
+  height: 2px;
+  background-color: white;
+  width: 100%;
+} */
+
+
+
+
+
+
+.arrow{
+    margin-left: 40px;
+     margin-top: 20px;
+   
+}
+
