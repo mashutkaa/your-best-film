@@ -521,15 +521,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
     return true; // Якщо помилок немає
   }
-
   //const submitBtn = document.querySelector(".button");
   submitButton.addEventListener("click", (event) => {
     event.preventDefault(); // Зупинити відправку форми за замовчуванням
-
+    window.location.href = "result-page.html"; // Перенаправлення на сторінку
     if (validateYears()) {
       sendResults(shortQuestions);
+      window.location.href = "result-page.html"; // Перенаправлення на сторінку
       localStorage.clear();
     }
   });
-
 });
