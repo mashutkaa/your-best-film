@@ -1,0 +1,493 @@
+/* ---------- COMMON STYLES ----------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+/* p:last-child {
+  margin-bottom: 0;
+} */
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  color: white;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ---------- СТИЛІ КОНТЕЙНЕРА ------------- */
+.modal {
+  position: fixed;
+  top: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background-color: #01070a;
+  border: 1px solid white;
+  border-radius: 30px;
+  padding: 48px 46px;
+  width: 443px;
+  display: none;
+  height: 450px;
+}
+.form {
+  overflow-y: auto;
+  flex-grow: 1;
+  max-height: calc(500px - 60px);
+  scrollbar-width: thin;
+  scrollbar-color: #777 #444;
+}
+
+.form ::-webkit-scrollbar {
+  width: 4px;
+}
+
+.form::-webkit-scrollbar-track {
+  background-color: #444; 
+  border-radius: 10px;
+}
+
+.form::-webkit-scrollbar-thumb {
+  background-color: #777; 
+  border-radius: 50%; 
+  transition: background-color 0.3s ease;
+}
+
+.form::-webkit-scrollbar-thumb:hover {
+  background-color: #999; 
+}
+
+
+.modal-wrapper {
+  position: relative;
+}
+.modal.show {
+  display: block;
+}
+.question-wrapper {
+  display: flex;
+  margin-bottom: 40px;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+  display: none;
+}
+.modal-overlay.show {
+  display: block;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+.modal-overlay.show {
+  display: block;
+}
+
+/* ---стилі тексту- */
+
+.form-title {
+  font-family: "Parkinsans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 24px;
+  padding-left: 30px;
+  margin-bottom: 7px;
+}
+
+.form-info {
+  font-size: 8px;
+  width: 245px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.required-field {
+  color: #bc0000;
+  font-size: 8px;
+  margin-bottom: 3px;
+}
+
+.question {
+  font-size: 15px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+/* питання ФОРМИ */
+.question-number-container {
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+
+  color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.question-number {
+  margin: 0;
+  padding: 15px;
+}
+
+.question-item {
+  margin-left: 20px;
+}
+
+/* ПЕРШЕ питання */
+
+/* Вибір настрою */
+.mood-options {
+  display: flex;
+  gap: 23px;
+}
+
+.mood-option {
+  text-align: center;
+  cursor: pointer;
+}
+
+.mood-option input {
+  display: none;
+}
+
+.mood-option .icon {
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.mood-option:hover .icon {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.mood-option span {
+  font-size: 8px;
+}
+
+/* Активний стан (коли вибрано) */
+.mood-option input:checked + .icon {
+  background-color: #ff4d4d;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.mood-option input:checked + .icon + span {
+  font-weight: bold;
+}
+
+/* ДРУГЕ ПИТАННЯ */
+
+/* Загальний стиль для контейнера слайдера */
+.slider-group {
+  position: relative;
+  width: 300px;
+  height: 5px;
+  margin: 20px 0;
+  border: none;
+}
+
+/* Загальний стиль для доріжки */
+.lower-range-slider,
+.upper-range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 300px;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+  background: transparent;
+  z-index: 1;
+}
+
+/* Доріжка слайдера */
+.lower-range-slider::-webkit-slider-runnable-track,
+.upper-range-slider::-webkit-slider-runnable-track {
+  height: 1px;
+  background: #ffffff;
+  border-radius: 3px;
+}
+
+.lower-range-slider::-moz-range-track,
+.upper-range-slider::-moz-range-track {
+  height: 1px;
+  background: #ffffff;
+  border-radius: 3px;
+}
+
+/* Стилі для повзунка */
+.lower-range-slider::-webkit-slider-thumb,
+.upper-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 9px;
+  height: 9px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+  transform: translateY(-50%);
+}
+.lower-range-slider::-moz-range-thumb,
+.upper-range-slider::-moz-range-thumb {
+  width: 9px;
+  height: 9px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+/* Стилі для підписів */
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 10px;
+  font-size: 12px;
+  color: white;
+  position: relative;
+}
+.question-item {
+  position: relative;
+}
+
+/* стилі для рисочок */
+
+.slider-labels span {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.slider-labels span::after {
+  content: "";
+  width: 1px;
+  height: 16px;
+  background: white;
+  position: absolute;
+  top: -29px;
+}
+
+/* Позиціюємо кожну рисочку */
+
+.slider-labels span:nth-child(2) {
+  left: -14px; /* Позиція другого підпису */
+}
+
+.slider-labels span:nth-child(3) {
+  left: 3px; /* Позиція третього підпису */
+}
+.slider-labels span:nth-child(4) {
+  left: 17px; /* Позиція третього підпису */
+}
+
+/* Для першої рисочки */
+.slider-labels span:first-child::after {
+  left: 6px;
+}
+
+/* Для останньої рисочки */
+.slider-labels span:last-child::after {
+  right: 2px;
+}
+
+/* ТРЕТЄ ПИТАННЯ */
+
+.radio-button-field + span {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 6px 15px;
+  border: 1px solid white;
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  font-size: 8px;
+  font-weight: 200;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-bottom: 6px;
+}
+
+.radio-button-field + span:hover {
+  background-color: #222;
+}
+
+.radio-button-field {
+  display: none;
+}
+
+.radio-button-field:checked + span {
+  background-color: #d9d9d966;
+  color: rgb(255, 255, 255);
+  border-color: white;
+  border-radius: 20px;
+}
+
+/* ЧЕТВЕРТЕ ПИТАННЯ */
+.input-field-label {
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  display: block; /* змінили на block, щоб помилка була під полем вводу */
+}
+
+.input-field-label span {
+  font-size: 8px;
+  font-weight: 400;
+  color: white;
+}
+
+.text-input-field {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  border-radius: 20px;
+  padding: 3px auto;
+  text-align: center;
+  font-size: 12px;
+  width: 83px;
+  height: 15px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-input-field::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 8px;
+}
+
+.question-item label input[type="text"]:focus {
+  outline: none;
+  border-color: #ffffff;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* П'ЯТЕ ПИТАННЯ */
+.checkbox-button-field + span {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 6px 15px;
+  border: 1px solid white;
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  font-size: 8px;
+  font-weight: 200;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-bottom: 6px;
+}
+.checkbox-button-field + span:hover {
+  background-color: #222;
+}
+.checkbox-button-field {
+  display: none;
+}
+.checkbox-button-field:checked + span {
+  background-color: #d9d9d966;
+  color: rgb(255, 255, 255);
+  border-color: white;
+  border-radius: 20px;
+}
+
+/* кнопка */
+.button {
+  width: 300px;
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  background-color: transparent;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.button:hover {
+  background-color: #d9d9d966;
+}
+
+/* CLOSE BUTTON */
+.btn-close {
+  background-color: #01070a;
+  border: none;
+  color: white;
+  font-size: 25px;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.error-input-min,
+.error-input-max {
+  font-size: 8px;
+  color: red;
+  display: none;
+  margin-top: 8px;
+  margin-left: 0;
+}
