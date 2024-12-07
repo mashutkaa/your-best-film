@@ -423,44 +423,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
   }
 
-
-  function getRandomMovie(index) {
-    const genres = [
-      "Комедія",
-      "Драма",
-      "Трилер",
-      "Фантастика",
-      "Мелодрама",
-      "Бойовик",
-      "Пригоди",
-      "Анімація",
-      "Документальний",
-      "Жахи",
-    ];
-    const reasons = [
-      "Цей фільм має захоплюючий сюжет.",
-      "Цей фільм має чудову акторську гру.",
-      "Цей фільм має вражаючі спецефекти.",
-      "Цей фільм має глибокий сенс.",
-      "Цей фільм має чудову музику.",
-      "Цей фільм має непередбачуваний фінал.",
-      "Цей фільм має цікаві персонажі.",
-      "Цей фільм має гарну кінематографію.",
-      "Цей фільм має багато гумору.",
-      "Цей фільм має захоплюючі пригоди.",
-    ];
-
-    return {
-      name: `Фільм ${index}`,
-      genre: genres[Math.floor(Math.random() * genres.length)],
-      year: `${2000 + Math.floor(Math.random() * 22)}`,
-      reason: reasons[Math.floor(Math.random() * reasons.length)],
-      rating: (Math.random() * 5).toFixed(1),
-    };
-  }
-
   // запит до gpt
-  async function printMovieRecommendations(sandbox = true) {
+  async function getMovieRecommendations(sandbox = true) {
     console.log("Відправка запиту...");
 
     const spinnerContainer = document.createElement('div');
@@ -473,45 +437,37 @@ window.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(spinnerContainer);
 
     try {
-      if (sandbox) {
-        const movies = [];
-        for (let i = 1; i <= 10; i++) {
-          movies.push(getRandomMovie(i));
+      const response = await fetch(
+        "http://localhost:3000/api/getMovieRecommendations",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(result),
+          sandbox: sandbox,
         }
-        console.log(movies);
-        closeModal();
-        printNewResults.test();
-      }
-    
-      else {
-        const response = await fetch(
-          "http://localhost:3000/api/getMovieRecommendations",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(result),
-          }
-        );
+      );
 
-        if (!response.ok) {
-          const errorText = await response.text();
-          console.log("Error: " + errorText);
-          return;
-        }
-        // recommendations - масив з об'єктами
-        const recommendations = await response.json();
-        closeModal();
-        console.log(recommendations); // вивід добірки в консоль
-        printNewResults.openResults(recommendations);
-        // має виводитися на окрему сторінку
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.log("Error: " + errorText);
+        errorMessage();
+        return;
       }
+      // recommendations - масив з об'єктами
+      const recommendations = await response.json();
+      closeModal();
+      console.log(recommendations); // вивід добірки в консоль
+      printNewResults.openResults(recommendations);
+      // має виводитися на окрему сторінку
     } 
 
-    // catch { 
-    //   console.error('Помилка при завантаженні:', error);
-    // }
+    catch { 
+      console.error('Помилка при завантаженні:', error);
+      errorMessage();
+      return;
+    }
 
     finally {
       spinnerContainer.remove();
@@ -584,7 +540,7 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
     console.log(result);
-    printMovieRecommendations();
+    getMovieRecommendations();
   }
 
   const errorInputMin = document.querySelector(".error-input-min");

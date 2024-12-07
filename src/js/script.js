@@ -409,9 +409,11 @@ window.addEventListener("DOMContentLoaded", function () {
       // має виводитися на окрему сторінку
     } 
 
-    // catch { 
-    //   console.error('Помилка при завантаженні:', error);
-    // }
+    catch { 
+      console.error('Помилка при завантаженні:', error);
+      errorMessage();
+      return;
+    }
 
     finally {
       spinnerContainer.remove();
