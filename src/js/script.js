@@ -409,7 +409,7 @@ window.addEventListener("DOMContentLoaded", function () {
       // має виводитися на окрему сторінку
     } 
 
-    catch { 
+    catch (error) { 
       console.error('Помилка при завантаженні:', error);
       errorMessage();
       return;
