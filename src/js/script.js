@@ -1,4 +1,8 @@
 // запитання
+const printResults = require('./result_page');
+
+const printNewResults = new printResults();
+
 const shortQuestions = [
   {
     type: "radio-mood",
@@ -421,8 +425,8 @@ window.addEventListener("DOMContentLoaded", function () {
           movies.push(getRandomMovie(i));
         }
         console.log(movies);
-        errorMessage()
-        //closeModal();
+        closeModal();
+        printNewResults.test();
       }
     
       else {
@@ -442,10 +446,11 @@ window.addEventListener("DOMContentLoaded", function () {
           console.log("Error: " + errorText);
           return;
         }
-
+        // recommendations - масив з об'єктами
         const recommendations = await response.json();
         closeModal();
         console.log(recommendations); // вивід добірки в консоль
+        printNewResults.openResults(recommendations);
         // має виводитися на окрему сторінку
       }
     } 
