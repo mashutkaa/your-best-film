@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.post("/api/getMovieRecommendations", async (req, res) => {
     try {
-        if (req.sandbox) {
+        if (req.body.sandbox) {
             const sandboxMovies = [];
             for (let i = 1; i <= 10; i++) {
                 sandboxMovies.push({
@@ -32,7 +32,7 @@ app.post("/api/getMovieRecommendations", async (req, res) => {
             return res.status(200).json(sandboxMovies);
         }
 
-        const questionsAndAnswers = req.body;
+        const questionsAndAnswers = req.body.result;
         let formattedString = questionsAndAnswers.map(qa => `Питання: ${qa.question}\nВідповідь: ${qa.answer}`).join('\n');
         
         const prompt = `

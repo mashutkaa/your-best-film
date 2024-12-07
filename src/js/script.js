@@ -383,6 +383,11 @@ window.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(spinnerContainer);
 
     try {
+      const requestBody = {
+        result: result,
+        sandbox: sandbox,
+      };
+
       const response = await fetch(
         "http://localhost:3000/api/getMovieRecommendations",
         {
@@ -390,8 +395,7 @@ window.addEventListener("DOMContentLoaded", function () {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(result),
-          sandbox: sandbox,
+          body: JSON.stringify(requestBody),
         }
       );
 
@@ -486,7 +490,7 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
     console.log(result);
-    getMovieRecommendations();
+    getMovieRecommendations(sandbox=false);
   }
 
   const errorInputMin = document.querySelector(".error-input-min");
