@@ -1,5 +1,3 @@
-// console.log('"hello":', "hello")
-
 // запитання
 const shortQuestions = [
   {
@@ -72,6 +70,15 @@ window.addEventListener("DOMContentLoaded", function () {
     modalOverlay.classList.remove("show");
     document.body.style.overflow = ""; // Відновити прокручування
   }
+
+  const formContainer = document.querySelector(".form");
+  
+
+  // function cleanFormContainer() {
+  //   formContainer.classList.remove('hide');
+  //   formContainer.classList.add('show');
+  // }
+
   // Обробники подій для кнопок
   modalTrigger.forEach((btn) => {
     btn.addEventListener("click", openModal);
@@ -90,11 +97,8 @@ window.addEventListener("DOMContentLoaded", function () {
   });
   // ---------------------------- Модальне вікно
 
-  // Коротке опитування
+  // Коротке опитуванняі
 
-  const formContainer = document.querySelector(".form");
-
-  // Очищення запитань
   formContainer.innerHTML = "";
 
   showQuestion(shortQuestions);
@@ -327,6 +331,41 @@ window.addEventListener("DOMContentLoaded", function () {
 
   let result = [];
 
+  // повідомлення про статус обробки відповідей користувача
+  const message = {
+    loading: '../src/icons/spinner.svg',
+    errorInLoading: 'Вибачте, на жаль, сталася помилка',
+  }
+
+  // повідомлення про помилку
+
+  function errorMessage() {
+  const formWrapper = document.querySelector('.form-wrapper');
+    formWrapper.classList.add('hide');  // Ховаємо опитування
+
+    const modalContainer = document.querySelector('.modal-wrapper');
+
+    // Створити контейнер для помилки
+    const errorContainer = document.createElement("div");
+    errorContainer.classList.add("question-item");
+    const errorTemplate = `<p class="question">${message.errorInLoading}</p>`;
+    errorContainer.innerHTML += errorTemplate;
+
+    modalContainer.appendChild(errorContainer);
+
+    modalCloseBtn.addEventListener("click", () => {
+      errorContainer.remove();  // Видаляємо помилку
+      formWrapper.classList.remove('hide');
+      closeModal();
+      showQuestion(shortQuestions);
+    });
+
+    //const copyFormContainer = formContainer;
+
+
+  }
+
+
   function getRandomMovie(index) {
     const genres = [
       "Комедія",
@@ -362,37 +401,62 @@ window.addEventListener("DOMContentLoaded", function () {
     };
   }
 
+  // запит до gpt
   async function printMovieRecommendations(sandbox = true) {
     console.log("Відправка запиту...");
 
-    if (sandbox) {
-      const movies = [];
-      for (let i = 1; i <= 10; i++) {
-        movies.push(getRandomMovie(i));
+    const spinnerContainer = document.createElement('div');
+    spinnerContainer.id = 'spinner-container';
+
+    const spinnerImg = document.createElement('img');
+    spinnerImg.src = message.loading;
+    spinnerImg.alt = 'Loading...';
+    spinnerContainer.appendChild(spinnerImg);
+    document.body.appendChild(spinnerContainer);
+
+    try {
+      if (sandbox) {
+        const movies = [];
+        for (let i = 1; i <= 10; i++) {
+          movies.push(getRandomMovie(i));
+        }
+        console.log(movies);
+        errorMessage()
+        //closeModal();
       }
-      console.log(movies);
-      return;
-    }
+    
+      else {
+        const response = await fetch(
+          "http://localhost:3000/api/getMovieRecommendations",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(result),
+          }
+        );
 
-    const response = await fetch(
-      "http://localhost:3000/api/getMovieRecommendations",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(result),
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.log("Error: " + errorText);
+          return;
+        }
+
+        const recommendations = await response.json();
+        closeModal();
+        console.log(recommendations); // вивід добірки в консоль
+        // має виводитися на окрему сторінку
       }
-    );
+    } 
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.log("Error: " + errorText);
-      return;
+    // catch { 
+    //   console.error('Помилка при завантаженні:', error);
+    // }
+
+    finally {
+      spinnerContainer.remove();
     }
-
-    const recommendations = await response.json();
-    console.log(recommendations); // вивід відповіді
   }
 
   function sendResults(questions) {
@@ -429,8 +493,8 @@ window.addEventListener("DOMContentLoaded", function () {
         }
 
         case "input-fields": {
-          const answerMin = document.querySelector("#year-min").value || null;
-          const answerMax = document.querySelector("#year-max").value || null;
+          const answerMin = document.querySelector("#year-min")?.value || "не вказано";
+          const answerMax = document.querySelector("#year-max")?.value || "не вказано";
 
           answer = `Не раніше ${answerMin}, не пізніше: ${answerMax}`;
           break;
@@ -522,14 +586,15 @@ window.addEventListener("DOMContentLoaded", function () {
     return true; // Якщо помилок немає
   }
 
-  //const submitBtn = document.querySelector(".button");
   submitButton.addEventListener("click", (event) => {
     event.preventDefault(); // Зупинити відправку форми за замовчуванням
 
-    if (validateYears()) {
-      sendResults(shortQuestions);
-      localStorage.clear();
-    }
+    sendResults(shortQuestions);
+    localStorage.clear();
+    // if (validateYears()) {
+    //   sendResults(shortQuestions);
+    //   localStorage.clear();
+    // }
   });
 
 });
