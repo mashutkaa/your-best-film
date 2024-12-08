@@ -522,27 +522,29 @@
 
             case "input-fields": {
               const answerMin =
-                document.querySelector("#year-min")?.value || "не вказано";
+                document.querySelector('input[name="year-min-0"]')?.value || "не вказано";
               const answerMax =
-                document.querySelector("#year-max")?.value || "не вказано";
+                document.querySelector('input[name="year-min-0"]')?.value ||
+                "не вказано";
 
               answer = `Не раніше ${answerMin}, не пізніше: ${answerMax}`;
               break;
             }
 
-            case "checkbox": {
+            case "option": {
               const selectedGenres = Array.from(
                 document.querySelectorAll('input[name="genre"]:checked')
               ).map((checkbox) => checkbox.value);
 
               if (selectedGenres.length === 0) {
-                answer = element.answers
-                  .split(", ")
-                  .map((e) => e[0].toUpperCase() + e.slice(1))
-                  .join(", ");
-              } else {
-                answer = selectedGenres.join(", ");
+                selectedGenres.push(
+                  ...element.answers
+                    .split(", ")
+                    .map((e) => e[0].toUpperCase() + e.slice(1))
+                );
               }
+
+              answer = selectedGenres.join(", ");
               break;
             }
           }
@@ -650,6 +652,7 @@
            return (isValid = true);
          }
         }
+
 
         return isValid; // Якщо помилок немає
       }

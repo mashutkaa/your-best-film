@@ -276,8 +276,8 @@ body {
 .upper-range-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 9px;
-  height: 9px;
+  width: 13px;
+  height: 13px;
   background: #ffffff;
   border-radius: 50%;
   border: 2px solid white;
@@ -288,8 +288,8 @@ body {
 }
 .lower-range-slider::-moz-range-thumb,
 .upper-range-slider::-moz-range-thumb {
-  width: 9px;
-  height: 9px;
+  width: 13px;
+  height: 13px;
   background: #ffffff;
   border-radius: 50%;
   border: 2px solid white;
@@ -330,24 +330,24 @@ body {
 /* Позиціюємо кожну рисочку */
 
 .slider-labels span:nth-child(2) {
-  left: -14px; /* Позиція другого підпису */
+  left: -12px; /* Позиція другого підпису */
 }
 
 .slider-labels span:nth-child(3) {
   left: 3px; /* Позиція третього підпису */
 }
 .slider-labels span:nth-child(4) {
-  left: 17px; /* Позиція третього підпису */
+  left: 16px; /* Позиція третього підпису */
 }
 
 /* Для першої рисочки */
 .slider-labels span:first-child::after {
-  left: 6px;
+  left: 8px;
 }
 
 /* Для останньої рисочки */
 .slider-labels span:last-child::after {
-  right: 2px;
+  right: 4px;
 }
 
 /* ТРЕТЄ ПИТАННЯ */
