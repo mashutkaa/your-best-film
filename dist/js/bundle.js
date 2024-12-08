@@ -657,8 +657,25 @@
         return isValid; // Якщо помилок немає
       }
 
+
+// ВАЛІДАЦІЯ ПОВЗУНКА
+const sliderGap = 1;
+lowerSlider.addEventListener("input", () => {
+  if (parseInt(lowerSlider.value) >= parseInt(upperSlider.value) - sliderGap) {
+    lowerSlider.value = parseInt(upperSlider.value) - sliderGap;
+  }
+  localStorage.setItem("lowerSliderValue", lowerSlider.value);
+});
+
+upperSlider.addEventListener("input", () => {
+  if (parseInt(upperSlider.value) <= parseInt(lowerSlider.value) + sliderGap) {
+    upperSlider.value = parseInt(lowerSlider.value) + sliderGap;
+  }
+  localStorage.setItem("upperSliderValue", upperSlider.value);
+});
+
       submitButton.addEventListener("click", (event) => {
-        event.preventDefault(); // Зупинити відправку форми за замовчуванням
+        event.preventDefault(); 
 
         localStorage.clear();
         if (validateYears()) {
