@@ -1,5 +1,7 @@
+console.log("hi");
 // запитання
-const printResults = require('./result_page');
+
+const printResults = require("./result_page");
 
 const printNewResults = new printResults();
 
@@ -76,7 +78,6 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   const formContainer = document.querySelector(".form");
-  
 
   // function cleanFormContainer() {
   //   formContainer.classList.remove('hide');
@@ -227,6 +228,7 @@ window.addEventListener("DOMContentLoaded", function () {
           // Створюємо інпут-поля
           for (let i = 0; i < lengthArray; i++) {
             const answerTemplate = `
+            
               <label class="input-field-label">
                 <span>${answerArray[i]}</span>
                 <input class="text-input-field" type="text" placeholder="${placeholderArray[i]}" name="year-min-${i}" pattern="\\d{4}"
@@ -337,17 +339,17 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // повідомлення про статус обробки відповідей користувача
   const message = {
-    loading: '../src/icons/spinner.svg',
-    errorInLoading: 'Вибачте, на жаль, сталася помилка',
-  }
+    loading: "../src/icons/spinner.svg",
+    errorInLoading: "Вибачте, на жаль, сталася помилка",
+  };
 
   // повідомлення про помилку
 
   function errorMessage() {
-  const formWrapper = document.querySelector('.form-wrapper');
-    formWrapper.classList.add('hide');  // Ховаємо опитування
+    const formWrapper = document.querySelector(".form-wrapper");
+    formWrapper.classList.add("hide"); // Ховаємо опитування
 
-    const modalContainer = document.querySelector('.modal-wrapper');
+    const modalContainer = document.querySelector(".modal-wrapper");
 
     // Створити контейнер для помилки
     const errorContainer = document.createElement("div");
@@ -358,27 +360,25 @@ window.addEventListener("DOMContentLoaded", function () {
     modalContainer.appendChild(errorContainer);
 
     modalCloseBtn.addEventListener("click", () => {
-      errorContainer.remove();  // Видаляємо помилку
-      formWrapper.classList.remove('hide');
+      errorContainer.remove(); // Видаляємо помилку
+      formWrapper.classList.remove("hide");
       closeModal();
       showQuestion(shortQuestions);
     });
 
     //const copyFormContainer = formContainer;
-
-
   }
 
   // запит до gpt
   async function getMovieRecommendations(sandbox = true) {
     console.log("Відправка запиту...");
 
-    const spinnerContainer = document.createElement('div');
-    spinnerContainer.id = 'spinner-container';
+    const spinnerContainer = document.createElement("div");
+    spinnerContainer.id = "spinner-container";
 
-    const spinnerImg = document.createElement('img');
+    const spinnerImg = document.createElement("img");
     spinnerImg.src = message.loading;
-    spinnerImg.alt = 'Loading...';
+    spinnerImg.alt = "Loading...";
     spinnerContainer.appendChild(spinnerImg);
     document.body.appendChild(spinnerContainer);
 
@@ -411,15 +411,11 @@ window.addEventListener("DOMContentLoaded", function () {
       console.log(recommendations); // вивід добірки в консоль
       printNewResults.openResults(recommendations);
       // має виводитися на окрему сторінку
-    } 
-
-    catch (error) { 
-      console.error('Помилка при завантаженні:', error);
+    } catch (error) {
+      console.error("Помилка при завантаженні:", error);
       errorMessage();
       return;
-    }
-
-    finally {
+    } finally {
       spinnerContainer.remove();
     }
   }
@@ -458,8 +454,10 @@ window.addEventListener("DOMContentLoaded", function () {
         }
 
         case "input-fields": {
-          const answerMin = document.querySelector("#year-min")?.value || "не вказано";
-          const answerMax = document.querySelector("#year-max")?.value || "не вказано";
+          const answerMin =
+            document.querySelector("#year-min")?.value || "не вказано";
+          const answerMax =
+            document.querySelector("#year-max")?.value || "не вказано";
 
           answer = `Не раніше ${answerMin}, не пізніше: ${answerMax}`;
           break;
@@ -490,7 +488,7 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
     console.log(result);
-    getMovieRecommendations(sandbox=false);
+    getMovieRecommendations((sandbox = false));
   }
 
   const errorInputMin = document.querySelector(".error-input-min");
@@ -554,12 +552,10 @@ window.addEventListener("DOMContentLoaded", function () {
   submitButton.addEventListener("click", (event) => {
     event.preventDefault(); // Зупинити відправку форми за замовчуванням
 
-    sendResults(shortQuestions);
     localStorage.clear();
-    // if (validateYears()) {
-    //   sendResults(shortQuestions);
-    //   localStorage.clear();
-    // }
+    if (validateYears()) {
+      sendResults(shortQuestions);
+      localStorage.clear();
+    }
   });
-
 });

@@ -71,34 +71,23 @@ body {
 }
 
 .form::-webkit-scrollbar-track {
-  background-color: #444; 
+  background-color: #444;
   border-radius: 10px;
 }
 
 .form::-webkit-scrollbar-thumb {
-  background-color: #777; 
-  border-radius: 50%; 
+  background-color: #777;
+  border-radius: 50%;
   transition: background-color 0.3s ease;
 }
 
 .form::-webkit-scrollbar-thumb:hover {
-  background-color: #999; 
+  background-color: #999;
 }
-
-
-
 
 .hide {
   display: none;
 }
-
-
-
-
-
-
-
-
 
 .modal-wrapper {
   position: relative;
@@ -527,6 +516,13 @@ body {
   border-top: 5px solid #3498db;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+}
+.error-message-container {
+  font-size: 8px;
+  color: red;
+  display: none;
+  margin-top: 8px;
+  margin-left: 0;
 }
 
 @keyframes spin {
