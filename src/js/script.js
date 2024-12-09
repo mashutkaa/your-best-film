@@ -1,4 +1,3 @@
-console.log("hi");
 // запитання
 
 const printResults = require("./result_page");
@@ -79,10 +78,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const formContainer = document.querySelector(".form");
 
-  // function cleanFormContainer() {
-  //   formContainer.classList.remove('hide');
-  //   formContainer.classList.add('show');
-  // }
+  const submitButton = document.createElement("button");
+  submitButton.classList.add("button", "submit-btn");
+  submitButton.type = "submit";
+  submitButton.textContent = "Отримати добірку фільмів";
 
   // Обробники подій для кнопок
   modalTrigger.forEach((btn) => {
@@ -110,6 +109,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // Показати запитання
   function showQuestion(questions) {
+    formContainer.innerHTML = "";
+
     console.log("showQuestion");
 
     questions.forEach((element, index) => {
@@ -274,6 +275,8 @@ window.addEventListener("DOMContentLoaded", function () {
       formContainer.appendChild(headerContainer);
       headerContainer.appendChild(questionContainer);
     });
+
+    formContainer.appendChild(submitButton);
   }
 
   // local Storage
@@ -327,14 +330,6 @@ window.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("upperSliderValue", upperSlider.value); // Зберігаємо значення верхнього слайдера
   });
 
-  // кнопка для відправки результатів
-  const submitButton = document.createElement("button");
-  submitButton.classList.add("button", "submit-btn");
-  submitButton.type = "submit";
-  submitButton.textContent = "Отримати добірку фільмів";
-
-  formContainer.appendChild(submitButton);
-
   let result = [];
 
   // повідомлення про статус обробки відповідей користувача
@@ -365,8 +360,6 @@ window.addEventListener("DOMContentLoaded", function () {
       closeModal();
       showQuestion(shortQuestions);
     });
-
-    //const copyFormContainer = formContainer;
   }
 
   // запит до gpt
@@ -411,6 +404,7 @@ window.addEventListener("DOMContentLoaded", function () {
       console.log(recommendations); // вивід добірки в консоль
       printNewResults.openResults(recommendations);
       // має виводитися на окрему сторінку
+
     } catch (error) {
       console.error("Помилка при завантаженні:", error);
       errorMessage();
@@ -553,9 +547,14 @@ window.addEventListener("DOMContentLoaded", function () {
     event.preventDefault(); // Зупинити відправку форми за замовчуванням
 
     localStorage.clear();
-    if (validateYears()) {
-      sendResults(shortQuestions);
-      localStorage.clear();
-    }
+    // if (validateYears()) {
+    //   sendResults(shortQuestions);
+    //   localStorage.clear();
+    //   showQuestion(shortQuestions);
+    // }
+
+    localStorage.clear();
+    sendResults(shortQuestions);
+    showQuestion(shortQuestions);
   });
 });

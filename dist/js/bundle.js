@@ -1,221 +1,214 @@
-/******/ (() => {
-  // webpackBootstrap
-  /******/ var __webpack_modules__ = {
-    /***/ "./src/js/result_page.js":
-      /*!*******************************!*\
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/js/result_page.js":
+/*!*******************************!*\
   !*** ./src/js/result_page.js ***!
   \*******************************/
-      /***/ (module) => {
-        function printResults() {
-          this.test = function () {
-            console.log("Ура! Файли успішно розділені");
-          };
-          this.openResults = function (recommendations) {
-            // відкриття нової сторінки та виведення результатів на ній
-          };
-        }
+/***/ ((module) => {
 
-        module.exports = printResults;
-
-        /***/
-      },
-
-    /******/
-  };
-  /************************************************************************/
-  /******/ // The module cache
-  /******/ var __webpack_module_cache__ = {};
-  /******/
-  /******/ // The require function
-  /******/ function __webpack_require__(moduleId) {
-    /******/ // Check if module is in cache
-    /******/ var cachedModule = __webpack_module_cache__[moduleId];
-    /******/ if (cachedModule !== undefined) {
-      /******/ return cachedModule.exports;
-      /******/
+function printResults() {
+    this.test = function() {
+        console.log('Ура! Файли успішно розділені');
     }
-    /******/ // Create a new module (and put it into the cache)
-    /******/ var module = (__webpack_module_cache__[moduleId] = {
-      /******/ // no module.id needed
-      /******/ // no module.loaded needed
-      /******/ exports: {},
-      /******/
-    });
-    /******/
-    /******/ // Execute the module function
-    /******/ __webpack_modules__[moduleId](
-      module,
-      module.exports,
-      __webpack_require__
-    );
-    /******/
-    /******/ // Return the exports of the module
-    /******/ return module.exports;
-    /******/
-  }
-  /******/
-  /************************************************************************/
-  // This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
-  (() => {
-    /*!**************************!*\
+    this.openResults = function(recommendations) {
+        // відкриття нової сторінки та виведення результатів на ній
+    }
+}
+
+module.exports = printResults;
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
+/*!**************************!*\
   !*** ./src/js/script.js ***!
   \**************************/
-    // запитання
-    const printResults = __webpack_require__(
-      /*! ./result_page */ "./src/js/result_page.js"
-    );
+// запитання
 
-    const printNewResults = new printResults();
+const printResults = __webpack_require__(/*! ./result_page */ "./src/js/result_page.js");
 
-    const shortQuestions = [
-      {
-        type: "radio-mood",
-        question: "Який настрій у вас сьогодні?",
-        answers: ["Чудовий", "Нудно", "Сумний", "Втомлений"],
-        img: [
-          "img/5307603774627505126 1@2x.png",
-          "img/5307603774627505123 1@2x.png",
-          "img/5307603774627505125 1@2x.png",
-          "img/5307603774627505124 1@2x.png",
-        ],
-        needs: true,
-      },
+const printNewResults = new printResults();
 
-      {
-        type: "range",
-        question: "Оберіть тривалість фільму",
-        answers: ["0 хв", "1 год.", "3 год.", "5 год.", "7 год."],
-        needs: true,
-      },
+const shortQuestions = [
+  {
+    type: "radio-mood",
+    question: "Який настрій у вас сьогодні?",
+    answers: ["Чудовий", "Нудно", "Сумний", "Втомлений"],
+    img: [
+      "img/5307603774627505126 1@2x.png",
+      "img/5307603774627505123 1@2x.png",
+      "img/5307603774627505125 1@2x.png",
+      "img/5307603774627505124 1@2x.png",
+    ],
+    needs: true,
+  },
 
-      {
-        type: "radio",
-        question: "З ким переглядатимете фільм?",
-        answers: [
-          "Наодинці",
-          "З друзями",
-          "З другою половинкою",
-          "З родиною (разом з дітьми)",
-        ],
-        needs: true,
-      },
+  {
+    type: "range",
+    question: "Оберіть тривалість фільму",
+    answers: ["0 хв", "1 год.", "3 год.", "5 год.", "7 год."],
+    needs: true,
+  },
 
-      {
-        type: "input-fields",
-        question: "Роки виходу фільму",
-        answers: ["Не раніше", "Не пізніше"],
-        placeholder: ["1950", "Поточний рік"],
-        needs: false,
-      },
+  {
+    type: "radio",
+    question: "З ким переглядатимете фільм?",
+    answers: [
+      "Наодинці",
+      "З друзями",
+      "З другою половинкою",
+      "З родиною (разом з дітьми)",
+    ],
+    needs: true,
+  },
 
-      {
-        type: "option",
-        question: "У якому жанрі шукатимемо фільм?",
-        answers:
-          "Драма, комедія, бойовик, трилер, жахи, фантастика, фентезі, пригоди, мелодрама, документальний фільм, вестерн, історичний фільм, кримінал, мюзикл, анімаційний фільм, спортивний фільм, сімейний фільм, комедійний бойовик, науково-фантастичний трилер, романтична фантастика, пригодницьке фентезі",
-        default: "Вибрати жанр",
-        needs: false,
-      },
-    ];
+  {
+    type: "input-fields",
+    question: "Роки виходу фільму",
+    answers: ["Не раніше", "Не пізніше"],
+    placeholder: ["1950", "Поточний рік"],
+    needs: false,
+  },
 
-    window.addEventListener("DOMContentLoaded", function () {
-      // ---------------------------- Модальне вікно
+  {
+    type: "option",
+    question: "У якому жанрі шукатимемо фільм?",
+    answers:
+      "Драма, комедія, бойовик, трилер, жахи, фантастика, фентезі, пригоди, мелодрама, документальний фільм, вестерн, історичний фільм, кримінал, мюзикл, анімаційний фільм, спортивний фільм, сімейний фільм, комедійний бойовик, науково-фантастичний трилер, романтична фантастика, пригодницьке фентезі",
+    default: "Вибрати жанр",
+    needs: false,
+  },
+];
 
-      const modalTrigger = document.querySelectorAll("[data-modal]"),
-        modal = document.querySelector(".modal"),
-        modalOverlay = document.querySelector(".modal-overlay"),
-        modalCloseBtn = document.querySelector("[data-close]");
+window.addEventListener("DOMContentLoaded", function () {
+  // ---------------------------- Модальне вікно
 
-      //відкрити модалку
-      function openModal() {
-        modal.classList.add("show");
-        modalOverlay.classList.add("show");
-        document.body.style.overflow = "hidden"; // Заблокувати прокручування
-      }
-      // Закрити модалку
-      function closeModal() {
-        modal.classList.remove("show");
-        modalOverlay.classList.remove("show");
-        document.body.style.overflow = ""; // Відновити прокручування
-      }
+  const modalTrigger = document.querySelectorAll("[data-modal]"),
+    modal = document.querySelector(".modal"),
+    modalOverlay = document.querySelector(".modal-overlay"),
+    modalCloseBtn = document.querySelector("[data-close]");
 
-      const formContainer = document.querySelector(".form");
+  //відкрити модалку
+  function openModal() {
+    modal.classList.add("show");
+    modalOverlay.classList.add("show");
+    document.body.style.overflow = "hidden"; // Заблокувати прокручування
+  }
+  // Закрити модалку
+  function closeModal() {
+    modal.classList.remove("show");
+    modalOverlay.classList.remove("show");
+    document.body.style.overflow = ""; // Відновити прокручування
+  }
 
-      // function cleanFormContainer() {
-      //   formContainer.classList.remove('hide');
-      //   formContainer.classList.add('show');
-      // }
+  const formContainer = document.querySelector(".form");
 
-      // Обробники подій для кнопок
-      modalTrigger.forEach((btn) => {
-        btn.addEventListener("click", openModal);
-      });
+  const submitButton = document.createElement("button");
+  submitButton.classList.add("button", "submit-btn");
+  submitButton.type = "submit";
+  submitButton.textContent = "Отримати добірку фільмів";
 
-      modalCloseBtn.addEventListener("click", closeModal);
+  // Обробники подій для кнопок
+  modalTrigger.forEach((btn) => {
+    btn.addEventListener("click", openModal);
+  });
 
-      // Закриття модалки при натисканні на оверлей
-      modalOverlay.addEventListener("click", closeModal);
+  modalCloseBtn.addEventListener("click", closeModal);
 
-      // Закриття модалки при натисканні клавіші Escape
-      document.addEventListener("keydown", (e) => {
-        if (e.code === "Escape" && modal.classList.contains("show")) {
-          closeModal();
-        }
-      });
-      // ---------------------------- Модальне вікно
+  // Закриття модалки при натисканні на оверлей
+  modalOverlay.addEventListener("click", closeModal);
 
-      // Коротке опитуванняі
+  // Закриття модалки при натисканні клавіші Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Escape" && modal.classList.contains("show")) {
+      closeModal();
+    }
+  });
+  // ---------------------------- Модальне вікно
 
-      formContainer.innerHTML = "";
+  // Коротке опитуванняі
 
-      showQuestion(shortQuestions);
+  formContainer.innerHTML = "";
 
-      // Показати запитання
-      function showQuestion(questions) {
-        console.log("showQuestion");
+  showQuestion(shortQuestions);
 
-        questions.forEach((element, index) => {
-          const headerContainer = document.createElement("div");
-          headerContainer.classList.add("question-wrapper");
+  // Показати запитання
+  function showQuestion(questions) {
+    formContainer.innerHTML = "";
 
-          //номер запитання
-          const numberTemplate = `<div class="question-number-container">
+    console.log("showQuestion");
+
+    questions.forEach((element, index) => {
+      const headerContainer = document.createElement("div");
+      headerContainer.classList.add("question-wrapper");
+
+      //номер запитання
+      const numberTemplate = `<div class="question-number-container">
                     <span class="question-number">${index + 1}</span>
                 </div>      `;
-          headerContainer.innerHTML = numberTemplate;
+      headerContainer.innerHTML = numberTemplate;
 
-          const questionContainer = document.createElement("div");
-          questionContainer.classList.add("question-item");
+      const questionContainer = document.createElement("div");
+      questionContainer.classList.add("question-item");
 
-          // перевірка чи обов'язкове запитання та виведення назви запитання
-          let questionTemplate = "";
+      // перевірка чи обов'язкове запитання та виведення назви запитання
+      let questionTemplate = "";
 
-          if (element.needs) {
-            questionTemplate += `<p class="required-field">*поле обов’язкове</p>`;
-          }
-          questionTemplate += `<p class="question">${element.question}</p>`;
+      if (element.needs) {
+        questionTemplate += `<p class="required-field">*поле обов’язкове</p>`;
+      }
+      questionTemplate += `<p class="question">${element.question}</p>`;
 
-          questionContainer.innerHTML = questionTemplate;
+      questionContainer.innerHTML = questionTemplate;
 
-          //  відповіді
-          switch (element["type"]) {
-            case "radio-mood": {
-              const { img, answers } = element;
-              const lengthArray = answers.length;
+      //  відповіді
+      switch (element["type"]) {
+        case "radio-mood": {
+          const { img, answers } = element;
+          const lengthArray = answers.length;
 
-              const moodWrapper = document.createElement("div");
-              questionContainer.appendChild(moodWrapper);
-              moodWrapper.classList = "mood-options";
+          const moodWrapper = document.createElement("div");
+          questionContainer.appendChild(moodWrapper);
+          moodWrapper.classList = "mood-options";
 
-              let isMoodDefault;
-              for (let i = 0; i < lengthArray; i++) {
-                const savedMood = localStorage.getItem("radioMood");
-                if (savedMood) {
-                  isMoodDefault = answers[i] === savedMood;
-                } else {
-                  isMoodDefault = answers[i] === "Чудовий";
-                }
-                const answerTemplate = `
+          let isMoodDefault;
+          for (let i = 0; i < lengthArray; i++) {
+            const savedMood = localStorage.getItem("radioMood");
+            if (savedMood) {
+              isMoodDefault = answers[i] === savedMood;
+            } else {
+              isMoodDefault = answers[i] === "Чудовий";
+            }
+            const answerTemplate = `
                             <label class="mood-option">
                                 <input type="radio" name="mood" value="${
                                   answers[i]
@@ -225,72 +218,72 @@
                                 </div>
                                 <span>${answers[i]}</span>
                             </label>`;
-                moodWrapper.innerHTML += answerTemplate;
-              }
+            moodWrapper.innerHTML += answerTemplate;
+          }
 
-              break;
+          break;
+        }
+
+        case "radio": {
+          let isPartnerDefault;
+          for (let answerText of element.answers) {
+            const savedValue = localStorage.getItem("radio");
+            if (savedValue) {
+              isPartnerDefault = answerText === savedValue;
+            } else {
+              isPartnerDefault = answerText === "Наодинці";
             }
 
-            case "radio": {
-              let isPartnerDefault;
-              for (let answerText of element.answers) {
-                const savedValue = localStorage.getItem("radio");
-                if (savedValue) {
-                  isPartnerDefault = answerText === savedValue;
-                } else {
-                  isPartnerDefault = answerText === "Наодинці";
-                }
-
-                const answerTemplate = `
+            const answerTemplate = `
             <label class="radio-button-label">
                 <input class="radio-button-field" type="radio" name="movie-partner" value="${answerText}" ${
-                  isPartnerDefault ? "checked" : ""
-                } />
+              isPartnerDefault ? "checked" : ""
+            } />
                 <span>${answerText}</span>
             </label>`;
-                questionContainer.innerHTML += answerTemplate;
-              }
-              break;
-            }
+            questionContainer.innerHTML += answerTemplate;
+          }
+          break;
+        }
 
-            case "range": {
-              const sliderTemplate = `   <div class = "slider-group">
+        case "range": {
+          const sliderTemplate = `   <div class = "slider-group">
                             <input id="lower-slider" class="lower-range-slider" type="range" min="0" max="7" step="1" value="0" required />
                             <input id="upper-slider" class="upper-range-slider" type="range" min="0" max="7" step="1" value="7" required />
                         </div>
                         <div class="slider-labels"></div>`;
-              questionContainer.innerHTML += sliderTemplate;
+          questionContainer.innerHTML += sliderTemplate;
 
-              const sliderContainer =
-                questionContainer.querySelector(".slider-labels");
+          const sliderContainer =
+            questionContainer.querySelector(".slider-labels");
 
-              element.answers.forEach((labelText, index) => {
-                const labelElement = document.createElement("span");
-                labelElement.textContent = labelText;
+          element.answers.forEach((labelText, index) => {
+            const labelElement = document.createElement("span");
+            labelElement.textContent = labelText;
 
-                sliderContainer.appendChild(labelElement);
-              });
+            sliderContainer.appendChild(labelElement);
+          });
 
-              break;
-            }
+          break;
+        }
 
-            case "input-fields": {
-              const answerArray = element.answers;
-              const placeholderArray = element.placeholder;
-              const lengthArray = answerArray.length;
+        case "input-fields": {
+          const answerArray = element.answers;
+          const placeholderArray = element.placeholder;
+          const lengthArray = answerArray.length;
 
-              const savedValues = [];
+          const savedValues = [];
 
-              // Спочатку відновлюємо збережені значення з localStorage
-              for (let i = 0; i < lengthArray; i++) {
-                const savedValue = localStorage.getItem(`input-field-${i}`);
-                savedValues[i] = savedValue ? savedValue : ""; // Якщо значення є, зберігаємо його, якщо ні - порожній рядок
-              }
+          // Спочатку відновлюємо збережені значення з localStorage
+          for (let i = 0; i < lengthArray; i++) {
+            const savedValue = localStorage.getItem(`input-field-${i}`);
+            savedValues[i] = savedValue ? savedValue : ""; // Якщо значення є, зберігаємо його, якщо ні - порожній рядок
+          }
 
-              // Створюємо інпут-поля
-              for (let i = 0; i < lengthArray; i++) {
-                const answerTemplate = `
-             <p name="error-year-${i}" class="error-message-container"></p>
+          // Створюємо інпут-поля
+          for (let i = 0; i < lengthArray; i++) {
+            const answerTemplate = `
+            
               <label class="input-field-label">
                 <span>${answerArray[i]}</span>
                 <input class="text-input-field" type="text" placeholder="${placeholderArray[i]}" name="year-min-${i}" pattern="\\d{4}"
@@ -298,394 +291,330 @@
               </label>
             `;
 
-                questionContainer.innerHTML += answerTemplate;
-              }
+            questionContainer.innerHTML += answerTemplate;
+          }
 
-              break;
-            }
+          break;
+        }
 
-            case "option": {
-              const options = element.answers
-                .split(", ")
-                .map((e) => e[0].toUpperCase() + e.slice(1));
+        case "option": {
+          const options = element.answers
+            .split(", ")
+            .map((e) => e[0].toUpperCase() + e.slice(1));
 
-              const checkboxWrapper = document.createElement("div");
-              checkboxWrapper.className = "checkbox-options";
+          const checkboxWrapper = document.createElement("div");
+          checkboxWrapper.className = "checkbox-options";
 
-              const savedOptions = localStorage.getItem("selectedOptions");
-              const savedOptionsArray = savedOptions
-                ? savedOptions.split(",")
-                : [];
+          const savedOptions = localStorage.getItem("selectedOptions");
+          const savedOptionsArray = savedOptions ? savedOptions.split(",") : [];
 
-              options.forEach((option) => {
-                const isChecked = savedOptionsArray.includes(option);
+          options.forEach((option) => {
+            const isChecked = savedOptionsArray.includes(option);
 
-                const answerTemplate = ` 
+            const answerTemplate = ` 
               <label class="checkbox-button-label">
                 <input class="checkbox-button-field" type="checkbox" name="genre" value="${option}" ${
-                  isChecked ? "checked" : ""
-                } />
+              isChecked ? "checked" : ""
+            } />
                 <span>${option}</span>
               </label>`;
-                checkboxWrapper.innerHTML += answerTemplate;
-              });
+            checkboxWrapper.innerHTML += answerTemplate;
+          });
 
-              questionContainer.appendChild(checkboxWrapper);
-              break;
-            }
-          }
-
-          formContainer.appendChild(headerContainer);
-          headerContainer.appendChild(questionContainer);
-        });
+          questionContainer.appendChild(checkboxWrapper);
+          break;
+        }
       }
 
-      // local Storage
+      formContainer.appendChild(headerContainer);
+      headerContainer.appendChild(questionContainer);
+    });
 
-      const radioImgs = document.querySelectorAll(
-        '.mood-option input[type="radio"]'
-      ); // Отримуємо всі радіокнопки
-      radioImgs.forEach((radio) => {
-        radio.addEventListener("change", (event) => {
-          const selectedMood = event.target.value; // Отримуємо значення вибраного елемента
-          localStorage.setItem("radioMood", selectedMood);
-        });
-      });
+    formContainer.appendChild(submitButton);
+  }
 
-      const radioFields = document.querySelectorAll(".radio-button-field");
-      radioFields.forEach((radio) => {
-        radio.addEventListener("change", (event) => {
-          const selectedRadio = event.target.value;
-          localStorage.setItem("radio", selectedRadio);
-        });
-      });
+  // local Storage
 
-      const inputFields = document.querySelectorAll(".text-input-field");
-      inputFields.forEach((input, index) => {
-        input.addEventListener("input", () => {
-          localStorage.setItem(`input-field-${index}`, input.value); // Зберігаємо значення у localStorage
-        });
-      });
+  const radioImgs = document.querySelectorAll(
+    '.mood-option input[type="radio"]'
+  ); // Отримуємо всі радіокнопки
+  radioImgs.forEach((radio) => {
+    radio.addEventListener("change", (event) => {
+      const selectedMood = event.target.value; // Отримуємо значення вибраного елемента
+      localStorage.setItem("radioMood", selectedMood);
+    });
+  });
 
-      const checkboxFields = document.querySelectorAll(
-        ".checkbox-button-field"
-      );
+  const radioFields = document.querySelectorAll(".radio-button-field");
+  radioFields.forEach((radio) => {
+    radio.addEventListener("change", (event) => {
+      const selectedRadio = event.target.value;
+      localStorage.setItem("radio", selectedRadio);
+    });
+  });
+
+  const inputFields = document.querySelectorAll(".text-input-field");
+  inputFields.forEach((input, index) => {
+    input.addEventListener("input", () => {
+      localStorage.setItem(`input-field-${index}`, input.value); // Зберігаємо значення у localStorage
+    });
+  });
+
+  const checkboxFields = document.querySelectorAll(".checkbox-button-field");
+  checkboxFields.forEach((checkbox) => {
+    checkbox.addEventListener("change", () => {
+      const selectedOptions = [];
       checkboxFields.forEach((checkbox) => {
-        checkbox.addEventListener("change", () => {
-          const selectedOptions = [];
-          checkboxFields.forEach((checkbox) => {
-            if (checkbox.checked) {
-              selectedOptions.push(checkbox.value); // Додаємо вибрані значення в масив
-            }
-          });
-          localStorage.setItem("selectedOptions", selectedOptions.join(",")); // Зберігаємо вибрані опції як рядок, розділений комами
-        });
+        if (checkbox.checked) {
+          selectedOptions.push(checkbox.value); // Додаємо вибрані значення в масив
+        }
       });
+      localStorage.setItem("selectedOptions", selectedOptions.join(",")); // Зберігаємо вибрані опції як рядок, розділений комами
+    });
+  });
 
-      const lowerSlider = document.querySelector("#lower-slider");
-      const upperSlider = document.querySelector("#upper-slider");
+  const lowerSlider = document.querySelector("#lower-slider");
+  const upperSlider = document.querySelector("#upper-slider");
 
-      lowerSlider.addEventListener("input", () => {
-        localStorage.setItem("lowerSliderValue", lowerSlider.value); // Зберігаємо значення нижнього слайдера
-      });
+  lowerSlider.addEventListener("input", () => {
+    localStorage.setItem("lowerSliderValue", lowerSlider.value); // Зберігаємо значення нижнього слайдера
+  });
 
-      upperSlider.addEventListener("input", () => {
-        localStorage.setItem("upperSliderValue", upperSlider.value); // Зберігаємо значення верхнього слайдера
-      });
+  upperSlider.addEventListener("input", () => {
+    localStorage.setItem("upperSliderValue", upperSlider.value); // Зберігаємо значення верхнього слайдера
+  });
 
-      // кнопка для відправки результатів
-      const submitButton = document.createElement("button");
-      submitButton.classList.add("button", "submit-btn");
-      submitButton.type = "submit";
-      submitButton.textContent = "Отримати добірку фільмів";
+  let result = [];
 
-      formContainer.appendChild(submitButton);
+  // повідомлення про статус обробки відповідей користувача
+  const message = {
+    loading: "../src/icons/spinner.svg",
+    errorInLoading: "Вибачте, на жаль, сталася помилка",
+  };
 
-      let result = [];
+  // повідомлення про помилку
 
-      // повідомлення про статус обробки відповідей користувача
-      const message = {
-        loading: "../src/icons/spinner.svg",
-        errorInLoading: "Вибачте, на жаль, сталася помилка",
+  function errorMessage() {
+    const formWrapper = document.querySelector(".form-wrapper");
+    formWrapper.classList.add("hide"); // Ховаємо опитування
+
+    const modalContainer = document.querySelector(".modal-wrapper");
+
+    // Створити контейнер для помилки
+    const errorContainer = document.createElement("div");
+    errorContainer.classList.add("question-item");
+    const errorTemplate = `<p class="question">${message.errorInLoading}</p>`;
+    errorContainer.innerHTML += errorTemplate;
+
+    modalContainer.appendChild(errorContainer);
+
+    modalCloseBtn.addEventListener("click", () => {
+      errorContainer.remove(); // Видаляємо помилку
+      formWrapper.classList.remove("hide");
+      closeModal();
+      showQuestion(shortQuestions);
+    });
+  }
+
+  // запит до gpt
+  async function getMovieRecommendations(sandbox = true) {
+    console.log("Відправка запиту...");
+
+    const spinnerContainer = document.createElement("div");
+    spinnerContainer.id = "spinner-container";
+
+    const spinnerImg = document.createElement("img");
+    spinnerImg.src = message.loading;
+    spinnerImg.alt = "Loading...";
+    spinnerContainer.appendChild(spinnerImg);
+    document.body.appendChild(spinnerContainer);
+
+    try {
+      const requestBody = {
+        result: result,
+        sandbox: sandbox,
       };
 
-      // повідомлення про помилку
+      const response = await fetch(
+        "http://localhost:3000/api/getMovieRecommendations",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
 
-      function errorMessage() {
-        const formWrapper = document.querySelector(".form-wrapper");
-        formWrapper.classList.add("hide"); // Ховаємо опитування
-
-        const modalContainer = document.querySelector(".modal-wrapper");
-
-        // Створити контейнер для помилки
-        const errorContainer = document.createElement("div");
-        errorContainer.classList.add("question-item");
-        const errorTemplate = `<p class="question">${message.errorInLoading}</p>`;
-        errorContainer.innerHTML += errorTemplate;
-
-        modalContainer.appendChild(errorContainer);
-
-        modalCloseBtn.addEventListener("click", () => {
-          errorContainer.remove(); // Видаляємо помилку
-          formWrapper.classList.remove("hide");
-          closeModal();
-          showQuestion(shortQuestions);
-        });
-
-        //const copyFormContainer = formContainer;
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.log("Error: " + errorText);
+        errorMessage();
+        return;
       }
+      // recommendations - масив з об'єктами
+      const recommendations = await response.json();
+      closeModal();
+      console.log(recommendations); // вивід добірки в консоль
+      printNewResults.openResults(recommendations);
+      // має виводитися на окрему сторінку
 
-      // запит до gpt
-      async function getMovieRecommendations(sandbox = true) {
-        console.log("Відправка запиту...");
-
-        const spinnerContainer = document.createElement("div");
-        spinnerContainer.id = "spinner-container";
-
-        const spinnerImg = document.createElement("img");
-        spinnerImg.src = message.loading;
-        spinnerImg.alt = "Loading...";
-        spinnerContainer.appendChild(spinnerImg);
-        document.body.appendChild(spinnerContainer);
-
-        try {
-          const requestBody = {
-            result: result,
-            sandbox: sandbox,
-          };
-
-          const response = await fetch(
-            "http://localhost:3000/api/getMovieRecommendations",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(requestBody),
-            }
-          );
-
-          if (!response.ok) {
-            const errorText = await response.text();
-            console.log("Error: " + errorText);
-            errorMessage();
-            return;
-          }
-          // recommendations - масив з об'єктами
-          const recommendations = await response.json();
-          closeModal();
-          console.log(recommendations); // вивід добірки в консоль
-          printNewResults.openResults(recommendations);
-          // має виводитися на окрему сторінку
-        } catch (error) {
-          console.error("Помилка при завантаженні:", error);
-          errorMessage();
-          return;
-        } finally {
-          spinnerContainer.remove();
-        }
-      }
-
-      function sendResults(questions) {
-        questions.forEach((element) => {
-          const { type, question } = element;
-
-          let answer = "";
-
-          switch (type) {
-            case "radio-mood": {
-              const getAnswer =
-                document.querySelector('input[name="mood"]:checked')?.value ||
-                null;
-
-              answer = `${getAnswer}`;
-              break;
-            }
-
-            case "range": {
-              const answerLower = document.querySelector("#lower-slider").value;
-              const answerUpper = document.querySelector("#upper-slider").value;
-
-              answer = `Від ${answerLower} до ${answerUpper}`;
-
-              break;
-            }
-
-            case "radio": {
-              const getAnswer =
-                document.querySelector('input[name="movie-partner"]:checked')
-                  ?.value || null;
-
-              answer = `${getAnswer}`;
-              break;
-            }
-
-            case "input-fields": {
-              const answerMin =
-                document.querySelector('input[name="year-min-0"]')?.value || "не вказано";
-              const answerMax =
-                document.querySelector('input[name="year-min-0"]')?.value ||
-                "не вказано";
-
-              answer = `Не раніше ${answerMin}, не пізніше: ${answerMax}`;
-              break;
-            }
-
-            case "option": {
-              const selectedGenres = Array.from(
-                document.querySelectorAll('input[name="genre"]:checked')
-              ).map((checkbox) => checkbox.value);
-
-              if (selectedGenres.length === 0) {
-                selectedGenres.push(
-                  ...element.answers
-                    .split(", ")
-                    .map((e) => e[0].toUpperCase() + e.slice(1))
-                );
-              }
-
-              answer = selectedGenres.join(", ");
-              break;
-            }
-          }
-
-          const newUserAnswer = {
-            question: question,
-            answer: answer,
-          };
-          result.push(newUserAnswer);
-        });
-
-        console.log(result);
-        getMovieRecommendations((sandbox = false));
-      }
-      const errorInputMin = document.querySelector(' p[name="error-year-0"]');
-      const errorInputMax = document.querySelector(' p[name="error-year-1"]');
-      const yearInputMin = document.querySelector('input[name="year-min-0"]');
-      const yearInputMax = document.querySelector('input[name="year-min-1"]');
-
-      // ВАЛІДАЦІЯ
-      function validateYears() {
-        const yearMin = yearInputMin.value.trim();
-        const yearMax = yearInputMax.value.trim();
-        const currentYear = new Date().getFullYear();
-
-        let isValid = true;
-
-        errorInputMin.style.display = "none";
-        errorInputMax.style.display = "none";
-        yearInputMin.style.border = "1px solid white";
-        yearInputMax.style.border = "1px solid white";
-
-        if (yearInputMin.validity.valid && yearInputMax.validity.valid) {
-          errorInputMin.style.display = "none";
-          errorInputMax.style.display = "none";
-          yearInputMin.style.border = "1px solid white";
-          yearInputMax.style.border = "1px solid white";
-          isValid = true;
-        }
-
-        // Перевірка: чи введене значення містить рівно 4 цифри
-        if (yearMin.length !== 4) {
-          errorInputMin.style.display = "block";
-          yearInputMin.style.border = "1px solid red";
-          errorInputMin.textContent = "Введіть правильний рік";
-          isValid = false;
-        }
-        if (yearMax.length !== 4) {
-          errorInputMax.style.display = "block";
-          yearInputMax.style.border = "1px solid red";
-          errorInputMax.textContent = "Введіть правильний рік";
-          isValid = false;
-        }
-
-        if (isNaN(yearMin)) {
-          errorInputMin.style.display = "block";
-          errorInputMin.textContent = "Введіть числове значення";
-          yearInputMin.style.border = "1px solid red";
-          isValid = false;
-        }
-        if (isNaN(yearMax)) {
-          errorInputMax.style.display = "block";
-          errorInputMax.textContent = "Введіть числове значення";
-          yearInputMax.style.border = "1px solid red";
-          isValid = false;
-        }
-
-        // Перевірка: чи порядок років коректний
-        if (yearMin > yearMax) {
-          errorInputMin.style.display = "block";
-          errorInputMax.style.display = "block";
-          yearInputMin.style.border = "1px solid red";
-          yearInputMax.style.border = "1px solid red";
-          errorInputMin.textContent = "Перший рік має бути менший за другий";
-          isValid = false;
-        }
-
-        // Перевірка: чи відповідають роки заданим межам
-        if (yearMin < 1950) {
-          errorInputMin.style.display = "block";
-          yearInputMin.style.border = "1px solid red";
-          errorInputMin.textContent = "Рік не може бути меншим за 1950";
-          isValid = false;
-        }
-        if (yearMax > currentYear) {
-          errorInputMax.style.display = "block";
-          yearInputMax.style.border = "1px solid red";
-          errorInputMax.textContent = `Рік не може бути більше ${currentYear} року`;
-          isValid = false;
-        }
-        if (yearMin === "") {
-          yearInputMin.value = 1950;
-          errorInputMin.style.display = "none";
-          yearInputMin.style.border = "1px solid white";
-          if (validateYears()) {
-              return isValid = true;
-          }
-         
-        }
-        if (yearMax === "") {
-          yearInputMax.value = currentYear;
-          errorInputMax.style.display = "none";
-          yearInputMax.style.border = "1px solid white";
-         if (validateYears()) {
-           return (isValid = true);
-         }
-        }
-
-
-        return isValid; // Якщо помилок немає
-      }
-
-
-// ВАЛІДАЦІЯ ПОВЗУНКА
-const sliderGap = 1;
-lowerSlider.addEventListener("input", () => {
-  if (parseInt(lowerSlider.value) >= parseInt(upperSlider.value) - sliderGap) {
-    lowerSlider.value = parseInt(upperSlider.value) - sliderGap;
+    } catch (error) {
+      console.error("Помилка при завантаженні:", error);
+      errorMessage();
+      return;
+    } finally {
+      spinnerContainer.remove();
+    }
   }
-  localStorage.setItem("lowerSliderValue", lowerSlider.value);
-});
 
-upperSlider.addEventListener("input", () => {
-  if (parseInt(upperSlider.value) <= parseInt(lowerSlider.value) + sliderGap) {
-    upperSlider.value = parseInt(lowerSlider.value) + sliderGap;
-  }
-  localStorage.setItem("upperSliderValue", upperSlider.value);
-});
+  function sendResults(questions) {
+    questions.forEach((element) => {
+      const { type, question } = element;
 
-      submitButton.addEventListener("click", (event) => {
-        event.preventDefault(); 
+      let answer = "";
 
-        localStorage.clear();
-        if (validateYears()) {
-          sendResults(shortQuestions);
-          localStorage.clear();
+      switch (type) {
+        case "radio-mood": {
+          const getAnswer =
+            document.querySelector('input[name="mood"]:checked')?.value || null;
+
+          answer = `${getAnswer}`;
+          break;
         }
-      });
+
+        case "range": {
+          const answerLower = document.querySelector("#lower-slider").value;
+          const answerUpper = document.querySelector("#upper-slider").value;
+
+          answer = `Від ${answerLower} до ${answerUpper}`;
+
+          break;
+        }
+
+        case "radio": {
+          const getAnswer =
+            document.querySelector('input[name="movie-partner"]:checked')
+              ?.value || null;
+
+          answer = `${getAnswer}`;
+          break;
+        }
+
+        case "input-fields": {
+          const answerMin =
+            document.querySelector("#year-min")?.value || "не вказано";
+          const answerMax =
+            document.querySelector("#year-max")?.value || "не вказано";
+
+          answer = `Не раніше ${answerMin}, не пізніше: ${answerMax}`;
+          break;
+        }
+
+        case "checkbox": {
+          const selectedGenres = Array.from(
+            document.querySelectorAll('input[name="genre"]:checked')
+          ).map((checkbox) => checkbox.value);
+
+          if (selectedGenres.length === 0) {
+            answer = element.answers
+              .split(", ")
+              .map((e) => e[0].toUpperCase() + e.slice(1))
+              .join(", ");
+          } else {
+            answer = selectedGenres.join(", ");
+          }
+          break;
+        }
+      }
+
+      const newUserAnswer = {
+        question: question,
+        answer: answer,
+      };
+      result.push(newUserAnswer);
     });
-  })();
 
-  /******/
+    console.log(result);
+    getMovieRecommendations((sandbox = false));
+  }
+
+  const errorInputMin = document.querySelector(".error-input-min");
+  const errorInputMax = document.querySelector(".error-input-max");
+  const yearInputMin = document.querySelector("#year-min");
+  const yearInputMax = document.querySelector("#year-max");
+
+  // ВАЛІДАЦІЯ
+  function validateYears() {
+    const yearMin = document.querySelector('input[name="year-min-0"]');
+    const yearMax = document.querySelector('input[name="year-min-1"]');
+
+    const yearMinValue = yearMin.value.trim();
+    const yearMaxValue = yearMax.value.trim();
+    const currentYear = new Date().getFullYear();
+    const defaultMinYear = 1950;
+
+    let errorMessages = [];
+
+    // Перевірка: чи введене значення містить рівно 4 цифри
+    if (yearMinValue && !/^\d{4}$/.test(yearMinValue)) {
+      errorMessages.push("Рік введено некоректно (має містити 4 цифри)");
+    }
+    if (yearMaxValue && !/^\d{4}$/.test(yearMaxValue)) {
+      errorMessages.push("Рік введено некоректно (має містити 4 цифри)");
+    }
+
+    // Перевірка: чи порядок років коректний
+    if (
+      yearMinValue &&
+      yearMaxValue &&
+      parseInt(yearMinValue) >= parseInt(yearMaxValue)
+    ) {
+      errorMessages.push("Перший рік має бути меншим за другий");
+    }
+
+    // Перевірка: чи відповідають роки заданим межам
+    if (yearMinValue && parseInt(yearMinValue) < defaultMinYear) {
+      errorMessages.push(`Перший рік не може бути меншим за ${defaultMinYear}`);
+    }
+    if (yearMaxValue && parseInt(yearMaxValue) > currentYear) {
+      errorMessages.push(`Другий рік не може бути більшим за ${currentYear}`);
+    }
+
+    // Виведення помилок
+    const errorContainer = document.querySelector(".error-message-container");
+    errorContainer.innerHTML = ""; // Очищення контейнера для помилок
+    if (errorMessages.length > 0) {
+      errorMessages.forEach((message) => {
+        const errorMessage = document.createElement("p");
+        errorMessage.classList.add("error-message");
+        errorMessage.textContent = message;
+        errorContainer.appendChild(errorMessage);
+      });
+      return false; // Якщо є помилки, форма не буде відправлена
+    }
+
+    return true; // Якщо помилок немає
+  }
+
+  submitButton.addEventListener("click", (event) => {
+    event.preventDefault(); // Зупинити відправку форми за замовчуванням
+
+    localStorage.clear();
+    // if (validateYears()) {
+    //   sendResults(shortQuestions);
+    //   localStorage.clear();
+    //   showQuestion(shortQuestions);
+    // }
+
+    localStorage.clear();
+    sendResults(shortQuestions);
+    showQuestion(shortQuestions);
+  });
+});
+
 })();
+
+/******/ })()
+;
 //# sourceMappingURL=bundle.js.map
