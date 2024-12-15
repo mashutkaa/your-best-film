@@ -35,11 +35,11 @@
 
         <nav id="my-navigation">
           <ul class="menu-items">
-            <li><a> Пошук </a></li>
-            <li><a> Головна </a></li>
+            <li><a  class="disabled"> Пошук </a></li>
+            <li><a href="index.html"> Головна </a></li>
             <li><a href="#about-us"> Про нас </a></li>
-            <li><a> Увійти </a></li>
-            <li><a> Зареєструватись </a></li>
+            <li><a  class="disabled"> Увійти </a></li>
+            <li><a  class="disabled"> Зареєструватись </a></li>
           </ul>
         </nav>
       </header>
@@ -136,7 +136,7 @@
               <h2 class="form-title">опитування</h2>
               
               <form class="form">
-                <button class="button" type="submit" class="submit-btn">
+                <button class="button submit-btn" type="submit">
                   Отримати добірку фільмів
                 </button>
               </form>
@@ -149,7 +149,7 @@
           <div class="about-us-section-wrapper">
           <div class="about-us-wpapper">
           <img src="./img/about-us.png" alt="" width="600" />
-          <div>
+          <div class="about-us-text-container">
             <p class="about-us-title">про нас</p>
 
             <p class="about-us-description">
@@ -175,7 +175,7 @@
       </p>
 
       <div class="btn-email-wrapper">
-      <button class="footer-btn">Отримати добірку рекомендацій</button>
+      <button class="btn-choose-a-movie footer-btn" data-modal>Отримати добірку рекомендацій</button>
       <a class="footer-email" href="mailto:example@gmail.com">example@gmail.com</a>
       </div>
 

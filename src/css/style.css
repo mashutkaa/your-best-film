@@ -46,22 +46,25 @@ body {
 /* ---------- СТИЛІ КОНТЕЙНЕРА ------------- */
 .modal {
   position: fixed;
-  top: 36px;
+  top: 10vh; 
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
   background-color: #01070a;
   border: 1px solid white;
   border-radius: 30px;
-  padding: 48px 46px;
-  width: 443px;
+  padding: 4vh 4vw; 
+  width: 36.609vw; 
+  height: 70vh;
+  
   display: none;
-  height: 450px;
 }
+
 .form {
   overflow-y: auto;
+
   flex-grow: 1;
-  max-height: calc(500px - 60px);
+  max-height: calc( 70vh - 5.556vh);
   scrollbar-width: thin;
   scrollbar-color: #777 #444;
 }
@@ -136,26 +139,26 @@ body {
   font-weight: 600;
   font-style: normal;
   text-transform: uppercase;
-  font-size: 24px;
+  font-size: 1.875vw;
   padding-left: 30px;
   margin-bottom: 7px;
 }
 
 .form-info {
-  font-size: 8px;
-  width: 245px;
+  font-size: 0.625vw;
+  width: 19.141vw;
   text-align: center;
   margin-bottom: 25px;
 }
 
 .required-field {
   color: #bc0000;
-  font-size: 8px;
+  font-size: 0.625vw;
   margin-bottom: 3px;
 }
 
 .question {
-  font-size: 15px;
+  font-size: 1.172vw;
   font-weight: 300;
   margin-bottom: 10px;
 }
@@ -174,14 +177,14 @@ body {
   color: white;
   border: 2px solid white;
   border-radius: 50%;
-  font-size: 16px;
+  font-size: 1.25vw;
   font-weight: 600;
   box-sizing: border-box;
 }
 
 .question-number {
   margin: 0;
-  padding: 15px;
+  padding: 1.172vw;
 }
 
 .question-item {
@@ -193,7 +196,7 @@ body {
 /* Вибір настрою */
 .mood-options {
   display: flex;
-  gap: 23px;
+  gap: 1.797vw;
 }
 
 .mood-option {
@@ -206,8 +209,8 @@ body {
 }
 
 .mood-option .icon {
-  width: 35px;
-  height: 35px;
+  width:30px;
+  height:30px;
   background-color: white;
   border-radius: 50%;
   margin: 0 auto 10px;
@@ -219,12 +222,11 @@ body {
 }
 
 .mood-option span {
-  font-size: 8px;
+  font-size:0.625vw;
 }
 
 /* Активний стан (коли вибрано) */
 .mood-option input:checked + .icon {
-  background-color: #ff4d4d;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
@@ -302,7 +304,7 @@ body {
   justify-content: space-between;
 
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 0.938vw;
   color: white;
   position: relative;
 }
@@ -360,7 +362,7 @@ body {
   border-radius: 20px;
   cursor: pointer;
   color: white;
-  font-size: 8px;
+  font-size: 0.625vw;
   font-weight: 200;
   transition: background-color 0.3s ease, color 0.3s ease;
   margin-bottom: 6px;
@@ -391,7 +393,7 @@ body {
 }
 
 .input-field-label span {
-  font-size: 8px;
+  font-size:0.625vw;
   font-weight: 400;
   color: white;
 }
@@ -403,7 +405,7 @@ body {
   border-radius: 20px;
   padding: 3px auto;
   text-align: center;
-  font-size: 12px;
+  font-size: 0.938vw;
   width: 83px;
   height: 15px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -411,7 +413,7 @@ body {
 
 .text-input-field::placeholder {
   color: rgba(255, 255, 255, 0.6);
-  font-size: 8px;
+  font-size: 0.625vw;
 }
 
 .question-item label input[type="text"]:focus {
@@ -429,7 +431,7 @@ body {
   border-radius: 20px;
   cursor: pointer;
   color: white;
-  font-size: 8px;
+  font-size: 0.625vw;
   font-weight: 200;
   transition: background-color 0.3s ease, color 0.3s ease;
   margin-bottom: 6px;
@@ -450,12 +452,13 @@ body {
 /* кнопка */
 .button {
   width: 300px;
-  display: flex;
-  justify-self: center;
-  justify-content: center;
+  display: block;
+  /* justify-self: center;
+  justify-content: center; */
+
   background-color: transparent;
   color: white;
-  font-size: 14px;
+  font-size: 1.094vw;
   font-weight: 600;
   border: 1px solid white;
   border-radius: 20px;
@@ -463,7 +466,8 @@ body {
   text-transform: uppercase;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
+  margin: 10px auto;
 }
 
 .button:hover {
@@ -475,20 +479,20 @@ body {
   background-color: #01070a;
   border: none;
   color: white;
-  font-size: 25px;
+  font-size: 1.953vw;
   position: absolute;
   top: 25px;
   left: 25px;
 }
 .error-message {
   color: red;
-  font-size: 14px;
+  font-size: 1.094vw;
   margin-top: 5px;
 }
 
 .error-input-min,
 .error-input-max {
-  font-size: 8px;
+  font-size: 0.625vw;
   color: red;
   display: none;
   margin-top: 8px;
@@ -518,7 +522,7 @@ body {
   animation: spin 1s linear infinite;
 }
 .error-message-container {
-  font-size: 8px;
+  font-size: 0.625vw;
   color: red;
   display: none;
   margin-top: 8px;
@@ -534,4 +538,87 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+
+/* ========================== FULL HD ================================================ */
+@media screen and (min-width: 1920px) and (max-width: 2560px) {
+  .question {
+    margin-bottom: 20px;
+  }
+  .question-number-container {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .question-number {
+    padding: 1.172vw;
+  }
+  
+/* Перше питання */
+  .mood-option .icon {
+    width: 70px;
+    height:70px;
+  }
+  
+  /* ДРУГЕ ПИТАННЯ */
+
+/* Загальний стиль для контейнера слайдера */
+.slider-group {
+  width: 400px;
+}
+
+/* Загальний стиль для доріжки */
+.lower-range-slider,
+.upper-range-slider {
+  width: 400px;
+  top: 50%;
+}
+
+
+/* Позиціюємо кожну рисочку */
+
+.slider-labels span:nth-child(2) {
+  left: -14px; /* Позиція другого підпису */
+}
+
+.slider-labels span:nth-child(3) {
+  left: 11px; /* Позиція третього підпису */
+}
+.slider-labels span:nth-child(4) {
+  left: 30px; /* Позиція третього підпису */
+}
+
+/* Для останньої рисочки */
+.slider-labels span:last-child::after {
+  right: 4px;
+}
+
+/* ЧЕТВЕРТЕ ПИТАННЯ */
+
+
+.text-input-field {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  border-radius: 20px;
+  padding: 3px 3px;
+  text-align: center;
+  font-size: 0.938vw;
+  width: 90px;
+  height: 15px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-input-field::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.625vw;
+}
+
+.question-item label input[type="text"]:focus {
+  outline: none;
+  border-color: #ffffff;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
 }
