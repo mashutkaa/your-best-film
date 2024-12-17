@@ -36,14 +36,14 @@ app.post("/api/getMovieRecommendations", async (req, res) => {
         let formattedString = questionsAndAnswers.map(qa => `Питання: ${qa.question}\nВідповідь: ${qa.answer}`).join('\n');
         
         const prompt = `
-        Згенеруй список з 10(не більше, не менше) фільмів у JSON форматі. Кожен фільм повинен містити:
+        Згенеруй список до 10 найбільш відповідних фільмів у JSON форматі. Кожен фільм повинен містити:
         - "name": "Назва",
         - "genre": "Жанр",
         - "year": "Рік",
         - "reason": "Причина рекомендації",
         - "rating": "Рейтинг"
         
-        Використай інформацію нижче для створення рекомендацій:
+        Використай інформацію нижче для створення рекомендацій, кожен фільм має відповідати усім питанням:
         
         ${formattedString}
 
@@ -96,7 +96,7 @@ app.post("/api/getMovieRecommendations", async (req, res) => {
         let parsedRecommendations;
         try {
             parsedRecommendations = JSON.parse(recommendations);
-            if (!Array.isArray(parsedRecommendations) || parsedRecommendations.length !== 10) {
+            if (!Array.isArray(parsedRecommendations)) {
                 console.log(parsedRecommendations);
                 throw new Error("Invalid response format.");
             }
