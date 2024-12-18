@@ -544,7 +544,7 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
     console.log(result);
-    getMovieRecommendations((sandbox = false));
+    getMovieRecommendations((sandbox = true));
   }
 
   const errorInputMin = document.querySelector(' p[name="error-year-0"]');

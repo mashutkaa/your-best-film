@@ -1,17 +1,49 @@
 'use strict';
 
-let path = require('path');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/js/script.js',
+  entry: {
+    main: './src/js/script.js',
+    result: './src/js/result_page.js'
+  },
   output: {
-    filename: 'bundle.js',
-    path: __dirname + '/dist/js'
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist/js')
   },
   watch: true,
-
-  devtool: "source-map",
-
-  module: {}
+  devtool: 'source-map',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: '../index.html',
+      chunks: ['main']
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/result-page.html',
+      filename: '../result-page.html',
+      chunks: ['result']
+    })
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000
+  }
 };

@@ -1,8 +1,5 @@
 // запитання
 // console.log(printResults);
-const printResults = require("./result_page");
-
-const printNewResults = new printResults();
 
 const shortQuestions = [
   {
@@ -403,10 +400,11 @@ window.addEventListener("DOMContentLoaded", function () {
       }
       // recommendations - масив з об'єктами
       const recommendations = await response.json();
-      closeModal();
-      console.log(recommendations); // вивід добірки в консоль
-      printNewResults.openResults(recommendations);
-      // має виводитися на окрему сторінку
+      closeModal();        
+      // Збереження рекомендацій у localStorage
+      localStorage.setItem('recommendations', JSON.stringify(recommendations));
+      // Відкриття нової сторінки
+      window.location.href = 'result-page.html';
 
     } catch (error) {
       console.error("Помилка при завантаженні:", error);

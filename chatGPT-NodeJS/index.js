@@ -25,7 +25,7 @@ app.post("/api/getMovieRecommendations", async (req, res) => {
                     genre: `Жанр ${i}`,
                     year: `Рік ${i}`,
                     reason: `Причина чому цей фільм може сподобатися ${i}`,
-                    rating: `Рейтинг ${i}`
+                    rating: `9.9/10`
                 });
             }
 
@@ -36,14 +36,14 @@ app.post("/api/getMovieRecommendations", async (req, res) => {
         let formattedString = questionsAndAnswers.map(qa => `Питання: ${qa.question}\nВідповідь: ${qa.answer}`).join('\n');
         
         const prompt = `
-        Згенеруй список до 10 найбільш відповідних фільмів у JSON форматі. Кожен фільм повинен містити:
+        Згенеруй список із 10 (не більше, менше лише в випадку коли це потрібно) найбільш відповідних фільмів у форматі JSON. Кожен фільм у списку має містити такі поля:
         - "name": "Назва",
         - "genre": "Жанр",
         - "year": "Рік",
         - "reason": "Причина рекомендації",
         - "rating": "Рейтинг"
         
-        Використай інформацію нижче для створення рекомендацій, кожен фільм має відповідати усім питанням:
+        Використай інформацію нижче для створення рекомендацій, враховуй абсолютно кожне питання:
         
         ${formattedString}
 
@@ -85,7 +85,7 @@ app.post("/api/getMovieRecommendations", async (req, res) => {
                 }
             ],
             max_tokens: 2000,
-            temperature: 0,
+            temperature: 1,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
