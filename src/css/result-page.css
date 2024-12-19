@@ -159,6 +159,7 @@ body {
   flex-direction: column;
   margin-right: 50px;
   width: 50%;
+  align-self: center;
 }
 .film:last-child {
   margin-right: 0;
