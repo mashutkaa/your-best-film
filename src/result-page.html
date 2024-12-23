@@ -17,15 +17,21 @@
         <p class="secondary-text">our best film</p></a
       >
 
-      <nav id="my-navigation">
-        <ul class="menu-items">
-          <li><a> Пошук </a></li>
-          <li><a href="index.html"> Головна </a></li>
-          <li><a href="index.html#about-us"> Про нас </a></li>
-          <li><a> Увійти </a></li>
-          <li><a> Зареєструватись </a></li>
-        </ul>
-      </nav>
+        <nav id="my-navigation">
+          <ul class="menu-items">
+            <li><a href="#" onclick="showMessage()"> Пошук </a></li>
+            <li><a href="#" onclick="showMessage()"> Головна </a></li>
+            <li><a href="#about-us"> Про нас </a></li>
+            <li><a href="#" onclick="showMessage()"> Увійти </a></li>
+            <li><a href="#" onclick="showMessage()"> Зареєструватись </a></li>
+          </ul>
+        </nav>
+
+        <script>
+          function showMessage() {
+            alert("Вибачте, даний функціонал наразі недоступний");
+          }
+        </script>
     </header>
 
     <form class="main-container">
@@ -308,7 +314,7 @@
       });
     </script>
 
-    <button class="save-button" onclick="saveSelection()">
+    <button class="save-button"onclick="showMessage()">
       Зберегти всю добірку
     </button>
 

@@ -1,5 +1,5 @@
 // запитання
-// console.log(printResults);
+console.log(printResults);
 
 const shortQuestions = [
   {
