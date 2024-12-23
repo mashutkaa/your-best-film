@@ -34,7 +34,7 @@ function processRecommendations(recommendations) {
         </ul>
     </div>
     `;
-
+console.log("dfcdsfv")
     recommendationsTables.forEach((recommendationsTable, index) => {
         const filmsTable = document.createElement('div');
         filmsTable.classList.add('films-table');

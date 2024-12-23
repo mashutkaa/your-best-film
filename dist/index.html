@@ -35,61 +35,65 @@
 
         <nav id="my-navigation">
           <ul class="menu-items">
-            <li><a  class="disabled"> Пошук </a></li>
-            <li><a href="index.html"> Головна </a></li>
+            <li><a href="#" onclick="showMessage()"> Пошук </a></li>
+            <li><a href="#" onclick="showMessage()"> Головна </a></li>
             <li><a href="#about-us"> Про нас </a></li>
-            <li><a  class="disabled"> Увійти </a></li>
-            <li><a  class="disabled"> Зареєструватись </a></li>
+            <li><a href="#" onclick="showMessage()"> Увійти </a></li>
+            <li><a href="#" onclick="showMessage()"> Зареєструватись </a></li>
           </ul>
         </nav>
+
+        <script>
+          function showMessage() {
+            alert("Вибачте, даний функціонал наразі недоступний");
+          }
+        </script>
       </header>
 
       <main>
         <!-- =============== HERO ============================= -->
+         <div class="wrapper">
         <section class="hero">
           <h2 class="best-film-title">найкращі фільми цього місяця</h2>
 
           <div class="image-container">
             <div class="image">
-              <img
-                src="https://s3-alpha-sig.figma.com/img/50cc/1d4e/9f8ff988cf054580c68988e4e5016a13?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jf94hqLr4spuSX2jpoNQbezPGsWSpoM92cyzB3g102zdRuLQPDT73RiXytifHqLmTqObBqfasqIRDmPYv1moKJO5fvMMdl7en~P0FqyqN8-~KVcR25kxeC0tF-VsGuWLg5J62nmKc4~tB1UwC4Olc74Cf-Jd~V6LD3FnPVoBvITsfs1Ws1gU7ZnH0k-Zex4D2NJsCM~IbjBEzyiVc-Qob9PbxG7jxhovrK9KyWHvz0k2ME5cgdcE01O2jUdXEX-HiaDi-ALbaIe~rhZXNrTaCli2eXNmFRw14ouOW~NYCdIgDzFvnofqKaCJYY1w08454wjGvC1TCTGMAFm6UIaksA__"
-                alt="Image 1"
-              />
+              <img src="./img/image1.jpg" alt="Image 1" />
             </div>
             <div class="image">
               <img
-                src="https://s3-alpha-sig.figma.com/img/928c/774b/c3f099d5b0a6c279f975c853f069765c?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=egT-RXvwuVr6UlcgtckcYTS-52NhV0U8mlq6em36fN6GTNFNERNAXWlJBuVGMNILIOT8ZIpL1P0qRIqE95yAxRCAXEErk2ewZ8QhxlsenHtXjYPwxAc7sTPS2A25w5v1nPJRFa08KRNFc0Ur3bJu2ZO-9~RO4XlaRacVxlG5sppafRb2ENIcXPfYvPG7SPJUeIgLUlJXljzKtqRQbhsML93Lq6C10pAM2W3qdaGt4jd4DHsz7LvnONIs-8nGMa95sOKRcDscCV7uAnr317nHYoM9h24KaEhQQ9RK1sOe87HMX4CRt-YW6PoaSLeHHOg9743~LzL35SZvDwBL68NVYw__"
+                src="./img/image2.jpg"
                 alt="Image 2"
               />
             </div>
             <div class="image">
               <img
-                src="https://s3-alpha-sig.figma.com/img/beed/a401/886613c53f3cc8af47c73adcb0e5bf35?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=O2uQn-29zbpGBGAfzL78Vmo7Zq5NuA8sDPjX8d2ePqRk1wKBGt0JKvA4yzxIZ7gxeob~WvrpCm1rdN5A~RhCMOvjp0jK6BzJquf2m2LM8A1XO5kkoyEBnxdYiqSAyLXKHZdXPknxivPOg0pdItgM1YUjh7ISc8oxnzCtkS31LkgEU2tkgffVjdUtMaX6oDRZUWmu8m5lxW-5fCq3Urty1~Cz8d86TZiWcXYqaLqk3oBDn3NQYsg9JQ1F43hzwfVl~le3BmR8J48ijdm9e6-6DFszHQIQKXesB039XBlwMMqT5KFKDFFsIDoJTH3S1ttwgNx5YqZ1xEhKUIr~nkTP6Q__"
+                src="./img/image3.jpg"
                 alt="Image 3"
               />
             </div>
             <div class="image">
               <img
-                src="https://www.figma.com/file/OehUJdjRkpbu5uRqBZlTvA/image/729a60058b25a6e5689bf783a5831a281caf0066"
-                alt="Image 3"
+                src="./img/image4.jpg"
+                alt="Image 4"
               />
             </div>
             <div class="image">
               <img
-                src="https://s3-alpha-sig.figma.com/img/411e/4770/9b690bd12dc645928c55ad59e2672d6c?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jVgo2QW2Pr3WUbd2kJw8B8hdRmOzzHwbFuztN4Kvf6c4bRANAbxvhtuM0rVTjubbDiqiKXkOEV9FuxivqVaz9o6tKIVB-SG3E0fyAMz4dRpu-hweaiCcg-1La-S1IyLiRE2mJxM1LoCerT50d2G9aww0RiQKNmiStAgIpuOWzV0lfqbkwrq8OCcyziX7K1M--48ZIkDVpxIfLO0wgIgOcEmfYgL833IYe7fa2EyW6c6xrQl7NtUlOqbE0kX08jxp0zow~mfINMCGqS7cbfEdsb1eyjXymvW~hsYXnLTS37XpsH3AtkYKk0751XUtQ8RwRRN7BvPsh6jHu8llG0oDww__"
-                alt="Image 3"
+                src="./img/image5.jpg"
+                alt="Image 5"
               />
             </div>
             <div class="image">
               <img
-                src="https://s3-alpha-sig.figma.com/img/43b7/4d0b/3334456d71e030a6ea9d9bfcb8ab3b23?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=maUFefDZGkD7kmgwfkntN56ti8fGYvxApH17AWiPnSx85mQ-TLbsT9zMPhQIXx-jQmFGm2sZj9jUT~OKWpDw0-mb1aWYg0CYrwom~EmC~fxM5oorCqzlJezxl4xmIqQHqQ-MBU1~-gO23CQU6uPvojwemG~k7maVwfqmPBz3wltlxHPzKrVP-L9lBX~x6Zu3qmDeEQHjuPfSsHAgl9TNz9ImRxCyDzRY1IEUOZdLqOC3xdctBllGie56r08XLFkssJNgqwTVa9UM-OlcBKzTGqbJ11nZMtzs8pNwlfCdpbhmZp1tnrx4m5LWBgyevcL84JAUYL4zmkMus04db1H1cw__"
-                alt="Image 3"
+                src="./img/image6.png"
+                alt="Image 6"
               />
             </div>
             <div class="image">
               <img
-                src="https://s3-alpha-sig.figma.com/img/2e3e/b27c/9c5bf16cdb18afcac62ab7a55ee556dc?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=kGUCUgkPkRsoTYzGSa~u7xtClelFnchq3Fji3twwNPcG24AqmcmozAxWBLqbpXDDir6P9~Uf3v8gT4vJ33Mgtxraye0hpmXUAFUuR~LFzPXJFXI-8G81bTSDc6IHatBm7kUImv-vV5z6BZo-FEwH-oYTNP~BhGihRb8r77Lkex4lJarT67yZSUoScvwtGdF0SYg1~ep-O8eRX2aqpuvcxBmTQhd1VEd6owLKrmMFSgNe~VWSwxJCXR~PiLf~AE8cl8yIRzzbV3TVqIjYvi9a~TcAjzPSt7MBcl-Ek8ML8fYHsaZnM2PgPo8vOx4P~QS5eIlGsZLsBxqrW7cs7duq6g__"
-                alt="Image 3"
+                src="./img/image7.jpg"
+                alt="Image 7"
               />
             </div>
           </div>
@@ -97,13 +101,7 @@
           <div class="choose-movie">
             <p class="simple-survey">Просте опитування</p>
 
-            <div
-              style="
-                position: relative;
-                width: 100px;
-                height: 20px;
-              "
-            >
+            <div style="position: relative; width: 100px; height: 20px">
               <svg
                 class="arrow"
                 width="83"
@@ -122,7 +120,7 @@
               Підібрати фільм
             </button>
           </div>
-           <div class="hero-white-line"></div>
+          <div class="hero-white-line"></div>
         </section>
 
         <!-- ====================== ФОРМА ================================= -->
@@ -134,52 +132,55 @@
           <div class="modal-wrapper">
             <div class="form-wrapper">
               <h2 class="form-title">опитування</h2>
-              
+
               <form class="form">
                 <button class="button submit-btn" type="submit">
                   Отримати добірку фільмів
                 </button>
               </form>
             </div>
-            
           </div>
         </div>
         <!-- ======================== ПРО НАС ========================== -->
         <section id="about-us" class="about-us-section">
           <div class="about-us-section-wrapper">
-          <div class="about-us-wpapper">
-          <img src="./img/about-us.png" alt="" width="600" />
-          <div class="about-us-text-container">
-            <p class="about-us-title">про нас</p>
+            <div class="about-us-wpapper">
+              <img src="./img/about-us.png" alt="" width="600" />
+              <div class="about-us-text-container">
+                <p class="about-us-title">про нас</p>
 
-            <p class="about-us-description">
-              Не знаєте, який фільм переглянути? <br /><br />
-              Ми допоможемо вирішити цю проблему! Адже пройшовши опитування, ви
-              отримаєте персоналізовану добірку фільмів. І це абсолютно
-              безкоштовно. Впевнені, що для посиденьок в компанії друзів, вечору
-              з родиною або з другою половинкою, ми обов’язково знайдемо для вас
-              вдалий фільм, що влучить у саме серденько.
-            </p>
-          </div>
-          </div>
-            <div class="about-us-white-line"></div>
+                <p class="about-us-description">
+                  Не знаєте, який фільм переглянути? <br /><br />
+                  Ми допоможемо вирішити цю проблему! Адже пройшовши опитування,
+                  ви отримаєте персоналізовану добірку фільмів. І це абсолютно
+                  безкоштовно. Впевнені, що для посиденьок в компанії друзів,
+                  вечору з родиною або з другою половинкою, ми обов’язково
+                  знайдемо для вас вдалий фільм, що влучить у саме серденько.
+                </p>
+              </div>
             </div>
+            <div class="about-us-white-line"></div>
+          </div>
         </section>
-       
       </main>
     </div>
+    </div>
     <footer class="footer">
-       <p class="copyright">
+      <p class="copyright">
         StarLight 2024-2025 <br />
         / Усі права захищені
       </p>
 
       <div class="btn-email-wrapper">
-      <button class="btn-choose-a-movie footer-btn" data-modal>Отримати добірку рекомендацій</button>
-      <a class="footer-email" href="mailto:example@gmail.com">example@gmail.com</a>
+        <button class="btn-choose-a-movie footer-btn" data-modal>
+          Отримати добірку рекомендацій
+        </button>
+        <a class="footer-email" href="mailto:example@gmail.com"
+          >example@gmail.com</a
+        >
       </div>
 
-     <img class="logo-img" src="./img/logo.png" alt="our logo">
+      <img class="logo-img" src="./img/logo.png" alt="our logo" />
     </footer>
 
     <!-- <script src="js/script.js"></script> -->
