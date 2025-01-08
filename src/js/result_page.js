@@ -30,7 +30,7 @@ function processRecommendations(recommendations) {
             <li class="film-param"><p>Назва фільму:</p></li>
             <li class="film-param"><p>Жанр:</p></li>
             <li class="film-param"><p>Рік випуску:</p></li>
-            <li class="film-param"><p>Чому може сподобатись:</p></li>
+            <li class="film-param"><p>Короткий опис фільму:</p></li>
         </ul>
     </div>
     `;
