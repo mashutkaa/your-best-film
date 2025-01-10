@@ -184,7 +184,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
             // Створюємо інпут-поля
             for (var _i2 = 0; _i2 < _lengthArray; _i2++) {
-              var _answerTemplate2 = "\n            \n              <label class=\"input-field-label\">\n                <span>".concat(answerArray[_i2], "</span>\n                <input class=\"text-input-field\" type=\"text\" placeholder=\"").concat(placeholderArray[_i2], "\" name=\"year-min-").concat(_i2, "\" pattern=\"\\d{4}\"\n                      value=\"").concat(savedValues[_i2], "\" /> <!-- \u041F\u0456\u0434\u0441\u0442\u0430\u0432\u043B\u044F\u0454\u043C\u043E \u0437\u043D\u0430\u0447\u0435\u043D\u043D\u044F \u0456\u0437 savedValues -->\n              </label>\n            ");
+              var _answerTemplate2 = "\n             <p name=\"error-year-".concat(_i2, "\" class=\"error-message-container\"></p>\n              <label class=\"input-field-label\">\n                <span>").concat(answerArray[_i2], "</span>\n                <input class=\"text-input-field\" type=\"text\" placeholder=\"").concat(placeholderArray[_i2], "\" name=\"year-min-").concat(_i2, "\" pattern=\"\\d{4}\"\n                      value=\"").concat(savedValues[_i2], "\" /> <!-- \u041F\u0456\u0434\u0441\u0442\u0430\u0432\u043B\u044F\u0454\u043C\u043E \u0437\u043D\u0430\u0447\u0435\u043D\u043D\u044F \u0456\u0437 savedValues -->\n              </label>\n            ");
               questionContainer.innerHTML += _answerTemplate2;
             }
             break;
@@ -344,9 +344,9 @@ window.addEventListener("DOMContentLoaded", function () {
             recommendations = _context.sent;
             closeModal();
             // Збереження рекомендацій у localStorage
-            localStorage.setItem('recommendations', JSON.stringify(recommendations));
+            localStorage.setItem("recommendations", JSON.stringify(recommendations));
             // Відкриття нової сторінки
-            window.location.href = 'result-page.html';
+            window.location.href = "result-page.html";
             _context.next = 34;
             break;
           case 29:
@@ -407,7 +407,7 @@ window.addEventListener("DOMContentLoaded", function () {
           }
         case "checkbox":
           {
-            console.log('Збереження почалося');
+            console.log("Збереження почалося");
             var selectedGenres = Array.from(document.querySelectorAll('input[name="genre"]:checked')).map(function (checkbox) {
               return checkbox.value;
             });
@@ -440,7 +440,7 @@ window.addEventListener("DOMContentLoaded", function () {
     var yearMin = yearInputMin.value.trim();
     var yearMax = yearInputMax.value.trim();
     var currentYear = new Date().getFullYear();
-    var isValid = false;
+    var isValid = true;
     errorInputMin.style.display = "none";
     errorInputMax.style.display = "none";
     yearInputMin.style.border = "1px solid white";
@@ -520,98 +520,17 @@ window.addEventListener("DOMContentLoaded", function () {
     }
     return isValid; // Якщо помилок немає
   }
-
-  // function validateYears() {
-  //   const yearInputMin = document.querySelector("#yearInputMin"); // Заміна на коректний селектор
-  //   const yearInputMax = document.querySelector("#yearInputMax"); // Заміна на коректний селектор
-  //   const errorInputMin = document.querySelector("#errorInputMin");
-  //   const errorInputMax = document.querySelector("#errorInputMax");
-
-  //   if (!yearInputMin || !yearInputMax || !errorInputMin || !errorInputMax) {
-  //     console.error("Не вдалося знайти необхідні елементи у DOM");
-  //     return false;
-  //   }
-
-  //   const yearMin = yearInputMin.value.trim();
-  //   const yearMax = yearInputMax.value.trim();
-  //   const currentYear = new Date().getFullYear();
-
-  //   let isValid = true;
-
-  //   // Скидання стилів і помилок
-  //   errorInputMin.style.display = "none";
-  //   errorInputMax.style.display = "none";
-  //   yearInputMin.style.border = "1px solid white";
-  //   yearInputMax.style.border = "1px solid white";
-
-  //   // Перевірка на валідність
-  //   if (yearMin.length !== 4 || isNaN(yearMin)) {
-  //     errorInputMin.style.display = "block";
-  //     yearInputMin.style.border = "1px solid red";
-  //     errorInputMin.textContent = isNaN(yearMin) 
-  //       ? "Введіть числове значення" 
-  //       : "Введіть правильний рік";
-  //     isValid = false;
-  //   }
-
-  //   if (yearMax.length !== 4 || isNaN(yearMax)) {
-  //     errorInputMax.style.display = "block";
-  //     yearInputMax.style.border = "1px solid red";
-  //     errorInputMax.textContent = isNaN(yearMax) 
-  //       ? "Введіть числове значення" 
-  //       : "Введіть правильний рік";
-  //     isValid = false;
-  //   }
-
-  //   // Перевірка порядку років
-  //   if (isValid && +yearMin > +yearMax) {
-  //     errorInputMin.style.display = "block";
-  //     errorInputMax.style.display = "block";
-  //     yearInputMin.style.border = "1px solid red";
-  //     yearInputMax.style.border = "1px solid red";
-  //     errorInputMin.textContent = "Перший рік має бути менший за другий";
-  //     isValid = false;
-  //   }
-
-  //   // Перевірка меж років
-  //   if (isValid && +yearMin < 1950) {
-  //     errorInputMin.style.display = "block";
-  //     yearInputMin.style.border = "1px solid red";
-  //     errorInputMin.textContent = "Рік не може бути меншим за 1950";
-  //     isValid = false;
-  //   }
-
-  //   if (isValid && +yearMax > currentYear) {
-  //     errorInputMax.style.display = "block";
-  //     yearInputMax.style.border = "1px solid red";
-  //     errorInputMax.textContent = `Рік не може бути більше ${currentYear} року`;
-  //     isValid = false;
-  //   }
-
-  //   // Заповнення значень за замовчуванням
-  //   if (!yearMin) {
-  //     yearInputMin.value = 1950;
-  //   }
-
-  //   if (!yearMax) {
-  //     yearInputMax.value = currentYear;
-  //   }
-
-  //   return isValid;
-  // }
-
   submitButton.addEventListener("click", function (event) {
     event.preventDefault(); // Зупинити відправку форми за замовчуванням
 
-    // if (validateYears()) {
-    //   sendResults(shortQuestions);
-    //   localStorage.clear();
-    //   showQuestion(shortQuestions);
-    // }
-
-    localStorage.clear();
-    sendResults(shortQuestions);
-    showQuestion(shortQuestions);
+    if (validateYears()) {
+      sendResults(shortQuestions);
+      localStorage.clear();
+      showQuestion(shortQuestions);
+    }
+    // localStorage.clear();
+    // sendResults(shortQuestions);
+    // showQuestion(shortQuestions);
   });
 });
 /******/ })()

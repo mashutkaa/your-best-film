@@ -28,7 +28,8 @@ function processRecommendations(recommendations) {
       tempRecommendations = [];
     }
   });
-  var filmTableTemplate = "\n    <div class=\"films-table\">\n        <ul class=\"film-params\">\n            <li class=\"film-param\"><p>\u041D\u0430\u0437\u0432\u0430 \u0444\u0456\u043B\u044C\u043C\u0443:</p></li>\n            <li class=\"film-param\"><p>\u0416\u0430\u043D\u0440:</p></li>\n            <li class=\"film-param\"><p>\u0420\u0456\u043A \u0432\u0438\u043F\u0443\u0441\u043A\u0443:</p></li>\n            <li class=\"film-param\"><p>\u0427\u043E\u043C\u0443 \u043C\u043E\u0436\u0435 \u0441\u043F\u043E\u0434\u043E\u0431\u0430\u0442\u0438\u0441\u044C:</p></li>\n        </ul>\n    </div>\n    ";
+  var filmTableTemplate = "\n    <div class=\"films-table\">\n        <ul class=\"film-params\">\n            <li class=\"film-param\"><p>\u041D\u0430\u0437\u0432\u0430 \u0444\u0456\u043B\u044C\u043C\u0443:</p></li>\n            <li class=\"film-param\"><p>\u0416\u0430\u043D\u0440:</p></li>\n            <li class=\"film-param\"><p>\u0420\u0456\u043A \u0432\u0438\u043F\u0443\u0441\u043A\u0443:</p></li>\n            <li class=\"film-param\"><p>\u041A\u043E\u0440\u043E\u0442\u043A\u0438\u0439 \u043E\u043F\u0438\u0441 \u0444\u0456\u043B\u044C\u043C\u0443:</p></li>\n        </ul>\n    </div>\n    ";
+  console.log("dfcdsfv");
   recommendationsTables.forEach(function (recommendationsTable, index) {
     var filmsTable = document.createElement('div');
     filmsTable.classList.add('films-table');

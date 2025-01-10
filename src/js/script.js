@@ -1,6 +1,7 @@
 // запитання
 console.log("printResults");
 
+
 const shortQuestions = [
   {
     type: "radio-mood",
@@ -488,113 +489,112 @@ window.addEventListener("DOMContentLoaded", function () {
     getMovieRecommendations((sandbox = false));
   }
 
-  // const errorInputMin = document.querySelector(' p[name="error-year-0"]');
-  // const errorInputMax = document.querySelector(' p[name="error-year-1"]');
-  // const yearInputMin = document.querySelector('input[name="year-min-0"]');
-  // const yearInputMax = document.querySelector('input[name="year-min-1"]');
+  const errorInputMin = document.querySelector(' p[name="error-year-0"]');
+  const errorInputMax = document.querySelector(' p[name="error-year-1"]');
+  const yearInputMin = document.querySelector('input[name="year-min-0"]');
+  const yearInputMax = document.querySelector('input[name="year-min-1"]');
 
-  // // ВАЛІДАЦІЯ
-  // function validateYears() {
-  //   const yearMin = yearInputMin.value.trim();
-  //   const yearMax = yearInputMax.value.trim();
-  //   const currentYear = new Date().getFullYear();
+  // ВАЛІДАЦІЯ
+  function validateYears() {
+    const yearMin = yearInputMin.value.trim();
+    const yearMax = yearInputMax.value.trim();
+    const currentYear = new Date().getFullYear();
 
-  //   let isValid = true;
+    let isValid = true;
 
-  //   errorInputMin.style.display = "none";
-  //   errorInputMax.style.display = "none";
-  //   yearInputMin.style.border = "1px solid white";
-  //   yearInputMax.style.border = "1px solid white";
+    errorInputMin.style.display = "none";
+    errorInputMax.style.display = "none";
+    yearInputMin.style.border = "1px solid white";
+    yearInputMax.style.border = "1px solid white";
 
-  //   if (yearInputMin.validity.valid && yearInputMax.validity.valid) {
-  //     errorInputMin.style.display = "none";
-  //     errorInputMax.style.display = "none";
-  //     yearInputMin.style.border = "1px solid white";
-  //     yearInputMax.style.border = "1px solid white";
-  //     isValid = true;
-  //   }
+    if (yearInputMin.validity.valid && yearInputMax.validity.valid) {
+      errorInputMin.style.display = "none";
+      errorInputMax.style.display = "none";
+      yearInputMin.style.border = "1px solid white";
+      yearInputMax.style.border = "1px solid white";
+      isValid = true;
+    }
 
-  //   // Перевірка: чи введене значення містить рівно 4 цифри
-  //   if (yearMin.length !== 4) {
-  //     errorInputMin.style.display = "block";
-  //     yearInputMin.style.border = "1px solid red";
-  //     errorInputMin.textContent = "Введіть правильний рік";
-  //     isValid = false;
-  //   }
-  //   if (yearMax.length !== 4) {
-  //     errorInputMax.style.display = "block";
-  //     yearInputMax.style.border = "1px solid red";
-  //     errorInputMax.textContent = "Введіть правильний рік";
-  //     isValid = false;
-  //   }
+    // Перевірка: чи введене значення містить рівно 4 цифри
+    if (yearMin.length !== 4) {
+      errorInputMin.style.display = "block";
+      yearInputMin.style.border = "1px solid red";
+      errorInputMin.textContent = "Введіть правильний рік";
+      isValid = false;
+    }
+    if (yearMax.length !== 4) {
+      errorInputMax.style.display = "block";
+      yearInputMax.style.border = "1px solid red";
+      errorInputMax.textContent = "Введіть правильний рік";
+      isValid = false;
+    }
 
-  //   if (isNaN(yearMin)) {
-  //     errorInputMin.style.display = "block";
-  //     errorInputMin.textContent = "Введіть числове значення";
-  //     yearInputMin.style.border = "1px solid red";
-  //     isValid = false;
-  //   }
-  //   if (isNaN(yearMax)) {
-  //     errorInputMax.style.display = "block";
-  //     errorInputMax.textContent = "Введіть числове значення";
-  //     yearInputMax.style.border = "1px solid red";
-  //     isValid = false;
-  //   }
+    if (isNaN(yearMin)) {
+      errorInputMin.style.display = "block";
+      errorInputMin.textContent = "Введіть числове значення";
+      yearInputMin.style.border = "1px solid red";
+      isValid = false;
+    }
+    if (isNaN(yearMax)) {
+      errorInputMax.style.display = "block";
+      errorInputMax.textContent = "Введіть числове значення";
+      yearInputMax.style.border = "1px solid red";
+      isValid = false;
+    }
 
-  //   // Перевірка: чи порядок років коректний
-  //   if (yearMin > yearMax) {
-  //     errorInputMin.style.display = "block";
-  //     errorInputMax.style.display = "block";
-  //     yearInputMin.style.border = "1px solid red";
-  //     yearInputMax.style.border = "1px solid red";
-  //     errorInputMin.textContent = "Перший рік має бути менший за другий";
-  //     isValid = false;
-  //   }
+    // Перевірка: чи порядок років коректний
+    if (yearMin > yearMax) {
+      errorInputMin.style.display = "block";
+      errorInputMax.style.display = "block";
+      yearInputMin.style.border = "1px solid red";
+      yearInputMax.style.border = "1px solid red";
+      errorInputMin.textContent = "Перший рік має бути менший за другий";
+      isValid = false;
+    }
 
-  //   // Перевірка: чи відповідають роки заданим межам
-  //   if (yearMin < 1950) {
-  //     errorInputMin.style.display = "block";
-  //     yearInputMin.style.border = "1px solid red";
-  //     errorInputMin.textContent = "Рік не може бути меншим за 1950";
-  //     isValid = false;
-  //   }
-  //   if (yearMax > currentYear) {
-  //     errorInputMax.style.display = "block";
-  //     yearInputMax.style.border = "1px solid red";
-  //     errorInputMax.textContent = `Рік не може бути більше ${currentYear} року`;
-  //     isValid = false;
-  //   }
-  //   if (yearMin === "") {
-  //     yearInputMin.value = 1950;
-  //     errorInputMin.style.display = "none";
-  //     yearInputMin.style.border = "1px solid white";
-  //     if (validateYears()) {
-  //       return (isValid = true);
-  //     }
-  //   }
-  //   if (yearMax === "") {
-  //     yearInputMax.value = currentYear;
-  //     errorInputMax.style.display = "none";
-  //     yearInputMax.style.border = "1px solid white";
-  //     if (validateYears()) {
-  //       return (isValid = true);
-  //     }
-  //   }
+    // Перевірка: чи відповідають роки заданим межам
+    if (yearMin < 1950) {
+      errorInputMin.style.display = "block";
+      yearInputMin.style.border = "1px solid red";
+      errorInputMin.textContent = "Рік не може бути меншим за 1950";
+      isValid = false;
+    }
+    if (yearMax > currentYear) {
+      errorInputMax.style.display = "block";
+      yearInputMax.style.border = "1px solid red";
+      errorInputMax.textContent = `Рік не може бути більше ${currentYear} року`;
+      isValid = false;
+    }
+    if (yearMin === "") {
+      yearInputMin.value = 1950;
+      errorInputMin.style.display = "none";
+      yearInputMin.style.border = "1px solid white";
+      if (validateYears()) {
+        return (isValid = true);
+      }
+    }
+    if (yearMax === "") {
+      yearInputMax.value = currentYear;
+      errorInputMax.style.display = "none";
+      yearInputMax.style.border = "1px solid white";
+      if (validateYears()) {
+        return (isValid = true);
+      }
+    }
 
-  //   return isValid; // Якщо помилок немає
-  // }
+    return isValid; // Якщо помилок немає
+  }
 
   submitButton.addEventListener("click", (event) => {
     event.preventDefault(); // Зупинити відправку форми за замовчуванням
 
-    // if (validateYears()) {
-    //   sendResults(shortQuestions);
-    //   localStorage.clear();
-    //   showQuestion(shortQuestions);
-    // }
-
-    localStorage.clear();
-    sendResults(shortQuestions);
-    showQuestion(shortQuestions);
+    if (validateYears()) {
+      sendResults(shortQuestions);
+      localStorage.clear();
+      showQuestion(shortQuestions);
+    }
+    // localStorage.clear();
+    // sendResults(shortQuestions);
+    // showQuestion(shortQuestions);
   });
 });
