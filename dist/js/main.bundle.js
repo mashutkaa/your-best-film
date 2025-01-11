@@ -520,6 +520,21 @@ window.addEventListener("DOMContentLoaded", function () {
     }
     return isValid; // Якщо помилок немає
   }
+
+  // Валідація повзунків
+  var minSlider = document.querySelector("#lower-slider");
+  var maxSlider = document.querySelector("#upper-slider");
+  var minGap = 1;
+  minSlider.addEventListener("input", function () {
+    if (parseInt(minSlider.value) >= parseInt(maxSlider.value) - minGap) {
+      minSlider.value = parseInt(maxSlider.value) - minGap;
+    }
+  });
+  maxSlider.addEventListener("input", function () {
+    if (parseInt(maxSlider.value) <= parseInt(minSlider.value) + minGap) {
+      maxSlider.value = parseInt(minSlider.value) + minGap;
+    }
+  });
   submitButton.addEventListener("click", function (event) {
     event.preventDefault(); // Зупинити відправку форми за замовчуванням
 
@@ -528,9 +543,6 @@ window.addEventListener("DOMContentLoaded", function () {
       localStorage.clear();
       showQuestion(shortQuestions);
     }
-    // localStorage.clear();
-    // sendResults(shortQuestions);
-    // showQuestion(shortQuestions);
   });
 });
 /******/ })()

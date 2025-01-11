@@ -1,7 +1,6 @@
 // запитання
 console.log("printResults");
 
-
 const shortQuestions = [
   {
     type: "radio-mood",
@@ -585,6 +584,25 @@ window.addEventListener("DOMContentLoaded", function () {
     return isValid; // Якщо помилок немає
   }
 
+  // Валідація повзунків
+  const minSlider = document.querySelector("#lower-slider");
+  const maxSlider = document.querySelector("#upper-slider");
+
+  const minGap = 1;
+
+ 
+  minSlider.addEventListener("input", () => {
+    if (parseInt(minSlider.value) >= parseInt(maxSlider.value) - minGap) {
+      minSlider.value = parseInt(maxSlider.value) - minGap;
+    }
+  });
+  maxSlider.addEventListener("input", () => {
+    if (parseInt(maxSlider.value) <= parseInt(minSlider.value) + minGap) {
+      maxSlider.value = parseInt(minSlider.value) + minGap;
+    }
+  });
+
+
   submitButton.addEventListener("click", (event) => {
     event.preventDefault(); // Зупинити відправку форми за замовчуванням
 
@@ -593,8 +611,5 @@ window.addEventListener("DOMContentLoaded", function () {
       localStorage.clear();
       showQuestion(shortQuestions);
     }
-    // localStorage.clear();
-    // sendResults(shortQuestions);
-    // showQuestion(shortQuestions);
   });
 });
