@@ -454,13 +454,13 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     // Перевірка: чи введене значення містить рівно 4 цифри
-    if (yearMin.length !== 4) {
+    if (Number(yearMin).toString().length !== 4) {
       errorInputMin.style.display = "block";
       yearInputMin.style.border = "1px solid red";
       errorInputMin.textContent = "Введіть правильний рік";
       isValid = false;
     }
-    if (yearMax.length !== 4) {
+    if (Number(yearMax).toString().length !== 4) {
       errorInputMax.style.display = "block";
       yearInputMax.style.border = "1px solid red";
       errorInputMax.textContent = "Введіть правильний рік";
@@ -480,7 +480,7 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     // Перевірка: чи порядок років коректний
-    if (yearMin > yearMax) {
+    if (Number(yearMin) > Number(yearMax)) {
       errorInputMin.style.display = "block";
       errorInputMax.style.display = "block";
       yearInputMin.style.border = "1px solid red";
@@ -490,24 +490,24 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     // Перевірка: чи відповідають роки заданим межам
-    if (yearMin < 1950) {
+    if (Number(yearMin) < 1950) {
       errorInputMin.style.display = "block";
       yearInputMin.style.border = "1px solid red";
       errorInputMin.textContent = "Рік не може бути меншим за 1950";
       isValid = false;
     }
-    if (yearMax > currentYear) {
+    if (Number(yearMax) > currentYear) {
       errorInputMax.style.display = "block";
       yearInputMax.style.border = "1px solid red";
       errorInputMax.textContent = "\u0420\u0456\u043A \u043D\u0435 \u043C\u043E\u0436\u0435 \u0431\u0443\u0442\u0438 \u0431\u0456\u043B\u044C\u0448\u0435 ".concat(currentYear, " \u0440\u043E\u043A\u0443");
       isValid = false;
     }
     if (yearMin === "") {
-      yearInputMin.value = 1950;
+      yearInputMin.value = Number(1950);
       errorInputMin.style.display = "none";
       yearInputMin.style.border = "1px solid white";
       if (validateYears()) {
-        return isValid = true;
+        isValid = true;
       }
     }
     if (yearMax === "") {
@@ -515,10 +515,10 @@ window.addEventListener("DOMContentLoaded", function () {
       errorInputMax.style.display = "none";
       yearInputMax.style.border = "1px solid white";
       if (validateYears()) {
-        return isValid = true;
+        isValid = true;
       }
     }
-    return isValid; // Якщо помилок немає
+    return isValid;
   }
 
   // Валідація повзунків
