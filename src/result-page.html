@@ -1,62 +1,64 @@
 <!DOCTYPE html>
 <html lang="uk">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>your best film</title>
-    <link rel="stylesheet" href="./css/result-page.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header class="header">
-      <a class="logo" href="index.html">
-        <h1 class="main-title">YBF</h1>
-        <p class="secondary-text">our best film</p></a
-      >
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>your best film</title>
+        <link rel="stylesheet" href="./css/result-page.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <header class="header">
+            <a class="logo">
+                <h1 class="main-title">YBF</h1>
+                <p class="secondary-text">our best film</p></a
+            >
 
-        <nav id="my-navigation">
-          <ul class="menu-items">
-            <li><a href="#" onclick="showMessage()"> Пошук </a></li>
-            <li><a href="index.html"> Головна </a></li>
-            <li><a href="#about-us"> Про нас </a></li>
-            <li><a href="#" onclick="showMessage()"> Увійти </a></li>
-            <li><a href="#" onclick="showMessage()"> Зареєструватись </a></li>
-          </ul>
-        </nav>
+            <nav id="my-navigation">
+                <ul class="menu-items">
+                    <li><a href="#" onclick="showMessage()"> Пошук </a></li>
+                    <li><a href="index.html"> Головна </a></li>
+                    <li><a href="index.html#about-us">Про нас</a></li>
 
+                    <li><a href="#" onclick="showMessage()"> Увійти </a></li>
+                    <li>
+                        <a href="#" onclick="showMessage()">
+                            Зареєструватись
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <script>
+                function showMessage() {
+                    alert("Вибачте, даний функціонал наразі недоступний");
+                }
+            </script>
+        </header>
+
+        <form class="main-container">
+            <h3 class="header-title">ваша персоналізована добірка фільмів</h3>
+        </form>
         <script>
-          function showMessage() {
-            alert("Вибачте, даний функціонал наразі недоступний");
-          }
+            const saveIcons = document.querySelectorAll(".icon");
+            saveIcons.forEach((icon) => {
+                icon.addEventListener("click", () => {
+                    try {
+                        alert("Фільм збережено!");
+                    } catch (error) {
+                        alert("Сталася помилка при збереженні фільму.");
+                    }
+                });
+            });
         </script>
-    </header>
 
-    <form class="main-container">
-      <h3 class="header-title">ваша персоналізована добірка фільмів</h3>
-      
-    
-     
-    </form>
-    <script>
-      const saveIcons = document.querySelectorAll(".icon");
-      saveIcons.forEach((icon) => {
-        icon.addEventListener("click", () => {
-          try {
-            alert("Фільм збережено!");
-          } catch (error) {
-            alert("Сталася помилка при збереженні фільму.");
-          }
-        });
-      });
-    </script>
+        <button class="save-button" onclick="showMessage()">
+            Зберегти всю добірку
+        </button>
 
-    <button class="save-button"onclick="showMessage()">
-      Зберегти всю добірку
-    </button>
-
-    <script src="../dist/js/result.bundle.js"></script>
-  </body>
+        <script src="../dist/js/result.bundle.js"></script>
+    </body>
 </html>

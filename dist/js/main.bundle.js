@@ -43,6 +43,7 @@ var shortQuestions = [{
 window.addEventListener("DOMContentLoaded", function () {
   // ---------------------------- Модальне вікно
 
+  var isModalOpen;
   var modalTrigger = document.querySelectorAll("[data-modal]"),
     modal = document.querySelector(".modal"),
     modalOverlay = document.querySelector(".modal-overlay"),
@@ -50,12 +51,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
   //відкрити модалку
   function openModal() {
+    isModalOpen = true;
     modal.classList.add("show");
     modalOverlay.classList.add("show");
     document.body.style.overflow = "hidden"; // Заблокувати прокручування
   }
   // Закрити модалку
   function closeModal() {
+    isModalOpen = false;
     modal.classList.remove("show");
     modalOverlay.classList.remove("show");
     document.body.style.overflow = ""; // Відновити прокручування
@@ -83,7 +86,7 @@ window.addEventListener("DOMContentLoaded", function () {
   });
   // ---------------------------- Модальне вікно
 
-  // Коротке опитуванняі
+  // Коротке опитування
 
   formContainer.innerHTML = "";
   showQuestion(shortQuestions);
@@ -271,14 +274,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
     var modalContainer = document.querySelector(".modal-wrapper");
 
-    // Створити контейнер для помилки
+    // контейнер для помилки
     var errorContainer = document.createElement("div");
     errorContainer.classList.add("question-item");
     var errorTemplate = "<p class=\"question\">".concat(message.errorInLoading, "</p>");
     errorContainer.innerHTML += errorTemplate;
     modalContainer.appendChild(errorContainer);
     modalCloseBtn.addEventListener("click", function () {
-      errorContainer.remove(); // Видаляємо помилку
+      errorContainer.remove();
       formWrapper.classList.remove("hide");
       closeModal();
       showQuestion(shortQuestions);
@@ -292,6 +295,8 @@ window.addEventListener("DOMContentLoaded", function () {
   function _getMovieRecommendations() {
     _getMovieRecommendations = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var sandbox,
+        formWrapper,
+        modalContainer,
         spinnerContainer,
         spinnerImg,
         requestBody,
@@ -304,19 +309,30 @@ window.addEventListener("DOMContentLoaded", function () {
           case 0:
             sandbox = _args.length > 0 && _args[0] !== undefined ? _args[0] : true;
             console.log("Відправка запиту...");
+
+            // Створити контейнер для спінера
+            formWrapper = document.querySelector(".form-wrapper");
+            formWrapper.classList.add("hide");
+
+            //const modalContainer = document.querySelector(".modal-wrapper");
+            modalContainer = document.querySelector(".modal"); // Створити контейнер для спінера
             spinnerContainer = document.createElement("div");
-            spinnerContainer.id = "spinner-container";
+            spinnerContainer.classList.add("spinner-container");
+
+            // Додати спінер
             spinnerImg = document.createElement("img");
             spinnerImg.src = message.loading;
             spinnerImg.alt = "Loading...";
             spinnerContainer.appendChild(spinnerImg);
-            document.body.appendChild(spinnerContainer);
-            _context.prev = 9;
+
+            // Додати спінер у модальне вікно
+            modalContainer.appendChild(spinnerContainer);
+            _context.prev = 12;
             requestBody = {
               result: result,
               sandbox: sandbox
             };
-            _context.next = 13;
+            _context.next = 16;
             return fetch("http://localhost:3000/api/getMovieRecommendations", {
               method: "POST",
               headers: {
@@ -324,46 +340,54 @@ window.addEventListener("DOMContentLoaded", function () {
               },
               body: JSON.stringify(requestBody)
             });
-          case 13:
+          case 16:
             response = _context.sent;
-            if (response.ok) {
+            if (isModalOpen) {
               _context.next = 21;
               break;
             }
-            _context.next = 17;
+            console.log("Запит зупинено, бо модальне вікно закрите.");
+            formWrapper.classList.remove("hide");
+            return _context.abrupt("return");
+          case 21:
+            if (response.ok) {
+              _context.next = 28;
+              break;
+            }
+            _context.next = 24;
             return response.text();
-          case 17:
+          case 24:
             errorText = _context.sent;
             console.log("Error: " + errorText);
             errorMessage();
             return _context.abrupt("return");
-          case 21:
-            _context.next = 23;
+          case 28:
+            _context.next = 30;
             return response.json();
-          case 23:
+          case 30:
             recommendations = _context.sent;
             closeModal();
             // Збереження рекомендацій у localStorage
             localStorage.setItem("recommendations", JSON.stringify(recommendations));
             // Відкриття нової сторінки
             window.location.href = "result-page.html";
-            _context.next = 34;
+            _context.next = 41;
             break;
-          case 29:
-            _context.prev = 29;
-            _context.t0 = _context["catch"](9);
+          case 36:
+            _context.prev = 36;
+            _context.t0 = _context["catch"](12);
             console.error("Помилка при завантаженні:", _context.t0);
             errorMessage();
             return _context.abrupt("return");
-          case 34:
-            _context.prev = 34;
+          case 41:
+            _context.prev = 41;
             spinnerContainer.remove();
-            return _context.finish(34);
-          case 37:
+            return _context.finish(41);
+          case 44:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[9, 29, 34, 37]]);
+      }, _callee, null, [[12, 36, 41, 44]]);
     }));
     return _getMovieRecommendations.apply(this, arguments);
   }
