@@ -131,7 +131,7 @@ window.addEventListener("DOMContentLoaded", function () {
               } else {
                 isMoodDefault = answers[i] === "Чудовий";
               }
-              var answerTemplate = "\n                            <label class=\"mood-option\">\n                                <input type=\"radio\" name=\"mood\" value=\"".concat(answers[i], "\" ").concat(isMoodDefault ? "checked" : "", " />\n                                <div class=\"icon\">\n                                    <img src=\"").concat(img[i], "\" alt=\"\" />\n                                </div>\n                                <span>").concat(answers[i], "</span>\n                            </label>");
+              var answerTemplate = "\n                            <label class=\"mood-option\" >\n                                <input type=\"radio\" name=\"mood\" value=\"".concat(answers[i], "\" ").concat(isMoodDefault ? "checked" : "", " tabindex=\"0\" />\n                                <div class=\"icon tabQuestion\" tabindex=\"0\">\n                                    <img src=\"").concat(img[i], "\" alt=\"\" />\n                                </div>\n                                <span>").concat(answers[i], "</span>\n                            </label>");
               moodWrapper.innerHTML += answerTemplate;
             }
             break;
@@ -150,7 +150,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 } else {
                   isPartnerDefault = answerText === "Наодинці";
                 }
-                var _answerTemplate = "\n            <label class=\"radio-button-label\">\n                <input class=\"radio-button-field\" type=\"radio\" name=\"movie-partner\" value=\"".concat(answerText, "\" ").concat(isPartnerDefault ? "checked" : "", " />\n                <span>").concat(answerText, "</span>\n            </label>");
+                var _answerTemplate = "\n            <label class=\"radio-button-label tabQuestion\" tabindex=\"0\">\n                <input class=\"radio-button-field \" type=\"radio\" name=\"movie-partner\" value=\"".concat(answerText, "\" ").concat(isPartnerDefault ? "checked" : "", "  tabindex=\"0\" />\n                <span>").concat(answerText, "</span>\n            </label>");
                 questionContainer.innerHTML += _answerTemplate;
               }
             } catch (err) {
@@ -162,7 +162,7 @@ window.addEventListener("DOMContentLoaded", function () {
           }
         case "range":
           {
-            var sliderTemplate = "   <div class = \"slider-group\">\n                            <input id=\"lower-slider\" class=\"lower-range-slider\" type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" required />\n                            <input id=\"upper-slider\" class=\"upper-range-slider\" type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"7\" required />\n                        </div>\n                        <div class=\"slider-labels\"></div>";
+            var sliderTemplate = "   <div class = \"slider-group\">\n                            <input id=\"lower-slider\" class=\"lower-range-slider tabQuestion\" type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"0\" required tabindex=\"0\"/>\n                            <input id=\"upper-slider\" class=\"upper-range-slider tabQuestion\" type=\"range\" min=\"0\" max=\"7\" step=\"1\" value=\"7\" required tabindex=\"0\"/>\n                        </div>\n                        <div class=\"slider-labels\"></div>";
             questionContainer.innerHTML += sliderTemplate;
             var sliderContainer = questionContainer.querySelector(".slider-labels");
             element.answers.forEach(function (labelText, index) {
@@ -187,7 +187,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
             // Створюємо інпут-поля
             for (var _i2 = 0; _i2 < _lengthArray; _i2++) {
-              var _answerTemplate2 = "\n             <p name=\"error-year-".concat(_i2, "\" class=\"error-message-container\"></p>\n              <label class=\"input-field-label\">\n                <span>").concat(answerArray[_i2], "</span>\n                <input class=\"text-input-field\" type=\"text\" placeholder=\"").concat(placeholderArray[_i2], "\" name=\"year-min-").concat(_i2, "\" pattern=\"\\d{4}\"\n                      value=\"").concat(savedValues[_i2], "\" /> <!-- \u041F\u0456\u0434\u0441\u0442\u0430\u0432\u043B\u044F\u0454\u043C\u043E \u0437\u043D\u0430\u0447\u0435\u043D\u043D\u044F \u0456\u0437 savedValues -->\n              </label>\n            ");
+              var _answerTemplate2 = "\n             <p name=\"error-year-".concat(_i2, "\" class=\"error-message-container\"></p>\n              <label class=\"input-field-label\">\n                <span>").concat(answerArray[_i2], "</span>\n                <input class=\"text-input-field tabQuestion\" type=\"text\" placeholder=\"").concat(placeholderArray[_i2], "\" name=\"year-min-").concat(_i2, "\" pattern=\"\\d{4}\"\n                      value=\"").concat(savedValues[_i2], "\" tabindex=\"0\" /> <!-- \u041F\u0456\u0434\u0441\u0442\u0430\u0432\u043B\u044F\u0454\u043C\u043E \u0437\u043D\u0430\u0447\u0435\u043D\u043D\u044F \u0456\u0437 savedValues -->\n              </label>\n            ");
               questionContainer.innerHTML += _answerTemplate2;
             }
             break;
@@ -203,7 +203,7 @@ window.addEventListener("DOMContentLoaded", function () {
             var savedOptionsArray = savedOptions ? savedOptions.split(",") : [];
             options.forEach(function (option) {
               var isChecked = savedOptionsArray.includes(option);
-              var answerTemplate = " \n              <label class=\"checkbox-button-label\">\n                <input class=\"checkbox-button-field\" type=\"checkbox\" name=\"genre\" value=\"".concat(option, "\" ").concat(isChecked ? "checked" : "", " />\n                <span>").concat(option, "</span>\n              </label>");
+              var answerTemplate = " \n              <label class=\"checkbox-button-label tabQuestion\" tabindex=\"0\">\n                <input class=\"checkbox-button-field \" type=\"checkbox\" name=\"genre\" value=\"".concat(option, "\" ").concat(isChecked ? "checked" : "", " tabindex=\"0\" />\n                <span>").concat(option, "</span>\n              </label>");
               checkboxWrapper.innerHTML += answerTemplate;
             });
             questionContainer.appendChild(checkboxWrapper);

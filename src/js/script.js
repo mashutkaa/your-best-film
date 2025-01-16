@@ -156,11 +156,13 @@ window.addEventListener("DOMContentLoaded", function () {
                             isMoodDefault = answers[i] === "Чудовий";
                         }
                         const answerTemplate = `
-                            <label class="mood-option">
+                            <label class="mood-option" >
                                 <input type="radio" name="mood" value="${
-                                    answers[i]
-                                }" ${isMoodDefault ? "checked" : ""} />
-                                <div class="icon">
+                                  answers[i]
+                                }" ${
+                          isMoodDefault ? "checked" : ""
+                        } tabindex="0" />
+                                <div class="icon tabQuestion" tabindex="0">
                                     <img src="${img[i]}" alt="" />
                                 </div>
                                 <span>${answers[i]}</span>
@@ -182,10 +184,10 @@ window.addEventListener("DOMContentLoaded", function () {
                         }
 
                         const answerTemplate = `
-            <label class="radio-button-label">
-                <input class="radio-button-field" type="radio" name="movie-partner" value="${answerText}" ${
-                            isPartnerDefault ? "checked" : ""
-                        } />
+            <label class="radio-button-label tabQuestion" tabindex="0">
+                <input class="radio-button-field " type="radio" name="movie-partner" value="${answerText}" ${
+                          isPartnerDefault ? "checked" : ""
+                        }  tabindex="0" />
                 <span>${answerText}</span>
             </label>`;
                         questionContainer.innerHTML += answerTemplate;
@@ -195,8 +197,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
                 case "range": {
                     const sliderTemplate = `   <div class = "slider-group">
-                            <input id="lower-slider" class="lower-range-slider" type="range" min="0" max="7" step="1" value="0" required />
-                            <input id="upper-slider" class="upper-range-slider" type="range" min="0" max="7" step="1" value="7" required />
+                            <input id="lower-slider" class="lower-range-slider tabQuestion" type="range" min="0" max="7" step="1" value="0" required tabindex="0"/>
+                            <input id="upper-slider" class="upper-range-slider tabQuestion" type="range" min="0" max="7" step="1" value="7" required tabindex="0"/>
                         </div>
                         <div class="slider-labels"></div>`;
                     questionContainer.innerHTML += sliderTemplate;
@@ -235,8 +237,8 @@ window.addEventListener("DOMContentLoaded", function () {
              <p name="error-year-${i}" class="error-message-container"></p>
               <label class="input-field-label">
                 <span>${answerArray[i]}</span>
-                <input class="text-input-field" type="text" placeholder="${placeholderArray[i]}" name="year-min-${i}" pattern="\\d{4}"
-                      value="${savedValues[i]}" /> <!-- Підставляємо значення із savedValues -->
+                <input class="text-input-field tabQuestion" type="text" placeholder="${placeholderArray[i]}" name="year-min-${i}" pattern="\\d{4}"
+                      value="${savedValues[i]}" tabindex="0" /> <!-- Підставляємо значення із savedValues -->
               </label>
             `;
 
@@ -263,10 +265,10 @@ window.addEventListener("DOMContentLoaded", function () {
                         const isChecked = savedOptionsArray.includes(option);
 
                         const answerTemplate = ` 
-              <label class="checkbox-button-label">
-                <input class="checkbox-button-field" type="checkbox" name="genre" value="${option}" ${
-                            isChecked ? "checked" : ""
-                        } />
+              <label class="checkbox-button-label tabQuestion" tabindex="0">
+                <input class="checkbox-button-field " type="checkbox" name="genre" value="${option}" ${
+                          isChecked ? "checked" : ""
+                        } tabindex="0" />
                 <span>${option}</span>
               </label>`;
                         checkboxWrapper.innerHTML += answerTemplate;

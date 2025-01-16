@@ -229,10 +229,17 @@ body {
 .mood-option input:checked + .icon {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
-
+.mood-option input:focus + .icon {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
 .mood-option input:checked + .icon + span {
     font-weight: bold;
 }
+.mood-option input:focus + .icon + span {
+    font-weight: bold;
+}
+
+
 
 /* ДРУГЕ ПИТАННЯ */
 
@@ -382,7 +389,9 @@ body {
     border-color: white;
     border-radius: 20px;
 }
-
+.radio-button-label:focus{
+    border-radius: 30px;
+}
 /* ЧЕТВЕРТЕ ПИТАННЯ */
 .input-field-label {
     align-items: center;
@@ -448,7 +457,9 @@ body {
     border-color: white;
     border-radius: 20px;
 }
-
+.checkbox-button-label:focus{
+    border-radius: 30px;
+}
 /* кнопка */
 .button {
     width: 300px;
