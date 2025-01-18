@@ -75,6 +75,15 @@ window.addEventListener("DOMContentLoaded", function () {
         modal.classList.remove("show");
         modalOverlay.classList.remove("show");
         document.body.style.overflow = ""; // Відновити прокручування
+
+        // Показати опитування та прибрати спінер
+        const formWrapper = document.querySelector(".form-wrapper");
+        formWrapper.classList.remove("hide");
+
+        const spinnerContainer = document.querySelector(".spinner-container");
+        if (spinnerContainer) {
+            spinnerContainer.remove();
+        }
     }
 
     const formContainer = document.querySelector(".form");
@@ -410,9 +419,9 @@ window.addEventListener("DOMContentLoaded", function () {
                 }
             );
 
-            if (!isModalOpen) {
-                console.log("Запит зупинено, бо модальне вікно закрите.");
-                formWrapper.classList.remove("hide");
+            // Якщо модальне вікно було закрите та спінер не крутиться то зупинити запит
+            if (!spinnerContainer.isConnected) {
+                console.log("Обробка запиту зупинена.");
                 return;
             }
 
@@ -437,7 +446,9 @@ window.addEventListener("DOMContentLoaded", function () {
             errorMessage();
             return;
         } finally {
-            spinnerContainer.remove();
+            if (spinnerContainer.isConnected) {
+                spinnerContainer.remove();
+            }
         }
     }
 

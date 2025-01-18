@@ -62,6 +62,14 @@ window.addEventListener("DOMContentLoaded", function () {
     modal.classList.remove("show");
     modalOverlay.classList.remove("show");
     document.body.style.overflow = ""; // Відновити прокручування
+
+    // Показати опитування та прибрати спінер
+    var formWrapper = document.querySelector(".form-wrapper");
+    formWrapper.classList.remove("hide");
+    var spinnerContainer = document.querySelector(".spinner-container");
+    if (spinnerContainer) {
+      spinnerContainer.remove();
+    }
   }
   var formContainer = document.querySelector(".form");
   var submitButton = document.createElement("button");
@@ -342,52 +350,53 @@ window.addEventListener("DOMContentLoaded", function () {
             });
           case 16:
             response = _context.sent;
-            if (isModalOpen) {
-              _context.next = 21;
+            if (spinnerContainer.isConnected) {
+              _context.next = 20;
               break;
             }
-            console.log("Запит зупинено, бо модальне вікно закрите.");
-            formWrapper.classList.remove("hide");
+            console.log("Обробка запиту зупинена.");
             return _context.abrupt("return");
-          case 21:
+          case 20:
             if (response.ok) {
-              _context.next = 28;
+              _context.next = 27;
               break;
             }
-            _context.next = 24;
+            _context.next = 23;
             return response.text();
-          case 24:
+          case 23:
             errorText = _context.sent;
             console.log("Error: " + errorText);
             errorMessage();
             return _context.abrupt("return");
-          case 28:
-            _context.next = 30;
+          case 27:
+            _context.next = 29;
             return response.json();
-          case 30:
+          case 29:
             recommendations = _context.sent;
             closeModal();
             // Збереження рекомендацій у localStorage
             localStorage.setItem("recommendations", JSON.stringify(recommendations));
             // Відкриття нової сторінки
             window.location.href = "result-page.html";
-            _context.next = 41;
+            _context.next = 40;
             break;
-          case 36:
-            _context.prev = 36;
+          case 35:
+            _context.prev = 35;
             _context.t0 = _context["catch"](12);
             console.error("Помилка при завантаженні:", _context.t0);
             errorMessage();
             return _context.abrupt("return");
-          case 41:
-            _context.prev = 41;
-            spinnerContainer.remove();
-            return _context.finish(41);
-          case 44:
+          case 40:
+            _context.prev = 40;
+            if (spinnerContainer.isConnected) {
+              spinnerContainer.remove();
+            }
+            return _context.finish(40);
+          case 43:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[12, 36, 41, 44]]);
+      }, _callee, null, [[12, 35, 40, 43]]);
     }));
     return _getMovieRecommendations.apply(this, arguments);
   }
