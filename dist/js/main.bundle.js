@@ -341,7 +341,7 @@ window.addEventListener("DOMContentLoaded", function () {
               sandbox: sandbox
             };
             _context.next = 16;
-            return fetch("http://localhost:3000/api/getMovieRecommendations", {
+            return fetch("http://localhost:3000/movies/getMoviesRecommendations", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"

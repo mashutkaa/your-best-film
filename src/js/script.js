@@ -409,7 +409,7 @@ window.addEventListener("DOMContentLoaded", function () {
             };
 
             const response = await fetch(
-                "http://localhost:3000/api/getMovieRecommendations",
+                "http://localhost:3000/movies/getMoviesRecommendations",
                 {
                     method: "POST",
                     headers: {
