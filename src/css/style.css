@@ -238,7 +238,10 @@ body {
 .mood-option input:focus + .icon + span {
     font-weight: bold;
 }
-
+.mood-option input:checked ~ .icon img {
+    border-radius: 50%;
+    outline: 2px solid rgba(188, 0, 0, 0.7);;
+}
 
 
 /* ДРУГЕ ПИТАННЯ */
