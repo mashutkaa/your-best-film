@@ -4,11 +4,19 @@ const registrationForm = document.querySelector("#registration-form");
 const menuBtn = document.querySelector(".menu-item-login");
 // ----------- відкриття/закриття модального вікна -----------
 const wrapper = document.querySelector(".registration-login-wrapper");
+const closeLoginIcon = document.querySelector(".close-login-btn");
+const closeRegisterBtn = document.querySelector('.close-register-btn');
 wrapper.style.display = "none";
+
 menuBtn.addEventListener("click", (e) => {
   wrapper.style.display = "block";
-
-//   document.body.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+});
+closeLoginIcon.addEventListener("click", (e) => {
+  wrapper.style.display = "none";
+});
+closeRegisterBtn.addEventListener("click", (e) => {
+  wrapper.style.display = "none";
 });
 
 // ======================= ВХІД ====================================
@@ -144,7 +152,7 @@ submitButton.addEventListener("click", (event) => {
   // Перевірка заповнення полів
   if (emailValue === "" || passwordValue === "") {
     errorMsg.style.display = "block";
-    errorMsg.textContent = "All fields must be filled";
+    errorMsg.textContent = "Заповніть всі обов'язкові поля";
     return;
   } else {
     errorMsg.style.display = "none";
@@ -153,7 +161,7 @@ submitButton.addEventListener("click", (event) => {
   // Перевірка формату email
   if (!validateEmail(emailValue)) {
     errorInput.style.display = "block";
-    errorInput.textContent = "Invalid email, try again";
+    errorInput.textContent = "Вкажіть правильну елекронну пошту";
     return;
   } else {
     errorInput.style.display = "none";

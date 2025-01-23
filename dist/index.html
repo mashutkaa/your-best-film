@@ -146,7 +146,8 @@
         <!-- ------------------ ВХІД ------------------------ -->
     <div class="registration-login-wrapper">
     <form id="login-form" class="login-form">
-      <span>x</span>
+      <p  class="close-login-btn">x</p>
+    
       <h2 class="form-title">особистий кабінет</h2>
       <p class="form-description">Допоможе вам зберігати отримані добірки або фільми в одному місці*</p>
       
@@ -196,24 +197,27 @@
     <!-- ---------------- РЕЄСТРАЦІЯ ------------------------ -->
 
     <form id="registration-form" class="registration-form">
-      <span>x</span>
+        <p class="close-register-btn">x</p>
       <h2 class="form-title">Особистий кабінет</h2>
       <p class="form-description">на жаль, даного користувача не існує, потрібна реєстрація*</p>
 
       <!-- email -->
       <label class="register-field-label" for="email">
         <span>Електронна адреса</span>
+        <div>
         <input
           id="email"
           type="email"
           placeholder="example@gmail.com"
           required
         />
+         <p class="error-input js-error"></p>
+         </div>
       </label>
-      <p class="error-input js-error"></p>
+     
       <!-- password -->
       <label class="register-field-label" for="password">
-        <span>Пароль</span>
+        <span class="register-field-password">Пароль</span>
         <div class="register-field-wrapper">
         <div class="register-password-wrapper">
         <input id="password" type="password" placeholder="********" required />
@@ -230,7 +234,8 @@
      
       <!-- confirm password -->
       <label class="register-field-label" for="confirm-password">
-        <span>Підтвердження пароля</span>
+        <span class="register-field-confirm-password">Підтвердження пароля</span>
+        
         <div class="register-field-wrapper">
          <div class="register-password-wrapper">
         <input
@@ -249,7 +254,8 @@
       
       <!-- name -->
       <label class="register-field-label" for="name">
-        <span>Ваше ім'я</span>
+       
+        <span class="register-field-name">Ваше ім'я</span>
         <div class="register-field-name-wrapper">
         <input id="name" type="text" placeholder="Ваше ім'я" required />
         <p class="not-required-field">*поле необов’язкове</p>
@@ -258,18 +264,19 @@
 
       <p class="error-input-msg js-error"></p>
 
-      <button type="submit" id="submit-registration-btn">
-        Зареєструватися
-      </button>
-      <label for="submit">
+    
+      <label class="submit-label" for="submit">
           <input
           id="submit"
           type="checkbox"
           required
         />
+         <a class="submit" href="">Я підтверджую, що ознайомився/ознайомилась з правилами надання послуг та політикою конфіденційності</a>
       </label>
-     <a href="">Я підтверджую, що ознайомився/ознайомилась з правилами надання послуг та політикою конфіденційності</a>
-      
+    
+        <button type="submit" id="submit-registration-btn">
+        Зареєструватися
+      </button> 
     </form>
 </div>
     <script src="./js/login-window.js"></script>

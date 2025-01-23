@@ -2,10 +2,12 @@ main {
   position: relative;
 }
 .registration-login-wrapper {
-  position: absolute;
-  top: 30px;
+  position: fixed;
+  top: 50%;
   left: 50%;
-  margin-left: -200px; /* Половина ширини елемента */
+  transform: translate(-50%, -50%);
+  /* margin-left: -200px;  */
+  z-index: 1000;
 }
 .form-title {
   text-align: center;
@@ -17,12 +19,23 @@ main {
   font-size: 8px;
   text-align: center;
 }
+.close-btn{
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+}
+.close-login-btn, .close-register-btn{
+  cursor: pointer;
+}
 /* ============= РЕЄСТАЦІЯ ==================== */
 .error-input{
  font-size: 8px;
  color: #bc0000;
 }
-
+.password-error{
+  width: 210px;
+  margin-top: 5px;
+}
 .registration-form {
   max-width: 443px;
   margin: 0 auto;
@@ -38,11 +51,12 @@ main {
 
 .register-field-label {
   display: flex;
+  flex: 30% 70%;
   margin-top: 30px;
-  gap: 15px;
   align-items: center;
   justify-content: space-between;
 }
+
 .register-field-label:first-child {
   margin-top: 40px;
 }
@@ -58,22 +72,55 @@ main {
   border-radius: 50px;
   padding: 6px 20px;
   color: #ffffff;
-  width: 50%;
+  width: 150px;
+}
+#email{
+  width: 150px;
 }
 #password,
 #confirm-password {
+  width: 100%;
+  padding: 6px 20px;
   border: none;
-  position: relative;
+  font-size: 16px;
 }
 .register-password-wrapper {
   border: 1px solid white;
   border-radius: 50px;
+
+  display: flex;
+  width: 190px;
+  padding: 0;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+
+  position: relative;
+}
+.register-field-password{
+  margin-right: 190px;
+}
+.register-field-confirm-password{
+margin-right: 130px;
+}
+.register-field-name{
+  margin-right: 210px;
 }
 #toggle-password-confirm-register,
 #toggle-password-register {
   background-color: transparent;
   color: #666;
   border: none;
+
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Відступ від правого краю поля */
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
 }
 .register-field-name-wrapper, .register-field-wrapper{
     width: 100%;
@@ -86,6 +133,7 @@ main {
     align-items: center;
     text-align: center;
     color: #bc0000;
+    margin-top: 5px;
 }
 #submit-registration-btn {
   width: 60%;
@@ -95,9 +143,19 @@ main {
   border: 1px solid white;
   border-radius: 50px;
   margin: 35px auto 0 auto;
+  display: block;
 }
 #submit-registration-btn:hover {
   background-color: #d9d9d95b;
+}
+.submit{
+ font-size: 12px;
+ width: 206px;
+ margin: 10px auto;
+ display: block;
+}
+.submit-label{
+  display: flex;
 }
 /* ====================  ВХІД ======================== */
 
@@ -182,6 +240,7 @@ main {
   border: 1px solid white;
   border-radius: 50px;
   margin: 35px auto 0 auto;
+   display: block;
 }
 #submit-login-btn:hover {
   background-color: #d9d9d95b;
