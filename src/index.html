@@ -10,6 +10,7 @@
     /> -->
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/main-page.css" />
+    <link rel="stylesheet" href="css/login-window.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -33,15 +34,16 @@
           <p class="secondary-text">our best film</p></a
         >
 
-        <nav id="my-navigation">
+           <nav id="my-navigation">
           <ul class="menu-items">
             <li><a href="#" data-modal> Пошук </a></li>
             <li><a href="index.html"> Головна </a></li>
             <li><a href="#about-us"> Про нас </a></li>
-            <li><a href="#" onclick="showMessage()"> Увійти </a></li>
-            <li><a href="#" onclick="showMessage()"> Зареєструватись </a></li>
+            <li class="menu-item-login"><a href="#"> Увійти / Зареєструватися </a></li>
+         
           </ul>
         </nav>
+
 
         <script>
           function showMessage() {
@@ -141,6 +143,111 @@
             </div>
           </div>
         </div>
+        <!-- ------------------ ВХІД ------------------------ -->
+    <div class="registration-login-wrapper">
+    <form id="login-form" class="login-form">
+      <span>x</span>
+      <h2 class="login-form-title">особистий кабінет</h2>
+      <p class="login-form-description">Допоможе вам зберігати отримані добірки або фільми в одному місці*</p>
+      
+      <label   class="login-field-label" for="login-email">
+        <span>Електронна адреса</span>
+        <input
+          id="login-email"
+          type="email"
+          placeholder="example@gmail.com"
+          required
+        />
+      </label>
+      <p class="login-email-error js-error"></p>
+
+      <label  class="login-field-label" for="login-password">
+        <span>Пароль</span>
+        <div class="login-password-field">
+        <input
+          id="login-password"
+          type="password"
+          placeholder="********"
+          required
+        />
+        <button class="ogin-password-field" type="button"  class="toggle-password-btn">
+          👁
+        </button>
+        </div>
+      </label>
+
+      <a href="#">Забули пароль?</a>
+      <p class="login-password-error js-error"></p>
+      <p class="login-error-input-msg js-error"></p>
+
+      <button
+        type="submit"
+        id="submit-login-btn"
+        class="submit-login-btn-toggle"
+      >
+        Увійти/Зареєструватися
+      </button>
+      <hr />
+    </form>
+
+    <!-- ---------------- РЕЄСТРАЦІЯ ------------------------ -->
+
+    <form id="registration-form" class="registration-form">
+      <h2>Особистий кабінет</h2>
+      <p>на жаль, даного користувача не існує, потрібна реєстрація*</p>
+
+      <!-- email -->
+      <label for="email">
+        <span>Електронна адреса</span>
+        <input
+          id="email"
+          type="email"
+          placeholder="example@gmail.com"
+          required
+        />
+      </label>
+      <p class="error-input js-error"></p>
+      <!-- password -->
+      <label for="password">
+        <span>Пароль</span>
+        <input id="password" type="password" placeholder="********" required />
+        <button type="button" id="toggle-password-register" class="toggle-password-btn">
+          👁
+        </button>
+      </label>
+      <p class="error-input password-error">
+        Пароль повинен містити щонайменше 8 символів, включаючи хоча б одну
+        велику та малу літеру, одну цифру та один спеціальний символ.
+      </p>
+      <!-- confirm password -->
+      <label for="confirm-password">
+        <span>Підтвердження пароля</span>
+        <input
+          id="confirm-password"
+          type="password"
+          placeholder="********"
+          required
+        />
+        <button type="button" id="toggle-password-confirm-register" class="toggle-password-btn">
+          👁
+        </button>
+      </label>
+      <p class="error-input confirm-password-error"></p>
+      <!-- name -->
+      <label for="name">
+        <span>Ваше ім'я</span>
+        <input id="name" type="text" placeholder="Ваше ім'я" required />
+      </label>
+
+      <p class="error-input-msg js-error"></p>
+
+      <button type="submit" id="submit-registration-btn">
+        Зареєструватися
+      </button>
+      <hr />
+    </form>
+</div>
+    <script src="./js/login-window.js"></script>
         <!-- ======================== ПРО НАС ========================== -->
         <section id="about-us" class="about-us-section">
           <div class="about-us-section-wrapper">
