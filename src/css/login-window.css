@@ -1,0 +1,137 @@
+main {
+  position: relative;
+}
+.registration-login-wrapper {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  margin-left: -200px; /* Половина ширини елемента */
+}
+
+/* ============= РЕЄСТАЦІЯ ==================== */
+.error-input,
+.error-input-msg {
+  color: red;
+  font-size: 12px;
+  margin: 5px 0;
+  display: none;
+}
+
+.registration-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: black;
+}
+.registration-form h2 {
+  text-align: center;
+}
+.registration-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+.registration-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.registration-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.registration-form button:hover {
+  background-color: #0056b3;
+}
+.registration-form a {
+  display: block;
+  margin-top: 10px;
+  text-align: right;
+  color: #007bff;
+  text-decoration: none;
+}
+.registration-form a:hover {
+  text-decoration: underline;
+}
+
+/* ====================  ВХІД ======================== */
+.error-input,
+.error-input-msg {
+  color: red;
+  font-size: 12px;
+  margin: 5px 0;
+  display: none;
+}
+
+.login-form {
+  max-width: 443px;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 50px;
+  padding-bottom: 60px;
+  background-color: #01070a;
+
+  border: 1px solid #ccc;
+  border-radius: 50px;
+ 
+}
+.login-form-title {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.login-form-description{
+    font-size: 8px;
+      text-align: center;
+}
+.login-field-label {
+  display: flex;
+  margin-top: 40px;
+}
+.login-field-label span{
+    font-size: 15px;
+}
+
+#login-password:focus {
+
+border-color: transparent;
+}
+
+.login-password-field{
+    display: flex;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  
+}
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.login-form button:hover {
+  background-color: #0056b3;
+}
+.login-form a {
+  display: block;
+  margin-top: 10px;
+  text-align: right;
+  color: #007bff;
+  text-decoration: none;
+}
