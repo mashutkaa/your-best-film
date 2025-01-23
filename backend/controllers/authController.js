@@ -18,8 +18,10 @@ export async function login(req, res) {
     const { email, password } = req.body;
     const user = await getUserByEmail(email);
 
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-        return res.status(401).json({ error: "Invalid credentials" });
+    if (!user) {
+        return res.status(404).json({ error: "User does not exist" });
+    } else if (!(await bcrypt.compare(password, user.password))) {
+        return res.status(401).json({ error: "Incorrect password" });
     }
 
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: "30d" });
