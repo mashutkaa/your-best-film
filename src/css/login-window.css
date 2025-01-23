@@ -7,69 +7,99 @@ main {
   left: 50%;
   margin-left: -200px; /* Половина ширини елемента */
 }
-
+.form-title {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.form-description {
+  font-size: 8px;
+  text-align: center;
+}
 /* ============= РЕЄСТАЦІЯ ==================== */
-.error-input,
-.error-input-msg {
-  color: red;
-  font-size: 12px;
-  margin: 5px 0;
-  display: none;
+.error-input{
+ font-size: 8px;
+ color: #bc0000;
 }
 
 .registration-form {
-  max-width: 400px;
+  max-width: 443px;
   margin: 0 auto;
-  padding: 20px;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 50px;
+  padding-bottom: 60px;
+  background-color: #01070a;
+
   border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: black;
-}
-.registration-form h2 {
-  text-align: center;
-}
-.registration-form label {
-  display: block;
-  margin-bottom: 10px;
-}
-.registration-form input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.registration-form button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.registration-form button:hover {
-  background-color: #0056b3;
-}
-.registration-form a {
-  display: block;
-  margin-top: 10px;
-  text-align: right;
-  color: #007bff;
-  text-decoration: none;
-}
-.registration-form a:hover {
-  text-decoration: underline;
+  border-radius: 50px;
 }
 
-/* ====================  ВХІД ======================== */
-.error-input,
-.error-input-msg {
-  color: red;
-  font-size: 12px;
-  margin: 5px 0;
-  display: none;
+.register-field-label {
+  display: flex;
+  margin-top: 30px;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
 }
+.register-field-label:first-child {
+  margin-top: 40px;
+}
+.register-field-label span {
+  font-size: 15px;
+}
+#email,
+#password,
+#confirm-password,
+#name {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+  padding: 6px 20px;
+  color: #ffffff;
+  width: 50%;
+}
+#password,
+#confirm-password {
+  border: none;
+  position: relative;
+}
+.register-password-wrapper {
+  border: 1px solid white;
+  border-radius: 50px;
+}
+#toggle-password-confirm-register,
+#toggle-password-register {
+  background-color: transparent;
+  color: #666;
+  border: none;
+}
+.register-field-name-wrapper, .register-field-wrapper{
+    width: 100%;
+   text-align: center;
+}
+
+.not-required-field{
+    width: 100%;
+    font-size: 8px;
+    align-items: center;
+    text-align: center;
+    color: #bc0000;
+}
+#submit-registration-btn {
+  width: 60%;
+  padding: 10px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 50px;
+  margin: 35px auto 0 auto;
+}
+#submit-registration-btn:hover {
+  background-color: #d9d9d95b;
+}
+/* ====================  ВХІД ======================== */
 
 .login-form {
   max-width: 443px;
@@ -82,56 +112,83 @@ main {
 
   border: 1px solid #ccc;
   border-radius: 50px;
- 
 }
-.login-form-title {
-  text-align: center;
-  margin-top: 25px;
-  font-size: 24px;
-  text-transform: uppercase;
-}
-.login-form-description{
-    font-size: 8px;
-      text-align: center;
-}
+
 .login-field-label {
   display: flex;
   margin-top: 40px;
+  gap: 15px;
+  align-items: center;
 }
-.login-field-label span{
-    font-size: 15px;
-}
-
-#login-password:focus {
-
-border-color: transparent;
+.login-field-label span {
+  font-size: 15px;
 }
 
-.login-password-field{
-    display: flex;
-  width: 100%;
-  padding: 10px;
+.login-field-input {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+  padding: 6px 20px;
+  color: #ffffff;
+  width: 190px;
+}
+
+.login-password-field {
+  display: flex;
+  width: 190px;
+  padding: 0;
   margin-top: 5px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  
+  border-radius: 50px;
+
+  position: relative;
 }
-.login-form button {
+.login-password-field-title {
+  margin-right: 90px;
+}
+#login-password {
   width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
+  padding: 6px 20px;
   border: none;
-  border-radius: 5px;
+  font-size: 16px;
+}
+.login-password-field-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Відступ від правого краю поля */
+  transform: translateY(-50%);
+  background: none;
+  border: none;
   cursor: pointer;
+  font-size: 18px;
+  color: #666;
 }
-.login-form button:hover {
-  background-color: #0056b3;
+.forgot-password {
+  color: white;
+  font-size: 10px;
+  margin-top: 5px;
+  text-align: center;
 }
-.login-form a {
-  display: block;
-  margin-top: 10px;
+.login-password-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#submit-login-btn {
+  width: 60%;
+  padding: 10px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 50px;
+  margin: 35px auto 0 auto;
+}
+#submit-login-btn:hover {
+  background-color: #d9d9d95b;
+}
+.login-error-input-msg {
+  color: #bc0000;
+  font-size: 10px;
   text-align: right;
-  color: #007bff;
-  text-decoration: none;
+  margin-top: 20px;
 }

@@ -183,7 +183,7 @@ submitButton.addEventListener("click", (event) => {
 // ------------------- показати/сховати пароль ------------------
 
 const loginTogglePasswordButton = document.querySelector(
-  ".toggle-password-btn"
+  ".login-password-field-btn"
 );
 const registerTogglePasswordButton = document.querySelector(
   "#toggle-password-register"
