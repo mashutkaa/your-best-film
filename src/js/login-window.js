@@ -5,7 +5,7 @@ const menuBtn = document.querySelector(".menu-item-login");
 // ----------- відкриття/закриття модального вікна -----------
 const wrapper = document.querySelector(".registration-login-wrapper");
 const closeLoginIcon = document.querySelector(".close-login-btn");
-const closeRegisterBtn = document.querySelector('.close-register-btn');
+const closeRegisterBtn = document.querySelector(".close-register-btn");
 wrapper.style.display = "none";
 
 menuBtn.addEventListener("click", (e) => {
@@ -23,6 +23,7 @@ closeRegisterBtn.addEventListener("click", (e) => {
 
 const loginEmail = document.querySelector("#login-email");
 const loginPassword = document.querySelector("#login-password");
+const loginPasswordWrapper = document.querySelector(".login-password-field");
 const loginSubmitButton = document.querySelector("#submit-login-btn");
 
 const loginErrorMsg = document.querySelector(".login-error-input-msg");
@@ -70,6 +71,8 @@ loginSubmitButton.addEventListener("click", (event) => {
 
   if (emailValue === "" || passwordValue === "") {
     loginErrorMsg.style.display = "block";
+    loginEmail.style.borderColor = "red";
+    loginPasswordWrapper.style.borderColor = "red";
     loginErrorMsg.textContent = "Всі поля мають бути заповнені";
     return;
   }
@@ -82,7 +85,14 @@ const form = document.querySelector(".registration-form");
 
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
+const passwordWrapper = document.querySelector("#password-wrapper");
 const confirmPassword = document.querySelector("#confirm-password");
+const personalAccountNav = document.querySelector(
+  ".menu-item-personal-account a"
+);
+const confirmPasswordWrapper = document.querySelector(
+  "#confirm-password-wrapper"
+);
 const username = document.querySelector("#name");
 const submitButton = document.querySelector("#submit-registration-btn");
 
@@ -91,6 +101,9 @@ const errorInput = document.querySelector(".error-input");
 // const emailError = document.querySelector(".email-error");
 const passwordError = document.querySelector(".password-error");
 const confirmPasswordError = document.querySelector(".confirm-password-error");
+
+console.log(personalAccountNav);
+
 
 function User(email, password, username) {
   this.email = email;
@@ -121,6 +134,7 @@ function passwordsMatch(password, confirmPassword) {
 // Валідація під час введення пароля
 password.addEventListener("input", (event) => {
   const passwordValue = event.target.value;
+
   if (!validatePassword(passwordValue.trim())) {
     passwordError.style.display = "block";
     passwordError.textContent =
@@ -134,9 +148,13 @@ password.addEventListener("input", (event) => {
 confirmPassword.addEventListener("input", (event) => {
   if (!passwordsMatch(password.value.trim(), confirmPassword.value.trim())) {
     confirmPasswordError.style.display = "block";
-    confirmPasswordError.textContent = "Passwords do not match";
+    confirmPasswordWrapper.style.borderColor = "red";
+    password.style.borderColor = "red";
+    confirmPasswordError.textContent = "Паролі не співпадають";
   } else {
     confirmPasswordError.style.display = "none";
+    confirmPasswordWrapper.style.borderColor = "white";
+    password.style.borderColor = "white";
   }
 });
 
@@ -161,6 +179,7 @@ submitButton.addEventListener("click", (event) => {
   // Перевірка формату email
   if (!validateEmail(emailValue)) {
     errorInput.style.display = "block";
+    email.style.borderColor = "red";
     errorInput.textContent = "Вкажіть правильну елекронну пошту";
     return;
   } else {
@@ -168,6 +187,7 @@ submitButton.addEventListener("click", (event) => {
   }
   if (Object.values(users).find((user) => user.email === emailValue)) {
     errorInput.style.display = "block";
+    email.style.borderColor = "red";
     errorInput.textContent = "Користувач з таким email вже існує!";
     return;
   }
@@ -185,8 +205,17 @@ submitButton.addEventListener("click", (event) => {
   users[userId] = user;
 
   console.log(users); //! Виведення зареєстрованого об'єкта користувачів у консоль
-  window.location.href = "index.html";
+
+  menuBtn.style.display = "none";
+  wrapper.style.display = "none";
+
+if (nameValue !== "") {
+  personalAccountNav.textContent = nameValue;
+} else {
+  personalAccountNav.textContent = emailValue;
+}
 });
+// успішна реєстрація 
 
 // ------------------- показати/сховати пароль ------------------
 

@@ -32,6 +32,13 @@ main {
  font-size: 8px;
  color: #bc0000;
 }
+.error-input-msg{
+   font-size: 8px;
+ color: #bc0000;
+}
+.confirm-password-error{
+  margin-top: 5px;
+}
 .password-error{
   width: 210px;
   margin-top: 5px;
@@ -250,4 +257,11 @@ margin-right: 130px;
   font-size: 10px;
   text-align: right;
   margin-top: 20px;
+}
+.successful-registration{
+  padding: 70px;
+  font-size: 32px;
+  border: 1px solid white;
+  background-color: #01070a;
+  color: #ffffff;
 }
