@@ -1,4 +1,3 @@
-const users = {}; // Збережені користувачі
 const loginForm = document.querySelector("#login-form");
 const registrationForm = document.querySelector("#registration-form");
 const menuBtn = document.querySelector(".menu-item-login");
@@ -35,30 +34,46 @@ const wrongPassword = document.querySelector(".login-password-error");
 registrationForm.style.display = "none";
 
 function loginUser(email, password) {
-  // Знайти користувача з введеним email
-  const user = Object.values(users).find((user) => user.email === email);
+  const requestBody = { email, password };
 
-  if (!user) {
-    // Якщо користувача з таким email не існує
-    userNotExistError.style.display = "block";
-    userNotExistError.textContent = "Користувача з таким email не існує";
+  fetch("http://localhost:3000/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          error.status = response.status;
+          throw error;
+        });
+      }
+      return response.json();
+    })
+    .then((data) => {
+      localStorage.setItem("token", data.token);
+      userNotExistError.style.display = "none";
+      wrongPassword.style.display = "none";
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      if (error.status === 404) { // Користувача з таким email не існує
+        userNotExistError.style.display = "block";
+        userNotExistError.textContent = "Користувача з таким email не існує";
+        registrationForm.style.display = "block";
+        loginForm.style.display = "none";
+      } else if (error.status === 401) { // Неправильний пароль
+        wrongPassword.style.display = "block";
+        wrongPassword.textContent = "Невірний пароль";
+      } else {
+        // Тут ще має бути обробка загальної помилки, наприклад коли сервер недоступний
+      }
 
-    registrationForm.style.display = "block";
-    loginForm.style.display = "none";
-    return false;
-  }
+      return false;
+    });
 
-  if (user.password !== password) {
-    // Якщо пароль неправильний
-    wrongPassword.style.display = "block";
-    wrongPassword.textContent = "Невірний пароль";
-    return false;
-  }
-
-  // Успішний вхід
-  userNotExistError.style.display = "none";
-  wrongPassword.style.display = "none";
-  window.location.href = "index.html";
   return true;
 }
 
@@ -103,17 +118,6 @@ const passwordError = document.querySelector(".password-error");
 const confirmPasswordError = document.querySelector(".confirm-password-error");
 
 console.log(personalAccountNav);
-
-
-function User(email, password, username) {
-  this.email = email;
-  this.password = password;
-  this.username = username;
-}
-
-function createId(users) {
-  return Object.keys(users).length;
-}
 
 // Валідація пошти
 function validateEmail(emailValue) {
@@ -185,12 +189,6 @@ submitButton.addEventListener("click", (event) => {
   } else {
     errorInput.style.display = "none";
   }
-  if (Object.values(users).find((user) => user.email === emailValue)) {
-    errorInput.style.display = "block";
-    email.style.borderColor = "red";
-    errorInput.textContent = "Користувач з таким email вже існує!";
-    return;
-  }
   // Перевірка чи пароль відповідає вимогам
   if (
     !validatePassword(passwordValue) ||
@@ -199,21 +197,46 @@ submitButton.addEventListener("click", (event) => {
     return;
   }
 
-  console.log("passwordsMatch():", passwordsMatch());
-  const user = new User(emailValue, passwordValue, nameValue);
-  const userId = "user" + createId(users);
-  users[userId] = user;
+  const requestBody = { email: emailValue, password: passwordValue, username: nameValue };
 
-  console.log(users); //! Виведення зареєстрованого об'єкта користувачів у консоль
+  fetch("http://localhost:3000/auth/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          error.status = response.status;
+          throw error;
+        }
+        );
+      }
+      return response.json();
+    })
+    .then((data) => {
+      localStorage.setItem("token", data.token);
 
-  menuBtn.style.display = "none";
-  wrapper.style.display = "none";
+      menuBtn.style.display = "none";
+      wrapper.style.display = "none";
 
-if (nameValue !== "") {
-  personalAccountNav.textContent = nameValue;
-} else {
-  personalAccountNav.textContent = emailValue;
-}
+      if (nameValue !== "") {
+        personalAccountNav.textContent = nameValue;
+      } else {
+        personalAccountNav.textContent = emailValue;
+      }
+    })
+    .catch((error) => {
+      if (error.status === 400) {
+        errorInput.style.display = "block";
+        email.style.borderColor = "red";
+        errorInput.textContent = "Користувач з таким email вже існує!";
+      } else {
+        // Тут ще має бути обробка загальної помилки, наприклад коли сервер недоступний
+      }
+    });
 });
 // успішна реєстрація 
 
@@ -243,3 +266,40 @@ confirmRegisterPasswordButton.addEventListener("click", () => {
   confirmPassword.type = isPasswordHidden ? "text" : "password";
   confirmRegisterPasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
 });
+
+
+// ======================= ВІДНОВЛЕННЯ СЕСІЇ ЯКЩО КОРИСТУВАЧ ВЖЕ УВІЙШОВ =======================
+const token = localStorage.getItem("token");
+
+if (token) {
+  fetch("http://localhost:3000/auth/verifyToken", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Token verification failed");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      menuBtn.style.display = "none";
+      wrapper.style.display = "none";
+
+      if (personalAccountNav !== null) {
+        if (data.username !== "") {
+          personalAccountNav.textContent = data.username;
+        } else {
+          personalAccountNav.textContent = data.email;
+        }
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      // Видалити недійсний токен з localStorage
+      localStorage.removeItem("token");
+    });
+}

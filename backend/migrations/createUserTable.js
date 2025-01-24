@@ -4,7 +4,7 @@ db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         email TEXT NOT NULL UNIQUE,
-        username TEXT NOT NULL UNIQUE,
+        username TEXT,
         password TEXT NOT NULL,
         registered_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )`, (err) => {
