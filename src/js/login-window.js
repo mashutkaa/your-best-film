@@ -227,6 +227,8 @@ submitButton.addEventListener("click", (event) => {
       } else {
         personalAccountNav.textContent = emailValue;
       }
+
+      window.location.href = "index.html";
     })
     .catch((error) => {
       if (error.status === 400) {

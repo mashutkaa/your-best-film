@@ -6,6 +6,7 @@ db.serialize(() => {
         email TEXT NOT NULL UNIQUE,
         username TEXT,
         password TEXT NOT NULL,
+        email_verified INTEGER DEFAULT 0,
         registered_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )`, (err) => {
         if (err) {
