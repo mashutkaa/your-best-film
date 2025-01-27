@@ -1,10 +1,17 @@
 const loginForm = document.querySelector("#login-form");
 const registrationForm = document.querySelector("#registration-form");
-const menuBtn = document.querySelector(".menu-item-login");
+const menuBtn = document.querySelector(".menu-item-login a");
+const successfulRegistrationWindow = document.querySelector(
+  ".successful-registration"
+);
+successfulRegistrationWindow.style.display = "none";
 // ----------- відкриття/закриття модального вікна -----------
 const wrapper = document.querySelector(".registration-login-wrapper");
 const closeLoginIcon = document.querySelector(".close-login-btn");
 const closeRegisterBtn = document.querySelector(".close-register-btn");
+const closesuccessfulRegistrationWindow = document.querySelector(
+  ".close-succesfull-window"
+);
 wrapper.style.display = "none";
 
 menuBtn.addEventListener("click", (e) => {
@@ -16,6 +23,9 @@ closeLoginIcon.addEventListener("click", (e) => {
 });
 closeRegisterBtn.addEventListener("click", (e) => {
   wrapper.style.display = "none";
+});
+closesuccessfulRegistrationWindow.addEventListener("click", () => {
+  successfulRegistrationWindow.style.display = "none";
 });
 
 // ======================= ВХІД ====================================
@@ -59,12 +69,14 @@ function loginUser(email, password) {
       window.location.href = "index.html";
     })
     .catch((error) => {
-      if (error.status === 404) { // Користувача з таким email не існує
+      if (error.status === 404) {
+        // Користувача з таким email не існує
         userNotExistError.style.display = "block";
         userNotExistError.textContent = "Користувача з таким email не існує";
         registrationForm.style.display = "block";
         loginForm.style.display = "none";
-      } else if (error.status === 401) { // Неправильний пароль
+      } else if (error.status === 401) {
+        // Неправильний пароль
         wrongPassword.style.display = "block";
         wrongPassword.textContent = "Невірний пароль";
       } else {
@@ -197,7 +209,11 @@ submitButton.addEventListener("click", (event) => {
     return;
   }
 
-  const requestBody = { email: emailValue, password: passwordValue, username: nameValue };
+  const requestBody = {
+    email: emailValue,
+    password: passwordValue,
+    username: nameValue,
+  };
 
   fetch("http://localhost:3000/auth/register", {
     method: "POST",
@@ -211,24 +227,23 @@ submitButton.addEventListener("click", (event) => {
         return response.json().then((error) => {
           error.status = response.status;
           throw error;
-        }
-        );
+        });
       }
       return response.json();
     })
     .then((data) => {
       localStorage.setItem("token", data.token);
-
-      menuBtn.style.display = "none";
-      wrapper.style.display = "none";
-
+      successfulRegistrationWindow.style.display = "block";
       if (nameValue !== "") {
-        personalAccountNav.textContent = nameValue;
+        menuBtn.textContent = nameValue;
       } else {
-        personalAccountNav.textContent = emailValue;
+        menuBtn.textContent = emailValue;
       }
+      console.log("Реєстрація успішна, показуємо вікно");
 
-      window.location.href = "index.html";
+      setTimeout(() => {
+        successfulRegistrationWindow.style.display = "none";
+      }, 15000);
     })
     .catch((error) => {
       if (error.status === 400) {
@@ -240,7 +255,7 @@ submitButton.addEventListener("click", (event) => {
       }
     });
 });
-// успішна реєстрація 
+// успішна реєстрація
 
 // ------------------- показати/сховати пароль ------------------
 
@@ -269,7 +284,6 @@ confirmRegisterPasswordButton.addEventListener("click", () => {
   confirmRegisterPasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
 });
 
-
 // ======================= ВІДНОВЛЕННЯ СЕСІЇ ЯКЩО КОРИСТУВАЧ ВЖЕ УВІЙШОВ =======================
 const token = localStorage.getItem("token");
 
@@ -278,8 +292,8 @@ if (token) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    }
+      Authorization: `Bearer ${token}`,
+    },
   })
     .then((response) => {
       if (!response.ok) {

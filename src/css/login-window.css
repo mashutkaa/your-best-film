@@ -19,27 +19,28 @@ main {
   font-size: 8px;
   text-align: center;
 }
-.close-btn{
+.close-btn {
   background-color: transparent;
   border: none;
   color: #ffffff;
 }
-.close-login-btn, .close-register-btn{
+.close-login-btn,
+.close-register-btn {
   cursor: pointer;
 }
 /* ============= РЕЄСТАЦІЯ ==================== */
-.error-input{
- font-size: 8px;
- color: #bc0000;
+.error-input {
+  font-size: 8px;
+  color: #bc0000;
 }
-.error-input-msg{
-   font-size: 8px;
- color: #bc0000;
+.error-input-msg {
+  font-size: 8px;
+  color: #bc0000;
 }
-.confirm-password-error{
+.confirm-password-error {
   margin-top: 5px;
 }
-.password-error{
+.password-error {
   width: 210px;
   margin-top: 5px;
 }
@@ -81,7 +82,7 @@ main {
   color: #ffffff;
   width: 150px;
 }
-#email{
+#email {
   width: 150px;
 }
 #password,
@@ -104,13 +105,13 @@ main {
 
   position: relative;
 }
-.register-field-password{
+.register-field-password {
   margin-right: 190px;
 }
-.register-field-confirm-password{
-margin-right: 130px;
+.register-field-confirm-password {
+  margin-right: 130px;
 }
-.register-field-name{
+.register-field-name {
   margin-right: 210px;
 }
 #toggle-password-confirm-register,
@@ -129,18 +130,19 @@ margin-right: 130px;
   font-size: 18px;
   color: #666;
 }
-.register-field-name-wrapper, .register-field-wrapper{
-    width: 100%;
-   text-align: center;
+.register-field-name-wrapper,
+.register-field-wrapper {
+  width: 100%;
+  text-align: center;
 }
 
-.not-required-field{
-    width: 100%;
-    font-size: 8px;
-    align-items: center;
-    text-align: center;
-    color: #bc0000;
-    margin-top: 5px;
+.not-required-field {
+  width: 100%;
+  font-size: 8px;
+  align-items: center;
+  text-align: center;
+  color: #bc0000;
+  margin-top: 5px;
 }
 #submit-registration-btn {
   width: 60%;
@@ -155,13 +157,13 @@ margin-right: 130px;
 #submit-registration-btn:hover {
   background-color: #d9d9d95b;
 }
-.submit{
- font-size: 12px;
- width: 206px;
- margin: 10px auto;
- display: block;
+.submit {
+  font-size: 12px;
+  width: 206px;
+  margin: 10px auto;
+  display: block;
 }
-.submit-label{
+.submit-label {
   display: flex;
 }
 /* ====================  ВХІД ======================== */
@@ -247,7 +249,7 @@ margin-right: 130px;
   border: 1px solid white;
   border-radius: 50px;
   margin: 35px auto 0 auto;
-   display: block;
+  display: block;
 }
 #submit-login-btn:hover {
   background-color: #d9d9d95b;
@@ -258,10 +260,32 @@ margin-right: 130px;
   text-align: right;
   margin-top: 20px;
 }
-.successful-registration{
+
+
+
+
+.close-succesfull-window{
+  cursor: pointer;
+}
+.successful-registration-text{
+  text-align: center;
+}
+.successful-registration {
+  position: fixed;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* margin-left: -200px;  */
+  z-index: 40000;
+
   padding: 70px;
+  padding-top: 40px;
   font-size: 32px;
   border: 1px solid white;
   background-color: #01070a;
   color: #ffffff;
+  border-radius: 50px;
+
+  margin: auto auto;
 }
