@@ -184,12 +184,10 @@ submitButton.addEventListener("click", (event) => {
   const confirmPasswordValue = confirmPassword.value.trim();
 
   // Перевірка заповнення полів
-  if (emailValue === "" || passwordValue === "") {
+  if (!emailValue || !passwordValue) {
     errorMsg.style.display = "block";
     errorMsg.textContent = "Заповніть всі обов'язкові поля";
     return;
-  } else {
-    errorMsg.style.display = "none";
   }
 
   // Перевірка формату email
