@@ -233,6 +233,7 @@ submitButton.addEventListener("click", (event) => {
     })
     .then((data) => {
       localStorage.setItem("token", data.token);
+      wrapper.style.display = 'none';
       successfulRegistrationWindow.style.display = "block";
       if (nameValue !== "") {
         menuBtn.textContent = nameValue;
