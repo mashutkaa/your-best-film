@@ -53,8 +53,6 @@ const shortQuestions = [
 ];
 
 window.addEventListener("DOMContentLoaded", function () {
-    // ---------------------------- Модальне вікно
-
     let isModalOpen;
 
     const modalTrigger = document.querySelectorAll("[data-modal]"),
@@ -167,9 +165,9 @@ window.addEventListener("DOMContentLoaded", function () {
                         const answerTemplate = `
                             <label class="mood-option" >
                                 <input type="radio" name="mood" value="${
-                                  answers[i]
+                                    answers[i]
                                 }" ${
-                          isMoodDefault ? "checked" : ""
+                            isMoodDefault ? "checked" : ""
                         } tabindex="0" />
                                 <div class="icon tabQuestion" tabindex="0">
                                     <img src="${img[i]}" alt="" />
@@ -195,7 +193,7 @@ window.addEventListener("DOMContentLoaded", function () {
                         const answerTemplate = `
             <label class="radio-button-label tabQuestion" tabindex="0">
                 <input class="radio-button-field " type="radio" name="movie-partner" value="${answerText}" ${
-                          isPartnerDefault ? "checked" : ""
+                            isPartnerDefault ? "checked" : ""
                         }  tabindex="0" />
                 <span>${answerText}</span>
             </label>`;
@@ -276,7 +274,7 @@ window.addEventListener("DOMContentLoaded", function () {
                         const answerTemplate = ` 
               <label class="checkbox-button-label tabQuestion" tabindex="0">
                 <input class="checkbox-button-field " type="checkbox" name="genre" value="${option}" ${
-                          isChecked ? "checked" : ""
+                            isChecked ? "checked" : ""
                         } tabindex="0" />
                 <span>${option}</span>
               </label>`;
