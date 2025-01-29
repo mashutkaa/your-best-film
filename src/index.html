@@ -10,8 +10,8 @@
     /> -->
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/main-page.css" />
-    <link rel="stylesheet" href="css/login-window.css">
-    <link rel="stylesheet" href="css/drop-down-menu.css">
+    <link rel="stylesheet" href="css/login-window.css" />
+    <link rel="stylesheet" href="css/drop-down-menu.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,297 +30,326 @@
   <body>
     <!--================== HEADER ============================-->
     <div class="main-page-wrapper">
-      <header class="header">
-        <a href="index.html" class="logo">
-          <h1 class="main-title">YBF</h1>
-          <p class="secondary-text">our best film</p></a
-        >
+      <div class="for-modal-window-bg">
+        <header class="header">
+          <a href="index.html" class="logo">
+            <h1 class="main-title">YBF</h1>
+            <p class="secondary-text">our best film</p></a
+          >
 
-        <nav id="my-navigation">
-          <ul class="menu-items">
-            <li class="menu-item"><a href="#" data-modal> Пошук </a></li>
-            <li class="menu-item" onclick="goToHomePage()"><a href="index.html"> Головна </a></li>
-            <li class="menu-item"><a href="#about-us"> Про нас </a></li>
-            <li class="menu-item-login"><a href="#"> Увійти / Зареєструватися </a></li>
-            <li class="menu-item-personal-account">
-              <button class="dropbutton" >
-                <img src="icons/IMG_3948 1.png" alt="user-icon" class="user-icon">
-                <p class="username">username</p>
-                <span>▼</span>
-              </button>
-              <div class="dropdown">
-                <a href="#" onclick="showMessage()" class="dropdown-link">Налаштування акаунту</a>
-                <a href="#" onclick="showMessage()" class="dropdown-link">Збережені фільми</a>
-                <a href="#" onclick="showMessage()" class="dropdown-link">Збережені добірки</a>
-                <a href="#" onclick="logOut()" class="dropdown-link">Вихід з акаунту</a>
-              </div>
-            </li>
-         
-          </ul>
-        </nav>
-
-
-        <script>
-          function showMessage() {
-            alert("Вибачте, даний функціонал наразі недоступний");
-          }
-        </script>
-      </header>
-
-      <main>
-        <!-- =============== HERO ============================= -->
-         <div class="wrapper">
-        <section class="hero">
-          <h2 class="best-film-title">найкращі фільми цього місяця</h2>
-
-          <div class="image-container">
-            <div class="image">
-              <img src="./img/image1.jpg" alt="Image 1" />
-            </div>
-            <div class="image">
-              <img
-                src="./img/image2.jpg"
-                alt="Image 2"
-              />
-            </div>
-            <div class="image">
-              <img
-                src="./img/image3.jpg"
-                alt="Image 3"
-              />
-            </div>
-            <div class="image">
-              <img
-                src="./img/image4.jpg"
-                alt="Image 4"
-              />
-            </div>
-            <div class="image">
-              <img
-                src="./img/image5.jpg"
-                alt="Image 5"
-              />
-            </div>
-            <div class="image">
-              <img
-                src="./img/image6.png"
-                alt="Image 6"
-              />
-            </div>
-            <div class="image">
-              <img
-                src="./img/image7.jpg"
-                alt="Image 7"
-              />
-            </div>
-          </div>
-
-          <div class="choose-movie">
-            <p class="simple-survey">Просте опитування</p>
-
-            <div style="position: relative; width: 100px; height: 20px">
-              <svg
-                class="arrow"
-                width="83"
-                height="8"
-                viewBox="0 0 83 8"
-                fill="white"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M82.3536 4.35355C82.5488 4.15829 82.5488 3.84171 82.3536 3.64645L79.1716 0.464466C78.9763 0.269204 78.6597 0.269204 78.4645 0.464466C78.2692 0.659728 78.2692 0.976311 78.4645 1.17157L81.2929 4L78.4645 6.82843C78.2692 7.02369 78.2692 7.34027 78.4645 7.53553C78.6597 7.7308 78.9763 7.7308 79.1716 7.53553L82.3536 4.35355ZM0 4.5H82V3.5H0V4.5Z"
-                  fill="white"
-                />
-              </svg>
-            </div>
-            <button class="btn-choose-a-movie" data-modal>
-              Підібрати фільм
-            </button>
-          </div>
-          <div class="hero-white-line"></div>
-        </section>
-
-        <!-- ====================== ФОРМА ================================= -->
-
-        <div class="modal-overlay hide"></div>
-
-        <div class="modal">
-          <button data-close class="btn-close">&times;</button>
-          <div class="modal-wrapper">
-            <div class="form-wrapper">
-              <h2 class="form-title">опитування</h2>
-
-              <form class="form">
-                <button class="button submit-btn" type="submit">
-                  Отримати добірку фільмів
+          <nav id="my-navigation">
+            <ul class="menu-items">
+              <li class="menu-item"><a href="#" data-modal> Пошук </a></li>
+              <li class="menu-item" onclick="goToHomePage()">
+                <a href="index.html"> Головна </a>
+              </li>
+              <li class="menu-item"><a href="#about-us"> Про нас </a></li>
+              <li class="menu-item-login">
+                <a href="#"> Увійти / Зареєструватися </a>
+              </li>
+              <li class="menu-item-personal-account">
+                <button class="dropbutton">
+                  <img
+                    src="icons/IMG_3948 1.png"
+                    alt="user-icon"
+                    class="user-icon"
+                  />
+                  <p class="username">username</p>
+                  <span>▼</span>
                 </button>
-              </form>
-            </div>
+                <div class="dropdown">
+                  <a href="#" onclick="showMessage()" class="dropdown-link"
+                    >Налаштування акаунту</a
+                  >
+                  <a href="#" onclick="showMessage()" class="dropdown-link"
+                    >Збережені фільми</a
+                  >
+                  <a href="#" onclick="showMessage()" class="dropdown-link"
+                    >Збережені добірки</a
+                  >
+                  <a href="#" onclick="logOut()" class="dropdown-link"
+                    >Вихід з акаунту</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+          <script>
+            function showMessage() {
+              alert("Вибачте, даний функціонал наразі недоступний");
+            }
+          </script>
+        </header>
+
+        <main>
+          <!-- =============== HERO ============================= -->
+          <div class="wrapper">
+            <section class="hero">
+              <h2 class="best-film-title">найкращі фільми цього місяця</h2>
+
+              <div class="image-container">
+                <div class="image">
+                  <img src="./img/image1.jpg" alt="Image 1" />
+                </div>
+                <div class="image">
+                  <img src="./img/image2.jpg" alt="Image 2" />
+                </div>
+                <div class="image">
+                  <img src="./img/image3.jpg" alt="Image 3" />
+                </div>
+                <div class="image">
+                  <img src="./img/image4.jpg" alt="Image 4" />
+                </div>
+                <div class="image">
+                  <img src="./img/image5.jpg" alt="Image 5" />
+                </div>
+                <div class="image">
+                  <img src="./img/image6.png" alt="Image 6" />
+                </div>
+                <div class="image">
+                  <img src="./img/image7.jpg" alt="Image 7" />
+                </div>
+              </div>
+
+              <div class="choose-movie">
+                <p class="simple-survey">Просте опитування</p>
+
+                <div style="position: relative; width: 100px; height: 20px">
+                  <svg
+                    class="arrow"
+                    width="83"
+                    height="8"
+                    viewBox="0 0 83 8"
+                    fill="white"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M82.3536 4.35355C82.5488 4.15829 82.5488 3.84171 82.3536 3.64645L79.1716 0.464466C78.9763 0.269204 78.6597 0.269204 78.4645 0.464466C78.2692 0.659728 78.2692 0.976311 78.4645 1.17157L81.2929 4L78.4645 6.82843C78.2692 7.02369 78.2692 7.34027 78.4645 7.53553C78.6597 7.7308 78.9763 7.7308 79.1716 7.53553L82.3536 4.35355ZM0 4.5H82V3.5H0V4.5Z"
+                      fill="white"
+                    />
+                  </svg>
+                </div>
+                <button class="btn-choose-a-movie" data-modal>
+                  Підібрати фільм
+                </button>
+              </div>
+              <div class="hero-white-line"></div>
+            </section>
           </div>
-        </div>
-        <!-- ------------------ ВХІД ------------------------ -->
-    <div class="registration-login-wrapper">
-    <form id="login-form" class="login-form">
-      <p  class="close-login-btn">x</p>
-    
-      <h2 class="form-title">особистий кабінет</h2>
-      <p class="form-description">Допоможе вам зберігати отримані добірки та фільми в одному місці*</p>
-      
-      <label   class="login-field-label" for="login-email">
-        <span>Електронна адреса</span>
-        <input class="login-field-input"
-          id="login-email"
-          type="email"
-          placeholder="example@gmail.com"
-          required
-        />
-      </label>
-      <p class="login-email-error js-error"></p>
 
-      <label  class="login-field-label" for="login-password">
-        <span class="login-password-field-title">Пароль</span>
-        <div class="login-password-field-wrapper">
-        <div class="login-password-field">
-        <input class="login-field-input"
-          id="login-password"
-          type="password"
-          placeholder="********"
-          required
-        />
-        <button class="login-password-field-btn" type="button"  class="toggle-password-btn">
-          👁
-        </button>
-        </div>
-          <a class="forgot-password" href="#">Забули пароль?</a>
-          </div>
-      </label>
+          <!-- ====================== ФОРМА ================================= -->
 
-     
-      <p class="login-password-error js-error"></p>
-      <p class="login-error-input-msg js-error"></p>
+          <div class="modal-overlay hide"></div>
 
-      <button
-        type="submit"
-        id="submit-login-btn"
-        class="submit-login-btn-toggle"
-      >
-        Увійти/Зареєструватися
-      </button>
-      <hr />
-    </form>
+          <div class="modal">
+            <button data-close class="btn-close">&times;</button>
+            <div class="modal-wrapper">
+              <div class="form-wrapper">
+                <h2 class="form-title">опитування</h2>
 
-    <!-- ---------------- РЕЄСТРАЦІЯ ------------------------ -->
-
-    <form id="registration-form" class="registration-form">
-        <p class="close-register-btn">x</p>
-      <h2 class="form-title">Особистий кабінет</h2>
-      <p class="form-description">на жаль, даного користувача не існує, потрібна реєстрація*</p>
-
-      <!-- email -->
-      <label class="register-field-label" for="email">
-        <span>Електронна адреса</span>
-        <div>
-        <input
-          id="email"
-          type="email"
-          placeholder="example@gmail.com"
-          required
-        />
-         <p class="error-input js-error"></p>
-         </div>
-      </label>
-     
-      <!-- password -->
-      <label class="register-field-label" for="password">
-        <span class="register-field-password">Пароль</span>
-        <div class="register-field-wrapper">
-        <div id="password-wrapper" class="register-password-wrapper">
-        <input id="password" type="password" placeholder="********" required />
-        <button type="button" id="toggle-password-register" class="toggle-password-btn">
-          👁
-        </button>
-        </div>
-         <p class="error-input password-error">
-      </p>
-      </div>
-      </label>
-     
-      <!-- confirm password -->
-      <label class="register-field-label" for="confirm-password">
-        <span class="register-field-confirm-password">Підтвердження пароля</span>
-        
-        <div class="register-field-wrapper">
-         <div id="confirm-password-wrapper" class="register-password-wrapper">
-        <input
-          id="confirm-password"
-          type="password"
-          placeholder="********"
-          required
-        />
-        <button type="button" id="toggle-password-confirm-register" class="toggle-password-btn">
-          👁
-        </button>
-        </div>
-        <p class="error-input confirm-password-error"></p>
-        </div>
-      </label>
-      
-      <!-- name -->
-      <label class="register-field-label" for="name">
-       
-        <span class="register-field-name">Ваше ім'я</span>
-        <div class="register-field-name-wrapper">
-        <input id="name" type="text" placeholder="Ваше ім'я" required />
-        <p class="not-required-field">*поле необов’язкове</p>
-        </div>
-      </label>
-
-      <p class="error-input-msg js-error"></p>
-
-    
-      <label class="submit-label" for="submit">
-          <input
-          id="submit"
-          type="checkbox"
-          required
-        />
-         <a class="submit" href="">Я підтверджую, що ознайомився/ознайомилась з правилами надання послуг та політикою конфіденційності</a>
-      </label>
-    
-        <button type="submit" id="submit-registration-btn">
-        Зареєструватися
-      </button> 
-    </form>
-    
-</div>
-  <div class="successful-registration">
-          <p class="close-succesfull-window">x</p> 
-          <p class="successful-registration-text">ВИ УСПІШНО ЗАРЕЄСТРОВАНІ!</p>
-      </div>
-   
-        <!-- ======================== ПРО НАС ========================== -->
-        <section id="about-us" class="about-us-section">
-          <div class="about-us-section-wrapper">
-            <div class="about-us-wpapper">
-              <img src="./img/about-us.png" alt="" width="600" />
-              <div class="about-us-text-container">
-                <p class="about-us-title">про нас</p>
-
-                <p class="about-us-description">
-                  Не знаєте, який фільм переглянути? <br /><br />
-                  Ми допоможемо вирішити цю проблему! Адже пройшовши опитування,
-                  ви отримаєте персоналізовану добірку фільмів. І це абсолютно
-                  безкоштовно. Впевнені, що для посиденьок в компанії друзів,
-                  вечору з родиною або з другою половинкою, ми обов’язково
-                  знайдемо для вас вдалий фільм, що влучить у саме серденько.
-                </p>
+                <form class="form">
+                  <button class="button submit-btn" type="submit">
+                    Отримати добірку фільмів
+                  </button>
+                </form>
               </div>
             </div>
-            <div class="about-us-white-line"></div>
           </div>
-        </section>
-      </main>
-    </div>
+          <!-- ------------------ ВХІД ------------------------ -->
+          <div class="registration-login-wrapper">
+            <form id="login-form" class="login-form">
+              <p class="close-login-btn">x</p>
+
+              <h2 class="form-title">особистий кабінет</h2>
+              <p class="form-description">
+                Допоможе вам зберігати отримані добірки та фільми в одному
+                місці*
+              </p>
+
+              <label class="login-field-label" for="login-email">
+                <span>Електронна адреса</span>
+                <input
+                  class="login-field-input"
+                  id="login-email"
+                  type="email"
+                  placeholder="example@gmail.com"
+                  required
+                />
+              </label>
+              <p class="login-email-error js-error"></p>
+
+              <label class="login-field-label" for="login-password">
+                <span class="login-password-field-title">Пароль</span>
+                <div class="login-password-field-wrapper">
+                  <div class="login-password-field">
+                    <input
+                      class="login-field-input"
+                      id="login-password"
+                      type="password"
+                      placeholder="********"
+                      required
+                    />
+                    <button
+                      class="login-password-field-btn"
+                      type="button"
+                      class="toggle-password-btn"
+                    >
+                      👁
+                    </button>
+                  </div>
+                  <a class="forgot-password" href="#">Забули пароль?</a>
+                </div>
+              </label>
+
+              <p class="login-password-error js-error"></p>
+              <p class="login-error-input-msg js-error"></p>
+
+              <button
+                type="submit"
+                id="submit-login-btn"
+                class="submit-login-btn-toggle"
+              >
+                Увійти/Зареєструватися
+              </button>
+              <hr />
+            </form>
+
+            <!-- ---------------- РЕЄСТРАЦІЯ ------------------------ -->
+
+            <form id="registration-form" class="registration-form">
+              <p class="close-register-btn">x</p>
+              <h2 class="form-title">Особистий кабінет</h2>
+              <p class="form-description">
+                на жаль, даного користувача не існує, потрібна реєстрація*
+              </p>
+
+              <!-- email -->
+              <label class="register-field-label" for="email">
+                <span>Електронна адреса</span>
+                <div>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="example@gmail.com"
+                    required
+                  />
+                  <p class="error-input js-error"></p>
+                </div>
+              </label>
+
+              <!-- password -->
+              <label class="register-field-label" for="password">
+                <span class="register-field-password">Пароль</span>
+                <div class="register-field-wrapper">
+                  <div id="password-wrapper" class="register-password-wrapper">
+                    <input
+                      id="password"
+                      type="password"
+                      placeholder="********"
+                      required
+                    />
+                    <button
+                      type="button"
+                      id="toggle-password-register"
+                      class="toggle-password-btn"
+                    >
+                      👁
+                    </button>
+                  </div>
+                  <p class="error-input password-error"></p>
+                </div>
+              </label>
+
+              <!-- confirm password -->
+              <label class="register-field-label" for="confirm-password">
+                <span class="register-field-confirm-password"
+                  >Підтвердження пароля</span
+                >
+
+                <div class="register-field-wrapper">
+                  <div
+                    id="confirm-password-wrapper"
+                    class="register-password-wrapper"
+                  >
+                    <input
+                      id="confirm-password"
+                      type="password"
+                      placeholder="********"
+                      required
+                    />
+                    <button
+                      type="button"
+                      id="toggle-password-confirm-register"
+                      class="toggle-password-btn"
+                    >
+                      👁
+                    </button>
+                  </div>
+                  <p class="error-input confirm-password-error"></p>
+                </div>
+              </label>
+
+              <!-- name -->
+              <label class="register-field-label" for="name">
+                <span class="register-field-name">Ваше ім'я</span>
+                <div class="register-field-name-wrapper">
+                  <input
+                    id="name"
+                    type="text"
+                    placeholder="Ваше ім'я"
+                    required
+                  />
+                  <p class="not-required-field">*поле необов’язкове</p>
+                </div>
+              </label>
+
+              <p class="error-input-msg js-error"></p>
+              <p class="error-name-input js-error"></p>
+              <label class="submit-label" for="submit">
+                <input id="submit" type="checkbox" required />
+                <a class="submit" href=""
+                  >Я підтверджую, що ознайомився/ознайомилась з правилами
+                  надання послуг та політикою конфіденційності</a
+                >
+              </label>
+
+              <button type="submit" id="submit-registration-btn">
+                Зареєструватися
+              </button>
+            </form>
+          </div>
+          <div class="successful-registration">
+            <p class="close-succesfull-window">x</p>
+            <p class="successful-registration-text">
+              ВИ УСПІШНО ЗАРЕЄСТРОВАНІ!
+            </p>
+          </div>
+
+          <!-- ======================== ПРО НАС ========================== -->
+          <section id="about-us" class="about-us-section">
+            <div class="about-us-section-wrapper">
+              <div class="about-us-wpapper">
+                <img src="./img/about-us.png" alt="" width="600" />
+                <div class="about-us-text-container">
+                  <p class="about-us-title">про нас</p>
+
+                  <p class="about-us-description">
+                    Не знаєте, який фільм переглянути? <br /><br />
+                    Ми допоможемо вирішити цю проблему! Адже пройшовши
+                    опитування, ви отримаєте персоналізовану добірку фільмів. І
+                    це абсолютно безкоштовно. Впевнені, що для посиденьок в
+                    компанії друзів, вечору з родиною або з другою половинкою,
+                    ми обов’язково знайдемо для вас вдалий фільм, що влучить у
+                    саме серденько.
+                  </p>
+                </div>
+              </div>
+              <div class="about-us-white-line"></div>
+            </div>
+          </section>
+        </main>
+      </div>
     </div>
     <footer class="footer">
       <p class="copyright">
@@ -344,6 +373,5 @@
     <script src="./js/keyboard-navigation.js"></script>
     <script src="../dist/js/main.bundle.js"></script>
     <script src="./js/login-window.js"></script>
-   
   </body>
 </html>

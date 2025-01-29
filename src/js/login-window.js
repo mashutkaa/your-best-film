@@ -1,5 +1,3 @@
-
-
 console.log(";dclskfnjnvfjgn");
 
 let isUserAuthenticated = false;
@@ -13,6 +11,7 @@ const successfulRegistrationWindow = document.querySelector(
 successfulRegistrationWindow.style.display = "none";
 // ----------- відкриття/закриття модального вікна -----------
 const wrapper = document.querySelector(".registration-login-wrapper");
+const backgroung = document.querySelector(".for-modal-window-bg");
 const closeLoginIcon = document.querySelector(".close-login-btn");
 const closeRegisterBtn = document.querySelector(".close-register-btn");
 const closesuccessfulRegistrationWindow = document.querySelector(
@@ -22,6 +21,7 @@ wrapper.style.display = "none";
 
 menuBtn.addEventListener("click", (e) => {
   wrapper.style.display = "block";
+  //   backgroung.style.backgroungColor = "rgba(255, 4, 4, 0.8)";
   document.body.style.overflow = "hidden";
 });
 closeLoginIcon.addEventListener("click", (e) => {
@@ -135,7 +135,7 @@ const submitButton = document.querySelector("#submit-registration-btn");
 
 const errorMsg = document.querySelector(".error-input-msg");
 const errorInput = document.querySelector(".error-input");
-// const emailError = document.querySelector(".email-error");
+const errorName = document.querySelector(".error-name-input");
 const passwordError = document.querySelector(".password-error");
 const confirmPasswordError = document.querySelector(".confirm-password-error");
 
@@ -173,7 +173,6 @@ password.addEventListener("input", (event) => {
 
   let errorMessages = [];
 
-  // Перевірка кожної умови
   if (!passwordConditions.minLength) {
     errorMessages.push("мінімум 8 символів");
   }
@@ -190,13 +189,11 @@ password.addEventListener("input", (event) => {
     errorMessages.push("хоча б один спеціальний символ");
   }
 
-
   if (errorMessages.length > 0) {
     passwordError.innerHTML = `Пароль повинен містити: ${errorMessages.join(
       ", "
     )}.`;
   }
-
 
   if (errorMessages.length === 0) {
     passwordError.style.display = "none";
@@ -225,7 +222,7 @@ submitButton.addEventListener("click", (event) => {
   const passwordValue = password.value.trim();
   const nameValue = username.value.trim();
   const confirmPasswordValue = confirmPassword.value.trim();
-
+  const emailLength = emailValue.split("@")[0].length;
   // Перевірка заповнення полів
   if (!emailValue || !passwordValue || !submitPrivacyPolicy.checked) {
     errorMsg.style.display = "block";
@@ -250,6 +247,10 @@ submitButton.addEventListener("click", (event) => {
     return;
   }
 
+  if (emailLength <= nameValue.length) {
+    errorName.innerHTML = `Ім'я повинно бути не довшим за ${emailLength} символів`;
+    return;
+  }
   const requestBody = {
     email: emailValue,
     password: passwordValue,
