@@ -283,6 +283,7 @@ confirmRegisterPasswordButton.addEventListener("click", () => {
   confirmRegisterPasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
 });
 
+
 // ======================= ВІДНОВЛЕННЯ СЕСІЇ ЯКЩО КОРИСТУВАЧ ВЖЕ УВІЙШОВ =======================
 const token = localStorage.getItem("token");
 
