@@ -1,3 +1,5 @@
+
+
 console.log(";dclskfnjnvfjgn");
 
 let isUserAuthenticated = false;
@@ -118,6 +120,8 @@ const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const passwordWrapper = document.querySelector("#password-wrapper");
 const confirmPassword = document.querySelector("#confirm-password");
+const submitPrivacyPolicy = document.querySelector("#submit");
+console.log(submitPrivacyPolicy);
 
 const personalAccount = document.querySelector(".menu-item-personal-account");
 const personalAccountNav = document.querySelector(
@@ -223,7 +227,7 @@ submitButton.addEventListener("click", (event) => {
   const confirmPasswordValue = confirmPassword.value.trim();
 
   // Перевірка заповнення полів
-  if (!emailValue || !passwordValue) {
+  if (!emailValue || !passwordValue || !submitPrivacyPolicy.checked) {
     errorMsg.style.display = "block";
     errorMsg.textContent = "Заповніть всі обов'язкові поля";
     return;
