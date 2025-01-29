@@ -41,8 +41,6 @@ var shortQuestions = [{
   needs: false
 }];
 window.addEventListener("DOMContentLoaded", function () {
-  // ---------------------------- Модальне вікно
-
   var isModalOpen;
   var modalTrigger = document.querySelectorAll("[data-modal]"),
     modal = document.querySelector(".modal"),

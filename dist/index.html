@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>YourBestFilm</title>
     <!-- <link
       rel="stylesheet"
       href="node_modules/modern-normalize/modern-normalize.css"
@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/main-page.css" />
     <link rel="stylesheet" href="css/login-window.css">
+    <link rel="stylesheet" href="css/drop-down-menu.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -34,13 +36,25 @@
           <p class="secondary-text">our best film</p></a
         >
 
-           <nav id="my-navigation">
+        <nav id="my-navigation">
           <ul class="menu-items">
-            <li><a href="#" data-modal> Пошук </a></li>
-            <li><a href="index.html"> Головна </a></li>
-            <li><a href="#about-us"> Про нас </a></li>
+            <li class="menu-item"><a href="#" data-modal> Пошук </a></li>
+            <li class="menu-item" onclick="goToHomePage()"><a href="index.html"> Головна </a></li>
+            <li class="menu-item"><a href="#about-us"> Про нас </a></li>
             <li class="menu-item-login"><a href="#"> Увійти / Зареєструватися </a></li>
-            <!-- <li class="menu-item-personal-account"> <a href=""></a></li> -->
+            <li class="menu-item-personal-account">
+              <button class="dropbutton" >
+                <img src="icons/IMG_3948 1.png" alt="user-icon" class="user-icon">
+                <p class="username">username</p>
+                <span>▼</span>
+              </button>
+              <div class="dropdown">
+                <a href="#" onclick="showMessage()" class="dropdown-link">Налаштування акаунту</a>
+                <a href="#" onclick="showMessage()" class="dropdown-link">Збережені фільми</a>
+                <a href="#" onclick="showMessage()" class="dropdown-link">Збережені добірки</a>
+                <a href="#" onclick="logOut()" class="dropdown-link">Вихід з акаунту</a>
+              </div>
+            </li>
          
           </ul>
         </nav>
@@ -150,7 +164,7 @@
       <p  class="close-login-btn">x</p>
     
       <h2 class="form-title">особистий кабінет</h2>
-      <p class="form-description">Допоможе вам зберігати отримані добірки або фільми в одному місці*</p>
+      <p class="form-description">Допоможе вам зберігати отримані добірки та фільми в одному місці*</p>
       
       <label   class="login-field-label" for="login-email">
         <span>Електронна адреса</span>
@@ -330,6 +344,7 @@
 
     <!-- <script src="js/script.js"></script> -->
       <script src="./js/keyboard-navigation.js"></script>
+
     <script src="../dist/js/main.bundle.js"></script>
    
   </body>
