@@ -114,6 +114,7 @@ body {
 }
 .modal-overlay.show {
     display: block;
+    z-index: 1000;
 }
 
 .modal-overlay {
@@ -125,10 +126,6 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
     display: none;
-}
-
-.modal-overlay.show {
-    display: block;
 }
 
 /* ---стилі тексту- */
