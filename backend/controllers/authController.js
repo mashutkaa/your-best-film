@@ -23,7 +23,7 @@ export async function register(req, res) {
                 <a href="http://localhost:3000/auth/confirmEmail?id=${confirmEmailToken}" style="display: inline-block; padding: 10px 20px; color: white; background-color: black; border: 2px solid white; text-decoration: none; border-radius: 24px;">Підтвердити електронну пошту</a>
                 <div style="margin-top: 40px; border-top: 1px solid #333; padding-top: 20px;">
                     <p style="color: #ffffff;">Якщо кнопка не працює, перейдіть за цим посиланням:</p>
-                    <a href="http://localhost:3000/auth/confirmEmail?id=${confirmEmailToken}" style="color: #4da6ff;">http://localhost:3000/auth/confirmEmail?token=${confirmEmailToken}</a>
+                    <a href="http://localhost:3000/auth/confirmEmail?id=${confirmEmailToken}" style="color: #4da6ff;">http://localhost:3000/auth/confirmEmail?id=${confirmEmailToken}</a>
                 </div>
             </div>`,
             true

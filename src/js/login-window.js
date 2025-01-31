@@ -32,6 +32,10 @@ closeLoginIcon.addEventListener("click", (e) => {
   document.querySelector(".header").style.pointerEvents = "auto";
 });
 closeRegisterBtn.addEventListener("click", (e) => {
+  userNotExistError.style.display = "none";
+  registrationForm.style.display = "none";
+  loginForm.style.display = "block";
+
   wrapper.style.display = "none";
   backgroung.classList.remove("you");
   document.body.style.overflow = "auto";
