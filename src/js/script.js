@@ -650,7 +650,16 @@ window.addEventListener("DOMContentLoaded", function () {
 
         if (validateYears()) {
             sendResults(shortQuestions);
+
+            // Зберігаємо токен аутентифікації перед очищенням localStorage
+            const authToken = localStorage.getItem('token');
             localStorage.clear();
+
+            // Відновлюємо токен аутентифікації
+            if (authToken) {
+                localStorage.setItem('token', authToken);
+            }
+            
             showQuestion(shortQuestions);
         }
     });
