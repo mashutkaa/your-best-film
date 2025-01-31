@@ -34,9 +34,11 @@ main {
   font-size: 8px;
   color: #bc0000;
 }
-.error-input-msg {
+.error-input-msg,
+.new-error-input-msg  {
   font-size: 8px;
   color: #bc0000;
+  margin-top: 5px;
 }
 .confirm-password-error {
   margin-top: 5px;
@@ -299,4 +301,213 @@ main {
 .you button {
   pointer-events: none;
   cursor: not-allowed;
+}
+/* -------- забув пороль вікно  -------- */
+.forgot-password-window-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 40000;
+  background-color: #01070a;
+  border-radius: 50px;
+  border: 1px solid white;
+  padding: 18px 35px 100px 35px;
+}
+.forgot-password-window-title {
+  text-align: center;
+  margin-top: 35px;
+  font-size: 24px;
+}
+.forgot-password-window-description {
+  text-align: center;
+  font-size: 8px;
+}
+#recovery-email {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+  padding: 6px 20px;
+  color: #ffffff;
+  width: 150px;
+}
+#recovery-email {
+  width: 150px;
+}
+.recovery-message-btn {
+  background-color: black;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  border: 2px solid transparent;
+  padding: 5px 50px;
+  font-size: 2.344vw;
+  border-radius: 50px;
+  transition: background-color 0.8s;
+  margin: 0 auto;
+ display: block;
+  border-color: white;
+  margin-top: 30px;
+}
+.recovery-message-btn:hover {
+  background-color: #222;
+  color: white;
+  transition: border-color 0.8s ease, color 0.8s ease;
+}
+/* --------------------- */
+.recovery-message-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 40000;
+
+  background-color: #01070a;
+  border-radius: 50px;
+  border: 1px solid white;
+
+  padding: 18px 70px 100px 70px;
+}
+.recovery-message-text {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 24px;
+}
+
+/* ------------- */
+
+.new-password-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 40000;
+
+  background-color: #01070a;
+  border-radius: 50px;
+  border: 1px solid white;
+
+  padding: 18px 70px 100px 70px;
+}
+.new-pasword-title {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 24px;
+}
+
+#new-password,
+#new-confirm-password {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+  padding: 6px 20px;
+  color: #ffffff;
+  width: 150px;
+}
+
+#new-password,
+#new-confirm-password {
+  width: 100%;
+  padding: 6px 20px;
+  border: none;
+  font-size: 16px;
+}
+.new-password-error,
+.confirm-new-password-error {
+  margin-top: 5px;
+}
+.register-field-confirm-new-password{
+  margin-right: 190px;
+}
+.save-new-password-btn {
+  background-color: black;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  border: 2px solid transparent;
+  padding: 5px 50px;
+  font-size: 2.344vw;
+  border-radius: 50px;
+  transition: background-color 0.8s;
+  margin: 0 auto;
+  display: block;
+  border-color: white;
+  margin-top: 30px;
+}
+.save-new-password-btn:hover {
+  background-color: #222;
+  color: white;
+  transition: border-color 0.8s ease, color 0.8s ease;
+}
+#toggle-new-password-confirm-register,
+#toggle-new-password-register {
+  background-color: transparent;
+  color: #666;
+  border: none;
+
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Відступ від правого краю поля */
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+}
+
+/* 
+---------------------- */
+.successful-recovery {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 40000;
+
+  background-color: #01070a;
+  border-radius: 50px;
+  border: 1px solid white;
+
+  padding: 18px 70px 100px 70px;
+}
+.successful-recovery-text{
+  text-align: center;
+  font-size: 24px;
+  margin-top: 30px;
+}
+/* ----- Підтвердження особи ------- */
+
+#verification-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #01070a;
+  border: 1px solid white;
+  color: white;
+  padding: 18px 70px 30px 70px;
+  width: 400px;
+  text-align: center;
+  border-radius: 50px;
+}
+.close-verify-btn{
+  text-align: left;
+}
+.close-verify-title{
+  margin-top: 30px;
+  font-size: 24px;
+}
+.verification-modal-text{
+  font-size: 11px;
+}
+#resend-btn{
+  border: none;
+  background-color: transparent;
+  color: white;
+  text-decoration: underline;
+  margin-top: 25px;
+  margin-bottom: 6px;
 }

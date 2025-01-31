@@ -124,6 +124,7 @@ loginSubmitButton.addEventListener("click", (event) => {
 const form = document.querySelector(".registration-form");
 
 const email = document.querySelector("#email");
+
 const password = document.querySelector("#password");
 const passwordWrapper = document.querySelector("#password-wrapper");
 const confirmPassword = document.querySelector("#confirm-password");
@@ -146,7 +147,14 @@ const errorName = document.querySelector(".error-name-input");
 const passwordError = document.querySelector(".password-error");
 const confirmPasswordError = document.querySelector(".confirm-password-error");
 
+//для підтвердження акаунту
+const verifyModalWindow = document.getElementById("verification-modal");
+const closeBtn = document.querySelector(".close-verify-btn");
+const resendBtn = document.getElementById("resend-btn");
+const timerDisplay = document.getElementById("timer");
+
 console.log(personalAccountNav);
+verifyModalWindow.style.display = "none";
 
 // Валідація пошти
 function validateEmail(emailValue) {
@@ -221,6 +229,25 @@ confirmPassword.addEventListener("input", (event) => {
   }
 });
 
+let timeLeft = 60; // Початковий таймер на 60 секунд
+
+function startTimer() {
+  resendBtn.disabled = true;
+  let interval = setInterval(() => {
+    timeLeft--;
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+    timerDisplay.textContent = `${minutes}:${
+      seconds < 10 ? "0" : ""
+    }${seconds}`;
+
+    if (timeLeft <= 0) {
+      clearInterval(interval);
+      resendBtn.disabled = false;
+      timerDisplay.textContent = "";
+    }
+  }, 1000);
+}
 // Подія на кнопку
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
@@ -264,6 +291,8 @@ submitButton.addEventListener("click", (event) => {
     username: nameValue,
   };
 
+  // verifyModalWindow.style.display = 'block';
+
   fetch("http://localhost:3000/auth/register", {
     method: "POST",
     headers: {
@@ -291,6 +320,18 @@ submitButton.addEventListener("click", (event) => {
       }
       console.log("Реєстрація успішна, показуємо вікно");
 
+      verifyModalWindow.style.display = "block";
+      startTimer();
+      closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+      // Повторне надсилання листа
+      resendBtn.addEventListener("click", function () {
+        timeLeft = 60;
+        startTimer();
+        alert("Лист повторно надіслано!");
+      });
+
       setTimeout(() => {
         successfulRegistrationWindow.style.display = "none";
       }, 15000);
@@ -315,8 +356,14 @@ const loginTogglePasswordButton = document.querySelector(
 const registerTogglePasswordButton = document.querySelector(
   "#toggle-password-register"
 );
+const registerToggleNewPasswordButton = document.querySelector(
+  "#toggle-new-password-register"
+);
 const confirmRegisterPasswordButton = document.querySelector(
   "#toggle-password-confirm-register"
+);
+const confirmRegisterNewPasswordButton = document.querySelector(
+  "#toggle-new-password-confirm-register"
 );
 loginTogglePasswordButton.addEventListener("click", () => {
   const isPasswordHidden = loginPassword.type === "password";
@@ -328,10 +375,20 @@ registerTogglePasswordButton.addEventListener("click", () => {
   password.type = isPasswordHidden ? "text" : "password";
   registerTogglePasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
 });
+registerToggleNewPasswordButton.addEventListener("click", () => {
+  const isPasswordHidden = newPassword.type === "password";
+  newPassword.type = isPasswordHidden ? "text" : "password";
+  registerToggleNewPasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
+});
 confirmRegisterPasswordButton.addEventListener("click", () => {
   const isPasswordHidden = confirmPassword.type === "password";
   confirmPassword.type = isPasswordHidden ? "text" : "password";
   confirmRegisterPasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
+});
+confirmRegisterNewPasswordButton.addEventListener("click", () => {
+  const isPasswordHidden = newConfirmPassword.type === "password";
+  newConfirmPassword.type = isPasswordHidden ? "text" : "password";
+  confirmRegisterNewPasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
 });
 
 // ======================= ВІДНОВЛЕННЯ СЕСІЇ ЯКЩО КОРИСТУВАЧ ВЖЕ УВІЙШОВ =======================
@@ -386,3 +443,172 @@ function logOut() {
   console.log("Вихід успішний");
   localStorage.removeItem("token");
 }
+
+// ---------------- Забули пороль ----------------
+const forgotPasswordBtn = document.querySelector(".forgot-password");
+const forgotPasswordWindow = document.querySelector(
+  ".forgot-password-window-wrapper"
+);
+
+const recoveryMessageWindow = document.querySelector(
+  ".recovery-message-wrapper"
+);
+const newPasswordWindow = document.querySelector(".new-password-wrapper"); //! вікно для введення нового пароля
+const successfulRecoveryWindow = document.querySelector(".successful-recovery");
+
+const recoveryMessageBtn = document.querySelector(".recovery-message-btn");
+const recoveryMessageEmail = document.querySelector(
+  ".recovery-message-text span"
+);
+const saveNewPasswordBtn = document.querySelector(".save-new-password-btn");
+const closeForgotPasswordBtn = document.querySelector(
+  ".close-forgot-password-window"
+);
+const closeRecoveryMessageBtn = document.querySelector(
+  ".close-recovery-message"
+);
+const closeNewPasswordWindowBtn = document.querySelector(
+  ".close-new-pasword-window"
+);
+const closeSuccessfulRecoverBtn = document.querySelector(
+  ".close-successful-recover"
+);
+const recoveryEmail = document.querySelector("#recovery-email");
+const newPassword = document.querySelector("#new-password");
+const newPasswordWrapper = document.querySelector("#new-password-wrapper");
+const newConfirmPassword = document.querySelector("#new-confirm-password");
+// const confirmNewPassword = document.querySelector("#confirm-password");
+const confirmNewPasswordError = document.querySelector(
+  ".confirm-new-password-error"
+);
+const newErrorMsg = document.querySelector(".new-error-input-msg");
+const newPasswordError = document.querySelector(".new-password-error");
+
+const recoveryEmailValue = recoveryEmail.value.trim();
+
+forgotPasswordWindow.style.display = "none";
+recoveryMessageWindow.style.display = "none";
+newPasswordWindow.style.display = "none";
+successfulRecoveryWindow.style.display = "none";
+
+forgotPasswordBtn.addEventListener("click", () => {
+  forgotPasswordWindow.style.display = "block";
+  wrapper.style.display = "none";
+});
+closeForgotPasswordBtn.addEventListener("click", () => {
+  forgotPasswordWindow.style.display = "none";
+  wrapper.style.display = "block";
+});
+recoveryMessageBtn.addEventListener("click", (e) => {
+  recoveryMessageWindow.style.display = "block";
+  forgotPasswordWindow.style.display = "none";
+  recoveryMessageEmail.style.textContent.innerHTML = `${recoveryEmailValue}`;
+});
+closeRecoveryMessageBtn.addEventListener("click", () => {
+  recoveryMessageWindow.style.display = "none";
+  wrapper.style.display = "block";
+});
+closeNewPasswordWindowBtn.addEventListener("click", () => {
+  newPasswordWindow.style.display = "none";
+  wrapper.style.display = "block";
+  backgroung.classList.add("you");
+  document.body.style.overflow = "hidden";
+  document.querySelector(".header").style.pointerEvents = "none";
+});
+saveNewPasswordBtn.addEventListener("click", (event) => {
+  event.preventDefault(); // Запобігає перезавантаженню сторінки
+
+  const newPasswordValue = newPassword.value.trim();
+  const newConfirmPasswordValue = newConfirmPassword.value.trim();
+
+  newErrorMsg.style.display = "none";
+  newErrorMsg.textContent = "";
+
+  // Перевірка заповнення полів
+  if (!newPasswordValue || !newConfirmPasswordValue) {
+    newErrorMsg.style.display = "block";
+    newErrorMsg.textContent = "Заповніть всі обов'язкові поля";
+    return;
+  }
+
+  // Перевірка відповідності паролів
+  if (!passwordsMatch(newPasswordValue, newConfirmPasswordValue)) {
+    confirmNewPasswordError.style.display = "block";
+    confirmNewPasswordError.textContent = "Паролі не співпадають";
+    return;
+  }
+
+  // Перевірка чи пароль відповідає вимогам
+  if (!validatePassword(newPasswordValue).minLength) {
+    newPasswordError.style.display = "block";
+    newPasswordError.textContent = "Пароль має бути мінімум 8 символів";
+    return;
+  }
+
+  // Якщо всі перевірки пройдено - виконуємо успішний сценарій
+  successfulRecoveryWindow.style.display = "block";
+  newPasswordWindow.style.display = "none";
+  backgroung.classList.add("you");
+  document.body.style.overflow = "hidden";
+  document.querySelector(".header").style.pointerEvents = "none";
+});
+closeSuccessfulRecoverBtn.addEventListener("click", () => {
+  successfulRecoveryWindow.style.display = "none";
+  backgroung.classList.remove("you");
+  document.body.style.overflow = "auto";
+  document.querySelector(".header").style.pointerEvents = "auto";
+});
+
+// чи співпадають паролі
+
+newConfirmPassword.addEventListener("input", () => {
+  if (
+    !passwordsMatch(newPassword.value.trim(), newConfirmPassword.value.trim())
+  ) {
+    confirmNewPasswordError.style.display = "block";
+    newConfirmPassword.style.borderColor = "red";
+    newPassword.style.borderColor = "red";
+    confirmNewPasswordError.textContent = "Паролі не співпадають";
+  } else {
+    confirmNewPasswordError.style.display = "none";
+    newConfirmPassword.style.borderColor = "white";
+    newPassword.style.borderColor = "white";
+  }
+});
+
+// Валідація під час введення пароля
+newPassword.addEventListener("input", (event) => {
+  const newPasswordValue = event.target.value;
+  const newPasswordConditions = validatePassword(newPasswordValue.trim());
+
+  newPasswordError.style.display = "block";
+  newPasswordError.innerHTML = "";
+
+  let errorMessages = [];
+
+  if (!newPasswordConditions.minLength) {
+    errorMessages.push("мінімум 8 символів");
+  }
+  if (!newPasswordConditions.lowercase) {
+    errorMessages.push("хоча б одну малу літеру");
+  }
+  if (!newPasswordConditions.uppercase) {
+    errorMessages.push("хоча б одну велику літеру");
+  }
+  if (!newPasswordConditions.number) {
+    errorMessages.push("хоча б одну цифру");
+  }
+  if (!newPasswordConditions.specialChar) {
+    errorMessages.push("хоча б один спеціальний символ");
+  }
+
+  if (errorMessages.length > 0) {
+    newPasswordError.innerHTML = `Пароль повинен містити: ${errorMessages.join(
+      ", "
+    )}.`;
+  }
+
+  if (errorMessages.length === 0) {
+    newPasswordError.style.display = "none";
+  }
+});
