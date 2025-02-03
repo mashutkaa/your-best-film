@@ -530,7 +530,7 @@ window.addEventListener("DOMContentLoaded", function () {
         });
 
         console.log(result);
-        getMovieRecommendations((sandbox = false));
+        getMovieRecommendations(false);
     }
 
     const errorInputMin = document.querySelector(' p[name="error-year-0"]');

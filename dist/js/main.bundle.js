@@ -603,7 +603,7 @@ window.addEventListener("DOMContentLoaded", function () {
       result.push(newUserAnswer);
     });
     console.log(result);
-    getMovieRecommendations(sandbox = false);
+    getMovieRecommendations(false);
   }
   var errorInputMin = document.querySelector(' p[name="error-year-0"]');
   var errorInputMax = document.querySelector(' p[name="error-year-1"]');
