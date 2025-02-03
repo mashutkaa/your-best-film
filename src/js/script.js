@@ -1,5 +1,4 @@
-// запитання
-console.log("printResults");
+import bestFilms from "./bestFilms";
 
 const shortQuestions = [
     {
@@ -53,6 +52,8 @@ const shortQuestions = [
 ];
 
 window.addEventListener("DOMContentLoaded", function () {
+    bestFilms();
+
     let isModalOpen;
 
     const modalTrigger = document.querySelectorAll("[data-modal]"),
@@ -652,14 +653,14 @@ window.addEventListener("DOMContentLoaded", function () {
             sendResults(shortQuestions);
 
             // Зберігаємо токен аутентифікації перед очищенням localStorage
-            const authToken = localStorage.getItem('token');
+            const authToken = localStorage.getItem("token");
             localStorage.clear();
 
             // Відновлюємо токен аутентифікації
             if (authToken) {
-                localStorage.setItem('token', authToken);
+                localStorage.setItem("token", authToken);
             }
-            
+
             showQuestion(shortQuestions);
         }
     });

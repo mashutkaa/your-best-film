@@ -1,0 +1,122 @@
+.best-films__container {
+    display: flex;
+    justify-content: center;
+    gap: 44px;
+
+    margin-top: 60px;
+    margin-bottom: 40px;
+
+    height: 307px;
+
+    /* padding-left: 136px;
+    padding-right: 159px; */
+}
+
+.best_film__img {
+    position: relative;
+    z-index: 2;
+
+    width: 103px;
+    height: 277px;
+    border-radius: 50px;
+    background-image: url("../img/best_films/1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-radius: 50px;
+    border: 1px solid #fff;
+}
+
+.dropright {
+    .text-content {
+        padding-left: 219px;
+    }
+}
+
+.dropleft,
+.dropright {
+    position: absolute;
+    top: 99px;
+
+    display: none;
+
+    border-radius: 50px;
+    border: 1px solid #fff;
+    background: rgba(1, 7, 10, 0.85);
+
+    width: 438px;
+    height: 307px;
+}
+
+.dropleft {
+    transform: translateX(-53%);
+
+    flex-direction: row-reverse;
+
+    .text-content {
+        padding-right: 219px;
+    }
+}
+
+.best_film__img:hover + .dropleft {
+    display: flex;
+    align-items: center;
+    z-index: 4;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 11px;
+
+    h4 {
+        color: #fff;
+        font-family: "Montserrat Alternates";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+
+        text-transform: uppercase;
+        text-align: center;
+
+        max-width: 200px;
+    }
+
+    .best-film__descr {
+        color: #fff;
+        text-align: center;
+        font-family: "Montserrat Alternates";
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+
+        max-width: 209px;
+    }
+
+    .best-film__raiting {
+        color: #fff;
+        font-family: "Montserrat Alternates";
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+}
+
+.best_film__img:hover {
+    cursor: pointer;
+    width: 207px;
+    height: 308px;
+    z-index: 5;
+}
+
+.best_film__img:hover + .dropright {
+    display: flex;
+    align-items: center;
+
+    z-index: 4;
+}
