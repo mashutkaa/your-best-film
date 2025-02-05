@@ -164,7 +164,7 @@ const resendBtn = document.getElementById("resend-btn");
 const timerDisplay = document.getElementById("timer");
 
 
-// verifyModalWindow.style.display = "none";
+verifyModalWindow.style.display = "none";
 
 // Валідація пошти
 function validateEmail(emailValue) {
