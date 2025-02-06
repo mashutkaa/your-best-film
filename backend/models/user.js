@@ -64,26 +64,3 @@ export async function getUserById(id) {
         );
     });
 }
-
-
-/**
- * Оновлює статус підтвердження електронної пошти користувача в базі даних
- * @param {number} userId - ідентифікатор користувача
- * @param {number} status - статус підтвердження (0 або 1)
- * @returns {Promise<boolean>} - успішність оновлення
- */
-export async function updateEmailStatus(userId, status) {
-    return new Promise((resolve, reject) => {
-        db.run(
-            `UPDATE users SET email_verified = ? WHERE id = ?`,
-            [status, userId],
-            function (err) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(this.changes > 0);
-                }
-            }
-        );
-    });
-}

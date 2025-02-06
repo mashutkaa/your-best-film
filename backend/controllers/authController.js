@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { createUser, getUserByEmail, getUserById, updateEmailStatus } from "../models/user.js";
+import { createUser, getUserByEmail, getUserById } from "../models/user.js";
 import { sendEmail } from "../services/emailService.js";
 
 export async function register(req, res) {
@@ -8,10 +8,10 @@ export async function register(req, res) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     try {
-        const userID = await createUser(email, hashedPassword, username);
-
-        const token = jwt.sign({ userId: userID }, process.env.JWT_SECRET, { expiresIn: "30d" });
-        const confirmEmailToken = jwt.sign({ userIDToConfirm: userID }, process.env.JWT_SECRET);
+        if (await getUserByEmail(email)) {
+            return res.status(400).json({ error: "Email already exists" });
+        }
+        const confirmEmailToken = jwt.sign({ isToConfirmEmail: true, password: hashedPassword, email: email, username: username }, process.env.JWT_SECRET, { expiresIn: "30d" });
 
         await sendEmail(
             email,
@@ -20,19 +20,19 @@ export async function register(req, res) {
                 <h1 style="color: #ffffff;">Підтвердження електронної пошти</h1>
                 <p style="color: #ffffff;">Дякуємо вам за реєстрацію!</p>
                 <p style="color: #ffffff;">Для підтвердження електронної пошти натисніть кнопку нижче:</p>
-                <a href="http://localhost:3000/auth/confirmEmail?id=${confirmEmailToken}" style="display: inline-block; padding: 10px 20px; color: white; background-color: black; border: 2px solid white; text-decoration: none; border-radius: 24px;">Підтвердити електронну пошту</a>
+                <a href="${process.env.SITE_DOMAIN}/?confirmEmail=${confirmEmailToken}" style="display: inline-block; padding: 10px 20px; color: white; background-color: black; border: 2px solid white; text-decoration: none; border-radius: 24px;">Підтвердити електронну пошту</a>
                 <div style="margin-top: 40px; border-top: 1px solid #333; padding-top: 20px;">
                     <p style="color: #ffffff;">Якщо кнопка не працює, перейдіть за цим посиланням:</p>
-                    <a href="http://localhost:3000/auth/confirmEmail?id=${confirmEmailToken}" style="color: #4da6ff;">http://localhost:3000/auth/confirmEmail?id=${confirmEmailToken}</a>
+                    <a href="${process.env.SITE_DOMAIN}/?confirmEmail=${confirmEmailToken}" style="color: #4da6ff;">${process.env.SITE_DOMAIN}/?confirmEmail=${confirmEmailToken}</a>
                 </div>
             </div>`,
             true
         );
 
-        res.status(201).json({ message: "User created", token: token });
+        res.status(201).json({ message: "Email sent" });
     } catch (error) {
         console.error(error);
-        res.status(400).json({ error: "Email already exists" });
+        res.status(400).json({ error: "Failed to send email" });
     }
 }
 
@@ -55,6 +55,19 @@ export async function verifyToken(req, res) {
     
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        if (decoded.isToConfirmEmail) {
+            if (await getUserByEmail(decoded.email)) {
+                return res.status(400).json({ error: "Email already confirmed" });
+            }
+
+            const userId = await createUser(decoded.email, decoded.password, decoded.username);
+
+            const authToken = jwt.sign({ userId: userId }, process.env.JWT_SECRET, { expiresIn: "30d" });
+
+            return res.status(201).json({ message: "User created", token: authToken, tokenData: { email: decoded.email, username: decoded.username } });
+        }
+
         const user = await getUserById(decoded.userId);
 
         if (!user) {
@@ -67,25 +80,30 @@ export async function verifyToken(req, res) {
     }
 }
 
-export async function confirmEmail(req, res) {
-    const { id } = req.query;
+export async function forgotPassword(req, res) {
+    const { email } = req.body;
+    const user = await getUserByEmail(email);
 
-    try {
-        const decoded = jwt.verify(id, process.env.JWT_SECRET);
-        const user = await getUserById(decoded.userIDToConfirm);
-
-        if (!user) {
-            return res.status(404).json({ error: "User not found" });
-        }
-
-        if (user.email_verified === 1) {
-            return res.status(400).json({ error: "Email already confirmed" });
-        }
-
-        await updateEmailStatus(decoded.userIDToConfirm, 1);
-
-        res.status(200).json({ message: "Email confirmed" });
-    } catch (error) {
-        res.status(401).json({ error: "Invalid token" });
+    if (!user) {
+        return res.status(404).json({ error: "User does not exist" });
     }
+
+    const resetPasswordToken = jwt.sign({ isToResetPassword: true, userId: user.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+    await sendEmail(
+        email,
+        "Відновлення паролю",
+        `<div style="background-color: #1a1a1a; padding: 20px; color: white; font-family: Arial, sans-serif;">
+            <h1 style="color: #ffffff;">Відновлення паролю</h1>
+            <p style="color: #ffffff;">Для відновлення паролю натисніть кнопку нижче:</p>
+            <a href="${process.env.SITE_DOMAIN}/?resetPassword=${resetPasswordToken}" style="display: inline-block; padding: 10px 20px; color: white; background-color: black; border: 2px solid white; text-decoration: none; border-radius: 24px;">Скинути пароль</a>
+            <div style="margin-top: 40px; border-top: 1px solid #333; padding-top: 20px;">
+                <p style="color: #ffffff;">Якщо кнопка не працює, перейдіть за цим посиланням:</p>
+                <a href="${process.env.SITE_DOMAIN}/?resetPassword=${resetPasswordToken}" style="color: #4da6ff;">${process.env.SITE_DOMAIN}/?resetPassword=${resetPasswordToken}</a>
+            </div>
+        </div>`,
+        true
+    );
+
+    res.json({ message: "Email sent" });
 }

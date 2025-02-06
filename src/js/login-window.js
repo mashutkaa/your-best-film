@@ -326,7 +326,6 @@ submitButton.addEventListener("click", (event) => {
     .then((data) => {
       localStorage.setItem("token", data.token);
       wrapper.style.display = "none";
-      successfulRegistrationWindow.style.display = "block";
       if (nameValue !== "") {
         menuBtn.textContent = nameValue;
       } else {
@@ -404,6 +403,37 @@ confirmRegisterNewPasswordButton.addEventListener("click", () => {
   newConfirmPassword.type = isPasswordHidden ? "text" : "password";
   confirmRegisterNewPasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
 });
+
+// ======================= ПІДТВЕРДЖЕННЯ ПОШТИ =======================
+const urlParams = new URLSearchParams(window.location.search);
+const tokenToConfirmEmail = urlParams.get('confirmEmail');
+
+if (tokenToConfirmEmail) {
+  fetch("http://localhost:3000/auth/verifyToken", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenToConfirmEmail}`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 201) {
+        return response.json();
+      } else {
+        throw new Error("Email confirmation failed");
+      }
+    })
+    .then((data) => {
+      successfulRegistrationWindow.style.display = "block";
+
+      localStorage.setItem("token", data.token);
+
+      functionsForAuthUsers(data.tokenData);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
 
 // ======================= ВІДНОВЛЕННЯ СЕСІЇ ЯКЩО КОРИСТУВАЧ ВЖЕ УВІЙШОВ =======================
 const token = localStorage.getItem("token");
@@ -514,9 +544,23 @@ closeForgotPasswordBtn.addEventListener("click", () => {
   wrapper.style.display = "block";
 });
 recoveryMessageBtn.addEventListener("click", (e) => {
-  recoveryMessageWindow.style.display = "block";
-  forgotPasswordWindow.style.display = "none";
-  recoveryMessageEmail.style.textContent.innerHTML = `${recoveryEmailValue}`;
+  fetch("http://localhost:3000/auth/forgotPassword", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email: recoveryEmail.value.trim() }),
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        recoveryMessageWindow.style.display = "block";
+        forgotPasswordWindow.style.display = "none";
+        recoveryMessageEmail.style.textContent.innerHTML = `${recoveryEmailValue}`;
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 });
 closeRecoveryMessageBtn.addEventListener("click", () => {
   recoveryMessageWindow.style.display = "none";
