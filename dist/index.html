@@ -222,7 +222,7 @@
     <div class="registration-login-wrapper modal-wrapper">
       <form id="login-form" class="login-form">
         <p class="close-login-btn">x</p>
-
+          <div class="login-form-container">
         <h2 class="form-title">особистий кабінет</h2>
         <p class="form-description">
           Допоможе вам зберігати отримані добірки та фільми в одному місці*
@@ -251,6 +251,7 @@
                 placeholder="********"
                 required
               />
+              
               <button
                 class="login-password-field-btn"
                 type="button"
@@ -265,6 +266,7 @@
 
         <p class="login-password-error js-error"></p>
         <p class="login-error-input-msg js-error"></p>
+       
 
         <button
           type="submit"
@@ -274,11 +276,20 @@
           Увійти/Зареєструватися
         </button>
         <hr />
+        </div>
+             <!-- Спінер для входу -->
+        <div class="login-loader" style="display: none;">
+          <div class="spinner"></div>
+        </div>
+
+        <!-- Повідомлення про помилку входу -->
+        <p class="login-modal-message js-error"></p>
       </form>
 
       <!-- ---------------- РЕЄСТРАЦІЯ ------------------------ -->
 
       <form id="registration-form" class="registration-form">
+        <div class="register-container">
         <p class="close-register-btn">x</p>
         <h2 class="form-title">Особистий кабінет</h2>
         <p class="form-description">
@@ -370,9 +381,18 @@
           >
         </label>
 
+
         <button type="submit" id="submit-registration-btn">
           Зареєструватися
         </button>
+        </div>
+                    <!-- Спінер для реєстрації -->
+      <div class="register-loader" style="display: none;">
+        <img class="spinner" src="./icons/spinner.svg" alt="Завантаження..." style="display: none;">
+      </div>
+
+    <!-- Повідомлення про помилку реєстрації -->
+    <p class="register-modal-message js-error"></p>
       </form>
     </div>
     <div class="successful-registration">

@@ -7,6 +7,12 @@ const successfulRegistrationWindow = document.querySelector(
   ".successful-registration"
 );
 successfulRegistrationWindow.style.display = "none";
+const registerLoader = document.querySelector(".register-loader"); //!сьівлсівлс
+const registerModalMessage = document.querySelector(".register-modal-message"); //!двуьаджуьада
+const loginLoader = document.querySelector(".login-loader");
+const loginModalMessage = document.querySelector(".login-modal-message");
+const loginWrapper = document.querySelector(".login-form-container");
+const registerWrapper = document.querySelector(".register-container");
 // ----------- відкриття/закриття модального вікна -----------
 const wrapper = document.querySelector(".registration-login-wrapper");
 const backgroung = document.querySelector(".main-page-wrapper");
@@ -20,10 +26,9 @@ document.addEventListener("click", (event) => {
   const modalWrappers = document.querySelector(".modal-wrapper"); // Всі модальні вікна
   if (event.currentTarget === modalWrappers) {
     wrapper.style.display = "none";
-    console.log('kfjfkj');
+    console.log("kfjfkj");
   }
 });
-
 
 menuBtn.addEventListener("click", (e) => {
   wrapper.style.display = "block";
@@ -68,6 +73,9 @@ registrationForm.style.display = "none";
 
 function loginUser(email, password) {
   const requestBody = { email, password };
+  loginLoader.style.display = "block";
+  loginModalMessage.textContent = "";
+  loginWrapper.style.display = "none";
 
   fetch("http://localhost:3000/auth/login", {
     method: "POST",
@@ -77,6 +85,7 @@ function loginUser(email, password) {
     body: JSON.stringify(requestBody),
   })
     .then((response) => {
+      loginLoader.style.display = "none";
       if (!response.ok) {
         return response.json().then((error) => {
           error.status = response.status;
@@ -92,6 +101,7 @@ function loginUser(email, password) {
       window.location.href = "index.html";
     })
     .catch((error) => {
+      loginLoader.style.display = "none";
       if (error.status === 404) {
         // Користувача з таким email не існує
         userNotExistError.style.display = "block";
@@ -103,7 +113,10 @@ function loginUser(email, password) {
         wrongPassword.style.display = "block";
         wrongPassword.textContent = "Невірний пароль";
       } else {
-        // Тут ще має бути обробка загальної помилки, наприклад коли сервер недоступний
+        // Сервер недоступний або інша помилка
+        loginErrorMsg.style.display = "block";
+        loginModalMessage.textContent =
+          "Помилка підключення. Спробуйте ще раз.";
       }
 
       return false;
@@ -162,7 +175,6 @@ const verifyModalWindow = document.getElementById("verification-modal");
 const closeBtn = document.querySelector(".close-verify-btn");
 const resendBtn = document.getElementById("resend-btn");
 const timerDisplay = document.getElementById("timer");
-
 
 verifyModalWindow.style.display = "none";
 
@@ -239,25 +251,6 @@ confirmPassword.addEventListener("input", (event) => {
   }
 });
 
-let timeLeft = 60; // Початковий таймер на 60 секунд
-
-function startTimer() {
-  resendBtn.disabled = true;
-  let interval = setInterval(() => {
-    timeLeft--;
-    let minutes = Math.floor(timeLeft / 60);
-    let seconds = timeLeft % 60;
-    timerDisplay.textContent = `${minutes}:${
-      seconds < 10 ? "0" : ""
-    }${seconds}`;
-
-    if (timeLeft <= 0) {
-      clearInterval(interval);
-      resendBtn.disabled = false;
-      timerDisplay.textContent = "";
-    }
-  }, 1000);
-}
 // Подія на кнопку
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
@@ -267,16 +260,20 @@ submitButton.addEventListener("click", (event) => {
   const nameValue = username.value.trim();
   const confirmPasswordValue = confirmPassword.value.trim();
   const emailLength = emailValue.split("@")[0].length;
+
+  registerLoader.style.display = "block";
+  registerModalMessage.textContent = "";
+  registerWrapper.style.display = 'none';
   // Перевірка заповнення полів
   if (!emailValue || !passwordValue) {
     errorMsg.style.display = "block";
     errorMsg.textContent = "Заповніть всі обов'язкові поля";
     return;
   }
-   if (!submitPrivacyPolicy.checked) {
-     errorMsg.style.display = "block";
-     return;
-   }
+  if (!submitPrivacyPolicy.checked) {
+    errorMsg.style.display = "block";
+    return;
+  }
 
   // Перевірка формату email
   if (!validateEmail(emailValue)) {
@@ -315,6 +312,7 @@ submitButton.addEventListener("click", (event) => {
     body: JSON.stringify(requestBody),
   })
     .then((response) => {
+      registerLoader.style.display = "none";
       if (!response.ok) {
         return response.json().then((error) => {
           error.status = response.status;
@@ -350,12 +348,14 @@ submitButton.addEventListener("click", (event) => {
       }, 15000);
     })
     .catch((error) => {
+      registerLoader.style.display = "none";
       if (error.status === 400) {
         errorInput.style.display = "block";
         email.style.borderColor = "red";
         errorInput.textContent = "Користувач з таким email вже існує!";
       } else {
-        // Тут ще має бути обробка загальної помилки, наприклад коли сервер недоступний
+        registerModalMessage.textContent =
+          "Помилка підключення. Спробуйте ще раз.";
       }
     });
 });
@@ -406,7 +406,7 @@ confirmRegisterNewPasswordButton.addEventListener("click", () => {
 
 // ======================= ПІДТВЕРДЖЕННЯ ПОШТИ =======================
 const urlParams = new URLSearchParams(window.location.search);
-const tokenToConfirmEmail = urlParams.get('confirmEmail');
+const tokenToConfirmEmail = urlParams.get("confirmEmail");
 
 if (tokenToConfirmEmail) {
   fetch("http://localhost:3000/auth/verifyToken", {
