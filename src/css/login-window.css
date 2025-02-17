@@ -9,8 +9,6 @@ main {
   /* margin-left: -200px;  */
   z-index: 1000;
   width: 500px;
-
- 
 }
 .form-title {
   text-align: center;
@@ -113,13 +111,13 @@ main {
   position: relative;
 }
 .register-field-password {
-  margin-right: 190px;
+  margin-right: 168px;
 }
 .register-field-confirm-password {
-  margin-right: 130px;
+  margin-right: 108px;
 }
 .register-field-name {
-  margin-right: 210px;
+  margin-right: 188px;
 }
 #toggle-password-confirm-register,
 #toggle-password-register {
@@ -298,6 +296,7 @@ main {
 /* фон модального вікна, закриття/відкриття*/
 
 .you {
+  display: block;
   width: 100%;
   height: 100%;
   filter: blur(5px);
@@ -306,6 +305,18 @@ main {
 .you button {
   pointer-events: none;
   cursor: not-allowed;
+}
+.login-modal-open .best_film__img:hover {
+  cursor: default;
+
+  width: 103px;
+  height: 277px;
+  z-index: initial;
+}
+
+.login-modal-open .best_film__img:hover + .dropleft,
+.login-modal-open .best_film__img:hover + .dropright {
+  display: none;
 }
 
 /* .login-modal {

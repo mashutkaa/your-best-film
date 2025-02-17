@@ -1,0 +1,28 @@
+body{
+  padding: 25px;
+  background-color: black;
+}
+.title {
+	color: #5C6AC4;
+}
+
+  .main_hh {
+  font-size: 30px;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  text-align: center;
+}
+
+  .main_hhh {
+  font-size: 25px;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  text-align: center;
+}
+
+  .main_hhhh {
+  font-size: 20px;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: white;
+  text-align: left;
+}

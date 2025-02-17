@@ -28,19 +28,22 @@ document.addEventListener("click", (event) => {
     wrapper.style.display = "none";
     console.log("kfjfkj");
   }
+   
 });
-
+const filmWrapper = document.querySelector(".best-films__container");
 menuBtn.addEventListener("click", (e) => {
   wrapper.style.display = "block";
   backgroung.classList.add("you");
   document.body.style.overflow = "hidden";
   document.querySelector(".header").style.pointerEvents = "none";
+  document.body.classList.add("login-modal-open"); 
 });
 closeLoginIcon.addEventListener("click", (e) => {
   wrapper.style.display = "none";
   backgroung.classList.remove("you");
   document.body.style.overflow = "auto";
   document.querySelector(".header").style.pointerEvents = "auto";
+  document.body.classList.remove("login-modal-open");
 });
 closeRegisterBtn.addEventListener("click", (e) => {
   userNotExistError.style.display = "none";
@@ -51,6 +54,7 @@ closeRegisterBtn.addEventListener("click", (e) => {
   backgroung.classList.remove("you");
   document.body.style.overflow = "auto";
   document.querySelector(".header").style.pointerEvents = "auto";
+  document.body.classList.remove("login-modal-open");
 });
 closesuccessfulRegistrationWindow.addEventListener("click", () => {
   successfulRegistrationWindow.style.display = "none";
