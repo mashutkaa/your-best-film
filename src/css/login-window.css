@@ -192,6 +192,7 @@ main {
   margin-top: 40px;
   gap: 15px;
   align-items: center;
+  justify-content: space-between;
 }
 .login-field-label span {
   font-size: 15px;
@@ -203,7 +204,7 @@ main {
   border-radius: 50px;
   padding: 6px 20px;
   color: #ffffff;
-  width: 190px;
+  width: 148px;
 }
 
 .login-password-field {

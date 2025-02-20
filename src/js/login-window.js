@@ -275,7 +275,6 @@ submitButton.addEventListener("click", (event) => {
     return;
   }
   if (!submitPrivacyPolicy.checked) {
-    errorMsg.style.display = "block";
     return;
   }
 
