@@ -4,7 +4,7 @@ const loginForm = document.querySelector("#login-form");
 const registrationForm = document.querySelector("#registration-form");
 const menuBtn = document.querySelector(".menu-item-login a");
 const successfulRegistrationWindow = document.querySelector(
-    ".successful-registration"
+  ".successful-registration"
 );
 successfulRegistrationWindow.style.display = "none";
 const registerLoader = document.querySelector(".register-loader"); //!сьівлсівлс
@@ -19,32 +19,39 @@ const backgroung = document.querySelector(".main-page-wrapper");
 const closeLoginIcon = document.querySelector(".close-login-btn");
 const closeRegisterBtn = document.querySelector(".close-register-btn");
 const closesuccessfulRegistrationWindow = document.querySelector(
-    ".close-succesfull-window"
+  ".close-succesfull-window"
 );
+const modalWrappers = document.querySelector(".modal-wrapper"); // Саме модальне вікно
+const modalWrapper = document.querySelector(".login-modal-wrapper");
 wrapper.style.display = "none";
-document.addEventListener("click", (event) => {
-  const modalWrappers = document.querySelector(".modal-wrapper"); // Всі модальні вікна
-  if (event.currentTarget === modalWrappers) {
-    wrapper.style.display = "none";
-    console.log("kfjfkj");
-  }
-   
-});
-const filmWrapper = document.querySelector(".best-films__container");
-menuBtn.addEventListener("click", (e) => {
-  wrapper.style.display = "block";
-  backgroung.classList.add("you");
-  document.body.style.overflow = "hidden";
-  document.querySelector(".header").style.pointerEvents = "none";
-  document.body.classList.add("login-modal-open"); 
-});
-closeLoginIcon.addEventListener("click", (e) => {
+//ф-я закриття модального вікна
+function closeModal() {
   wrapper.style.display = "none";
   backgroung.classList.remove("you");
   document.body.style.overflow = "auto";
   document.querySelector(".header").style.pointerEvents = "auto";
   document.body.classList.remove("login-modal-open");
+}
+// Відкриття модального вікна
+menuBtn.addEventListener("click", (e) => {
+  wrapper.style.display = "block";
+  backgroung.classList.add("you");
+  document.body.style.overflow = "hidden";
+  document.querySelector(".header").style.pointerEvents = "none";
+  document.body.classList.add("login-modal-open");
 });
+
+// Закриття модального вікна при кліку поза ним
+
+backgroung.addEventListener("click", (event) => {
+  if (event.target === backgroung && (wrapper.style.display = "block")) {
+    closeModal();
+  }
+});
+
+// Закриття при натисканні на кнопку
+closeLoginIcon.addEventListener("click", () => closeModal());
+
 closeRegisterBtn.addEventListener("click", (e) => {
   userNotExistError.style.display = "none";
   registrationForm.style.display = "none";
@@ -60,20 +67,20 @@ closesuccessfulRegistrationWindow.addEventListener("click", () => {
   successfulRegistrationWindow.style.display = "none";
 });
 
-    // ======================= ВХІД ====================================
+// ======================= ВХІД ====================================
 
-    const loginEmail = document.querySelector("#login-email");
-    const loginPassword = document.querySelector("#login-password");
-    const loginPasswordWrapper = document.querySelector(".login-password-field");
-    const loginSubmitButton = document.querySelector("#submit-login-btn");
+const loginEmail = document.querySelector("#login-email");
+const loginPassword = document.querySelector("#login-password");
+const loginPasswordWrapper = document.querySelector(".login-password-field");
+const loginSubmitButton = document.querySelector("#submit-login-btn");
 
-    const loginErrorMsg = document.querySelector(".login-error-input-msg");
-    // const errorInput = document.querySelector(".error-input");
-    const userNotExistError = document.querySelector(".login-email-error");
-    const wrongPassword = document.querySelector(".login-password-error");
-    // const confirmPasswordError = document.querySelector(".confirm-password-error");
+const loginErrorMsg = document.querySelector(".login-error-input-msg");
+// const errorInput = document.querySelector(".error-input");
+const userNotExistError = document.querySelector(".login-email-error");
+const wrongPassword = document.querySelector(".login-password-error");
+// const confirmPasswordError = document.querySelector(".confirm-password-error");
 
-    registrationForm.style.display = "none";
+registrationForm.style.display = "none";
 
 function loginUser(email, password) {
   const requestBody = { email, password };
@@ -147,16 +154,16 @@ loginSubmitButton.addEventListener("click", (event) => {
   loginUser(emailValue, passwordValue);
 });
 
-    // ================= РЕЄСТРАЦІЯ ===================
-    const form = document.querySelector(".registration-form");
+// ================= РЕЄСТРАЦІЯ ===================
+const form = document.querySelector(".registration-form");
 
-    const email = document.querySelector("#email");
+const email = document.querySelector("#email");
 
-    const password = document.querySelector("#password");
-    const passwordWrapper = document.querySelector("#password-wrapper");
-    const confirmPassword = document.querySelector("#confirm-password");
-    const submitPrivacyPolicy = document.querySelector("#submit");
-    console.log(submitPrivacyPolicy);
+const password = document.querySelector("#password");
+const passwordWrapper = document.querySelector("#password-wrapper");
+const confirmPassword = document.querySelector("#confirm-password");
+const submitPrivacyPolicy = document.querySelector("#submit");
+console.log(submitPrivacyPolicy);
 
 const personalAccount = document.querySelector(".menu-item-personal-account");
 const personalAccountNav = document.querySelector(
@@ -168,19 +175,19 @@ const confirmPasswordWrapper = document.querySelector(
 const username = document.querySelector("#name");
 const submitButton = document.querySelector("#submit-registration-btn");
 
-    const errorMsg = document.querySelector(".error-input-msg");
-    const errorInput = document.querySelector(".error-input");
-    const errorName = document.querySelector(".error-name-input");
-    const passwordError = document.querySelector(".password-error");
-    const confirmPasswordError = document.querySelector(".confirm-password-error");
+const errorMsg = document.querySelector(".error-input-msg");
+const errorInput = document.querySelector(".error-input");
+const errorName = document.querySelector(".error-name-input");
+const passwordError = document.querySelector(".password-error");
+const confirmPasswordError = document.querySelector(".confirm-password-error");
 
-    //для підтвердження акаунту
-    const verifyModalWindow = document.getElementById("verification-modal");
-    const closeBtn = document.querySelector(".close-verify-btn");
-    const resendBtn = document.getElementById("resend-btn");
-    const timerDisplay = document.getElementById("timer");
+//для підтвердження акаунту
+const verifyModalWindow = document.getElementById("verification-modal");
+const closeBtn = document.querySelector(".close-verify-btn");
+const resendBtn = document.getElementById("resend-btn");
+const timerDisplay = document.getElementById("timer");
 
-    verifyModalWindow.style.display = "none";
+verifyModalWindow.style.display = "none";
 
 // Валідація пошти
 function validateEmail(emailValue) {
@@ -267,7 +274,7 @@ submitButton.addEventListener("click", (event) => {
 
   registerLoader.style.display = "block";
   registerModalMessage.textContent = "";
-  registerWrapper.style.display = 'none';
+  registerWrapper.style.display = "none";
   // Перевірка заповнення полів
   if (!emailValue || !passwordValue) {
     errorMsg.style.display = "block";
@@ -364,7 +371,7 @@ submitButton.addEventListener("click", (event) => {
 });
 // успішна реєстрація
 
-    // ------------------- показати/сховати пароль ------------------
+// ------------------- показати/сховати пароль ------------------
 
 const loginTogglePasswordButton = document.querySelector(
   ".login-password-field-btn"
@@ -407,9 +414,9 @@ confirmRegisterNewPasswordButton.addEventListener("click", () => {
   confirmRegisterNewPasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
 });
 
-    // ======================= ПІДТВЕРДЖЕННЯ ПОШТИ =======================
-    const urlParams = new URLSearchParams(window.location.search);
-    const tokenToConfirmEmail = urlParams.get("confirmEmail");
+// ======================= ПІДТВЕРДЖЕННЯ ПОШТИ =======================
+const urlParams = new URLSearchParams(window.location.search);
+const tokenToConfirmEmail = urlParams.get("confirmEmail");
 
 if (tokenToConfirmEmail) {
   fetch("http://localhost:3000/auth/verifyToken", {
@@ -438,8 +445,8 @@ if (tokenToConfirmEmail) {
     });
 }
 
-    // ======================= ВІДНОВЛЕННЯ СЕСІЇ ЯКЩО КОРИСТУВАЧ ВЖЕ УВІЙШОВ =======================
-    const token = localStorage.getItem("token");
+// ======================= ВІДНОВЛЕННЯ СЕСІЇ ЯКЩО КОРИСТУВАЧ ВЖЕ УВІЙШОВ =======================
+const token = localStorage.getItem("token");
 
 if (token) {
   fetch("http://localhost:3000/auth/verifyToken", {
@@ -531,12 +538,12 @@ const confirmNewPasswordError = document.querySelector(
 const newErrorMsg = document.querySelector(".new-error-input-msg");
 const newPasswordError = document.querySelector(".new-password-error");
 
-    const recoveryEmailValue = recoveryEmail.value.trim();
+const recoveryEmailValue = recoveryEmail.value.trim();
 
-    forgotPasswordWindow.style.display = "none";
-    recoveryMessageWindow.style.display = "none";
-    newPasswordWindow.style.display = "none";
-    successfulRecoveryWindow.style.display = "none";
+forgotPasswordWindow.style.display = "none";
+recoveryMessageWindow.style.display = "none";
+newPasswordWindow.style.display = "none";
+successfulRecoveryWindow.style.display = "none";
 
 forgotPasswordBtn.addEventListener("click", () => {
   forgotPasswordWindow.style.display = "block";
@@ -620,7 +627,7 @@ closeSuccessfulRecoverBtn.addEventListener("click", () => {
   document.querySelector(".header").style.pointerEvents = "auto";
 });
 
-    // чи співпадають паролі
+// чи співпадають паролі
 
 newConfirmPassword.addEventListener("input", () => {
   if (
