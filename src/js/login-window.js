@@ -42,7 +42,6 @@ menuBtn.addEventListener("click", (e) => {
 });
 
 // Закриття модального вікна при кліку поза ним
-
 backgroung.addEventListener("click", (event) => {
   if (event.target === backgroung && (wrapper.style.display = "block")) {
     closeModal();
@@ -272,47 +271,63 @@ submitButton.addEventListener("click", (event) => {
   const confirmPasswordValue = confirmPassword.value.trim();
   const emailLength = emailValue.split("@")[0].length;
 
-  registerLoader.style.display = "block";
-  registerModalMessage.textContent = "";
-  registerWrapper.style.display = "none";
-  // Перевірка заповнення полів
-  if (!emailValue || !passwordValue) {
+
+  if (!emailValue || !passwordValue || !confirmPasswordValue || !nameValue) {
     errorMsg.style.display = "block";
     errorMsg.textContent = "Заповніть всі обов'язкові поля";
-    return;
+    return; 
   }
+
   if (!submitPrivacyPolicy.checked) {
-    return;
+    return; 
   }
 
   // Перевірка формату email
   if (!validateEmail(emailValue)) {
     errorInput.style.display = "block";
     email.style.borderColor = "red";
-    errorInput.textContent = "Вкажіть правильну елекронну пошту";
-    return;
+    errorInput.textContent = "Вкажіть правильну електронну пошту";
+    return; 
   } else {
     errorInput.style.display = "none";
   }
-  // Перевірка чи пароль відповідає вимогам
+
+  // Перевірка пароля
+  const passwordConditions = validatePassword(passwordValue);
   if (
-    !validatePassword(passwordValue) ||
-    !passwordsMatch(passwordValue, confirmPasswordValue)
+    !passwordConditions.minLength ||
+    !passwordConditions.lowercase ||
+    !passwordConditions.uppercase ||
+    !passwordConditions.number ||
+    !passwordConditions.specialChar
   ) {
-    return;
+    return; 
+  }
+
+  if (!passwordsMatch(passwordValue, confirmPasswordValue)) {
+    confirmPasswordError.style.display = "block";
+    confirmPasswordWrapper.style.borderColor = "red";
+    confirmPasswordError.textContent = "Паролі не співпадають";
+    return; 
+  } else {
+    confirmPasswordError.style.display = "none";
   }
 
   if (emailLength <= nameValue.length) {
     errorName.innerHTML = `Ім'я повинно бути не довшим за ${emailLength} символів`;
-    return;
+    return; 
   }
+
+
+  registerLoader.style.display = "block";
+  registerModalMessage.textContent = "";
+  registerWrapper.style.display = "none";
+
   const requestBody = {
     email: emailValue,
     password: passwordValue,
     username: nameValue,
   };
-
-  // verifyModalWindow.style.display = 'block';
 
   fetch("http://localhost:3000/auth/register", {
     method: "POST",
@@ -334,19 +349,20 @@ submitButton.addEventListener("click", (event) => {
     .then((data) => {
       localStorage.setItem("token", data.token);
       wrapper.style.display = "none";
+
       if (nameValue !== "") {
         menuBtn.textContent = nameValue;
       } else {
         menuBtn.textContent = emailValue;
       }
-      console.log("Реєстрація успішна, показуємо вікно");
 
       verifyModalWindow.style.display = "block";
       startTimer();
+
       closeBtn.addEventListener("click", function () {
-        modal.style.display = "none";
+        verifyModalWindow.style.display = "none";
       });
-      // Повторне надсилання листа
+
       resendBtn.addEventListener("click", function () {
         timeLeft = 60;
         startTimer();
@@ -369,6 +385,7 @@ submitButton.addEventListener("click", (event) => {
       }
     });
 });
+
 // успішна реєстрація
 
 // ------------------- показати/сховати пароль ------------------
