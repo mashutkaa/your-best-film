@@ -8,11 +8,36 @@ const bestFilms = () => {
             .then((response) => response.json())
             .then((data) => {
                 if (data.results) {
-                    const filteredMovies = data.results.filter(
-                        (movie) =>
+                    const forbiddenWords = [
+                        "росія",
+                        "russia",
+                        "россий",
+                        "москва",
+                        "путін",
+                        "kremlin",
+                        "російськ",
+                        "росіянин",
+                        "росіянка",
+                        "росіяни",
+                        "совет",
+                        "ссср",
+                        "сталін",
+                        "ленін",
+                    ];
+
+                    const filteredMovies = data.results.filter((movie) => {
+                        const overview = movie.overview.trim().toLowerCase();
+
+                        const containsForbiddenWords = forbiddenWords.some(
+                            (word) => overview.includes(word)
+                        );
+
+                        return (
                             movie.vote_average >= 6.5 &&
-                            movie.overview.trim() !== ""
-                    );
+                            !containsForbiddenWords &&
+                            overview !== ""
+                        );
+                    });
 
                     const top7Movies = filteredMovies.slice(0, 7);
 

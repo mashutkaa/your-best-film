@@ -1,5 +1,5 @@
-import addFiltersModal from "./addFiltersModal";
 import newFilters from "./newFilters";
+import isOpenNewFilters from "./isOpenNewFilters";
 
 const filmsSearch = () => {
     const shortQuestions = [
@@ -191,12 +191,12 @@ const filmsSearch = () => {
                         }
 
                         const answerTemplate = `
-            <label class="radio-button-label tabQuestion" tabindex="0">
-                <input class="radio-button-field " type="radio" name="movie-partner" value="${answerText}" ${
+                            <label class="radio-button-label tabQuestion" tabindex="0">
+                                <input class="radio-button-field " type="radio" name="movie-partner" value="${answerText}" ${
                             isPartnerDefault ? "checked" : ""
                         }  tabindex="0" />
-                <span>${answerText}</span>
-            </label>`;
+                                <span>${answerText}</span>
+                            </label>`;
                         questionContainer.innerHTML += answerTemplate;
                     }
                     break;
@@ -504,7 +504,6 @@ const filmsSearch = () => {
                 }
 
                 case "checkbox": {
-                    console.log("Збереження почалося");
                     const selectedGenres = Array.from(
                         document.querySelectorAll('input[name="genre"]:checked')
                     ).map((checkbox) => checkbox.value);
@@ -649,9 +648,28 @@ const filmsSearch = () => {
         event.preventDefault(); // Зупинити відправку форми за замовчуванням
 
         if (validateYears()) {
-            sendResults(shortQuestions);
-
             // Зберігаємо токен аутентифікації перед очищенням localStorage
+
+            // тут відправка результатів
+            //sendResults(shortQuestions);
+
+            // це змінна, чи відкрити додаткові фільтри чи ні
+            let isNewFilters;
+
+            let newResults = [];
+
+            closeModal();
+            isOpenNewFilters();
+
+            if (isNewFilters) {
+                closeModal();
+                // модуль з додатковими фільтрами
+                newFilters();
+            }
+
+            result.push(...newResults);
+            console.log(result);
+
             const authToken = localStorage.getItem("token");
             localStorage.clear();
 
