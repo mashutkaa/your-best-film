@@ -160,7 +160,7 @@
             <button data-close class="btn-close">&times;</button>
             <div class="modal-wrapper">
               <div class="form-wrapper">
-                <h2 class="form-title">опитування</h2>
+                <h2 class="form-title">пошук фільму</h2>
 
                 <form class="form">
                   <button class="button submit-btn" type="submit">
@@ -171,6 +171,134 @@
             </div>
           </div>
 
+          <!-- ВІДКРИТИ РОЗШИРЕНИЙ ПОШУК -->
+
+          <div class="modal">
+            <button data-close class="btn-close">&times;</button>
+            <div class="modal-wrapper">
+              <div class="form-wrapper">
+                <form class="form">
+                        <div class="question-wrapper">
+                            <div class="question-item">
+                                <p class="question" id="isOpenNewFilters">Хочете ще більш персоналізовану добірку?</p>
+                                <label class="radio-button-label tabQuestion" tabindex="0">
+                                    <input class="radio-button-field" type="radio" name="based-on-true-events" value="Так" id="true-story-yes" tabindex="0" />
+                                    <span>Так</span>
+                                </label>
+                                <label class="radio-button-label tabQuestion" tabindex="0">
+                                    <input class="radio-button-field" type="radio" name="based-on-true-events" value="Ні" id="true-story-no" tabindex="0" />
+                                    <span>Ні</span>
+                                </label>
+                            </div>
+                        </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- РОЗШИРЕНИЙ ПОШУК -->
+          <div class="modal" id="surveyModal">
+            <button data-close class="btn-close" id="closeModal">&times;</button>
+            <div class="modal-wrapper">
+                <div class="form-wrapper">
+                    <h2 class="form-title">Розширений пошук</h2>
+                    <form class="form">
+                        <div class="question-wrapper">
+                            <div class="question-number-container">
+                                <span class="question-number">1</span>
+                            </div>
+                            <div class="question-item">
+                                <p class="question" id="question-1">Де відбуваються події?</p>
+                                <label class="dropdown-label">
+                                    <select class="dropdown-select tabQuestion" name="location" id="location" tabindex="0">
+                                        <option value="Місто">Місто</option>
+                                        <option value="Природа">Природа</option>
+                                        <option value="Дикі місця">Дикі місця</option>
+                                        <option value="Космос">Космос</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="question-wrapper">
+                            <div class="question-number-container">
+                                <span class="question-number">2</span>
+                            </div>
+                            <div class="question-item">
+                                <p class="question" id="question-2">Наскільки складний сюжет хотіли б?</p>
+                                <label class="radio-button-label tabQuestion" tabindex="0">
+                                    <input class="radio-button-field" type="radio" name="plot-complexity" value="Більш легкий та простий" id="plot-easy" tabindex="0" />
+                                    <span>Більш легкий та простий</span>
+                                </label>
+                                <label class="radio-button-label tabQuestion" tabindex="0">
+                                    <input class="radio-button-field" type="radio" name="plot-complexity" value="Більш заплутаний та глибокий" id="plot-complex" tabindex="0" />
+                                    <span>Більш заплутаний та глибокий</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="question-wrapper">
+                            <div class="question-number-container">
+                                <span class="question-number">3</span>
+                            </div>
+                            <div class="question-item">
+                                <p class="question" id="question-3">Який часовий проміжок подій?</p>
+                                <div class="slider-group">
+                                    <input id="time-slider" class="range-slider tabQuestion" type="range" min="0" max="2" step="1" value="1" required tabindex="0" />
+                                </div>
+                                <div class="slider-labels">
+                                    <span>Минуле</span>
+                                    <span>Теперішнє</span>
+                                    <span>Майбутнє</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-wrapper">
+                            <div class="question-number-container">
+                                <span class="question-number">4</span>
+                            </div>
+                            <div class="question-item">
+                                <p class="question" id="question-4">Фільм засновано на реальних подіях?</p>
+                                <label class="radio-button-label tabQuestion" tabindex="0">
+                                    <input class="radio-button-field" type="radio" name="based-on-true-events" value="Так" id="true-story-yes" tabindex="0" />
+                                    <span>Так</span>
+                                </label>
+                                <label class="radio-button-label tabQuestion" tabindex="0">
+                                    <input class="radio-button-field" type="radio" name="based-on-true-events" value="Ні" id="true-story-no" tabindex="0" />
+                                    <span>Ні</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="question-wrapper">
+                            <div class="question-number-container">
+                                <span class="question-number">5</span>
+                            </div>
+                            <div class="question-item">
+                                <p class="question" id="question-5">Який фінал більше до вподоби?</p>
+                                <label class="dropdown-label">
+                                    <select class="dropdown-select tabQuestion" name="preferred-ending" id="preferred-ending" tabindex="0">
+                                        <option value="Хепі-енд">Хепі-енд</option>
+                                        <option value="Драматичний">Драматичний</option>
+                                        <option value="Непередбачуваний">Непередбачуваний</option>
+                                        <option value="Відкритий">Відкритий</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="button submit-btn" id="submitSurvey">Отримати добірку фільмів</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+                
+                
+                
+            </div>
+          </div>
           <!-- ======================== ПРО НАС ========================== -->
           <section id="about-us" class="about-us-section">
             <div class="about-us-section-wrapper">
@@ -213,38 +341,6 @@
 
       <img class="logo-img" src="./img/logo.png" alt="our logo" />
     </footer>
-
-
-    <!-- =============== ВІДКРИТИ ДОДАТКОВІ ФІЛЬТРИ =================== -->
-    <!-- Кнопка для відкриття модального вікна -->
-    <button id="openModalBtn">Відкрити фільтри</button>
-
-    <!-- Модальне вікно -->
-    <div id="filtersModal" class="modal">
-        <div class="modal-content">
-          <span id="closeBtn" class="close">&times;</span>
-          <h2>Додаткові фільтри для пошуку фільму</h2>
-          <form id="filtersForm">
-            <label for="genre">Жанр:</label>
-            <select id="genre" name="genre">
-              <option value="action">Екшн</option>
-              <option value="comedy">Комедія</option>
-              <option value="drama">Драма</option>
-              <option value="horror">Жахи</option>
-            </select><br><br>
-
-            <label for="year">Рік випуску:</label>
-            <input type="number" id="year" name="year" min="1900" max="2025"><br><br>
-
-            <label for="rating">Рейтинг (від 1 до 10):</label>
-            <input type="number" id="rating" name="rating" min="1" max="10"><br><br>
-
-            <button type="submit">Застосувати фільтри</button>
-          </form>
-        </div>
-    </div>
-
-
 
     <!-- =============== МОДАЛЬНІ ВІКНА =================== -->
     <!-- ------------------ ВХІД ------------------------ -->

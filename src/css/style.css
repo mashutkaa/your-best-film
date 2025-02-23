@@ -63,6 +63,8 @@ body {
 .form {
     overflow-y: auto;
 
+    width: 36.609vw;
+
     flex-grow: 1;
     max-height: calc(70vh - 5.556vh);
     scrollbar-width: thin;
@@ -101,6 +103,7 @@ body {
 .question-wrapper {
     display: flex;
     margin-bottom: 40px;
+    /* width: 36.609vw; */
 }
 .modal-overlay {
     position: fixed;
@@ -124,7 +127,7 @@ body {
     width: 100%;
     height: 100%;
     backdrop-filter: blur(5px);
-    background-color: rgba(0, 0, 0, 0.2); 
+    background-color: rgba(0, 0, 0, 0.2);
     z-index: 999;
     display: none;
 }
@@ -238,9 +241,8 @@ body {
 }
 .mood-option input:checked ~ .icon img {
     border-radius: 50%;
-    outline: 2px solid rgba(188, 0, 0, 0.7);;
+    outline: 2px solid rgba(188, 0, 0, 0.7);
 }
-
 
 /* ДРУГЕ ПИТАННЯ */
 
@@ -390,7 +392,7 @@ body {
     border-color: white;
     border-radius: 20px;
 }
-.radio-button-label:focus{
+.radio-button-label:focus {
     border-radius: 30px;
 }
 /* ЧЕТВЕРТЕ ПИТАННЯ */
@@ -458,7 +460,7 @@ body {
     border-color: white;
     border-radius: 20px;
 }
-.checkbox-button-label:focus{
+.checkbox-button-label:focus {
     border-radius: 30px;
 }
 /* кнопка */
@@ -480,6 +482,45 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
     /* margin-bottom: 10px; */
     margin: 10px auto;
+}
+
+/* ВИПАДАЮЧИЙ СПИСОК */
+.dropdown-label {
+    .dropdown-select {
+        cursor: pointer;
+
+        width: 141px;
+        height: 22px;
+
+        border-radius: 50px;
+        border: 1px solid #fff;
+        background: rgba(217, 217, 217, 0);
+
+        color: rgba(255, 255, 255, 0.6);
+        text-align: center;
+        font-family: Montserrat;
+        font-size: 8px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+    }
+
+    .dropdown-select::-webkit-select-placeholder {
+        width: 141px;
+        min-height: 94px;
+
+        border-radius: 50px;
+        border: 1px solid #fff;
+        background: #01070a;
+
+        color: #fff;
+        text-align: center;
+        font-family: Montserrat;
+        font-size: 8px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+    }
 }
 
 .button:hover {
@@ -625,6 +666,6 @@ body {
 }
 
 /* умови використання + політика кофеден */
-.confidentiality{
+.confidentiality {
     text-decoration: underline;
 }
