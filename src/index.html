@@ -173,22 +173,25 @@
 
           <!-- ВІДКРИТИ РОЗШИРЕНИЙ ПОШУК -->
 
-          <div class="modal">
+          <div class="modal" id="isOpenNewFiltersModalWindow">
             <button data-close class="btn-close">&times;</button>
             <div class="modal-wrapper">
               <div class="form-wrapper">
                 <form class="form">
                         <div class="question-wrapper">
-                            <div class="question-item">
-                                <p class="question" id="isOpenNewFilters">Хочете ще більш персоналізовану добірку?</p>
-                                <label class="radio-button-label tabQuestion" tabindex="0">
+                            <div class="question-item-add">
+                                <p class="question-add" id="isOpenNewFilters">Хочете ще більш персоналізовану добірку?</p>
+                                <div class="radio-button-label-wrapper"> 
+                                    <label class="radio-button-label-add tabQuestion" tabindex="0">
                                     <input class="radio-button-field" type="radio" name="based-on-true-events" value="Так" id="true-story-yes" tabindex="0" />
                                     <span>Так</span>
                                 </label>
-                                <label class="radio-button-label tabQuestion" tabindex="0">
+                                <label class="radio-button-label-add tabQuestion" tabindex="0">
                                     <input class="radio-button-field" type="radio" name="based-on-true-events" value="Ні" id="true-story-no" tabindex="0" />
                                     <span>Ні</span>
                                 </label>
+                              </div>
+                             
                             </div>
                         </div>
                 </form>

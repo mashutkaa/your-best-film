@@ -57,7 +57,7 @@ body {
   width: 36.609vw;
   height: 70vh;
 
-  display: block;
+  display: none;
   padding-bottom: 60px;
 }
 
@@ -160,11 +160,17 @@ body {
 }
 
 .question {
-  font-size: 1.172vw;
+  font-size: 1.73vw;
   font-weight: 300;
   margin-bottom: 10px;
 }
 
+.question-add {
+  font-size: 2vw;
+  font-weight: 300;
+  margin-bottom: 10px;
+  text-align: center;
+}
 /* питання ФОРМИ */
 .question-number-container {
   padding: 0;
@@ -397,6 +403,15 @@ body {
   border-color: white;
   border-radius: 20px;
 }
+.radio-button-label-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+.radio-button-label-add span {
+  font-size: 30px;
+}
 .radio-button-label:focus {
   border-radius: 30px;
 }
@@ -587,7 +602,6 @@ body {
   cursor: pointer;
 }
 
-
 .slider-labels-add {
   display: flex;
   justify-content: space-between;
@@ -604,9 +618,15 @@ body {
   white-space: nowrap;
 }
 /* Позиції підписів для кожного степу */
-.slider-labels-add span:first-child { left: 8px; }
-.slider-labels-add span:nth-child(2) { left: 50%; }
-.slider-labels-add span:last-child { left: 100%; }
+.slider-labels-add span:first-child {
+  left: 8px;
+}
+.slider-labels-add span:nth-child(2) {
+  left: 50%;
+}
+.slider-labels-add span:last-child {
+  left: 100%;
+}
 
 /* Рисочки */
 .slider-labels-add span::after {
@@ -620,6 +640,15 @@ body {
   transform: translateX(-50%);
 }
 
+/* модальне вікно, де питають про розширену добріку*/
+#isOpenNewFiltersModalWindow {
+  display: none;
+  z-index: 20000000;
+}
+.question-item-add {
+  padding: 40px;
+  margin-top: 100px;
+}
 /* CLOSE BUTTON */
 .btn-close {
   background-color: #01070a;
@@ -761,4 +790,7 @@ body {
 /* умови використання + політика кофеден */
 .confidentiality {
   text-decoration: underline;
+}
+#surveyModal {
+  display: none;
 }

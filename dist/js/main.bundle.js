@@ -662,36 +662,36 @@ var filmsSearch = function filmsSearch() {
       maxSlider.value = parseInt(minSlider.value) + minGap;
     }
   });
+  var isOpenNewFiltersModalWindow = document.querySelector("#isOpenNewFiltersModalWindow");
+  var surveyModalWrapper = document.querySelector("#surveyModal");
   submitButton.addEventListener("click", function (event) {
-    event.preventDefault(); // Зупинити відправку форми за замовчуванням
-
+    event.preventDefault();
     if (validateYears()) {
-      var _result;
       // Зберігаємо токен аутентифікації перед очищенням localStorage
 
-      // тут відправка результатів
-      //sendResults(shortQuestions);
+      isOpenNewFiltersModalWindow.style.display = "block";
 
-      // це змінна, чи відкрити додаткові фільтри чи ні
+      //   // це змінна, чи відкрити додаткові фільтри чи ні
       var isNewFilters;
       var newResults = [];
-      closeModal();
-      (0,_isOpenNewFilters__WEBPACK_IMPORTED_MODULE_1__["default"])();
-      if (isNewFilters) {
-        closeModal();
-        // модуль з додатковими фільтрами
-        (0,_newFilters__WEBPACK_IMPORTED_MODULE_0__["default"])();
-      }
-      (_result = result).push.apply(_result, newResults);
-      console.log(result);
-      var authToken = localStorage.getItem("token");
-      localStorage.clear();
-
-      // Відновлюємо токен аутентифікації
-      if (authToken) {
-        localStorage.setItem("token", authToken);
-      }
-      showQuestion(shortQuestions);
+      (0,_isOpenNewFilters__WEBPACK_IMPORTED_MODULE_1__["default"])(function (isNewFilters) {
+        var _result;
+        if (isNewFilters) {
+          surveyModalWrapper.style.display = "flex";
+          (0,_newFilters__WEBPACK_IMPORTED_MODULE_0__["default"])();
+        } else {
+          // тут відправка результатів
+          sendResults(shortQuestions); // Якщо "Ні", відправляємо результати
+        }
+        (_result = result).push.apply(_result, newResults);
+        console.log(result);
+        var authToken = localStorage.getItem("token");
+        localStorage.clear();
+        if (authToken) {
+          localStorage.setItem("token", authToken);
+        }
+        showQuestion(shortQuestions);
+      });
     }
   });
 };
@@ -709,22 +709,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var isOpenNewFilters = function isOpenNewFilters() {
+var isOpenNewFilters = function isOpenNewFilters(callback) {
   console.log("modal isOpenNewFilters");
   var modal = document.querySelector(".modal");
   var closeButton = document.querySelector("[data-close]");
   var radioButtons = document.querySelectorAll(".radio-button-field");
   modal.style.display = "block";
-
-  // Функція для закриття модального вікна
   function closeModal() {
     modal.style.display = "none";
   }
-
-  // Додаємо обробник події на кнопку закриття
   closeButton.addEventListener("click", closeModal);
-
-  // Закриваємо модальне вікно при кліку поза його межами
   window.addEventListener("click", function (event) {
     if (event.target === modal) {
       closeModal();
@@ -733,6 +727,9 @@ var isOpenNewFilters = function isOpenNewFilters() {
   radioButtons.forEach(function (button) {
     button.addEventListener("change", function () {
       console.log("Вибрано: " + button.value);
+      var isNewFilters = button.value === "Так";
+      modal.style.display = "none";
+      callback(isNewFilters);
     });
   });
 };
