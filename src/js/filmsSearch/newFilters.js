@@ -9,31 +9,28 @@ const newFilters = () => {
         });
 
     const form = document.querySelector(".form");
-    const submitButton = document.getElementById("submitSurvey");
+    const submitButton = document.getElementById("submitNewFilters");
 
-    submitButton.addEventListener("click", function (event) {
+    // Видаляємо попередні обробники подій перед додаванням нового
+    submitButton.replaceWith(submitButton.cloneNode(true));
+    const newSubmitButton = document.getElementById("submitNewFilters");
+
+    newSubmitButton.addEventListener("click", function (event) {
         event.preventDefault();
 
-        // Отримання відповідей
         const responses = [];
 
-        // 1. Локація подій
         const location = document.getElementById("location").value;
-        if (location) {
+        if (location)
             responses.push(
                 `Події фільму відбуваються у такій локації: ${location}`
             );
-        }
 
-        // 2. Складність сюжету
         const plotComplexity = document.querySelector(
             'input[name="plot-complexity"]:checked'
         )?.value;
-        if (plotComplexity) {
-            responses.push(`Сюжет: ${plotComplexity}`);
-        }
+        if (plotComplexity) responses.push(`Сюжет: ${plotComplexity}`);
 
-        // 3. Часовий проміжок подій
         const timePeriod = document.getElementById("time-slider").value;
         if (timePeriod !== undefined) {
             const timePeriodText = {
@@ -46,7 +43,6 @@ const newFilters = () => {
             );
         }
 
-        // 4. Засновано на реальних подіях
         const basedOnTrueEvents = document.querySelector(
             'input[name="based-on-true-events"]:checked'
         )?.value;
@@ -60,15 +56,12 @@ const newFilters = () => {
             );
         }
 
-        // 5. Фінал
         const preferredEnding =
             document.getElementById("preferred-ending").value;
-        if (preferredEnding) {
+        if (preferredEnding)
             responses.push(`Фінал має бути: ${preferredEnding}`);
-        }
 
-        // Виведення результатів
-        return responses;
+        console.log(responses);
     });
 };
 

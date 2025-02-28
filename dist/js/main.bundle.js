@@ -165,6 +165,7 @@ var filmsSearch = function filmsSearch() {
     if (spinnerContainer) {
       spinnerContainer.remove();
     }
+    showQuestion(shortQuestions);
   }
   var formContainer = document.querySelector(".form");
   var submitButton = document.createElement("button");
@@ -554,8 +555,7 @@ var filmsSearch = function filmsSearch() {
       };
       result.push(newUserAnswer);
     });
-    console.log(result);
-    getMovieRecommendations(false);
+    return result;
   }
   var errorInputMin = document.querySelector(' p[name="error-year-0"]');
   var errorInputMax = document.querySelector(' p[name="error-year-1"]');
@@ -666,31 +666,64 @@ var filmsSearch = function filmsSearch() {
   var surveyModalWrapper = document.querySelector("#surveyModal");
   submitButton.addEventListener("click", function (event) {
     event.preventDefault();
+    var results = [];
     if (validateYears()) {
-      // Зберігаємо токен аутентифікації перед очищенням localStorage
+      results = sendResults(shortQuestions);
+      console.log("results from new modal");
+      console.log("results" + results);
+      var isOpen = true;
+      formContainer.innerHTML = "\n                <div class=\"question-wrapper\">\n                    <div class=\"question-item-add\">\n                        <p class=\"question-add\" id=\"isOpenNewFilters\">\u0425\u043E\u0447\u0435\u0442\u0435 \u0449\u0435 \u0431\u0456\u043B\u044C\u0448 \u043F\u0435\u0440\u0441\u043E\u043D\u0430\u043B\u0456\u0437\u043E\u0432\u0430\u043D\u0443 \u0434\u043E\u0431\u0456\u0440\u043A\u0443?</p>\n                        <div class=\"radio-button-label-wrapper\"> \n                            <label class=\"radio-button-label-add tabQuestion\" tabindex=\"0\">\n                            <input class=\"radio-button-field\" type=\"radio\" name=\"based-on-true-events\" value=\"\u0422\u0430\u043A\" id=\"true-story-yes\" tabindex=\"0\" />\n                            <span>\u0422\u0430\u043A</span>\n                        </label>\n                        <label class=\"radio-button-label-add tabQuestion\" tabindex=\"0\">\n                            <input class=\"radio-button-field\" type=\"radio\" name=\"based-on-true-events\" value=\"\u041D\u0456\" id=\"true-story-no\" tabindex=\"0\" />\n                            <span>\u041D\u0456</span>\n                        </label>\n                        </div>\n                        \n                    </div>\n                </div>\n            ";
+      document.addEventListener("change", function (event) {
+        if (event.target.name === "based-on-true-events") {
+          if (event.target.value === "Так") {
+            // Функція для визначення значення слайдера
+            var getTimePeriodValue = function getTimePeriodValue() {
+              var sliderValue = document.getElementById("time-slider").value;
+              switch (sliderValue) {
+                case "0":
+                  return "Минуле";
+                case "1":
+                  return "Теперішнє";
+                case "2":
+                  return "Майбутнє";
+                default:
+                  return null;
+                // Якщо слайдер не визначений
+              }
+            };
+            console.log("Користувач обрав 'Так'. Виконуємо певні дії...");
+            formContainer.innerHTML = "\n                        <div class=\"question-wrapper\">\n                            <div class=\"question-number-container\">\n                                <span class=\"question-number\">1</span>\n                            </div>\n                            <div class=\"question-item\">\n                                <p class=\"question\" id=\"question-1\">\u0414\u0435 \u0432\u0456\u0434\u0431\u0443\u0432\u0430\u044E\u0442\u044C\u0441\u044F \u043F\u043E\u0434\u0456\u0457?</p>\n                                <label class=\"dropdown-label\">\n                                    <select class=\"dropdown-select tabQuestion\" name=\"location\" id=\"location\" tabindex=\"0\">\n                                        <option value=\"\u041C\u0456\u0441\u0442\u043E\">\u041C\u0456\u0441\u0442\u043E</option>\n                                        <option value=\"\u041F\u0440\u0438\u0440\u043E\u0434\u0430\">\u041F\u0440\u0438\u0440\u043E\u0434\u0430</option>\n                                        <option value=\"\u0414\u0438\u043A\u0456 \u043C\u0456\u0441\u0446\u044F\">\u0414\u0438\u043A\u0456 \u043C\u0456\u0441\u0446\u044F</option>\n                                        <option value=\"\u041A\u043E\u0441\u043C\u043E\u0441\">\u041A\u043E\u0441\u043C\u043E\u0441</option>\n                                    </select>\n                                </label>\n                            </div>\n                        </div>\n\n                        <div class=\"question-wrapper\">\n                            <div class=\"question-number-container\">\n                                <span class=\"question-number\">2</span>\n                            </div>\n                            <div class=\"question-item\">\n                                <p class=\"question\" id=\"question-2\">\u041D\u0430\u0441\u043A\u0456\u043B\u044C\u043A\u0438 \u0441\u043A\u043B\u0430\u0434\u043D\u0438\u0439 \u0441\u044E\u0436\u0435\u0442 \u0445\u043E\u0442\u0456\u043B\u0438 \u0431?</p>\n                                <label class=\"radio-button-label tabQuestion\" tabindex=\"0\">\n                                    <input class=\"radio-button-field\" type=\"radio\" name=\"plot-complexity\" value=\"\u0411\u0456\u043B\u044C\u0448 \u043B\u0435\u0433\u043A\u0438\u0439 \u0442\u0430 \u043F\u0440\u043E\u0441\u0442\u0438\u0439\" id=\"plot-easy\" tabindex=\"0\" />\n                                    <span>\u0411\u0456\u043B\u044C\u0448 \u043B\u0435\u0433\u043A\u0438\u0439 \u0442\u0430 \u043F\u0440\u043E\u0441\u0442\u0438\u0439</span>\n                                </label>\n                                <label class=\"radio-button-label tabQuestion\" tabindex=\"0\">\n                                    <input class=\"radio-button-field\" type=\"radio\" name=\"plot-complexity\" value=\"\u0411\u0456\u043B\u044C\u0448 \u0437\u0430\u043F\u043B\u0443\u0442\u0430\u043D\u0438\u0439 \u0442\u0430 \u0433\u043B\u0438\u0431\u043E\u043A\u0438\u0439\" id=\"plot-complex\" tabindex=\"0\" />\n                                    <span>\u0411\u0456\u043B\u044C\u0448 \u0437\u0430\u043F\u043B\u0443\u0442\u0430\u043D\u0438\u0439 \u0442\u0430 \u0433\u043B\u0438\u0431\u043E\u043A\u0438\u0439</span>\n                                </label>\n                            </div>\n                        </div>\n\n                        <div class=\"question-wrapper\">\n                            <div class=\"question-number-container\">\n                                <span class=\"question-number\">3</span>\n                            </div>\n                            <div class=\"question-item\">\n                                <p class=\"question\" id=\"question-3\">\u042F\u043A\u0438\u0439 \u0447\u0430\u0441\u043E\u0432\u0438\u0439 \u043F\u0440\u043E\u043C\u0456\u0436\u043E\u043A \u043F\u043E\u0434\u0456\u0439?</p>\n                                <div class=\"slider-group\">\n                                    <input id=\"time-slider\" class=\"range-slider tabQuestion\" type=\"range\" min=\"0\" max=\"2\" step=\"1\" value=\"1\" required tabindex=\"0\" />\n                                </div>\n                                <div class=\"slider-labels-add\">\n                                    <span>\u041C\u0438\u043D\u0443\u043B\u0435</span>\n                                    <span class=\"slider-labels-add-item\">\u0422\u0435\u043F\u0435\u0440\u0456\u0448\u043D\u0454</span>\n                                    <span>\u041C\u0430\u0439\u0431\u0443\u0442\u043D\u0454</span>\n                                </div>\n                            </div>\n                        </div>\n\n                        <div class=\"question-wrapper\">\n                            <div class=\"question-number-container\">\n                                <span class=\"question-number\">4</span>\n                            </div>\n                            <div class=\"question-item\">\n                                <p class=\"question\" id=\"question-4\">\u0424\u0456\u043B\u044C\u043C \u0437\u0430\u0441\u043D\u043E\u0432\u0430\u043D\u043E \u043D\u0430 \u0440\u0435\u0430\u043B\u044C\u043D\u0438\u0445 \u043F\u043E\u0434\u0456\u044F\u0445?</p>\n                                <label class=\"radio-button-label tabQuestion\" tabindex=\"0\">\n                                    <input class=\"radio-button-field\" type=\"radio\" name=\"based-on-true-events\" value=\"\u0422\u0430\u043A\" id=\"true-story-yes\" tabindex=\"0\" />\n                                    <span>\u0422\u0430\u043A</span>\n                                </label>\n                                <label class=\"radio-button-label tabQuestion\" tabindex=\"0\">\n                                    <input class=\"radio-button-field\" type=\"radio\" name=\"based-on-true-events\" value=\"\u041D\u0456\" id=\"true-story-no\" tabindex=\"0\" />\n                                    <span>\u041D\u0456</span>\n                                </label>\n                            </div>\n                        </div>\n\n                        <div class=\"question-wrapper\">\n                            <div class=\"question-number-container\">\n                                <span class=\"question-number\">5</span>\n                            </div>\n                            <div class=\"question-item\">\n                                <p class=\"question\" id=\"question-5\">\u042F\u043A\u0438\u0439 \u0444\u0456\u043D\u0430\u043B \u0431\u0456\u043B\u044C\u0448\u0435 \u0434\u043E \u0432\u043F\u043E\u0434\u043E\u0431\u0438?</p>\n                                <label class=\"dropdown-label\">\n                                    <select class=\"dropdown-select tabQuestion\" name=\"preferred-ending\" id=\"preferred-ending\" tabindex=\"0\">\n                                        <option value=\"\u0425\u0435\u043F\u0456-\u0435\u043D\u0434\">\u0425\u0435\u043F\u0456-\u0435\u043D\u0434</option>\n                                        <option value=\"\u0414\u0440\u0430\u043C\u0430\u0442\u0438\u0447\u043D\u0438\u0439\">\u0414\u0440\u0430\u043C\u0430\u0442\u0438\u0447\u043D\u0438\u0439</option>\n                                        <option value=\"\u041D\u0435\u043F\u0435\u0440\u0435\u0434\u0431\u0430\u0447\u0443\u0432\u0430\u043D\u0438\u0439\">\u041D\u0435\u043F\u0435\u0440\u0435\u0434\u0431\u0430\u0447\u0443\u0432\u0430\u043D\u0438\u0439</option>\n                                        <option value=\"\u0412\u0456\u0434\u043A\u0440\u0438\u0442\u0438\u0439\">\u0412\u0456\u0434\u043A\u0440\u0438\u0442\u0438\u0439</option>\n                                    </select>\n                                </label>\n                            </div>\n                        </div>\n\n                        <button type=\"button\" class=\"button submit-btn\" id=\"submitNewFilters\">\u041E\u0442\u0440\u0438\u043C\u0430\u0442\u0438 \u0434\u043E\u0431\u0456\u0440\u043A\u0443 \u0444\u0456\u043B\u044C\u043C\u0456\u0432</button>\n                        ";
+            var userSelections = []; // Масив для збереження відповідей
 
-      isOpenNewFiltersModalWindow.style.display = "block";
+            document.getElementById("submitNewFilters").addEventListener("click", function () {
+              var _document$querySelect5, _document$querySelect6;
+              // Отримуємо вибори користувача
+              var location = document.getElementById("location").value || null;
+              var plotComplexity = ((_document$querySelect5 = document.querySelector('input[name="plot-complexity"]:checked')) === null || _document$querySelect5 === void 0 ? void 0 : _document$querySelect5.value) || null;
+              var timePeriod = getTimePeriodValue() || null;
+              var basedOnTrueEvents = ((_document$querySelect6 = document.querySelector('input[name="based-on-true-events"]:checked')) === null || _document$querySelect6 === void 0 ? void 0 : _document$querySelect6.value) || null;
+              var preferredEnding = document.getElementById("preferred-ending").value || null;
 
-      //   // це змінна, чи відкрити додаткові фільтри чи ні
-      var isNewFilters;
-      var newResults = [];
-      (0,_isOpenNewFilters__WEBPACK_IMPORTED_MODULE_1__["default"])(function (isNewFilters) {
-        var _result;
-        if (isNewFilters) {
-          surveyModalWrapper.style.display = "flex";
-          (0,_newFilters__WEBPACK_IMPORTED_MODULE_0__["default"])();
-        } else {
-          // тут відправка результатів
-          sendResults(shortQuestions); // Якщо "Ні", відправляємо результати
+              // Форматуємо відповіді у потрібний формат
+              var formattedAnswers = [location ? "\u041F\u043E\u0434\u0456\u0457 \u0444\u0456\u043B\u044C\u043C\u0443 \u0432\u0456\u0434\u0431\u0443\u0432\u0430\u044E\u0442\u044C\u0441\u044F \u0443 \u0442\u0430\u043A\u0456\u0439 \u043B\u043E\u043A\u0430\u0446\u0456\u0457: ".concat(location) : null, timePeriod ? "\u0424\u0456\u043B\u044C\u043C \u043F\u0440\u043E \u0447\u0430\u0441\u043E\u0432\u0438\u0439 \u043F\u0440\u043E\u043C\u0456\u0436\u043E\u043A: ".concat(timePeriod) : null, basedOnTrueEvents ? "\u0424\u0456\u043B\u044C\u043C ".concat(basedOnTrueEvents === "Так" ? "засновано на реальних подіях" : "не засновано на реальних подіях") : null, preferredEnding ? "\u0424\u0456\u043D\u0430\u043B \u043C\u0430\u0454 \u0431\u0443\u0442\u0438: ".concat(preferredEnding) : null];
+
+              // Додаємо всі відповіді в масив, фільтруємо null значення
+              var validAnswers = formattedAnswers.filter(function (answer) {
+                return answer !== null;
+              });
+
+              // Додаємо в масив userSelections
+              userSelections.push(validAnswers);
+
+              // Виводимо результат у консоль (можна замінити на відправку даних на сервер)
+              console.log("Відповіді користувача:", validAnswers);
+              getMovieRecommendations(false);
+            });
+          } else {
+            console.log(results);
+            getMovieRecommendations(false);
+          }
         }
-        (_result = result).push.apply(_result, newResults);
-        console.log(result);
-        var authToken = localStorage.getItem("token");
-        localStorage.clear();
-        if (authToken) {
-          localStorage.setItem("token", authToken);
-        }
-        showQuestion(shortQuestions);
       });
     }
   });
@@ -711,7 +744,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var isOpenNewFilters = function isOpenNewFilters(callback) {
   console.log("modal isOpenNewFilters");
-  var modal = document.querySelector(".modal");
+  var modal = document.getElementById("isOpenNewFiltersModalWindow");
   var closeButton = document.querySelector("[data-close]");
   var radioButtons = document.querySelectorAll(".radio-button-field");
   modal.style.display = "block";
@@ -754,27 +787,19 @@ var newFilters = function newFilters() {
     document.getElementById("surveyModal").style.display = "none";
   });
   var form = document.querySelector(".form");
-  var submitButton = document.getElementById("submitSurvey");
-  submitButton.addEventListener("click", function (event) {
+  var submitButton = document.getElementById("submitNewFilters");
+
+  // Видаляємо попередні обробники подій перед додаванням нового
+  submitButton.replaceWith(submitButton.cloneNode(true));
+  var newSubmitButton = document.getElementById("submitNewFilters");
+  newSubmitButton.addEventListener("click", function (event) {
     var _document$querySelect, _document$querySelect2;
     event.preventDefault();
-
-    // Отримання відповідей
     var responses = [];
-
-    // 1. Локація подій
     var location = document.getElementById("location").value;
-    if (location) {
-      responses.push("\u041F\u043E\u0434\u0456\u0457 \u0444\u0456\u043B\u044C\u043C\u0443 \u0432\u0456\u0434\u0431\u0443\u0432\u0430\u044E\u0442\u044C\u0441\u044F \u0443 \u0442\u0430\u043A\u0456\u0439 \u043B\u043E\u043A\u0430\u0446\u0456\u0457: ".concat(location));
-    }
-
-    // 2. Складність сюжету
+    if (location) responses.push("\u041F\u043E\u0434\u0456\u0457 \u0444\u0456\u043B\u044C\u043C\u0443 \u0432\u0456\u0434\u0431\u0443\u0432\u0430\u044E\u0442\u044C\u0441\u044F \u0443 \u0442\u0430\u043A\u0456\u0439 \u043B\u043E\u043A\u0430\u0446\u0456\u0457: ".concat(location));
     var plotComplexity = (_document$querySelect = document.querySelector('input[name="plot-complexity"]:checked')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.value;
-    if (plotComplexity) {
-      responses.push("\u0421\u044E\u0436\u0435\u0442: ".concat(plotComplexity));
-    }
-
-    // 3. Часовий проміжок подій
+    if (plotComplexity) responses.push("\u0421\u044E\u0436\u0435\u0442: ".concat(plotComplexity));
     var timePeriod = document.getElementById("time-slider").value;
     if (timePeriod !== undefined) {
       var timePeriodText = {
@@ -784,21 +809,13 @@ var newFilters = function newFilters() {
       };
       responses.push("\u0424\u0456\u043B\u044C\u043C \u043F\u0440\u043E \u0447\u0430\u0441\u043E\u0432\u0438\u0439 \u043F\u0440\u043E\u043C\u0456\u0436\u043E\u043A: ".concat(timePeriodText[timePeriod]));
     }
-
-    // 4. Засновано на реальних подіях
     var basedOnTrueEvents = (_document$querySelect2 = document.querySelector('input[name="based-on-true-events"]:checked')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.value;
     if (basedOnTrueEvents) {
       responses.push("\u0424\u0456\u043B\u044C\u043C ".concat(basedOnTrueEvents === "Так" ? "засновано на реальних подіях" : "не засновано на реальних подіях"));
     }
-
-    // 5. Фінал
     var preferredEnding = document.getElementById("preferred-ending").value;
-    if (preferredEnding) {
-      responses.push("\u0424\u0456\u043D\u0430\u043B \u043C\u0430\u0454 \u0431\u0443\u0442\u0438: ".concat(preferredEnding));
-    }
-
-    // Виведення результатів
-    return responses;
+    if (preferredEnding) responses.push("\u0424\u0456\u043D\u0430\u043B \u043C\u0430\u0454 \u0431\u0443\u0442\u0438: ".concat(preferredEnding));
+    console.log(responses);
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (newFilters);
