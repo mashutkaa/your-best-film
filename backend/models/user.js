@@ -64,3 +64,26 @@ export async function getUserById(id) {
         );
     });
 }
+
+/**
+ * Оновлює значення поля у користувача
+ * @param {number} id - ідентифікатор користувача
+ * @param {string} field - поле, яке треба оновити
+ * @param {string} value - нове значення поля
+ * @returns {Promise<void>}
+ */
+export async function updateUserField(id, field, value) {
+    return new Promise((resolve, reject) => {
+        db.run(
+            `UPDATE users SET ${field} = ? WHERE id = ?`,
+            [value, id],
+            (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            }
+        );
+    });
+}

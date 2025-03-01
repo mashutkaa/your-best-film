@@ -603,6 +603,10 @@ closeNewPasswordWindowBtn.addEventListener("click", () => {
 saveNewPasswordBtn.addEventListener("click", (event) => {
   event.preventDefault(); // Запобігає перезавантаженню сторінки
 
+  if (!tokenToResetPassword) {
+    return;
+  }
+
   const newPasswordValue = newPassword.value.trim();
   const newConfirmPasswordValue = newConfirmPassword.value.trim();
 
@@ -630,13 +634,30 @@ saveNewPasswordBtn.addEventListener("click", (event) => {
     return;
   }
 
-  // Якщо всі перевірки пройдено - виконуємо успішний сценарій
-  successfulRecoveryWindow.style.display = "block";
-  newPasswordWindow.style.display = "none";
-  backgroung.classList.add("you");
-  document.body.style.overflow = "hidden";
-  document.querySelector(".header").style.pointerEvents = "none";
+  fetch("http://localhost:3000/auth/resetPassword", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      token: tokenToResetPassword,
+      password: newPasswordValue,
+    }),
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        newPasswordWindow.style.display = "none";
+        successfulRecoveryWindow.style.display = "block";
+        backgroung.classList.add("you");
+        document.body.style.overflow = "hidden";
+        document.querySelector(".header").style.pointerEvents = "none";
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 });
+
 closeSuccessfulRecoverBtn.addEventListener("click", () => {
   successfulRecoveryWindow.style.display = "none";
   backgroung.classList.remove("you");
@@ -697,3 +718,11 @@ newPassword.addEventListener("input", (event) => {
     newPasswordError.style.display = "none";
   }
 });
+
+
+// ======================= ВІДНОВЛЕННЯ ПАРОЛЮ =======================
+const tokenToResetPassword = urlParams.get("resetPassword");
+
+if (tokenToResetPassword) {
+  newPasswordWindow.style.display = "block";
+}

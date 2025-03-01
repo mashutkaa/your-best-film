@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { createUser, getUserByEmail, getUserById } from "../models/user.js";
+import { createUser, getUserByEmail, getUserById, updateUserField } from "../models/user.js";
 import { sendEmail } from "../services/emailService.js";
 
 export async function register(req, res) {
@@ -106,4 +106,23 @@ export async function forgotPassword(req, res) {
     );
 
     res.json({ message: "Email sent" });
+}
+
+export async function resetPassword(req, res) {
+    const { token, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        if (!decoded.isToResetPassword) {
+            return res.status(400).json({ error: "Invalid token" });
+        }
+
+        await updateUserField(decoded.userId, "password", hashedPassword);
+
+        res.json({ message: "Password updated" });
+    } catch (error) {
+        res.status(401).json({ error: "Invalid token" });
+    }
 }
