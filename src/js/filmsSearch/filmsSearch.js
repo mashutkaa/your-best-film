@@ -656,8 +656,6 @@ const filmsSearch = () => {
         let results = [];
         if (validateYears()) {
             results = sendResults(shortQuestions);
-            console.log("results from new modal");
-            console.log("results" + results);
 
             let isOpen = true;
 
@@ -667,11 +665,11 @@ const filmsSearch = () => {
                         <p class="question-add" id="isOpenNewFilters">Хочете ще більш персоналізовану добірку?</p>
                         <div class="radio-button-label-wrapper"> 
                             <label class="radio-button-label-add tabQuestion" tabindex="0">
-                            <input class="radio-button-field" type="radio" name="based-on-true-events" value="Так" id="true-story-yes" tabindex="0" />
+                            <input class="radio-button-field" type="radio" name="continue-or-send-results" value="Так" id="true-story-yes" tabindex="0" />
                             <span>Так</span>
                         </label>
                         <label class="radio-button-label-add tabQuestion" tabindex="0">
-                            <input class="radio-button-field" type="radio" name="based-on-true-events" value="Ні" id="true-story-no" tabindex="0" />
+                            <input class="radio-button-field" type="radio" name="continue-or-send-results" value="Ні" id="true-story-no" tabindex="0" />
                             <span>Ні</span>
                         </label>
                         </div>
@@ -681,7 +679,7 @@ const filmsSearch = () => {
             `;
 
             document.addEventListener("change", (event) => {
-                if (event.target.name === "based-on-true-events") {
+                if (event.target.name === "continue-or-send-results") {
                     if (event.target.value === "Так") {
                         console.log(
                             "Користувач обрав 'Так'. Виконуємо певні дії..."
@@ -745,11 +743,11 @@ const filmsSearch = () => {
                             <div class="question-item">
                                 <p class="question" id="question-4">Фільм засновано на реальних подіях?</p>
                                 <label class="radio-button-label tabQuestion" tabindex="0">
-                                    <input class="radio-button-field" type="radio" name="based-on-true-events" value="Так" id="true-story-yes" tabindex="0" />
+                                    <input class="radio-button-field" type="radio" name="based-on-true-events" value="true" id="true-story-yes" tabindex="0" />
                                     <span>Так</span>
                                 </label>
                                 <label class="radio-button-label tabQuestion" tabindex="0">
-                                    <input class="radio-button-field" type="radio" name="based-on-true-events" value="Ні" id="true-story-no" tabindex="0" />
+                                    <input class="radio-button-field" type="radio" name="based-on-true-events" value="false" id="true-story-no" tabindex="0" />
                                     <span>Ні</span>
                                 </label>
                             </div>
@@ -772,7 +770,10 @@ const filmsSearch = () => {
                             </div>
                         </div>
 
-                        <button type="button" class="button submit-btn" id="submitNewFilters">Отримати добірку фільмів</button>
+                        <button type="button" class="button submit-btn" id="submitNewFilters">
+                            Отримати добірку фільмів
+                        </button>
+
                         `;
 
                         const userSelections = []; // Масив для збереження відповідей
@@ -780,6 +781,8 @@ const filmsSearch = () => {
                         document
                             .getElementById("submitNewFilters")
                             .addEventListener("click", () => {
+                                event.preventDefault();
+                                console.log("Hello");
                                 // Отримуємо вибори користувача
                                 const location =
                                     document.getElementById("location").value ||
@@ -802,12 +805,20 @@ const filmsSearch = () => {
                                     location
                                         ? `Події фільму відбуваються у такій локації: ${location}`
                                         : null,
+                                    plotComplexity
+                                        ? `Сюжет ${
+                                              plotComplexity ===
+                                              "Більш легкий та простий"
+                                                  ? "більш легкий та простий"
+                                                  : "більш заплутаний та глибокий"
+                                          }`
+                                        : null,
                                     timePeriod
                                         ? `Фільм про часовий проміжок: ${timePeriod}`
                                         : null,
                                     basedOnTrueEvents
                                         ? `Фільм ${
-                                              basedOnTrueEvents === "Так"
+                                              basedOnTrueEvents === "true"
                                                   ? "засновано на реальних подіях"
                                                   : "не засновано на реальних подіях"
                                           }`
@@ -825,12 +836,8 @@ const filmsSearch = () => {
                                 // Додаємо в масив userSelections
                                 userSelections.push(validAnswers);
 
-                                // Виводимо результат у консоль (можна замінити на відправку даних на сервер)
-                                console.log(
-                                    "Відповіді користувача:",
-                                    validAnswers
-                                );
-
+                                result = [...results, ...userSelections];
+                                console.log(results);
                                 getMovieRecommendations(false);
                             });
 
@@ -850,7 +857,7 @@ const filmsSearch = () => {
                             }
                         }
                     } else {
-                        console.log(results);
+                        result = [...results];
                         getMovieRecommendations(false);
                     }
                 }
