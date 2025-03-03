@@ -562,7 +562,7 @@ body {
 .range-slider {
   -webkit-appearance: none;
   appearance: none;
-  width: 300px;
+  width: 365px;
   top: 50%;
   position: absolute;
   transform: translateY(-50%);
