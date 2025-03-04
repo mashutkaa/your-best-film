@@ -176,7 +176,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var saveRecommendation = function saveRecommendation() {
-  var saveRecommendationBtn = querySelector(".save-reccomendations__button");
+  var saveRecommendationBtn = document.querySelector(".save-recommendations__button");
+  if (!saveRecommendationBtn) {
+    console.error("Кнопку не знайдено!");
+    return;
+  }
   saveRecommendationBtn.onclick = function () {
     var _localStorage$getItem;
     if (!((_localStorage$getItem = localStorage.getItem("token")) !== null && _localStorage$getItem !== void 0 && _localStorage$getItem.trim())) {

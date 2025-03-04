@@ -1,7 +1,12 @@
 const saveRecommendation = () => {
-    const saveRecommendationBtn = querySelector(
-        ".save-reccomendations__button"
+    const saveRecommendationBtn = document.querySelector(
+        ".save-recommendations__button"
     );
+
+    if (!saveRecommendationBtn) {
+        console.error("Кнопку не знайдено!");
+        return;
+    }
 
     saveRecommendationBtn.onclick = function () {
         if (!localStorage.getItem("token")?.trim()) {
