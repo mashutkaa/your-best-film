@@ -13,6 +13,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var bestFilms = function bestFilms() {
+  if (window.location.search.includes("emailConfirmed=true")) {
+    window.location.reload();
+  }
   var getBestMovies = function getBestMovies() {
     var apiKey = "4d5fbb327da57370030fbb7ccdefaf70";
     var imageBaseUrl = "https://image.tmdb.org/t/p/w500";

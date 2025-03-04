@@ -1,4 +1,8 @@
 const bestFilms = () => {
+    if (window.location.search.includes("emailConfirmed=true")) {
+        window.location.reload();
+    }
+
     const getBestMovies = () => {
         const apiKey = "4d5fbb327da57370030fbb7ccdefaf70";
         const imageBaseUrl = "https://image.tmdb.org/t/p/w500";
