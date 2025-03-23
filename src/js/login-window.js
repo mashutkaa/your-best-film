@@ -15,7 +15,7 @@ const loginWrapper = document.querySelector(".login-form-container");
 const registerWrapper = document.querySelector(".register-container");
 // ----------- відкриття/закриття модального вікна -----------
 const wrapper = document.querySelector(".registration-login-wrapper");
-const backgroung = document.querySelector(".main-page-wrapper");
+const background = document.querySelector(".main-page-wrapper");
 const closeLoginIcon = document.querySelector(".close-login-btn");
 const closeRegisterBtn = document.querySelector(".close-register-btn");
 const closesuccessfulRegistrationWindow = document.querySelector(
@@ -27,7 +27,7 @@ wrapper.style.display = "none";
 //ф-я закриття модального вікна
 function closeModal() {
   wrapper.style.display = "none";
-  backgroung.classList.remove("you");
+  background.classList.remove("you");
   document.body.style.overflow = "auto";
   document.querySelector(".header").style.pointerEvents = "auto";
   document.body.classList.remove("login-modal-open");
@@ -35,19 +35,18 @@ function closeModal() {
 // Відкриття модального вікна
 menuBtn.addEventListener("click", (e) => {
   wrapper.style.display = "block";
-  backgroung.classList.add("you");
+  background.classList.add("you");
   document.body.style.overflow = "hidden";
   document.querySelector(".header").style.pointerEvents = "none";
   document.body.classList.add("login-modal-open");
 });
 
 // Закриття модального вікна при кліку поза ним
-backgroung.addEventListener("click", (event) => {
-  if (event.target === backgroung && (wrapper.style.display = "block")) {
+background.addEventListener("click", (event) => {
+  if (event.target === background) {
     closeModal();
   }
 });
-
 // Закриття при натисканні на кнопку
 closeLoginIcon.addEventListener("click", () => closeModal());
 
