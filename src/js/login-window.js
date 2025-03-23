@@ -23,15 +23,32 @@ const closesuccessfulRegistrationWindow = document.querySelector(
 );
 const modalWrappers = document.querySelector(".modal-wrapper"); // Саме модальне вікно
 const modalWrapper = document.querySelector(".login-modal-wrapper");
+
+const modalOverlay = document.querySelector(".modal-overlay");
+const formWrapper = document.querySelector(".form-wrapper");
 wrapper.style.display = "none";
-//ф-я закриття модального вікна
+
+// Закрити модалку
 function closeModal() {
-  wrapper.style.display = "none";
+  wrapper.classList.remove("show");
+  modalOverlay.classList.remove("show");
+  document.body.style.overflow = ""; // Відновити прокручування
+
+  formWrapper.classList.remove("hide");
+
   background.classList.remove("you");
   document.body.style.overflow = "auto";
   document.querySelector(".header").style.pointerEvents = "auto";
   document.body.classList.remove("login-modal-open");
+
+  forgotPasswordWindow.style.display = "none";
+  recoveryMessageWindow.style.display = "none";
+  newPasswordWindow.style.display = "none";
+  successfulRecoveryWindow.style.display = "none";
+  verifyModalWindow.style.display = "none";
+  wrapper.style.display = "none";
 }
+
 // Відкриття модального вікна
 menuBtn.addEventListener("click", (e) => {
   wrapper.style.display = "block";
@@ -39,30 +56,21 @@ menuBtn.addEventListener("click", (e) => {
   document.body.style.overflow = "hidden";
   document.querySelector(".header").style.pointerEvents = "none";
   document.body.classList.add("login-modal-open");
+
+  wrapper.classList.add("show");
+  modalOverlay.classList.add("show");
 });
 
 // Закриття модального вікна при кліку поза ним
-background.addEventListener("click", (event) => {
-  if (event.target === background) {
-    closeModal();
-  }
+modalOverlay.addEventListener("click", (event) => {
+  closeModal();
 });
 // Закриття при натисканні на кнопку
 closeLoginIcon.addEventListener("click", () => closeModal());
+closeRegisterBtn.addEventListener("click", () => closeModal());
 
-closeRegisterBtn.addEventListener("click", (e) => {
-  userNotExistError.style.display = "none";
-  registrationForm.style.display = "none";
-  loginForm.style.display = "block";
-
-  wrapper.style.display = "none";
-  backgroung.classList.remove("you");
-  document.body.style.overflow = "auto";
-  document.querySelector(".header").style.pointerEvents = "auto";
-  document.body.classList.remove("login-modal-open");
-});
 closesuccessfulRegistrationWindow.addEventListener("click", () => {
-  successfulRegistrationWindow.style.display = "none";
+  closeModal();
 });
 
 // ======================= ВХІД ====================================
@@ -270,15 +278,14 @@ submitButton.addEventListener("click", (event) => {
   const confirmPasswordValue = confirmPassword.value.trim();
   const emailLength = emailValue.split("@")[0].length;
 
-
   if (!emailValue || !passwordValue || !confirmPasswordValue || !nameValue) {
     errorMsg.style.display = "block";
     errorMsg.textContent = "Заповніть всі обов'язкові поля";
-    return; 
+    return;
   }
 
   if (!submitPrivacyPolicy.checked) {
-    return; 
+    return;
   }
 
   // Перевірка формату email
@@ -286,7 +293,7 @@ submitButton.addEventListener("click", (event) => {
     errorInput.style.display = "block";
     email.style.borderColor = "red";
     errorInput.textContent = "Вкажіть правильну електронну пошту";
-    return; 
+    return;
   } else {
     errorInput.style.display = "none";
   }
@@ -300,23 +307,22 @@ submitButton.addEventListener("click", (event) => {
     !passwordConditions.number ||
     !passwordConditions.specialChar
   ) {
-    return; 
+    return;
   }
 
   if (!passwordsMatch(passwordValue, confirmPasswordValue)) {
     confirmPasswordError.style.display = "block";
     confirmPasswordWrapper.style.borderColor = "red";
     confirmPasswordError.textContent = "Паролі не співпадають";
-    return; 
+    return;
   } else {
     confirmPasswordError.style.display = "none";
   }
 
   if (emailLength <= nameValue.length) {
     errorName.innerHTML = `Ім'я повинно бути не довшим за ${emailLength} символів`;
-    return; 
+    return;
   }
-
 
   registerLoader.style.display = "block";
   registerModalMessage.textContent = "";
@@ -565,10 +571,7 @@ forgotPasswordBtn.addEventListener("click", () => {
   forgotPasswordWindow.style.display = "block";
   wrapper.style.display = "none";
 });
-closeForgotPasswordBtn.addEventListener("click", () => {
-  forgotPasswordWindow.style.display = "none";
-  wrapper.style.display = "block";
-});
+closeForgotPasswordBtn.addEventListener("click", () => closeModal());
 recoveryMessageBtn.addEventListener("click", (e) => {
   fetch("http://localhost:3000/auth/forgotPassword", {
     method: "POST",
@@ -588,17 +591,8 @@ recoveryMessageBtn.addEventListener("click", (e) => {
       console.error(error);
     });
 });
-closeRecoveryMessageBtn.addEventListener("click", () => {
-  recoveryMessageWindow.style.display = "none";
-  wrapper.style.display = "block";
-});
-closeNewPasswordWindowBtn.addEventListener("click", () => {
-  newPasswordWindow.style.display = "none";
-  wrapper.style.display = "block";
-  backgroung.classList.add("you");
-  document.body.style.overflow = "hidden";
-  document.querySelector(".header").style.pointerEvents = "none";
-});
+closeRecoveryMessageBtn.addEventListener("click", () => closeModal());
+closeNewPasswordWindowBtn.addEventListener("click", () => closeModal());
 saveNewPasswordBtn.addEventListener("click", (event) => {
   event.preventDefault(); // Запобігає перезавантаженню сторінки
 
@@ -647,9 +641,6 @@ saveNewPasswordBtn.addEventListener("click", (event) => {
       if (response.status === 200) {
         newPasswordWindow.style.display = "none";
         successfulRecoveryWindow.style.display = "block";
-        backgroung.classList.add("you");
-        document.body.style.overflow = "hidden";
-        document.querySelector(".header").style.pointerEvents = "none";
       }
     })
     .catch((error) => {
@@ -657,12 +648,7 @@ saveNewPasswordBtn.addEventListener("click", (event) => {
     });
 });
 
-closeSuccessfulRecoverBtn.addEventListener("click", () => {
-  successfulRecoveryWindow.style.display = "none";
-  backgroung.classList.remove("you");
-  document.body.style.overflow = "auto";
-  document.querySelector(".header").style.pointerEvents = "auto";
-});
+closeSuccessfulRecoverBtn.addEventListener("click", () => closeModal());
 
 // чи співпадають паролі
 
@@ -718,10 +704,15 @@ newPassword.addEventListener("input", (event) => {
   }
 });
 
-
 // ======================= ВІДНОВЛЕННЯ ПАРОЛЮ =======================
 const tokenToResetPassword = urlParams.get("resetPassword");
 
 if (tokenToResetPassword) {
   newPasswordWindow.style.display = "block";
+    background.classList.add("you");
+    document.body.style.overflow = "hidden";
+    document.querySelector(".header").style.pointerEvents = "none";
+    document.body.classList.add("login-modal-open");
+    newPasswordWindow.classList.add("show");
+    modalOverlay.classList.add("show");
 }
