@@ -17,32 +17,13 @@ var bestFilms = function bestFilms() {
     window.location.reload();
   }
   var getBestMovies = function getBestMovies() {
-    var apiKey = "4d5fbb327da57370030fbb7ccdefaf70";
-    var imageBaseUrl = "https://image.tmdb.org/t/p/w500";
-    var url = "https://api.themoviedb.org/3/movie/popular?api_key=".concat(apiKey, "&language=uk&page=1");
+    var url = "http://localhost:3000/movies/getPopularMovies";
     fetch(url).then(function (response) {
       return response.json();
     }).then(function (data) {
-      if (data.results) {
-        var forbiddenWords = ["росія", "russia", "россий", "москва", "путін", "kremlin", "російськ", "росіянин", "росіянка", "росіяни", "совет", "ссср", "сталін", "ленін"];
-        var filteredMovies = data.results.filter(function (movie) {
-          var overview = movie.overview.trim().toLowerCase();
-          var containsForbiddenWords = forbiddenWords.some(function (word) {
-            return overview.includes(word);
-          });
-          return movie.vote_average >= 6.5 && !containsForbiddenWords && overview !== "";
-        });
-        var top7Movies = filteredMovies.slice(0, 7);
-        var movies = top7Movies.map(function (movie) {
-          return {
-            title: movie.title,
-            description: movie.overview,
-            rating: movie.vote_average,
-            poster: movie.poster_path ? "".concat(imageBaseUrl).concat(movie.poster_path) : null
-          };
-        });
-        console.log(movies);
-        handleBestMovies(movies);
+      if (data) {
+        console.log(data);
+        handleBestMovies(data);
       }
     })["catch"](function (error) {
       return console.error("Помилка:", error);
@@ -81,7 +62,7 @@ var bestFilms = function bestFilms() {
       film.style.backgroundImage = "url(\"".concat(poster, "\")");
       var newDescr = document.createElement("div");
       newDescr.classList.add(index <= 2 ? "dropright" : "dropleft");
-      newDescr.innerHTML = "\n                    <div class=\"text-content\">\n                        <h4>".concat(title, "</h4>\n                        <p class=\"best-film__descr\">").concat(descriptionMovie, "</p>\n                        <p class=\"best-film__raiting\">").concat(rating.toFixed(1), "/10</p>\n                    </div>\n            ");
+      newDescr.innerHTML = "\n                  <div class=\"text-content\">\n                      <h4>".concat(title, "</h4>\n                      <p class=\"best-film__descr\">").concat(descriptionMovie, "</p>\n                      <p class=\"best-film__raiting\">").concat(rating.toFixed(1), "/10</p>\n                  </div>\n          ");
       film.insertAdjacentElement("afterend", newDescr);
     });
   };
@@ -410,7 +391,9 @@ var filmsSearch = function filmsSearch() {
         modalContainer,
         spinnerContainer,
         spinnerImg,
+        token,
         requestBody,
+        requestBodyToken,
         response,
         errorText,
         recommendations,
@@ -438,68 +421,75 @@ var filmsSearch = function filmsSearch() {
 
             // Додати спінер у модальне вікно
             modalContainer.appendChild(spinnerContainer);
-            _context.prev = 12;
+            token = localStorage.getItem("token");
+            _context.prev = 13;
             requestBody = {
               result: result,
               sandbox: sandbox
             };
-            _context.next = 16;
+            requestBodyToken = token ? "Bearer ".concat(token) : null;
+            _context.next = 18;
             return fetch("http://localhost:3000/movies/getMoviesRecommendations", {
               method: "POST",
               headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: requestBodyToken
               },
               body: JSON.stringify(requestBody)
             });
-          case 16:
+          case 18:
             response = _context.sent;
             if (spinnerContainer.isConnected) {
-              _context.next = 20;
+              _context.next = 22;
               break;
             }
             console.log("Обробка запиту зупинена.");
             return _context.abrupt("return");
-          case 20:
+          case 22:
             if (response.ok) {
-              _context.next = 27;
+              _context.next = 31;
               break;
             }
-            _context.next = 23;
+            _context.next = 25;
             return response.text();
-          case 23:
+          case 25:
             errorText = _context.sent;
             console.log("Error: " + errorText);
+            if (errorText === "Request limit exceeded.") {
+              alert("Ви перевищили ліміт запитів. Спробуйте пізніше.");
+            }
+            console.log(errorText === "Request limit exceeded.");
             errorMessage();
             return _context.abrupt("return");
-          case 27:
-            _context.next = 29;
+          case 31:
+            _context.next = 33;
             return response.json();
-          case 29:
+          case 33:
             recommendations = _context.sent;
             closeModal();
             // Збереження рекомендацій у localStorage
             localStorage.setItem("recommendations", JSON.stringify(recommendations));
             // Відкриття нової сторінки
             window.location.href = "result-page.html";
-            _context.next = 40;
+            _context.next = 44;
             break;
-          case 35:
-            _context.prev = 35;
-            _context.t0 = _context["catch"](12);
+          case 39:
+            _context.prev = 39;
+            _context.t0 = _context["catch"](13);
             console.error("Помилка при завантаженні:", _context.t0);
             errorMessage();
             return _context.abrupt("return");
-          case 40:
-            _context.prev = 40;
+          case 44:
+            _context.prev = 44;
             if (spinnerContainer.isConnected) {
               spinnerContainer.remove();
             }
-            return _context.finish(40);
-          case 43:
+            return _context.finish(44);
+          case 47:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[12, 35, 40, 43]]);
+      }, _callee, null, [[13, 39, 44, 47]]);
     }));
     return _getMovieRecommendations.apply(this, arguments);
   }

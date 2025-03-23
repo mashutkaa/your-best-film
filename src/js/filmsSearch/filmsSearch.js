@@ -402,11 +402,15 @@ const filmsSearch = () => {
         // Додати спінер у модальне вікно
         modalContainer.appendChild(spinnerContainer);
 
+        const token = localStorage.getItem("token");
+
         try {
             const requestBody = {
                 result: result,
                 sandbox: sandbox,
             };
+
+            var requestBodyToken = token ? `Bearer ${token}` : null;
 
             const response = await fetch(
                 "http://localhost:3000/movies/getMoviesRecommendations",
@@ -414,6 +418,7 @@ const filmsSearch = () => {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
+                        Authorization: requestBodyToken,
                     },
                     body: JSON.stringify(requestBody),
                 }
@@ -428,6 +433,10 @@ const filmsSearch = () => {
             if (!response.ok) {
                 const errorText = await response.text();
                 console.log("Error: " + errorText);
+                if (errorText === "Request limit exceeded.") {
+                    alert("Ви перевищили ліміт запитів. Спробуйте пізніше.");
+                }
+                console.log(errorText === "Request limit exceeded.");
                 errorMessage();
                 return;
             }
