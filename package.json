@@ -62,6 +62,7 @@
     "mime-types": "^2.1.35",
     "neo-async": "^2.6.2",
     "node-releases": "^2.0.18",
+    "nodemon": "^3.1.9",
     "os-browserify": "^0.3.0",
     "p-limit": "^2.3.0",
     "p-locate": "^4.1.0",
