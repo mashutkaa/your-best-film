@@ -1,4 +1,4 @@
-import saveFilm from "./saveFilm";
+import { saveFilm, deleteFilm } from "./saveFilm";
 
 const apiKey = "4d5fbb327da57370030fbb7ccdefaf70";
 
@@ -153,12 +153,14 @@ const addSaveFilmButtonEventListeners = (checkedRecommendations) => {
             const film = checkedRecommendations[id];
             const isSaved = button.classList.contains("saved");
 
-            console.log(`Film ID: ${id}`, film);
+            console.log(isSaved);
 
             if (!isSaved) {
                 saveFilm(film, button);
-            } else {
-                button.classList.remove("saved");
+                button.querySelector("img").src =
+                    "../../icons/saved-film-button.png";
+            } else if (isSaved) {
+                deleteFilm(button);
             }
         });
     });
