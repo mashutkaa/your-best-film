@@ -34,7 +34,7 @@ function closeModal() {
   modalOverlay.classList.remove("show");
   document.body.style.overflow = ""; // Відновити прокручування
 
-  formWrapper.classList.remove("hide");
+  // formWrapper.classList.remove("hide");
 
   background.classList.remove("you");
   document.body.style.overflow = "auto";
@@ -50,17 +50,24 @@ function closeModal() {
 }
 
 // Відкриття модального вікна
-menuBtn.addEventListener("click", (e) => {
-  wrapper.style.display = "block";
-  background.classList.add("you");
-  document.body.style.overflow = "hidden";
-  document.querySelector(".header").style.pointerEvents = "none";
-  document.body.classList.add("login-modal-open");
 
-  wrapper.classList.add("show");
-  modalOverlay.classList.add("show");
-});
+setTimeout(() => {
+  const menuBtn = document.querySelector(".menu-item-login a");
+  if (menuBtn) {
+    menuBtn.addEventListener("click", () => {
+      wrapper.style.display = "block";
+      background.classList.add("you");
+      document.body.style.overflow = "hidden";
+      document.querySelector(".header").style.pointerEvents = "none";
+      document.body.classList.add("login-modal-open");
 
+      wrapper.classList.add("show");
+      modalOverlay.classList.add("show");
+      console.log('nfdjfndj');
+      
+    });
+  }
+}, 100);
 // Закриття модального вікна при кліку поза ним
 modalOverlay.addEventListener("click", (event) => {
   closeModal();
@@ -73,7 +80,7 @@ closesuccessfulRegistrationWindow.addEventListener("click", () => {
   closeModal();
 });
 
-// ======================= ВХІД ====================================
+// ======================= ВХІД ================================
 
 const loginEmail = document.querySelector("#login-email");
 const loginPassword = document.querySelector("#login-password");
@@ -531,6 +538,7 @@ const recoveryMessageWindow = document.querySelector(
 );
 const newPasswordWindow = document.querySelector(".new-password-wrapper"); //! вікно для введення нового пароля
 const successfulRecoveryWindow = document.querySelector(".successful-recovery");
+console.log("dcksmck:", successfulRecoveryWindow);
 
 const recoveryMessageBtn = document.querySelector(".recovery-message-btn");
 const recoveryMessageEmail = document.querySelector(
@@ -709,10 +717,10 @@ const tokenToResetPassword = urlParams.get("resetPassword");
 
 if (tokenToResetPassword) {
   newPasswordWindow.style.display = "block";
-    background.classList.add("you");
-    document.body.style.overflow = "hidden";
-    document.querySelector(".header").style.pointerEvents = "none";
-    document.body.classList.add("login-modal-open");
-    newPasswordWindow.classList.add("show");
-    modalOverlay.classList.add("show");
+  background.classList.add("you");
+  document.body.style.overflow = "hidden";
+  document.querySelector(".header").style.pointerEvents = "none";
+  document.body.classList.add("login-modal-open");
+  newPasswordWindow.classList.add("show");
+  modalOverlay.classList.add("show");
 }

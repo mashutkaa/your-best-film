@@ -1,0 +1,17 @@
+.registration-form{
+
+    height: 570px;
+}
+.register-field-password {
+  margin-right: 112px;
+}
+.register-field-confirm-password {
+  margin-right: 50px;
+}
+.register-field-name {
+  margin-right: 130px;
+}
+#email, #name {
+
+    width: 188px;
+}

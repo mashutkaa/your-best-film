@@ -26,60 +26,17 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@600&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <!--================== HEADER ============================-->
     <div class="main-page-wrapper">
-      <header class="header">
-        <a href="index.html" class="logo">
-          <h1 class="main-title">YBF</h1>
-          <p class="secondary-text">our best film</p></a
-        >
-
-        <nav id="my-navigation">
-          <ul class="menu-items">
-            <li class="menu-item"><a href="#" data-modal> Пошук </a></li>
-            <li class="menu-item" onclick="goToHomePage()">
-              <a href="index.html"> Головна </a>
-            </li>
-            <li class="menu-item"><a href="#about-us"> Про нас </a></li>
-            <li class="menu-item-login">
-              <a href="#"> Увійти / Зареєструватися </a>
-            </li>
-            <li class="menu-item-personal-account">
-              <button class="dropbutton">
-                <img
-                  src="icons/IMG_3948 1.png"
-                  alt="user-icon"
-                  class="user-icon"
-                />
-                <p class="username">username</p>
-                <span>▼</span>
-              </button>
-              <div class="dropdown">
-                <a href="#" onclick="showMessage()" class="dropdown-link"
-                  >Налаштування акаунту</a
-                >
-                <a href="#" onclick="showMessage()" class="dropdown-link"
-                  >Збережені фільми</a
-                >
-                <a href="#" onclick="showMessage()" class="dropdown-link"
-                  >Збережені добірки</a
-                >
-                <a href="#" onclick="logOut()" class="dropdown-link"
-                  >Вихід з акаунту</a
-                >
-              </div>
-            </li>
-          </ul>
-        </nav>
-
-        <script>
-          function showMessage() {
-            alert("Вибачте, даний функціонал наразі недоступний");
-          }
-        </script>
+      <header class="header" id="nav-container">
+       <script src="./js/nav.js"></script>
       </header>
 
       <main>
@@ -338,6 +295,8 @@
       </footer>
     </div>
     <!-- =============== МОДАЛЬНІ ВІКНА =================== -->
+
+       <!-- =============== МОДАЛЬНІ ВІКНА =================== -->
     <!-- ------------------ ВХІД ------------------------ -->
     <div class="registration-login-wrapper modal-wrapper">
       <form id="login-form" class="login-form">
@@ -630,10 +589,10 @@
         </p>
       </div>
     </div>
-
     <!-- <script src="js/script.js"></script> -->
     <script src="./js/keyboard-navigation.js"></script>
     <script src="../dist/js/main.bundle.js"></script>
     <script src="./js/login-window.js"></script>
+   
   </body>
 </html>

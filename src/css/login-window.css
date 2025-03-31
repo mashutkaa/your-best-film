@@ -7,7 +7,7 @@ main {
   left: 50%;
   transform: translate(-50%, -50%);
   /* margin-left: -200px;  */
-  z-index: 1000;
+  z-index: 100000;
   width: 500px;
 }
 .form-title {
@@ -60,6 +60,7 @@ main {
   border: 1px solid #ccc;
   border-radius: 50px;
   height: 520px;
+  display:none;
 }
 
 .register-field-label {
@@ -184,6 +185,7 @@ main {
   border: 1px solid #ccc;
   border-radius: 50px;
   height: 400px;
+
 }
 
 .login-field-label {
@@ -291,7 +293,10 @@ main {
   border-radius: 50px;
 
   margin: auto auto;
+
+
 }
+
 
 /* фон модального вікна, закриття/відкриття*/
 
@@ -300,7 +305,7 @@ main {
   width: 100%;
   height: 100%;
   filter: blur(5px);
-  z-index: 99;
+  z-index: 1;
 }
 .you button {
   pointer-events: none;
@@ -350,6 +355,7 @@ main {
   border-radius: 50px;
   border: 1px solid white;
   padding: 18px 35px 100px 35px;
+
 }
 .forgot-password-window-title {
   text-align: center;
@@ -404,6 +410,7 @@ main {
   border: 1px solid white;
 
   padding: 18px 70px 100px 70px;
+
 }
 .recovery-message-text {
   text-align: center;
@@ -426,6 +433,8 @@ main {
   border: 1px solid white;
 
   padding: 18px 70px 100px 70px;
+
+  
 }
 .new-pasword-title {
   text-align: center;
@@ -508,6 +517,7 @@ main {
   border: 1px solid white;
 
   padding: 18px 70px 100px 70px;
+
 }
 .successful-recovery-text {
   text-align: center;
@@ -529,6 +539,7 @@ main {
   text-align: center;
   border-radius: 50px;
   z-index: 2000;
+
 }
 .close-verify-btn {
   text-align: left;
@@ -540,6 +551,7 @@ main {
 .verification-modal-text {
   font-size: 11px;
 }
+
 #resend-btn {
   border: none;
   background-color: transparent;
