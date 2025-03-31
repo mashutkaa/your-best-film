@@ -144,6 +144,7 @@ const addSaveFilmButtonEventListeners = (checkedRecommendations) => {
             console.log("Button clicked:", button);
 
             const token = localStorage.getItem("token");
+
             if (!token?.trim()) {
                 alert("Авторизуйтеся, щоб зберегти фільм");
                 return;

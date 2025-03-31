@@ -6,7 +6,6 @@ export const saveFilm = (film, button) => {
         year: film.releaseYear,
         description: film.description,
         img_url: film.posterUrl,
-        user_id: userId,
     };
 
     fetch("http://localhost:3000/films", {

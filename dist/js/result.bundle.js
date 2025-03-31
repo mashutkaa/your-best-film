@@ -186,8 +186,7 @@ var saveFilm = function saveFilm(film, button) {
     genre: film.genres,
     year: film.releaseYear,
     description: film.description,
-    img_url: film.posterUrl,
-    user_id: userId
+    img_url: film.posterUrl
   };
   fetch("http://localhost:3000/films", {
     method: "POST",
