@@ -120,3 +120,26 @@
 
     z-index: 4;
 }
+/* --- ПЛАНШЕТ (від 768px до 1279px) --- */
+@media (max-width: 1279px) {
+  .best-films__container {
+    width: 600px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    overflow-y: hidden;
+    margin: 0 auto;
+  }
+  .carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+  .right-arrow {
+    transform: scaleX(-1);
+  }
+}
+@media (max-width: 767px) {
+  .best-films__container {
+    width: 300px;
+  }
+}

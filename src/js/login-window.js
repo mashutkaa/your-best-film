@@ -63,8 +63,7 @@ setTimeout(() => {
 
       wrapper.classList.add("show");
       modalOverlay.classList.add("show");
-      console.log('nfdjfndj');
-      
+      console.log("nfdjfndj");
     });
   }
 }, 100);
@@ -78,6 +77,34 @@ closeRegisterBtn.addEventListener("click", () => closeModal());
 
 closesuccessfulRegistrationWindow.addEventListener("click", () => {
   closeModal();
+});
+
+// ВІДКРИТТЯ ЗАКРИТТЯ МЕНЮ НА ТЕЛЕФОНІ ----------
+
+const burger = document.getElementById("burger");
+const nav = document.getElementById("my-navigation");
+const closeMobileMenuBtn = document.getElementById("closeNav");
+closeMobileMenuBtn.style.display = "none";
+
+burger.addEventListener("click", () => {
+  nav.classList.add("open");
+  closeMobileMenuBtn.style.display = "block";
+  burger.style.display = "none";
+});
+
+closeMobileMenuBtn.addEventListener("click", () => {
+  nav.classList.remove("open");
+  closeMobileMenuBtn.style.display = "none";
+  burger.style.display = "block";
+});
+
+// Закривати меню при кліку на пункт
+document.querySelectorAll("#my-navigation .menu-item a").forEach((link) => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("open");
+    closeMobileMenuBtn.style.display = "none";
+    burger.style.display = "block";
+  });
 });
 
 // ======================= ВХІД ================================
@@ -168,7 +195,7 @@ loginSubmitButton.addEventListener("click", (event) => {
 });
 
 // ================= РЕЄСТРАЦІЯ ===================
-const form = document.querySelector(".registration-form");
+const rigisterForm = document.querySelector(".registration-form");
 
 const email = document.querySelector("#email");
 

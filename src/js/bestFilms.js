@@ -71,5 +71,20 @@ const bestFilms = () => {
       });
   };
 };
+const carousel = document.querySelector(".best-films__container");
+const rightArrow = document.querySelector(".right-arrow");
+const leftArrow = document.querySelector(".left-arrow");
+leftArrow.addEventListener("click", () => {
+  carousel.scrollBy({
+    left: -130,
+  });
+});
+rightArrow.addEventListener("click", () => {
+  carousel.scrollBy({
+    left: 130,
+  });
+});
+
+
 
 export default bestFilms;

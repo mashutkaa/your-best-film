@@ -15,3 +15,12 @@
 
     width: 188px;
 }
+
+@media (max-width: 767px) {
+.main-title{
+  font-size: 44px;
+}
+.secondary-text{
+  font-size: 20px;
+}
+}
