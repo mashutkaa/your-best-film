@@ -1,4 +1,5 @@
-import { saveFilm, deleteFilm } from "./saveFilm";
+import saveFilm from "../filmOperations/saveFilm.js";
+import deleteFilm from "../filmOperations/deleteFilm.js";
 
 const apiKey = "4d5fbb327da57370030fbb7ccdefaf70";
 
@@ -158,8 +159,6 @@ const addSaveFilmButtonEventListeners = (checkedRecommendations) => {
 
             if (!isSaved) {
                 saveFilm(film, button);
-                button.querySelector("img").src =
-                    "./icons/saved-film-button.png";
             } else if (isSaved) {
                 deleteFilm(button);
             }
