@@ -47,8 +47,7 @@ export const deleteFilm = (button) => {
         .then((data) => {
             console.log(data.message);
             button.classList.remove("saved");
-            button.querySelector("img").src =
-                "../../icons/save-film-button.svg"; // Повертаємо іконку назад
+            button.querySelector("img").src = "./icons/save-film-button.svg"; // Повертаємо іконку назад
             delete button.dataset.filmId; // Видаляємо атрибут з ID
         })
         .catch((error) => console.error("Помилка видалення:", error));

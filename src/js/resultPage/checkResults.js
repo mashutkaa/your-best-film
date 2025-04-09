@@ -159,7 +159,7 @@ const addSaveFilmButtonEventListeners = (checkedRecommendations) => {
             if (!isSaved) {
                 saveFilm(film, button);
                 button.querySelector("img").src =
-                    "../../icons/saved-film-button.png";
+                    "./icons/saved-film-button.png";
             } else if (isSaved) {
                 deleteFilm(button);
             }
