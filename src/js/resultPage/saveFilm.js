@@ -1,4 +1,6 @@
 export const saveFilm = (film, button) => {
+    const token = localStorage.getItem("token");
+
     const newFilm = {
         name: film.title,
         rating: film.rating,
@@ -12,6 +14,7 @@ export const saveFilm = (film, button) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(newFilm),
     })

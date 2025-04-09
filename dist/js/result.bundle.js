@@ -180,6 +180,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   saveFilm: () => (/* binding */ saveFilm)
 /* harmony export */ });
 var saveFilm = function saveFilm(film, button) {
+  var token = localStorage.getItem("token");
   var newFilm = {
     name: film.title,
     rating: film.rating,
@@ -191,7 +192,8 @@ var saveFilm = function saveFilm(film, button) {
   fetch("http://localhost:3000/films", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: "Bearer ".concat(token)
     },
     body: JSON.stringify(newFilm)
   }).then(function (response) {

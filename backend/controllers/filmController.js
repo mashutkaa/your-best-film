@@ -23,7 +23,7 @@ export const getFilmById = (req, res) => {
 
 export const createFilm = (req, res) => {
     const { name, rating, genre, year, description, img_url } = req.body;
-    const user_id = req.user.id; // Отримуємо user_id з токена
+    const user_id = req.user.userId; // Отримуємо user_id з токена
 
     db.run(
         "INSERT INTO films (name, rating, genre, year, description, img_url, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)",
