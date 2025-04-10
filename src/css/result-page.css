@@ -260,9 +260,14 @@ body {
   .result-film__wrapper {
     padding-right: 50px;
     padding-left: 50px;
+    gap: 40px;
     table td:nth-child(1),
     table th:nth-child(1) {
       display: none;
+    }
+    
+    table {
+      width: 100%;
     }
   }
   .col2 {
@@ -272,14 +277,28 @@ body {
 
 /* --- МОБІЛЬНІ (до 767px) --- */
 @media (max-width: 767px) {
-      .result-page__header {
+  .result-page__header {
     margin-top: 38px;
   }
   .result-film__wrapper {
-    padding-right: 13px;
-    padding-left: 13px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    table {
+      order: 2;
+    }
+    .result-film__img {
+      order: 1;
+    }
   }
+
   .col2 {
     display: none;
+  }
+  .close-mobile-menu-btn{
+   align-self: flex-start;
   }
 }
