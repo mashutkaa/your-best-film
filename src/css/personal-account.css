@@ -15,7 +15,8 @@
   gap: 15px;
   margin-top: 30px;
 }
-.setting-name {
+.setting-name,
+#setting-new-password {
   background-color: transparent;
   border: 1px solid #ffffff;
   border-radius: 50px;
@@ -47,7 +48,7 @@
   background-color: #d9d9d952;
 }
 .delete-acc-btn {
-    color: red;
+  color: red;
 }
 .setting-password-field-title,
 .setting-field-name {
@@ -59,8 +60,49 @@
   justify-content: center;
   align-items: flex-end;
 }
-.login-password-field {
+
+.setting-password-field {
+  display: flex;
+  width: 190px;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  position: relative;
   margin-right: 15px;
+}
+
+.setting-field-input {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+  padding: 6px 20px;
+  color: #ffffff;
+  width: 148px;
+}
+/* старий пароль */
+.set-old-password-field-btn,
+.set-new-password-field-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Новий пароль */
+.setting-new-password-wrapper {
+  border: 1px solid white;
+  border-radius: 50px;
+  display: flex;
+  width: 190px;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  position: relative;
 }
 .setting-new-password-field-wrapper {
   display: flex;
