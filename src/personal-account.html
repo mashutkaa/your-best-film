@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="./css/drop-down-menu.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/login-window.css" />
-    <link rel="stylesheet" href="./css/personal-account.css">
+    <link rel="stylesheet" href="./css/personal-account.css" />
   </head>
   <body>
+    <script src="./js/personal-account.js"></script>
     <div class="main-page-wrapper">
       <header class="header" id="nav-container">
         <script src="./js/nav.js"></script>
@@ -22,9 +23,14 @@
         <form class="settings-form">
           <!-- name -->
           <label class="setting-field-label" for="setting-name">
-            <span  class="setting-field-name">Username:</span>
+            <span class="setting-field-name">Username:</span>
             <div class="setting-field-name-wrapper">
-              <input class="setting-name" id="setting-name" type="text" placeholder="Ваше ім'я" />
+              <input
+                class="setting-name"
+                id="setting-name"
+                type="text"
+                placeholder="Ваше ім'я"
+              />
             </div>
           </label>
 
@@ -53,7 +59,6 @@
           </label>
           <!-- password -->
           <label class="setting-field-label" for="setting-new-password">
-           
             <div class="setting-new-password-field-wrapper">
               <div id="password-wrapper" class="setting-new-password-wrapper">
                 <input
@@ -74,7 +79,7 @@
             </div>
           </label>
 
-          <button class="confirm-changes-bth">Підтвердити зміни</button>
+          <button type="submit" class="confirm-changes-bth">Підтвердити зміни</button>
           <button class="delete-acc-btn">Видалити аккаунт</button>
         </form>
       </main>

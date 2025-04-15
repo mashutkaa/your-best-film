@@ -12,7 +12,14 @@ import "./migrations/createUserTable.js";
 import "./migrations/createFilmTable.js";
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5500", // твій фронтенд або "*" на свій страх і ризик
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("/auth", authRoutes);
