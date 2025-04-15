@@ -14,10 +14,10 @@ import "./migrations/createFilmTable.js";
 const app = express();
 app.use(
   cors({
-    origin: "http://127.0.0.1:5500", // твій фронтенд або "*" на свій страх і ризик
+    origin: "http://127.0.0.1:5500",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
+    credentials: false,
   })
 );
 app.use(express.json());
