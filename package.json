@@ -25,7 +25,7 @@
     "commander": "^2.20.3",
     "cross-spawn": "^7.0.6",
     "crypto-browserify": "^3.12.1",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "electron-to-chromium": "^1.5.71",
     "enhanced-resolve": "^5.17.1",
     "envinfo": "^7.14.0",

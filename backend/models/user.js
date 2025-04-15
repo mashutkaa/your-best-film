@@ -87,3 +87,24 @@ export async function updateUserField(id, field, value) {
         );
     });
 }
+
+/**
+ * Видаляє користувача за ідентифікатором (id)
+ * @param {number} id - ідентифікатор користувача
+ * @returns {Promise<void>}
+ */
+export async function deleteUserById(id) {
+    return new Promise((resolve, reject) => {
+        db.run(
+            `DELETE FROM users WHERE id = ?`,
+            [id],
+            (err) => {
+                if (err) {
+                    reject(err);  
+                } else {
+                    resolve(); 
+                }
+            }
+        );
+    });
+}

@@ -6,6 +6,7 @@ export function authMiddleware(req, res, next) {
     if (!token) return res.status(401).json({ message: "Access denied" });
 
     try {
+        console.log("🔑 JWT_SECRET:", process.env.JWT_SECRET);
         const verified = jwt.verify(
             token.replace("Bearer ", ""),
             process.env.JWT_SECRET,
