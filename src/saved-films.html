@@ -3,87 +3,97 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YBF: Personal account</title>
+    <title>YBF: Saved Films</title>
     <link rel="stylesheet" href="./css/login-window.css" />
     <link rel="stylesheet" href="./css/main-page.css" />
     <link rel="stylesheet" href="./css/drop-down-menu.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/login-window.css" />
-    <link rel="stylesheet" href="./css/personal-account.css" />
+    <link rel="stylesheet" href="./css/saved-films-page.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lusitana:wght@400;700&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <script src="./js/personal-account.js"></script>
+    <script type="module" src="./js/savedFilms/savedFIlms.js"></script>
     <div class="main-page-wrapper">
       <header class="header" id="nav-container">
         <script src="./js/nav.js"></script>
       </header>
       <main>
-        <h2 class="cabinet-title">ОСОБИСТИЙ КАБІНЕТ</h2>
-        <img class="user-img" src="./icons/user.png" alt="" />
-        <form class="settings-form">
-          <!-- name -->
-          <label class="setting-field-label" for="setting-name">
-            <span class="setting-field-name">Username:</span>
-            <div class="setting-field-name-wrapper">
-              <input
-                class="setting-name"
-                id="setting-name"
-                type="text"
-                placeholder="Нове ім'я"
-              />
+        <h2>Збережені фільми</h2>
+
+        <section class="saved-films__section">
+          <section class="saved-films__wrapper">
+            <div class="film__container">
+                <div class="film__card">
+                    <img class="film-img" src="./img/2025-01-27 10.38.06 1.png" alt="">
+                    <div class="film__info">
+                      <div class="film__info-header">
+                        <h3 class="title">Мікі 17</h3>
+                        <p class="rating">8.9/10</p>
+                        <p class="genres">Науково - фантастичний</p>
+                        <p class="year">2025 рік</p>
+                      </div>
+                      <button class="delete__button"><img src="./icons/delete-button.svg" alt=""></button>
+                    </div>
+                </div>
+                <p class="description">Нетиповий герой Мікі Барнс (Роберт Паттінсон) опиняється в неординарних обставинах. На роботі від нього вимагають цілковитої відданості… аж до смерті. Усе заради того, щоб забезпечити собі життя.</p>
             </div>
-          </label>
-
-          <label class="setting-field-label" for="setting-old-password">
-            <span class="setting-password-field-title">Password:</span>
-            <div class="setting-password-field-wrapper">
-              <div class="setting-password-field">
-                <input
-                  class="setting-field-input"
-                  id="setting-old-password"
-                  type="password"
-                  placeholder="Поточний пароль"
-                  required
-                />
-
-                <button
-                  class="set-old-password-field-btn"
-                  type="button"
-                  class="toggle-password-btn"
-                >
-                  👁
-                </button>
+            <div class="film__container">
+              <div class="film__card">
+                  <img class="film-img" src="./img/2025-01-27 10.38.06 1.png" alt="">
+                  <div class="film__info">
+                    <div class="film__info-header">
+                      <h3 class="title">Мікі 17</h3>
+                      <p class="rating">8.9/10</p>
+                      <p class="genres">Науково - фантастичний</p>
+                      <p class="year">2025 рік</p>
+                    </div>
+                    <button class="delete__button"><img src="./icons/delete-button.svg" alt=""></button>
+                  </div>
               </div>
-              <a class="forgot-password" href="#">Забули пароль?</a>
-            </div>
-          </label>
-          <!-- password -->
-          <label class="setting-field-label" for="setting-new-password">
-            <div class="setting-new-password-field-wrapper">
-              <div id="password-wrapper" class="setting-new-password-wrapper">
-                <input
-                  id="setting-new-password"
-                  type="password"
-                  placeholder="Новий пароль"
-                  required
-                />
-                <button
-                  type="button"
-                  id="toggle-password-set"
-                  class="set-new-password-field-btn"
-                >
-                  👁
-                </button>
+              <p class="description">Нетиповий герой Мікі Барнс (Роберт Паттінсон) опиняється в неординарних обставинах. На роботі від нього вимагають цілковитої відданості… аж до смерті. Усе заради того, щоб забезпечити собі життя.</p>
+          </div>
+        
+        </section>
+        <hr>
+        <section class="saved-films__wrapper">
+          <div class="film__container">
+              <div class="film__card">
+                  <img class="film-img" src="./img/2025-01-27 10.38.06 1.png" alt="">
+                  <div class="film__info">
+                    <div class="film__info-header">
+                      <h3 class="title">Мікі 17</h3>
+                      <p class="rating">8.9/10</p>
+                      <p class="genres">Науково - фантастичний</p>
+                      <p class="year">2025 рік</p>
+                    </div>
+                    <button class="delete__button"><img src="./icons/delete-button.svg" alt=""></button>
+                  </div>
               </div>
-              <p class="error-input password-error"></p>
+              <p class="description">Нетиповий герой Мікі Барнс (Роберт Паттінсон) опиняється в неординарних обставинах. На роботі від нього вимагають цілковитої відданості… аж до смерті. Усе заради того, щоб забезпечити собі життя.</p>
+          </div>
+          <div class="film__container">
+            <div class="film__card">
+                <img class="film-img" src="./img/2025-01-27 10.38.06 1.png" alt="">
+                <div class="film__info">
+                  <div class="film__info-header">
+                    <h3 class="title">Мікі 17</h3>
+                    <p class="rating">8.9/10</p>
+                    <p class="genres">Науково - фантастичний</p>
+                    <p class="year">2025 рік</p>
+                  </div>
+                  <button class="delete__button"><img src="./icons/delete-button.svg" alt=""></button>
+                </div>
             </div>
-          </label>
-
-          <button type="submit" class="confirm-changes-bth">
-            Підтвердити зміни
-          </button>
-          <button class="delete-acc-btn">Видалити аккаунт</button>
-        </form>
+            <p class="description">Нетиповий герой Мікі Барнс (Роберт Паттінсон) опиняється в неординарних обставинах. На роботі від нього вимагають цілковитої відданості… аж до смерті. Усе заради того, щоб забезпечити собі життя.</p>
+        </div>
+      
+      </section>
+      <hr>
+        </section>
+        
       </main>
       <div class="modal-overlay hide"></div>
     </div>

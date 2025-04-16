@@ -10,6 +10,7 @@ db.serialize(() => {
         year TEXT,
         description TEXT,
         img_url TEXT,
+        user_id INTEGER,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     )`,
         (err) => {
