@@ -868,9 +868,9 @@ deleteBtn.addEventListener("click", async (e) => {
     });
 
     if (res.ok) {
-      alert("Акаунт видалено.");
+      window.location.href = "/src/index.html";
       localStorage.removeItem("token");
-      window.location.href = "/"; // перенаправлення на головну
+      alert("Акаунт видалено.");
     } else {
       const data = await res.json();
       alert(`Помилка: ${data.message}`);
