@@ -13,21 +13,22 @@ import "./migrations/createFilmTable.js";
 
 const app = express();
 app.use(
-  cors({
-    origin: "http://127.0.0.1:5500",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: false,
-  })
+    cors({
+        origin: "http://127.0.0.1:5500",
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+        credentials: false,
+    }),
 );
 app.use(express.json());
 
 app.use("/auth", authRoutes);
 app.use("/movies", movieRoutes);
 app.use("/films", filmRoutes);
+app.use("/recommendations", filmRoutes);
 app.use("/user", userRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
