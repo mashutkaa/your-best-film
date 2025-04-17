@@ -524,7 +524,7 @@ var filmsSearch = function filmsSearch() {
           {
             var answerLower = document.querySelector("#lower-slider").value;
             var answerUpper = document.querySelector("#upper-slider").value;
-            answer = "\u0412\u0456\u0434 ".concat(answerLower, " \u0434\u043E ").concat(answerUpper);
+            answer = "\u0412\u0456\u0434 ".concat(answerLower, " \u0434\u043E ").concat(answerUpper, " \u0433\u043E\u0434\u0438\u043D");
             break;
           }
         case "radio":
@@ -541,7 +541,7 @@ var filmsSearch = function filmsSearch() {
             var maxYearDefault = new Date().getFullYear();
             var answerMin = ((_document$querySelect3 = document.querySelector('input[name="year-min-0"]')) === null || _document$querySelect3 === void 0 ? void 0 : _document$querySelect3.value) || minYearDefault;
             var answerMax = ((_document$querySelect4 = document.querySelector('input[name="year-min-1"]')) === null || _document$querySelect4 === void 0 ? void 0 : _document$querySelect4.value) || maxYearDefault;
-            answer = "\u041D\u0435 \u0440\u0430\u043D\u0456\u0448\u0435: ".concat(answerMin, ", \u043D\u0435 \u043F\u0456\u0437\u043D\u0456\u0448\u0435: ").concat(answerMax);
+            answer = "\u041D\u0435 \u0440\u0430\u043D\u0456\u0448\u0435: ".concat(answerMin, " \u0440\u043E\u043A\u0443, \u043D\u0435 \u043F\u0456\u0437\u043D\u0456\u0448\u0435: ").concat(answerMax, " \u0440\u043E\u043A\u0443");
             break;
           }
         case "checkbox":
@@ -725,11 +725,12 @@ var filmsSearch = function filmsSearch() {
               // Додаємо в масив userSelections
               userSelections.push(validAnswers);
               result = [].concat(_toConsumableArray(results), userSelections);
-              console.log(results);
+              localStorage.setItem("movieResults", JSON.stringify(result));
               getMovieRecommendations(false);
             });
           } else {
             result = _toConsumableArray(results);
+            localStorage.setItem("movieResults", JSON.stringify(result));
             getMovieRecommendations(false);
           }
         }
