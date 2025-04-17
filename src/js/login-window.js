@@ -775,14 +775,15 @@ settingTogglePasswordButton.addEventListener("click", () => {
   settingTogglePasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
 });
 
-
-
-
 // dsfvdvgfdbgfb
 const nameInput = document.querySelector("#setting-name");
 const oldPasswordInput = document.querySelector("#setting-old-password");
 const newPasswordInput = document.querySelector("#setting-new-password");
 const confirmBtn = document.querySelector(".confirm-changes-bth");
+
+document.querySelector(".settings-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+});
 
 confirmBtn.addEventListener("click", async (e) => {
   e.preventDefault();

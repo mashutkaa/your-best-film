@@ -30,7 +30,7 @@ export async function changePassword(req, res) {
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     await updateUserField(userId, "password", hashedPassword);
-
+    res.json({ message: "Password successfully updated" });
     await sendEmail(
       user.email,
       "Пароль змінено",
@@ -41,8 +41,6 @@ export async function changePassword(req, res) {
         
       `
     );
-
-    res.json({ message: "Password successfully updated" });
   } catch (error) {
     console.error(error);
     res.status(404).json({ error: error.message || "Server error" });
@@ -74,7 +72,7 @@ export async function deleteAccount(req, res) {
     const user = await checkUserExistence(userId);
 
     await deleteUserById(userId);
-
+    res.json({ message: "Account successfully deleted" });
     await sendEmail(
       user.email,
       "Акаунт видалено",
@@ -85,8 +83,6 @@ export async function deleteAccount(req, res) {
         
       `
     );
-
-    res.json({ message: "Account successfully deleted" });
   } catch (error) {
     console.error(error);
     res.status(404).json({ error: error.message || "Server error" });
