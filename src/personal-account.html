@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="./css/personal-account.css" />
   </head>
   <body>
-    <script src="./js/personal-account.js"></script>
     <div class="main-page-wrapper">
       <header class="header" id="nav-container">
         <script src="./js/nav.js"></script>
@@ -20,7 +19,7 @@
       <main>
         <h2 class="cabinet-title">ОСОБИСТИЙ КАБІНЕТ</h2>
         <img class="user-img" src="./icons/user.png" alt="" />
-        <form class="settings-form">
+        <form class="settings-form" onsubmit="return false;">
           <!-- name -->
           <label class="setting-field-label" for="setting-name">
             <span class="setting-field-name">Username:</span>
@@ -82,7 +81,7 @@
           <button type="button" class="confirm-changes-bth">
             Підтвердити зміни
           </button>
-          <button class="delete-acc-btn">Видалити аккаунт</button>
+          <button type="button" class="delete-acc-btn">Видалити аккаунт</button>
         </form>
       </main>
       <div class="modal-overlay hide"></div>
@@ -381,5 +380,6 @@
         </p>
       </div>
     </div>
+    <script src="./js/personal-account.js" defer></script>
   </body>
 </html>
