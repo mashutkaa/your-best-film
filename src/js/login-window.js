@@ -753,25 +753,4 @@ if (tokenToResetPassword) {
 }
 
 // ============== ПЕРСОНАЛЬНИЙ КАБІНЕТ ===========================
-const setOldPassword = document.querySelector("#setting-old-password");
-const setNewPassword = document.querySelector("#setting-new-password");
-
-const settingToggleOldPasswordButton = document.querySelector(
-  ".set-old-password-field-btn"
-);
-const settingTogglePasswordButton = document.querySelector(
-  ".set-new-password-field-btn"
-);
-setNewPassword.addEventListener("input", handlePasswordInput);
-// -перемикач
-settingToggleOldPasswordButton.addEventListener("click", () => {
-  const isPasswordHidden = setOldPassword.type === "password";
-  setOldPassword.type = isPasswordHidden ? "text" : "password";
-  settingToggleOldPasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
-});
-settingTogglePasswordButton.addEventListener("click", () => {
-  const isPasswordHidden = setNewPassword.type === "password";
-  setNewPassword.type = isPasswordHidden ? "text" : "password";
-  settingTogglePasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
-});
 

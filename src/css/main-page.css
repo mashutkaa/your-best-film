@@ -319,7 +319,7 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: #000;
+    background-color: #01070a;
     z-index: 1000;
     padding: 20px;
 
@@ -343,8 +343,19 @@ body {
     gap: 20px;
     margin-top: 20px;
   }
+  .menu-item-personal-account {
+    order: 1;
+  }
+  .menu-item-1 {
+    order: 2;
+  }
+  .menu-item-2 {
+    order: 3;
+  }
+  .menu-item-3 {
+    order: 4;
+  }
   .close-mobile-menu-btn {
-    
     align-self: flex-end;
     fill: #ffffff;
     z-index: 100000;

@@ -25,6 +25,9 @@ var deleteFilm = function deleteFilm(button) {
     return response.json();
   }).then(function (data) {
     console.log(data.message);
+    button.classList.remove("saved");
+    button.querySelector("img").src = "./icons/save-film-button.svg"; // Повертаємо іконку назад
+    delete button.dataset.filmId; // Видаляємо атрибут з ID
   })["catch"](function (error) {
     return console.error("Помилка видалення:", error);
   });

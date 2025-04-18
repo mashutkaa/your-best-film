@@ -67,19 +67,20 @@ var bestFilms = function bestFilms() {
     });
   };
 };
-var carousel = document.querySelector(".best-films__container");
-var rightArrow = document.querySelector(".right-arrow");
-var leftArrow = document.querySelector(".left-arrow");
-leftArrow.addEventListener("click", function () {
-  carousel.scrollBy({
-    left: -130
-  });
-});
-rightArrow.addEventListener("click", function () {
-  carousel.scrollBy({
-    left: 130
-  });
-});
+// const carousel = document.querySelector(".best-films__container");
+// const rightArrow = document.querySelector(".right-arrow");
+// const leftArrow = document.querySelector(".left-arrow");
+// leftArrow.addEventListener("click", () => {
+//   carousel.scrollBy({
+//     left: -130,
+//   });
+// });
+// rightArrow.addEventListener("click", () => {
+//   carousel.scrollBy({
+//     left: 130,
+//   });
+// });
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (bestFilms);
 
 /***/ }),

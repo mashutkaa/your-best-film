@@ -109,3 +109,27 @@
   flex-direction: column;
   justify-content: end;
 }
+
+@media (max-width: 767px) {
+  .cabinet-title{
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  .settings-form {
+    width: 200px;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    align-content: stretch;
+  }
+  .setting-field-label {
+    flex-direction: column;
+  }
+  .setting-password-field-wrapper {
+    flex-direction: column;
+  }
+  .error-input {
+    width: 200px;
+  }
+}

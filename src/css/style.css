@@ -142,7 +142,6 @@ body {
   font-style: normal;
   text-transform: uppercase;
   font-size: 1.875vw;
-  padding-left: 30px;
   margin-bottom: 7px;
 }
 
@@ -793,4 +792,136 @@ body {
 }
 #surveyModal {
   display: none;
+}
+
+/* --- ТЕЛЕФОН (від 768px до 1279px) --- */
+@media (max-width: 767px) {
+  span {
+    font-size: 8px;
+  }
+  .modal {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    border: none;
+
+    margin-right: 20px;
+    /* margin-left: 20px; */
+  }
+
+  .form {
+    max-height: 100%;
+    min-width: 100%;
+    margin-bottom: 30px;
+  }
+  .question-wrapper {
+    justify-content: center;
+  }
+  /* питання ФОРМИ */
+  .question-number-container {
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    font-size: 1.25vw;
+    font-weight: 600;
+    box-sizing: border-box;
+  }
+
+  .question-number {
+    margin: 0;
+    padding: 1.172vw;
+    font-size: 20px;
+  }
+  .question-item {
+    width: 70%;
+  }
+  .question {
+    font-size: 13px;
+  }
+  .required-field {
+    font-size: 8px;
+  }
+  /* ПЕРШЕ ПИТАННЯ */
+  .mood-options {
+    gap: 20px;
+    flex-wrap: wrap;
+    span {
+      font-size: 8px;
+    }
+  }
+
+  /* ДРУГЕ ПИТАННЯ */
+
+  /* Загальний стиль для контейнера слайдера */
+  .slider-group {
+    width: 200px;
+  }
+
+  /* Загальний стиль для доріжки */
+  .lower-range-slider,
+  .upper-range-slider {
+    width: 200px;
+  }
+
+  /* Позиціюємо кожну рисочку */
+
+  .slider-labels span:nth-child(2) {
+    left: -18px; /* Позиція другого підпису */
+  }
+
+  .slider-labels span:nth-child(3) {
+    left: -23px; /* Позиція третього підпису */
+  }
+  .slider-labels span:nth-child(4) {
+    left: -30px; /* Позиція третього підпису */
+  }
+
+  /* Для першої рисочки */
+  .slider-labels span:first-child::after {
+    left: 8px;
+  }
+
+  /* Для останньої рисочки */
+  .slider-labels span:last-child::after {
+    right: 59px;
+  }
+
+  /* ТРЕТЄ ПИТАННЯ */
+  .radio-button-label {
+    span {
+      font-size: 8px;
+    }
+  }
+  /* ЧЕТВЕРТЕ ПИТАННЯ */
+  .input-field-label {
+    span {
+      font-size: 8px;
+    }
+    input::placeholder {
+      font-size: 8px;
+    }
+  }
+  /* П'ЯТЕ ПИТАННЯ */
+  .checkbox-button-label {
+       span {
+      font-size: 8px;
+    }
+  }
+  .submit-btn{
+    font-size: 15px;
+  }
+  .btn-close{
+     font-size: 17px;
+  }
 }

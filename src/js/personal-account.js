@@ -1,6 +1,59 @@
 
+function handlePasswordInput(event) {
+  const passwordValue = event.target.value.trim();
+  const passwordConditions = validatePassword(passwordValue);
 
-console.log("helloлл");
+  passwordError.style.display = "block";
+  passwordError.innerHTML = "";
+
+  let errorMessages = [];
+
+  if (!passwordConditions.minLength) {
+    errorMessages.push("мінімум 8 символів");
+  }
+  if (!passwordConditions.lowercase) {
+    errorMessages.push("хоча б одну малу літеру");
+  }
+  if (!passwordConditions.uppercase) {
+    errorMessages.push("хоча б одну велику літеру");
+  }
+  if (!passwordConditions.number) {
+    errorMessages.push("хоча б одну цифру");
+  }
+  if (!passwordConditions.specialChar) {
+    errorMessages.push("хоча б один спеціальний символ");
+  }
+
+  if (errorMessages.length > 0) {
+    passwordError.innerHTML = `Пароль повинен містити: ${errorMessages.join(
+      ", "
+    )}.`;
+  } else {
+    passwordError.style.display = "none";
+  }
+}
+
+const setOldPassword = document.querySelector("#setting-old-password");
+const setNewPassword = document.querySelector("#setting-new-password");
+setNewPassword.addEventListener("input", handlePasswordInput);
+const settingToggleOldPasswordButton = document.querySelector(
+  ".set-old-password-field-btn"
+);
+const settingTogglePasswordButton = document.querySelector(
+  ".set-new-password-field-btn"
+);
+
+// -перемикач
+settingToggleOldPasswordButton.addEventListener("click", () => {
+  const isPasswordHidden = setOldPassword.type === "password";
+  setOldPassword.type = isPasswordHidden ? "text" : "password";
+  settingToggleOldPasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
+});
+settingTogglePasswordButton.addEventListener("click", () => {
+  const isPasswordHidden = setNewPassword.type === "password";
+  setNewPassword.type = isPasswordHidden ? "text" : "password";
+  settingTogglePasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
+});
 
 // dsfvdvgfdbgfb
 const nameInput = document.querySelector("#setting-name");

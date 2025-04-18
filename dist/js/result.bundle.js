@@ -7,10 +7,7 @@
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-<<<<<<< HEAD
-=======
 "use strict";
->>>>>>> personal-account
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -28,12 +25,9 @@ var deleteFilm = function deleteFilm(button) {
     return response.json();
   }).then(function (data) {
     console.log(data.message);
-<<<<<<< HEAD
     button.classList.remove("saved");
     button.querySelector("img").src = "./icons/save-film-button.svg"; // Повертаємо іконку назад
     delete button.dataset.filmId; // Видаляємо атрибут з ID
-=======
->>>>>>> personal-account
   })["catch"](function (error) {
     return console.error("Помилка видалення:", error);
   });
@@ -48,10 +42,7 @@ var deleteFilm = function deleteFilm(button) {
   \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-<<<<<<< HEAD
-=======
 "use strict";
->>>>>>> personal-account
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -252,12 +243,9 @@ var addSaveFilmButtonEventListeners = function addSaveFilmButtonEventListeners(c
         (0,_filmOperations_saveFilm_js__WEBPACK_IMPORTED_MODULE_0__["default"])(film, button);
       } else if (isSaved) {
         (0,_filmOperations_deleteFilm_js__WEBPACK_IMPORTED_MODULE_1__["default"])(button);
-<<<<<<< HEAD
-=======
         button.classList.remove("saved");
         button.querySelector("img").src = "./icons/save-film-button.svg";
         delete button.dataset.filmId;
->>>>>>> personal-account
       }
     });
   });
@@ -266,8 +254,6 @@ var addSaveFilmButtonEventListeners = function addSaveFilmButtonEventListeners(c
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./src/js/resultPage/metaData.js":
 /*!***************************************!*\
   !*** ./src/js/resultPage/metaData.js ***!
@@ -312,7 +298,6 @@ var metaData = function metaData() {
 
 /***/ }),
 
->>>>>>> personal-account
 /***/ "./src/js/resultPage/saveRecommendation.js":
 /*!*************************************************!*\
   !*** ./src/js/resultPage/saveRecommendation.js ***!
@@ -2172,22 +2157,14 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _checkResults__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./checkResults */ "./src/js/resultPage/checkResults.js");
 /* harmony import */ var _saveRecommendation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./saveRecommendation */ "./src/js/resultPage/saveRecommendation.js");
-<<<<<<< HEAD
-=======
 /* harmony import */ var _metaData_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./metaData.js */ "./src/js/resultPage/metaData.js");
 
->>>>>>> personal-account
 
 
 document.addEventListener("DOMContentLoaded", function (event) {
   (0,_checkResults__WEBPACK_IMPORTED_MODULE_0__["default"])();
-<<<<<<< HEAD
-  // saveFilm();
-  (0,_saveRecommendation__WEBPACK_IMPORTED_MODULE_1__["default"])();
-=======
   (0,_saveRecommendation__WEBPACK_IMPORTED_MODULE_1__["default"])();
   (0,_metaData_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
->>>>>>> personal-account
 });
 })();
 

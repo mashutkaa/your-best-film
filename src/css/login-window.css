@@ -60,7 +60,7 @@ main {
   border: 1px solid #ccc;
   border-radius: 50px;
   height: 520px;
-  display:none;
+  display: none;
 }
 
 .register-field-label {
@@ -139,7 +139,7 @@ main {
 .register-field-name-wrapper,
 .register-field-wrapper {
   width: 100%;
-  text-align: center;
+  align-self: center;
 }
 
 .not-required-field {
@@ -185,7 +185,6 @@ main {
   border: 1px solid #ccc;
   border-radius: 50px;
   height: 400px;
-
 }
 
 .login-field-label {
@@ -293,10 +292,7 @@ main {
   border-radius: 50px;
 
   margin: auto auto;
-
-
 }
-
 
 /* фон модального вікна, закриття/відкриття*/
 
@@ -355,7 +351,6 @@ main {
   border-radius: 50px;
   border: 1px solid white;
   padding: 18px 35px 100px 35px;
-
 }
 .forgot-password-window-title {
   text-align: center;
@@ -410,7 +405,6 @@ main {
   border: 1px solid white;
 
   padding: 18px 70px 100px 70px;
-
 }
 .recovery-message-text {
   text-align: center;
@@ -433,8 +427,6 @@ main {
   border: 1px solid white;
 
   padding: 18px 70px 100px 70px;
-
-  
 }
 .new-pasword-title {
   text-align: center;
@@ -517,7 +509,6 @@ main {
   border: 1px solid white;
 
   padding: 18px 70px 100px 70px;
-
 }
 .successful-recovery-text {
   text-align: center;
@@ -539,7 +530,6 @@ main {
   text-align: center;
   border-radius: 50px;
   z-index: 2000;
-
 }
 .close-verify-btn {
   text-align: left;
@@ -576,5 +566,379 @@ main {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+/* --- ТЕЛЕФОН (від 768px до 1279px) --- */
+@media (max-width: 767px) {
+  .registration-login-wrapper {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+  .login-form {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    box-sizing: border-box;
+    background-color: #01070a;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding-top: 0;
+  }
+
+  .login-form-container {
+    /* width: 300px; */
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .form-title {
+    text-align: center;
+    font-size: 26px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+
+  .form-description {
+    text-align: center;
+    font-size: 12px;
+    color: #bdbdbd;
+    margin-top: -10px;
+  }
+
+  .login-field-label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .login-field-input {
+    width: 80%;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  .login-password-field {
+    width: 100%;
+    padding: 0;
+  }
+
+  .login-password-field-title {
+    margin: 0;
+  }
+
+  #login-password {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  .login-password-field-btn {
+    right: 15px;
+  }
+
+  .forgot-password {
+    font-size: 12px;
+    margin-top: 8px;
+    text-align: right;
+  }
+
+  #submit-login-btn {
+    width: 90%;
+    padding: 14px;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+
+  .login-error-input-msg {
+    font-size: 12px;
+  }
+
+  .close-login-btn {
+    /* position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px; */
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  #login-form {
+    padding: 0;
+  }
+
+  /*------------------------ Забув пароль---------------------- */
+  .forgot-password-window-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+  .forgot-password-window-wrapper,
+  .recovery-message-wrapper {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;
+    left: 0;
+    transform: none;
+    border-radius: 0;
+    border: none;
+    padding: 40px 20px 80px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .close-forgot-password-window,
+  .close-recovery-message {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .forgot-password-window-title {
+    font-size: 22px;
+    margin-top: 60px;
+    text-align: center;
+  }
+
+  .forgot-password-window-description {
+    font-size: 12px;
+    margin-top: 15px;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  #recovery-email {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px;
+    margin-top: 20px;
+    margin-left: -20px;
+  }
+
+  .register-field-label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    margin-top: 30px;
+  }
+
+  .recovery-message-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    margin-top: 30px;
+  }
+
+  .recovery-message-text {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 120px;
+    padding: 0 10px;
+    line-height: 1.4;
+  }
+  /* ---------- відновлення пароля --------------- */
+  .new-password-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: 100vh;
+    z-index: 40000;
+    border-radius: 0;
+    border: none;
+    padding: 20px;
+    background-color: #01070a;
+    overflow-y: auto;
+  }
+
+  .new-pasword-title {
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .register-field-label {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+
+  .register-field-label span {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  #new-password,
+  #new-confirm-password {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 40px 10px 15px;
+  }
+
+  .register-password-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .save-new-password-btn {
+    width: 300px;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 30px;
+    margin-left: -4px;
+  }
+
+  .close-new-pasword-window {
+    font-size: 24px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    cursor: pointer;
+  }
+  .new-password-error{
+    width: 300px;
+  }
+
+  /* Блок з повідомленням про успішне відновлення */
+  .successful-recovery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: 100vh;
+    background-color: #01070a;
+    z-index: 40000;
+    border: none;
+    border-radius: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .successful-recovery-text {
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .close-successful-recover {
+    font-size: 24px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    cursor: pointer;
+  }
+  /*------------- Реєстрація=----------- */
+  .registration-login-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    z-index: 100000;
+    background-color: #01070a;
+  }
+
+  .registration-form {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border: none;
+    padding: 30px 20px 40px;
+    box-sizing: border-box;
+  }
+
+  .form-title {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  .form-description {
+    font-size: 10px;
+    margin-top: 5px;
+  }
+
+  .register-field-label {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+ 
+  }
+
+  .register-field-label span {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  #email,
+  #password,
+  #confirm-password,
+  #name {
+    width: 300px;
+    font-size: 14px;
+  }
+  #email {
+    width: 260px;
+  }
+  #name {
+    width: 260px;
+  }
+  .register-password-wrapper {
+    width: 300px;
+  }
+
+  .register-field-password,
+  .register-field-confirm-password,
+  .register-field-name {
+    margin: 0;
+  }
+
+  .submit {
+    font-size: 12px;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .submit-label {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .password-error {
+    width: 300px;
+  }
+  #submit-registration-btn {
+    width: 100%;
+    font-size: 16px;
+    margin-top: 25px;
+  }
+
+  .close-register-btn {
+    font-size: 24px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
   }
 }
