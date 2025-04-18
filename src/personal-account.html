@@ -1,95 +1,94 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>your best film</title>
+    <title>YBF: Personal account</title>
+    <link rel="stylesheet" href="./css/login-window.css" />
     <link rel="stylesheet" href="./css/main-page.css" />
     <link rel="stylesheet" href="./css/drop-down-menu.css" />
-    <link rel="stylesheet" href="./css/result-page.css" />
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/login-window.css">
-    <link rel="stylesheet" href="./css/result-page-nav.css">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/login-window.css" />
+    <link rel="stylesheet" href="./css/personal-account.css" />
   </head>
   <body>
-     <div class="main-page-wrapper">
-    <header class="header" id="nav-container">
-      <script src="./js/nav.js"></script>
-    </header>
-
-    <!-- =============== ДОБІРКА ФІЛЬМІВ =================== -->
-
-    <h2 class="result-page__header">Ваша персоналізована добірка фільмів</h2>
-
-    <div class="meta-data__wrapper">
-      <button class="show-data__button">Показати критерії пошуку фільмів ↓</button>
-      <p class="film-tags"></p>
-    </div>
-
-    <div class="results__wrapper">
-      
-      <!-- <div class="result-film__wrapper">
-                <table>
-                    <colgroup>
-                        <col class="col1" />
-                        <col class="col2" />
-                    </colgroup>
-                    <tr>
-                        <td>Назва фільму</td>
-                        <td>
-                            <div class="film-name__wrapper">
-                                <button class="save-film">
-                                    <img
-                                        src="./icons/save-film-button.svg"
-                                        alt="save-film-button"
-                                    />
-                                </button>
-                                <p class="film-name">"Мікі 17"</p>
-                                <p><span>8.9/10</span></p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Жанр фільму</td>
-                        <td>Науково - фантастичний</td>
-                    </tr>
-                    <tr>
-                        <td>Рік випуску фільму</td>
-                        <td>2025 рік</td>
-                    </tr>
-                    <tr>
-                        <td>Опис фільму</td>
-                        <td>
-                            Нетиповий герой Мікі Барнс (Роберт Паттінсон)
-                            опиняється в неординарних обставинах. На роботі від
-                            нього вимагають цілковитої відданості… аж до смерті.
-                            Усе заради того, щоб забезпечити собі життя.
-                        </td>
-                    </tr>
-                </table>
-                <img
-                    class="result-film__img"
-                    src="./img/film-result-example.png"
-                    alt="film img"
-                />
+    <div class="main-page-wrapper">
+      <header class="header" id="nav-container">
+        <script src="./js/nav.js"></script>
+      </header>
+      <main>
+        <h2 class="cabinet-title">ОСОБИСТИЙ КАБІНЕТ</h2>
+        <img class="user-img" src="./icons/user.png" alt="" />
+        <form class="settings-form" onsubmit="return false;">
+          <!-- name -->
+          <label class="setting-field-label" for="setting-name">
+            <span class="setting-field-name">Username:</span>
+            <div class="setting-field-name-wrapper">
+              <input
+                class="setting-name"
+                id="setting-name"
+                type="text"
+                placeholder="Нове ім'я"
+              />
             </div>
-            <hr /> -->
+          </label>
+
+          <label class="setting-field-label" for="setting-old-password">
+            <span class="setting-password-field-title">Password:</span>
+            <div class="setting-password-field-wrapper">
+              <div class="setting-password-field">
+                <input
+                  class="setting-field-input"
+                  id="setting-old-password"
+                  type="password"
+                  placeholder="Поточний пароль"
+                  required
+                />
+
+                <button
+                  class="set-old-password-field-btn"
+                  type="button"
+                  class="toggle-password-btn"
+                >
+                  👁
+                </button>
+              </div>
+              <a class="forgot-password" href="#">Забули пароль?</a>
+            </div>
+          </label>
+          <!-- password -->
+          <label class="setting-field-label" for="setting-new-password">
+            <div class="setting-new-password-field-wrapper">
+              <div id="password-wrapper" class="setting-new-password-wrapper">
+                <input
+                  id="setting-new-password"
+                  type="password"
+                  placeholder="Новий пароль"
+                  required
+                />
+                <button
+                  type="button"
+                  id="toggle-password-set"
+                  class="set-new-password-field-btn"
+                >
+                  👁
+                </button>
+              </div>
+              <p class="error-input password-error"></p>
+            </div>
+          </label>
+
+          <button type="button" class="confirm-changes-bth">
+            Підтвердити зміни
+          </button>
+          <button type="button" class="delete-acc-btn">Видалити аккаунт</button>
+        </form>
+      </main>
+      <div class="modal-overlay hide"></div>
     </div>
-
-    <div class="save-recommendations">
-      <button class="save-recommendations__button">Зберегти всю добірку</button>
-    </div>
-
-  <div class="modal-overlay hide"></div>
-  </div>
-
     <!-- =============== МОДАЛЬНІ ВІКНА =================== -->
     <!-- ------------------ ВХІД ------------------------ -->
+
     <div class="registration-login-wrapper modal-wrapper">
       <form id="login-form" class="login-form">
         <p class="close-login-btn">x</p>
@@ -381,10 +380,6 @@
         </p>
       </div>
     </div>
-    
-
-    <script src="../dist/js/result.bundle.js"></script>
-    <!-- <script src="../dist/js/main.bundle.js"></script> -->
-  
+    <script src="./js/personal-account.js" defer></script>
   </body>
 </html>

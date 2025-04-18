@@ -1,7 +1,9 @@
 import db from "../config/db.js";
 
 export const getAllFilms = (req, res) => {
-    db.all("SELECT * FROM films", [], (err, rows) => {
+    const userId = req.user.userId;
+
+    db.all("SELECT * FROM films WHERE user_id = ?", [userId], (err, rows) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }

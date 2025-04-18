@@ -252,9 +252,9 @@ function passwordsMatch(password, confirmPassword) {
 }
 
 // Валідація під час введення пароля
-password.addEventListener("input", (event) => {
-  const passwordValue = event.target.value;
-  const passwordConditions = validatePassword(passwordValue.trim());
+function handlePasswordInput(event) {
+  const passwordValue = event.target.value.trim();
+  const passwordConditions = validatePassword(passwordValue);
 
   passwordError.style.display = "block";
   passwordError.innerHTML = "";
@@ -281,12 +281,12 @@ password.addEventListener("input", (event) => {
     passwordError.innerHTML = `Пароль повинен містити: ${errorMessages.join(
       ", "
     )}.`;
-  }
-
-  if (errorMessages.length === 0) {
+  } else {
     passwordError.style.display = "none";
   }
-});
+}
+
+password.addEventListener("input", handlePasswordInput);
 
 // Перевірка на співпадіння паролів під час введення підтвердження пароля
 confirmPassword.addEventListener("input", (event) => {
@@ -751,3 +751,27 @@ if (tokenToResetPassword) {
   newPasswordWindow.classList.add("show");
   modalOverlay.classList.add("show");
 }
+
+// ============== ПЕРСОНАЛЬНИЙ КАБІНЕТ ===========================
+const setOldPassword = document.querySelector("#setting-old-password");
+const setNewPassword = document.querySelector("#setting-new-password");
+
+const settingToggleOldPasswordButton = document.querySelector(
+  ".set-old-password-field-btn"
+);
+const settingTogglePasswordButton = document.querySelector(
+  ".set-new-password-field-btn"
+);
+setNewPassword.addEventListener("input", handlePasswordInput);
+// -перемикач
+settingToggleOldPasswordButton.addEventListener("click", () => {
+  const isPasswordHidden = setOldPassword.type === "password";
+  setOldPassword.type = isPasswordHidden ? "text" : "password";
+  settingToggleOldPasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
+});
+settingTogglePasswordButton.addEventListener("click", () => {
+  const isPasswordHidden = setNewPassword.type === "password";
+  setNewPassword.type = isPasswordHidden ? "text" : "password";
+  settingTogglePasswordButton.textContent = isPasswordHidden ? "🙈" : "👁";
+});
+

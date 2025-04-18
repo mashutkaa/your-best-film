@@ -8,6 +8,7 @@ module.exports = {
     entry: {
         main: "./src/js/script.js",
         result: "./src/js/resultPage/resultPage.js",
+        savedFilms: "./src/js/savedFilms/savedFIlms.js",
     },
     output: {
         filename: "[name].bundle.js",

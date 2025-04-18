@@ -161,6 +161,10 @@ const addSaveFilmButtonEventListeners = (checkedRecommendations) => {
                 saveFilm(film, button);
             } else if (isSaved) {
                 deleteFilm(button);
+                button.classList.remove("saved");
+                button.querySelector("img").src =
+                    "./icons/save-film-button.svg";
+                delete button.dataset.filmId;
             }
         });
     });

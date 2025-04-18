@@ -235,7 +235,7 @@ const filmsSearch = () => {
                     // Спочатку відновлюємо збережені значення з localStorage
                     for (let i = 0; i < lengthArray; i++) {
                         const savedValue = localStorage.getItem(
-                            `input-field-${i}`
+                            `input-field-${i}`,
                         );
                         savedValues[i] = savedValue ? savedValue : ""; // Якщо значення є, зберігаємо його, якщо ні - порожній рядок
                     }
@@ -300,7 +300,7 @@ const filmsSearch = () => {
     // local Storage
 
     const radioImgs = document.querySelectorAll(
-        '.mood-option input[type="radio"]'
+        '.mood-option input[type="radio"]',
     ); // Отримуємо всі радіокнопки
     radioImgs.forEach((radio) => {
         radio.addEventListener("change", (event) => {
@@ -421,7 +421,7 @@ const filmsSearch = () => {
                         Authorization: requestBodyToken,
                     },
                     body: JSON.stringify(requestBody),
-                }
+                },
             );
 
             // Якщо модальне вікно було закрите та спінер не крутиться то зупинити запит
@@ -446,7 +446,7 @@ const filmsSearch = () => {
             // Збереження рекомендацій у localStorage
             localStorage.setItem(
                 "recommendations",
-                JSON.stringify(recommendations)
+                JSON.stringify(recommendations),
             );
             // Відкриття нової сторінки
             window.location.href = "result-page.html";
@@ -485,7 +485,7 @@ const filmsSearch = () => {
                     const answerUpper =
                         document.querySelector("#upper-slider").value;
 
-                    answer = `Від ${answerLower} до ${answerUpper}`;
+                    answer = `Від ${answerLower} до ${answerUpper} годин`;
 
                     break;
                 }
@@ -493,7 +493,7 @@ const filmsSearch = () => {
                 case "radio": {
                     const getAnswer =
                         document.querySelector(
-                            'input[name="movie-partner"]:checked'
+                            'input[name="movie-partner"]:checked',
                         )?.value || null;
 
                     answer = `${getAnswer}`;
@@ -510,13 +510,15 @@ const filmsSearch = () => {
                         document.querySelector('input[name="year-min-1"]')
                             ?.value || maxYearDefault;
 
-                    answer = `Не раніше: ${answerMin}, не пізніше: ${answerMax}`;
+                    answer = `Не раніше: ${answerMin} року, не пізніше: ${answerMax} року`;
                     break;
                 }
 
                 case "checkbox": {
                     const selectedGenres = Array.from(
-                        document.querySelectorAll('input[name="genre"]:checked')
+                        document.querySelectorAll(
+                            'input[name="genre"]:checked',
+                        ),
                     ).map((checkbox) => checkbox.value);
 
                     if (selectedGenres.length === 0) {
@@ -655,7 +657,7 @@ const filmsSearch = () => {
     });
 
     const isOpenNewFiltersModalWindow = document.querySelector(
-        "#isOpenNewFiltersModalWindow"
+        "#isOpenNewFiltersModalWindow",
     );
     const surveyModalWrapper = document.querySelector("#surveyModal");
 
@@ -691,7 +693,7 @@ const filmsSearch = () => {
                 if (event.target.name === "continue-or-send-results") {
                     if (event.target.value === "Так") {
                         console.log(
-                            "Користувач обрав 'Так'. Виконуємо певні дії..."
+                            "Користувач обрав 'Так'. Виконуємо певні дії...",
                         );
                         formContainer.innerHTML = `
                         <div class="question-wrapper">
@@ -798,12 +800,12 @@ const filmsSearch = () => {
                                     null;
                                 const plotComplexity =
                                     document.querySelector(
-                                        'input[name="plot-complexity"]:checked'
+                                        'input[name="plot-complexity"]:checked',
                                     )?.value || null;
                                 const timePeriod = getTimePeriodValue() || null;
                                 const basedOnTrueEvents =
                                     document.querySelector(
-                                        'input[name="based-on-true-events"]:checked'
+                                        'input[name="based-on-true-events"]:checked',
                                     )?.value || null;
                                 const preferredEnding =
                                     document.getElementById("preferred-ending")
@@ -839,14 +841,18 @@ const filmsSearch = () => {
 
                                 // Додаємо всі відповіді в масив, фільтруємо null значення
                                 const validAnswers = formattedAnswers.filter(
-                                    (answer) => answer !== null
+                                    (answer) => answer !== null,
                                 );
 
                                 // Додаємо в масив userSelections
                                 userSelections.push(validAnswers);
 
                                 result = [...results, ...userSelections];
-                                console.log(results);
+                                localStorage.setItem(
+                                    "movieResults",
+                                    JSON.stringify(result),
+                                );
+
                                 getMovieRecommendations(false);
                             });
 
@@ -867,6 +873,11 @@ const filmsSearch = () => {
                         }
                     } else {
                         result = [...results];
+                        localStorage.setItem(
+                            "movieResults",
+                            JSON.stringify(result),
+                        );
+
                         getMovieRecommendations(false);
                     }
                 }
