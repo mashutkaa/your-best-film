@@ -99,13 +99,15 @@ closeMobileMenuBtn.addEventListener("click", () => {
 });
 
 // Закривати меню при кліку на пункт
-document.querySelectorAll("#my-navigation .menu-item a").forEach((link) => {
-  link.addEventListener("click", () => {
-    nav.classList.remove("open");
-    closeMobileMenuBtn.style.display = "none";
-    burger.style.display = "block";
+document
+  .querySelectorAll("#my-navigation .menu-item a .dropdown-link")
+  .forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      closeMobileMenuBtn.style.display = "none";
+      burger.style.display = "block";
+    });
   });
-});
 
 // ======================= ВХІД ================================
 
