@@ -1,6 +1,5 @@
-.registration-form{
-
-    height: 570px;
+.registration-form {
+  height: 570px;
 }
 .register-field-password {
   margin-right: 112px;
@@ -11,16 +10,21 @@
 .register-field-name {
   margin-right: 130px;
 }
-#email, #name {
-
-    width: 188px;
+#email,
+#name {
+  width: 188px;
 }
 
 @media (max-width: 767px) {
-.main-title{
-  font-size: 44px;
-}
-.secondary-text{
-  font-size: 20px;
-}
+  .main-title {
+    font-size: 44px;
+  }
+  .secondary-text {
+    font-size: 20px;
+  }
+  .film-name__wrapper {
+    p span {
+      font-size: 17px;
+    }
+  }
 }

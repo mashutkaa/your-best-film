@@ -109,7 +109,12 @@
   flex-direction: column;
   justify-content: end;
 }
+/* .setting-new-password-field-wrapper{
+  
+}
+.setting-new-password{
 
+} */
 @media (max-width: 767px) {
   .cabinet-title{
     font-size: 20px;

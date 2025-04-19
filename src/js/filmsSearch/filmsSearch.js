@@ -884,6 +884,7 @@ const filmsSearch = () => {
             });
         }
     });
+
 };
 
 export default filmsSearch;

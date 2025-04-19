@@ -352,24 +352,22 @@ body {
 /* Позиціюємо кожну рисочку */
 
 .slider-labels span:nth-child(2) {
-  left: -12px; /* Позиція другого підпису */
+  left: -11px;
 }
 
 .slider-labels span:nth-child(3) {
-  left: 3px; /* Позиція третього підпису */
+  left: 3px;
 }
 .slider-labels span:nth-child(4) {
-  left: 16px; /* Позиція третього підпису */
+  left: 16px;
 }
 
-/* Для першої рисочки */
 .slider-labels span:first-child::after {
   left: 8px;
 }
 
-/* Для останньої рисочки */
-.slider-labels span:last-child::after {
-  right: 4px;
+.slider-labels span:last-child {
+  right: -30px;
 }
 
 /* ТРЕТЄ ПИТАННЯ */
@@ -618,13 +616,16 @@ body {
 }
 /* Позиції підписів для кожного степу */
 .slider-labels-add span:first-child {
+  position: absolute;
   left: 8px;
 }
 .slider-labels-add span:nth-child(2) {
-  left: 50%;
+  position: absolute;
+  left: 183px;
 }
 .slider-labels-add span:last-child {
-  left: 100%;
+  position: absolute;
+  left: 360px;
 }
 
 /* Рисочки */
@@ -877,24 +878,28 @@ body {
   /* Позиціюємо кожну рисочку */
 
   .slider-labels span:nth-child(2) {
-    left: -18px; /* Позиція другого підпису */
+    position: absolute;
+    left: 35px;
   }
 
   .slider-labels span:nth-child(3) {
-    left: -23px; /* Позиція третього підпису */
+    position: absolute;
+    left: 87px;
   }
   .slider-labels span:nth-child(4) {
-    left: -30px; /* Позиція третього підпису */
+    position: absolute;
+    left: 140px;
   }
 
-  /* Для першої рисочки */
   .slider-labels span:first-child::after {
+    position: absolute;
     left: 8px;
   }
 
   /* Для останньої рисочки */
-  .slider-labels span:last-child::after {
-    right: 59px;
+  .slider-labels span:last-child {
+    position: absolute;
+    left: 194px;
   }
 
   /* ТРЕТЄ ПИТАННЯ */
@@ -914,14 +919,43 @@ body {
   }
   /* П'ЯТЕ ПИТАННЯ */
   .checkbox-button-label {
-       span {
+    span {
       font-size: 8px;
     }
   }
-  .submit-btn{
+  .submit-btn {
     font-size: 15px;
   }
-  .btn-close{
-     font-size: 17px;
+  .btn-close {
+    font-size: 17px;
+  }
+
+  /* ----------- ДРУГЕ ОПИТУВАННЯ  ---------------*/
+  .question-add {
+    font-size: 20px;
+  }
+  .form-wrapper {
+    .form-title {
+      margin-bottom: 20px;
+    }
+  }
+  /* третє питання */
+  .range-slider {
+    width: 245px;
+  }
+  .slider-labels-add span {
+    bottom: -16px; 
+  }
+  .slider-labels-add span:first-child {
+    position: absolute;
+    left: 8px;
+  }
+  .slider-labels-add span:nth-child(2) {
+    position: absolute;
+    left: 124px;
+  }
+  .slider-labels-add span:last-child {
+    position: absolute;
+    left: 240px;
   }
 }
