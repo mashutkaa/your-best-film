@@ -83,6 +83,11 @@ const checkResults = () => {
 const displayFilms = (checkedRecommendations) => {
     const resultsWrapper = document.querySelector(".results__wrapper");
 
+    localStorage.setItem(
+        "checkedRecommendations",
+        JSON.stringify(checkedRecommendations),
+    );
+
     checkedRecommendations.forEach((film, index) => {
         const filmWrapper = document.createElement("div");
         filmWrapper.classList.add("result-film__wrapper");

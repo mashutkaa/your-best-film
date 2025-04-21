@@ -25,9 +25,6 @@ var deleteFilm = function deleteFilm(button) {
     return response.json();
   }).then(function (data) {
     console.log(data.message);
-    button.classList.remove("saved");
-    button.querySelector("img").src = "./icons/save-film-button.svg"; // Повертаємо іконку назад
-    delete button.dataset.filmId; // Видаляємо атрибут з ID
   })["catch"](function (error) {
     return console.error("Помилка видалення:", error);
   });
@@ -214,6 +211,7 @@ var checkResults = function checkResults() {
 };
 var displayFilms = function displayFilms(checkedRecommendations) {
   var resultsWrapper = document.querySelector(".results__wrapper");
+  localStorage.setItem("checkedRecommendations", JSON.stringify(checkedRecommendations));
   checkedRecommendations.forEach(function (film, index) {
     var filmWrapper = document.createElement("div");
     filmWrapper.classList.add("result-film__wrapper");
@@ -293,6 +291,16 @@ var metaData = function metaData() {
       dataText.classList.toggle("hidden");
     });
   }
+  var metaString = savedResults.map(function (item) {
+    if (Array.isArray(item)) {
+      return item.map(function (subItem) {
+        return "[".concat(subItem, "]");
+      }).join(" ");
+    } else if (item.answer) {
+      return "[".concat(item.answer, "]");
+    }
+  }).join(" ");
+  return metaString;
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (metaData);
 
@@ -309,20 +317,163 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _metaData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./metaData */ "./src/js/resultPage/metaData.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+
 var saveRecommendation = function saveRecommendation() {
   var saveRecommendationBtn = document.querySelector(".save-recommendations__button");
   if (!saveRecommendationBtn) {
     console.error("Кнопку не знайдено!");
     return;
   }
-  saveRecommendationBtn.onclick = function () {
-    var _localStorage$getItem;
-    if (!((_localStorage$getItem = localStorage.getItem("token")) !== null && _localStorage$getItem !== void 0 && _localStorage$getItem.trim())) {
-      alert("Авторизуйтеся, щоб зберегти добірку");
-    } else {
-      alert("Вибачте, функціонал наразі не доступний");
-    }
-  };
+  saveRecommendationBtn.onclick = /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+    var token, recommendations, name, meta_data, collectionRes, contentType, collectionData, _collectionData, collectionId, i, film, saveButton, isSaved, filmRes;
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          token = localStorage.getItem("token");
+          console.log("Отримано токен:", token);
+          if (token !== null && token !== void 0 && token.trim()) {
+            _context.next = 5;
+            break;
+          }
+          alert("Авторизуйтеся, щоб зберегти добірку");
+          return _context.abrupt("return");
+        case 5:
+          recommendations = JSON.parse(localStorage.getItem("checkedRecommendations"));
+          console.log("Отримані рекомендації:");
+          console.log(recommendations);
+          if (!(!Array.isArray(recommendations) || recommendations.length === 0)) {
+            _context.next = 11;
+            break;
+          }
+          alert("Немає добірки для збереження");
+          return _context.abrupt("return");
+        case 11:
+          name = prompt("Введіть назву для вашої добірки:");
+          console.log("Введена назва:", name);
+          if (name !== null && name !== void 0 && name.trim()) {
+            _context.next = 16;
+            break;
+          }
+          alert("Назва добірки обовʼязкова");
+          return _context.abrupt("return");
+        case 16:
+          _context.prev = 16;
+          // --- 1. Створення колекції ---
+          console.log("Надсилаємо запит на створення колекції...");
+          meta_data = (0,_metaData__WEBPACK_IMPORTED_MODULE_0__["default"])(); // отримуємо метадані
+          _context.next = 21;
+          return fetch("http://localhost:3000/collections", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer ".concat(token)
+            },
+            body: JSON.stringify({
+              name: name,
+              meta_data: meta_data
+            }) // відправляємо name як назву добірки
+          });
+        case 21:
+          collectionRes = _context.sent;
+          console.log("Отримана відповідь на створення колекції:", collectionRes);
+          contentType = collectionRes.headers.get("Content-Type");
+          if (!(contentType && contentType.includes("application/json"))) {
+            _context.next = 31;
+            break;
+          }
+          _context.next = 27;
+          return collectionRes.json();
+        case 27:
+          collectionData = _context.sent;
+          console.log("Дані з відповіді:", collectionData);
+          _context.next = 32;
+          break;
+        case 31:
+          throw new Error("Невірний формат відповіді від сервера");
+        case 32:
+          if (collectionRes.ok) {
+            _context.next = 34;
+            break;
+          }
+          throw new Error(((_collectionData = collectionData) === null || _collectionData === void 0 ? void 0 : _collectionData.message) || "Помилка створення колекції");
+        case 34:
+          collectionId = collectionData.id; // отримуємо ID нової колекції
+          console.log("Створено колекцію з ID:", collectionId);
+          this.textContent = "Добірку збережено";
+          this.disabled = true;
+
+          // --- 2. Додавання фільмів до колекції ---
+          i = 0;
+        case 39:
+          if (!(i < recommendations.length)) {
+            _context.next = 58;
+            break;
+          }
+          film = recommendations[i];
+          saveButton = document.getElementById("".concat(i, "-save-film__button"));
+          isSaved = (saveButton === null || saveButton === void 0 ? void 0 : saveButton.classList.contains("saved")) || false;
+          console.log("\u0414\u043E\u0434\u0430\u0454\u043C\u043E \u0444\u0456\u043B\u044C\u043C ".concat(i + 1, "/").concat(recommendations.length), {
+            film: film,
+            isSaved: isSaved
+          });
+          console.log(film);
+          _context.next = 47;
+          return fetch("http://localhost:3000/collections/collection-films", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer ".concat(token)
+            },
+            body: JSON.stringify({
+              collection_id: collectionId,
+              name: film.title,
+              rating: film.rating,
+              genre: film.genres,
+              year: film.releaseYear,
+              description: film.description,
+              img_url: film.posterUrl,
+              is_saved: isSaved
+            })
+          });
+        case 47:
+          filmRes = _context.sent;
+          if (filmRes.ok) {
+            _context.next = 55;
+            break;
+          }
+          _context.t0 = console;
+          _context.next = 52;
+          return filmRes.text();
+        case 52:
+          _context.t1 = _context.sent;
+          _context.t0.error.call(_context.t0, "Помилка при додаванні фільму:", _context.t1);
+          throw new Error("Не вдалося додати фільм до колекції");
+        case 55:
+          i++;
+          _context.next = 39;
+          break;
+        case 58:
+          alert("Добірку збережено успішно!");
+          _context.next = 67;
+          break;
+        case 61:
+          _context.prev = 61;
+          _context.t2 = _context["catch"](16);
+          console.error("Помилка при збереженні добірки:", _context.t2);
+          alert("Не вдалося зберегти добірку");
+          this.textContent = "Зберегти добірку";
+          this.disabled = false;
+        case 67:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee, this, [[16, 61]]);
+  }));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (saveRecommendation);
 

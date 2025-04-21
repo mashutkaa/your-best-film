@@ -32,6 +32,18 @@ const metaData = () => {
             dataText.classList.toggle("hidden");
         });
     }
+
+    const metaString = savedResults
+        .map((item) => {
+            if (Array.isArray(item)) {
+                return item.map((subItem) => `[${subItem}]`).join(" ");
+            } else if (item.answer) {
+                return `[${item.answer}]`;
+            }
+        })
+        .join(" ");
+
+    return metaString;
 };
 
 export default metaData;

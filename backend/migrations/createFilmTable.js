@@ -11,6 +11,7 @@ db.serialize(() => {
         description TEXT,
         img_url TEXT,
         user_id INTEGER,
+        created_at TEXT DEFAULT (datetime('now')),
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     )`,
         (err) => {
@@ -19,6 +20,6 @@ db.serialize(() => {
             } else {
                 console.log("Films table created successfully.");
             }
-        },
+        }
     );
 });
