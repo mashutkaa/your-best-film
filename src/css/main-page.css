@@ -181,6 +181,7 @@ body {
   font-family: "Montserrat Alternates", sans-serif;
   color: white;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .copyright {
@@ -209,6 +210,18 @@ body {
   width: 370px;
   align-self: center;
   margin-bottom: 17px;
+}
+.btn-email-wrapper{
+  div{
+    display: flex;
+    p{
+      margin-right: 20px;
+      font-size: 22px;
+    }
+    a{
+       font-size: 22px;
+    }
+  }
 }
 
 .footer-btn:hover {
@@ -303,12 +316,17 @@ body {
     order: 2;
     font-size: 17px;
     text-decoration: underline;
+  
   }
   .copyright {
     order: 3;
     font-size: 17px;
   }
-
+.btn-email-wrapper{
+  div{
+   display: none;
+  }
+}
   .burger {
     display: block;
   }
