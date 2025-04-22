@@ -267,6 +267,7 @@ body {
 
     background: none;
     border: none;
+    display: none;
   }
   .film-tags {
     margin-top: 15px;
