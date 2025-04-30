@@ -1,0 +1,35 @@
+@use "./styles/variables" as *;
+
+body {
+    margin: 0;;
+    background: $color-background;
+}
+
+h1, h2, h3, h4, h5, h6, p, button {
+    color: $color-text;
+    font-family: $font-family-base;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    border: none;
+    background: none;
+
+    color: $color-text;
+    font-family: $font-family-base;
+
+    border-radius: 50px;
+    border: 1px solid #FFF;
+
+    &:hover {
+        cursor: pointer;
+        background: $color-button-hover;
+    }
+}
