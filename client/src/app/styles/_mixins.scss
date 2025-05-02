@@ -1,0 +1,14 @@
+@use "./variables" as *;
+
+@mixin rounded-button {
+    border-radius: 50px;
+    border: 1px solid #FFF;
+  
+    color: $color-text;
+    font-family: $font-family-base;
+
+    &:hover {
+      cursor: pointer;
+      background: $color-button-hover;
+    }
+}

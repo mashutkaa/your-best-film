@@ -1,41 +1,42 @@
 @use "../../app/styles/variables" as *;
+@use "../../app/styles/mixins" as *;
 
 .header__wrapper {
     display: flex;
     justify-content: space-between;
     
-    margin: 37px 55px 50px 55px;
-}
+    margin: 37px 0px 50px 0px;
 
-ul {
-    display: flex;
-    gap: 47px;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
-}
-
-a {
-    color: $color-text;
-    font-family: $font-family-base;
-    font-size: 17px;
-    font-weight: 300;
-
-    &:hover {
-        cursor: pointer;
-        font-weight: 600;
+    ul {
+        display: flex;
+        gap: 47px;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+    }
+    
+    a {
+        color: $color-text;
+        font-family: $font-family-base;
+        font-size: 17px;
+        font-weight: 300;
+    
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    
+    button {
+        @include rounded-button;
+        
+        font-size: 17px;
+        font-weight: 300;
+        padding: 8.5px 38px;
+    }
+    
+    .project_logo__img {
+        width: 249px;
+        height: 59px;
     }
 }
 
-button {
-    color: $color-text;
-    font-family: $font-family-base;
-    font-size: 17px;
-    font-weight: 300;
-    padding: 8.5px 38px;
-}
-
-.project_logo__img {
-    width: 249px;
-    height: 59px;
-}

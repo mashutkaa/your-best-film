@@ -22,14 +22,20 @@ button {
     border: none;
     background: none;
 
-    color: $color-text;
-    font-family: $font-family-base;
-
-    border-radius: 50px;
-    border: 1px solid #FFF;
-
     &:hover {
         cursor: pointer;
-        background: $color-button-hover;
     }
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: $color-text;
+
+    margin-bottom: 45px;
+}
+
+body {
+    margin-left: 66px;
+    margin-right: 66px;
 }

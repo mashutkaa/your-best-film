@@ -1,0 +1,84 @@
+@use "../../app/styles/variables" as *;
+
+.footer__wrapper {
+    padding-top: 10px;
+
+    nav ul, .legal_links__container {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        gap: 9px;
+
+        padding: 0;
+
+        a, button {
+            color: $color-text;
+            font-family: $font-family-base;
+            font-size: 17px;
+            font-weight: 300;
+    
+            padding: 0;
+    
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    ul {
+        margin: 0;
+    }
+
+    .footer_links__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .menu__container {
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+
+            margin-bottom: 42px;
+        }
+
+        address {
+            a, img {
+                height: 20px;
+                width: auto;
+            }
+            display: flex;
+            gap: 15px;
+        }
+    }
+
+    .legal_links__container a {
+        color: $color-text-light;
+    }
+
+    .footer__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 16px;
+    }
+
+    hr {
+        margin-bottom: 0;
+    }
+
+    .copyright {
+        margin: 0;
+        padding-top: 15px;
+        padding-bottom: 17px;
+        color: rgba(255, 255, 255, 0.50);
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .star_light__logo {
+        width: 186px;
+        height: 77px;
+    }
+}
