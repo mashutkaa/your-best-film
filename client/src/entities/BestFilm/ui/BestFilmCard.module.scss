@@ -1,0 +1,57 @@
+@use "@/app/styles/variables" as *;
+
+.bestFilmCard__container {
+    position: relative;
+}
+
+.poster__img {
+    width: 8vw;
+    height: 38.5vh;
+    border-radius: 48.54% / 18.05%;
+
+    object-fit: cover;
+}
+
+.bestFilmCard__info {
+    height: 38.5vh;
+    width: calc(8vw + 231px);
+
+    background-color: $color-background-light;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    .info__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 11px;
+
+        max-width: 209px;
+    }
+
+    .title__text {
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    .description__text {
+        font-size: 11px;
+        font-weight: 300;
+        text-align: center;
+    }
+    
+    .rating__text {
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    &.right {
+        align-items: flex-end;
+    }
+}
+

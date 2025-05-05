@@ -21,11 +21,11 @@ export async function getPopularMovies(req, res) {
     const firstDay = `${year}-${month}-01`;
     const lastDay = new Date(year, now.getMonth() + 1, 0)
         .toISOString()
-        .split("T")[0]; // останній день місяця
+        .split("T")[0];
 
     try {
         const response = await fetch(
-            `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=uk&sort_by=vote_average.desc&vote_count.gte=20&primary_release_date.gte=${firstDay}&primary_release_date.lte=${lastDay}&page=1`
+            `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=uk&sort_by=vote_average.desc&vote_count.gte=20&primary_release_date.gte=${firstDay}&primary_release_date.lte=${lastDay}&page=1`,
         );
 
         const data = await response.json();
@@ -52,7 +52,7 @@ export async function getPopularMovies(req, res) {
                 const overview = (movie.overview || "").trim().toLowerCase();
 
                 const containsForbiddenWords = forbiddenWords.some((word) =>
-                    overview.includes(word)
+                    overview.includes(word),
                 );
 
                 return (

@@ -3,7 +3,7 @@
 .footer__wrapper {
     padding-top: 10px;
 
-    nav ul, .legal_links__container {
+    & nav ul, .legal_links__container {
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -12,7 +12,7 @@
 
         padding: 0;
 
-        a, button {
+        & a, & button {
             color: $color-text;
             font-family: $font-family-base;
             font-size: 17px;
@@ -26,7 +26,7 @@
         }
     }
 
-    ul {
+    & ul {
         margin: 0;
     }
 
@@ -43,8 +43,8 @@
             margin-bottom: 42px;
         }
 
-        address {
-            a, img {
+        & address {
+            & a, & img {
                 height: 20px;
                 width: auto;
             }
@@ -64,7 +64,7 @@
         margin-bottom: 16px;
     }
 
-    hr {
+    & hr {
         margin-bottom: 0;
     }
 
