@@ -1,0 +1,57 @@
+@use "@/app/styles/variables" as *;
+@use "@/app/styles/mixins" as *;
+
+.aboutUs__section {
+    display: flex;
+    flex-direction: column;
+}
+
+.aboutUs__content {
+    display: flex;
+    justify-content: center;
+
+    .aboutUs__image {
+        height: 400px;
+        width: auto;
+    }
+
+    .aboutUs__textBlock {
+        max-width: 481px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        & h2 {
+            font-family: "Montserrat Alternates";
+            font-size: 40px;
+            font-weight: 600;
+            text-transform: uppercase;
+
+            margin: 0;
+        }
+
+        & p {
+            text-align: center;
+            font-size: 17px;
+            font-weight: 300;
+
+            margin: 0;
+        }
+
+        .aboutUs__subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            text-align: center;
+
+            margin: 0;
+        }
+
+        .filmSearch__button {
+            @include rounded-button;
+            font-size: 20px;
+            padding: 7px 21px;
+        }
+    }
+}

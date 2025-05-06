@@ -1,0 +1,9 @@
+@use "@/app/styles/variables" as *;
+
+.bestFilms__container {
+    margin: 43px auto 40px auto;
+    display: flex;
+    flex-direction: row;
+    gap: 44px;
+    justify-content: center;
+}

@@ -1,1 +1,7 @@
 @use "../../app/styles/variables" as *;
+
+.mainPage__section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

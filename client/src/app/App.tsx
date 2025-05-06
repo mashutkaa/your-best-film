@@ -1,17 +1,17 @@
 import { Routes, Route } from "react-router-dom";
-import { PagesLayout } from "@/pages/PagesLayout";
+import { PagesLayout } from "@/app/PagesLayout";
 import { MainPage } from "@/pages/MainPage/MainPage";
 
-import './App.scss';
+import "./App.scss";
 
 function App() {
-  return (
-    <Routes>
-      <Route element={<PagesLayout />}>
-        <Route path="/" element={<MainPage />} />
-      </Route>
-    </Routes>
-  );
+    return (
+        <Routes>
+            <Route element={<PagesLayout />}>
+                <Route path="/" element={<MainPage />} />
+            </Route>
+        </Routes>
+    );
 }
 
 export default App;

@@ -1,11 +1,18 @@
 @use "./styles/variables" as *;
 
 body {
-    margin: 0;;
+    margin: 0;
     background: $color-background;
 }
 
-h1, h2, h3, h4, h5, h6, p, button {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+button {
     color: $color-text;
     font-family: $font-family-base;
 }
@@ -31,8 +38,9 @@ hr {
     border: none;
     height: 1px;
     background: $color-text;
-
+    width: 100%;
     margin-bottom: 45px;
+    margin-top: 0;
 }
 
 body {

@@ -1,0 +1,30 @@
+.modal {
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(12.5px);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: none;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.modal__content {
+    padding: 65px 35px;
+
+    border-radius: 50px;
+    border: 1px solid #fff;
+    background: #01070a;
+
+    width: 443px;
+    // height: 550px;
+}

@@ -5,16 +5,28 @@
 }
 
 .poster__img {
-    width: 8vw;
-    height: 38.5vh;
-    border-radius: 48.54% / 18.05%;
+    width: 103px;
+    height: 280px;
+    border-radius: 50px;
 
     object-fit: cover;
+
+    @media (min-width: 1600px) {
+        width: 194px;
+        height: 525px;
+        border-radius: 75px;
+    }
+
+    // 1440x900
+    @media (min-width: 1366px) and (max-width: 1599px) {
+        width: 116px;
+        height: 350px;
+        border-radius: 56px;
+    }
 }
 
 .bestFilmCard__info {
-    height: 38.5vh;
-    width: calc(8vw + 231px);
+    display: none;
 
     background-color: $color-background-light;
 
@@ -37,13 +49,13 @@
         font-weight: 600;
         text-align: center;
     }
-    
+
     .description__text {
         font-size: 11px;
         font-weight: 300;
         text-align: center;
     }
-    
+
     .rating__text {
         font-size: 24px;
         font-weight: 600;
@@ -55,3 +67,44 @@
     }
 }
 
+.bestFilmCard__container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
+
+    width: 103px;
+    height: 280px;
+
+    // @media (min-width: 1600px) {
+    //     width: 155px;
+    //     height: 420px;
+    // }
+
+    @media (min-width: 1600px) {
+        width: 194px;
+        height: 525px;
+    }
+
+    // 1440x900
+    @media (min-width: 1366px) and (max-width: 1599px) {
+        width: 116px;
+        height: 350px;
+    }
+
+    .sadSmile {
+        margin: 0;
+        font-size: 64px;
+        font-weight: 400;
+        text-align: center;
+        color: $color-accent;
+    }
+
+    .errorMessage {
+        margin: 0 auto;
+        font-size: 13px;
+        color: $color-accent;
+        width: 100px;
+        text-align: center;
+    }
+}

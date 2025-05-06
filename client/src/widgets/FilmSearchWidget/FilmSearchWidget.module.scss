@@ -1,0 +1,24 @@
+@use "@/app/styles/variables" as *;
+@use "@/app/styles/mixins" as *;
+
+.filmSearch__container {
+    margin-bottom: 100px;
+
+    display: flex;
+    align-items: center;
+    gap: 23px;
+
+    & h1 {
+        color: #fff;
+        font-family: "Montserrat Alternates";
+        font-size: 20px;
+        font-weight: 300;
+    }
+
+    & button {
+        @include rounded-button;
+        padding: 7px 60px;
+        font-size: 20px;
+        font-weight: 300;
+    }
+}
