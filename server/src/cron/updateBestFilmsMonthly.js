@@ -1,5 +1,5 @@
 const cron = require("node-cron");
-const fetchBestFilms = require("../services/external/tmdb/fetchBestFilmsFromApi");
+const fetchBestFilms = require("../services/external/tmdb/bestFilms");
 const BestFilm = require("../models/BestFilm");
 
 module.exports = () => {

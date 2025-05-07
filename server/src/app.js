@@ -1,10 +1,14 @@
 const express = require("express");
 
+const corsMiddleware = require("./middlewares/corsMiddleware");
+
 const updateBestFilmsMonthly = require("./cron/updateBestFilmsMonthly");
 
 const bestFilmsRouter = require("./routes/bestFilms");
 
 const app = express();
+
+app.use(corsMiddleware);
 
 updateBestFilmsMonthly();
 
