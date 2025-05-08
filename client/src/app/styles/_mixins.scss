@@ -2,13 +2,48 @@
 
 @mixin rounded-button {
     border-radius: 50px;
-    border: 1px solid #FFF;
-  
+    border: 1px solid #fff;
+
     color: $color-text;
     font-family: $font-family-base;
 
     &:hover {
-      cursor: pointer;
-      background: $color-button-hover;
+        cursor: pointer;
+        background: $color-button-hover;
+    }
+}
+
+// Мобільні: менше або дорівнює 767px
+@mixin mobile {
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
+// Планшети: 768 – 1279px
+@mixin tablet {
+    @media (min-width: 768px) and (max-width: 1279px) {
+        @content;
+    }
+}
+
+// Малі десктопи: 1280 – 1365px
+@mixin small-desktop {
+    @media (min-width: 1280px) and (max-width: 1365px) {
+        @content;
+    }
+}
+
+// Середні десктопи: 1366 – 1919px
+@mixin medium-desktop {
+    @media (min-width: 1366px) and (max-width: 1919px) {
+        @content;
+    }
+}
+
+// Великі екрани: 1920px+
+@mixin large-desktop {
+    @media (min-width: 1920px) {
+        @content;
     }
 }

@@ -76,18 +76,13 @@
     width: 103px;
     height: 280px;
 
-    // @media (min-width: 1600px) {
-    //     width: 155px;
-    //     height: 420px;
-    // }
-
-    @media (min-width: 1600px) {
+    @media (min-width: 1920px) {
         width: 194px;
         height: 525px;
     }
 
     // 1440x900
-    @media (min-width: 1366px) and (max-width: 1599px) {
+    @media (min-width: 1366px) and (max-width: 1919px) {
         width: 116px;
         height: 350px;
     }

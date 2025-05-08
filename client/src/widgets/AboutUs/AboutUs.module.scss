@@ -8,12 +8,25 @@
 }
 
 .aboutUs__content {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
+    align-items: center;
+
+    margin-bottom: 109px;
+
+    @include large-desktop {
+        padding-top: 50px;
+        margin-bottom: 134px;
+    }
 
     .aboutUs__image {
         height: 400px;
         width: auto;
+
+        @include large-desktop {
+            width: 1176px;
+            height: auto;
+        }
     }
 
     .aboutUs__textBlock {
@@ -54,5 +67,33 @@
             font-size: 20px;
             padding: 7px 21px;
         }
+    }
+
+    .aboutUs__description {
+        margin-top: 31px;
+        margin-bottom: 61px;
+    }
+}
+
+.aboutUs__tmdb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+
+    margin: 0 auto 23px auto;
+
+    .aboutUs__tmdbLogo {
+        width: 160px;
+        height: 21px;
+        aspect-ratio: 160/21;
+    }
+
+    .aboutUs__tmdbText {
+        font-family: Montserrat;
+        font-size: 15px;
+        font-weight: 300;
+
+        margin: 0;
     }
 }
