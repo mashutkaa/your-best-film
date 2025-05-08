@@ -23,6 +23,7 @@ const searchMovieByTitle = async (title) => {
             title: movie.title,
             description: movie.overview,
             rating: movie.vote_average,
+            genres: movieDetails.genres?.map((g) => g.name) || [],
             poster: movie.poster_path
                 ? `${TMDB_IMAGE_URL}${movie.poster_path}`
                 : null,

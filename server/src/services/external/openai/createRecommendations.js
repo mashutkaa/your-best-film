@@ -72,4 +72,4 @@ async function fetchFilmsRecommendation(requestData) {
     }
 }
 
-export default fetchFilmsRecommendation;
+module.exports = fetchFilmsRecommendation;
