@@ -1,3 +1,5 @@
+@use "@/app/styles/variables" as *;
+
 .modal {
     height: 100vh;
     width: 100vw;
@@ -14,17 +16,33 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    overflow: hidden;
 }
 
 .modal__content {
-    padding: 65px 35px;
-
     border-radius: 50px;
-    border: 1px solid #fff;
-    background: #01070a;
+    border: 1px solid $color-text;
+    background: $color-background;
 
     width: 443px;
-    // height: 550px;
+    max-height: 76.39vh;
+
+    // overflow-y: hidden;
+    // overflow-x: hidden;
+
+    position: relative;
+}
+
+.content__wrapper {
+    padding: 65px 35px;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 40px;
+}
+
+.closeButton:hover {
+    cursor: pointer;
 }

@@ -1,0 +1,161 @@
+@use "@/app/styles/variables" as *;
+@use "@/app/styles/mixins" as *;
+
+.formName {
+    & .formName__header {
+        color: $color-text;
+        font-family: "Montserrat Alternates";
+        font-size: 24px;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-align: center;
+
+        margin: 0 auto;
+    }
+
+    & .formName__description {
+        color: $color-text;
+        font-family: Montserrat;
+        font-size: 10px;
+        font-weight: 300;
+        text-align: center;
+        width: 264px;
+
+        margin: 0 auto;
+    }
+}
+
+.findFilms__form {
+    max-height: 51vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    & ol {
+        padding: 0;
+    }
+
+    & li {
+        margin-bottom: 25px;
+
+        display: flex;
+        gap: 18px;
+    }
+}
+
+.num {
+    color: $color-text;
+    font-family: $font-family-base;
+    font-size: 20px;
+    font-weight: 600;
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    border: 1px solid $color-text;
+
+    margin-top: 10px;
+}
+
+.isRequired {
+    color: $color-accent;
+    font-family: Montserrat;
+    font-size: 10px;
+    font-weight: 600;
+
+    margin: 0;
+}
+
+.questionName {
+    color: $color-text;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: 300;
+
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.radio_button_group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.hidden_radio {
+    display: none;
+}
+
+.radioImg_button_group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.radio_label {
+    @include rounded-button;
+    padding: 4px 18px;
+
+    font-family: $font-family-secondary;
+    font-size: 10px;
+    font-weight: 300;
+}
+
+.active_btn {
+    background-color: $color-button-hover;
+
+    &:hover {
+        cursor: default;
+    }
+}
+
+.radioImg_label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 50px;
+
+    & img {
+        height: 35px;
+        width: auto;
+        object-fit: cover;
+        border-radius: 50%;
+
+        margin-bottom: 5px;
+
+        box-sizing: border-box;
+    }
+    & span {
+        color: #fff;
+        font-family: Montserrat;
+        font-size: 10px;
+        font-weight: 300;
+    }
+}
+
+.radioImg_label:hover {
+    & span {
+        font-weight: 600;
+    }
+    cursor: pointer;
+}
+
+.active_imgBtn {
+    & img {
+        outline: 2px solid $color-accent;
+    }
+    & span {
+        font-weight: 600;
+    }
+    &:hover {
+        cursor: default;
+    }
+}
+
+.range_question {
+}

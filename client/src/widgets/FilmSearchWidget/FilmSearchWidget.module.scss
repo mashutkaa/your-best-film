@@ -15,7 +15,7 @@
         font-weight: 300;
     }
 
-    & button {
+    .filmSearch__button {
         @include rounded-button;
         padding: 7px 60px;
         font-size: 20px;

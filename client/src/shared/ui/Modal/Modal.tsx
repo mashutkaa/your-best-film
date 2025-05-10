@@ -33,7 +33,14 @@ export const Modal: React.FC<ModalProps> = ({
                 className={styles.modal__content}
                 onClick={(e) => e.stopPropagation()}
             >
-                {children}
+                <button
+                    className={styles.closeButton}
+                    onClick={() => setActive(false)}
+                    aria-label="Закрити"
+                >
+                    &times;
+                </button>
+                <div className={styles.content__wrapper}>{children}</div>
             </div>
         </div>
     );

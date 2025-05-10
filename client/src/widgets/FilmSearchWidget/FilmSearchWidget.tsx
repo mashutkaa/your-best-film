@@ -10,7 +10,9 @@ export const FilmSearchWidget: React.FC = () => {
             <h1>Що подивитися сьогодні?</h1>
             <img src={ArrowIcon} alt="arrow icon" />
             <FindFilms>
-                <button>Знайти фільм</button>
+                <button className={styles.filmSearch__button}>
+                    Знайти фільм
+                </button>
             </FindFilms>
         </div>
     );
