@@ -1,6 +1,5 @@
 import { useState, ReactElement, cloneElement } from "react";
 import { useForm } from "react-hook-form";
-import { Range, getTrackBackground } from "react-range";
 
 import { Modal } from "@/shared/ui/Modal/Modal";
 
@@ -28,13 +27,6 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
     const trigger = cloneElement(children, {
         onClick: handleOpen,
     });
-
-    const STEP = 60;
-    const MIN = 0;
-    const MAX = 420;
-    const TICKS = [0, 60, 180, 300, 420]; // 0, 1, 3, 5, 7 год
-
-    const [values, setValues] = useState([0, 420]);
 
     return (
         <div className={styles.findFilms__container}>
@@ -143,7 +135,42 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
                                 <h4 className={styles.questionName}>
                                     Яка тривалість фільму?
                                 </h4>
-                                <div className={styles.range_question}></div>
+                                <div className={styles.range_question}>
+                                    <div className={styles.sliders_control}>
+                                        <div
+                                            id="fromSliderTooltip"
+                                            className={styles.slider_tooltip}
+                                        >
+                                            0
+                                        </div>
+                                        <input
+                                            type="range"
+                                            value="0"
+                                            min="0"
+                                            max="8"
+                                            step="1"
+                                            id="fromSlider"
+                                            className={styles.range_slider}
+                                            {...register("duration")}
+                                        />
+                                        <div
+                                            id="toSliderTooltip"
+                                            className={styles.slider_tooltip}
+                                        >
+                                            8
+                                        </div>
+                                        <input
+                                            type="range"
+                                            value="8"
+                                            min="0"
+                                            max="8"
+                                            step="1"
+                                            id="toSlider"
+                                            className={styles.range_slider}
+                                            {...register("duration")}
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </li>
 

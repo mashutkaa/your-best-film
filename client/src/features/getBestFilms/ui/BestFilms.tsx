@@ -15,6 +15,8 @@ import styles from "./BestFilms.module.scss";
 export const BestFilms: React.FC = () => {
     const { loading, request } = useHttp();
     const [films, setFilms] = useState<BestFilm[]>([]);
+    const [filmsLoading, setFilmsLoading] = useState<boolean[]>([]);
+    const [filmsErrors, setFilmsErrors] = useState<boolean[]>([]);
 
     useEffect(() => {
         const fetchFilms = async () => {
@@ -23,8 +25,13 @@ export const BestFilms: React.FC = () => {
                     `${API_BASE_URL}${API_ENDPOINTS.BEST_FILMS}`,
                 );
                 setFilms(data || []);
+                setFilmsLoading(Array(data.length).fill(false));
+                setFilmsErrors(Array(data.length).fill(false));
+                console.log("Best films data:", data);
             } catch (err) {
                 console.error("Error fetching best films:", err);
+                setFilmsErrors(Array(films.length).fill(true));
+                setFilmsLoading(Array(films.length).fill(false));
             }
         };
 
@@ -36,22 +43,27 @@ export const BestFilms: React.FC = () => {
     return (
         <div className={styles.bestFilms__container}>
             {filmsToRender.map((film, index) => {
+                if (filmsLoading[index] || loading) {
+                    return <BestFilmCardSkeleton key={index} />;
+                }
+
+                if (filmsErrors[index]) {
+                    return <BestFilmCardError key={index} />;
+                }
+
                 if (film === null) {
                     return <BestFilmCardError key={index} />;
                 }
 
-                if (loading) {
-                    return <BestFilmCardSkeleton key={index} />;
-                }
-
-                const { title, description, rating, poster } = film;
+                const { title, description, rating, poster_url } = film;
                 return (
                     <BestFilmCard
                         key={index}
+                        id={index}
                         title={title}
                         description={description}
                         rating={rating}
-                        poster={poster}
+                        poster={poster_url}
                     />
                 );
             })}

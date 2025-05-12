@@ -1,7 +1,43 @@
 @use "@/app/styles/variables" as *;
+@use "@/app/styles/mixins" as *;
 
 .bestFilmCard__container {
     position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
+
+    width: 103px;
+    height: 280px;
+
+    @include medium-desktop {
+        width: 116px;
+        height: 350px;
+        border-radius: 56px;
+    }
+
+    @include large-desktop {
+        width: 194px;
+        height: 525px;
+    }
+
+    .sadSmile {
+        margin: 0;
+        font-size: 64px;
+        font-weight: 400;
+        text-align: center;
+        color: $color-accent;
+    }
+
+    .errorMessage {
+        margin: 0 auto;
+        font-size: 13px;
+        color: $color-accent;
+        width: 100px;
+        text-align: center;
+    }
 }
 
 .poster__img {
@@ -11,17 +47,16 @@
 
     object-fit: cover;
 
-    @media (min-width: 1600px) {
-        width: 194px;
-        height: 525px;
-        border-radius: 75px;
-    }
-
-    // 1440x900
-    @media (min-width: 1366px) and (max-width: 1599px) {
+    @include medium-desktop {
         width: 116px;
         height: 350px;
         border-radius: 56px;
+    }
+
+    @include large-desktop {
+        width: 194px;
+        height: 525px;
+        border-radius: 95px;
     }
 }
 
@@ -64,42 +99,5 @@
 
     &.right {
         align-items: flex-end;
-    }
-}
-
-.bestFilmCard__container {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    justify-content: center;
-
-    width: 103px;
-    height: 280px;
-
-    @media (min-width: 1920px) {
-        width: 194px;
-        height: 525px;
-    }
-
-    // 1440x900
-    @media (min-width: 1366px) and (max-width: 1919px) {
-        width: 116px;
-        height: 350px;
-    }
-
-    .sadSmile {
-        margin: 0;
-        font-size: 64px;
-        font-weight: 400;
-        text-align: center;
-        color: $color-accent;
-    }
-
-    .errorMessage {
-        margin: 0 auto;
-        font-size: 13px;
-        color: $color-accent;
-        width: 100px;
-        text-align: center;
     }
 }
