@@ -1,4 +1,4 @@
-import { useState, ReactElement, cloneElement } from "react";
+import { useState, useEffect, ReactElement, cloneElement } from "react";
 import { useForm } from "react-hook-form";
 
 import { Modal } from "@/shared/ui/Modal/Modal";
@@ -19,11 +19,41 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
     const [minDuration, setMinDuration] = useState(0);
     const [maxDuration, setMaxDuration] = useState(8);
 
-    const { register, handleSubmit, watch } = useForm();
+    const {
+        register,
+        handleSubmit,
+        watch,
+        setValue,
+        formState: { errors },
+    } = useForm({
+        defaultValues: {
+            mood: "Чудовий",
+            minDuration: 0,
+            maxDuration: 8,
+            company: "Наодинці",
+            yearFrom: "",
+            yearTo: "",
+            genres: [],
+        },
+    });
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data: unknown) => console.log(data);
 
-    const selected = watch("mood");
+    const [
+        selectedMood,
+        selectedCompany,
+        selectedYearFrom,
+        selectedYearTo,
+        selectedGenres,
+    ] = watch(["mood", "company", "yearFrom", "yearTo", "genres"]);
+
+    // Додаємо синхронізацію значень повзунків з формою
+    useEffect(() => {
+        setValue("minDuration", minDuration);
+    }, [minDuration, setValue]);
+    useEffect(() => {
+        setValue("maxDuration", maxDuration);
+    }, [maxDuration, setValue]);
 
     const handleOpen = () => setModalActive(true);
 
@@ -31,6 +61,8 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
     const trigger = cloneElement(children, {
         onClick: handleOpen,
     });
+
+    const currentYear = new Date().getFullYear();
 
     return (
         <div className={styles.findFilms__container}>
@@ -67,7 +99,7 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
                                     />
                                     <label
                                         htmlFor="good"
-                                        className={`${styles.radioImg_label} ${selected === "Чудовий" ? styles.active_imgBtn : ""}`}
+                                        className={`${styles.radioImg_label} ${selectedMood === "Чудовий" ? styles.active_imgBtn : ""}`}
                                     >
                                         <img
                                             src={GoodMoodImg}
@@ -85,7 +117,7 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
                                     />
                                     <label
                                         htmlFor="bored"
-                                        className={`${styles.radioImg_label} ${selected === "Нудно" ? styles.active_imgBtn : ""}`}
+                                        className={`${styles.radioImg_label} ${selectedMood === "Нудно" ? styles.active_imgBtn : ""}`}
                                     >
                                         <img src={BoredMoodImg} alt="Нудно" />
                                         <span>Нудно</span>
@@ -100,7 +132,7 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
                                     />
                                     <label
                                         htmlFor="sad"
-                                        className={`${styles.radioImg_label} ${selected === "Сумний" ? styles.active_imgBtn : ""}`}
+                                        className={`${styles.radioImg_label} ${selectedMood === "Сумний" ? styles.active_imgBtn : ""}`}
                                     >
                                         <img
                                             src={SadMoodImg}
@@ -118,7 +150,7 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
                                     />
                                     <label
                                         htmlFor="tired"
-                                        className={`${styles.radioImg_label} ${selected === "Втомлений" ? styles.active_imgBtn : ""}`}
+                                        className={`${styles.radioImg_label} ${selectedMood === "Втомлений" ? styles.active_imgBtn : ""}`}
                                     >
                                         <img
                                             src={TiredMoodImg}
@@ -172,6 +204,21 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
                                         }
                                         className={`${styles.rangeSlider} ${styles.upper}`}
                                     />
+                                    {/* Додаємо приховані інпути для реєстрації у формі */}
+                                    <input
+                                        type="hidden"
+                                        {...register("minDuration", {
+                                            required: true,
+                                        })}
+                                        value={minDuration}
+                                    />
+                                    <input
+                                        type="hidden"
+                                        {...register("maxDuration", {
+                                            required: true,
+                                        })}
+                                        value={maxDuration}
+                                    />
                                     <div className={styles.sliderLabels}>
                                         {[
                                             "0 хв",
@@ -199,44 +246,58 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
                                 <div className={styles.radio_button_group}>
                                     <input
                                         type="radio"
-                                        id="email"
-                                        value="email"
-                                        {...register("contact")}
+                                        id="company_alone"
+                                        value="Наодинці"
+                                        {...register("company")}
                                         className={styles.hidden_radio}
                                     />
                                     <label
-                                        htmlFor="email"
-                                        className={`${styles.radio_label} ${selected === "email" ? styles.active_btn : ""}`}
+                                        htmlFor="company_alone"
+                                        className={`${styles.radio_label} ${selectedCompany === "Наодинці" ? styles.active_btn : ""}`}
                                     >
-                                        Email
+                                        Наодинці
                                     </label>
 
                                     <input
                                         type="radio"
-                                        id="phone"
-                                        value="phone"
-                                        {...register("contact")}
+                                        id="company_friends"
+                                        value="З друзями"
+                                        {...register("company")}
                                         className={styles.hidden_radio}
                                     />
                                     <label
-                                        htmlFor="phone"
-                                        className={`${styles.radio_label} ${selected === "phone" ? styles.active_btn : ""}`}
+                                        htmlFor="company_friends"
+                                        className={`${styles.radio_label} ${selectedCompany === "З друзями" ? styles.active_btn : ""}`}
                                     >
-                                        Phone
+                                        З друзями
                                     </label>
 
                                     <input
                                         type="radio"
-                                        id="mail"
-                                        value="mail"
-                                        {...register("contact")}
+                                        id="company_partner"
+                                        value="З другою половинкою"
+                                        {...register("company")}
                                         className={styles.hidden_radio}
                                     />
                                     <label
-                                        htmlFor="mail"
-                                        className={`${styles.radio_label} ${selected === "mail" ? styles.active_btn : ""}`}
+                                        htmlFor="company_partner"
+                                        className={`${styles.radio_label} ${selectedCompany === "З другою половинкою" ? styles.active_btn : ""}`}
                                     >
-                                        Mail
+                                        З другою половинкою
+                                    </label>
+
+                                    <input
+                                        type="radio"
+                                        id="company_family"
+                                        value="З родиною ( разом з дітьми )"
+                                        {...register("company")}
+                                        className={styles.hidden_radio}
+                                    />
+                                    <label
+                                        htmlFor="company_family"
+                                        className={`${styles.radio_label} ${selectedCompany === "З родиною ( разом з дітьми )" ? styles.active_btn : ""}`}
+                                    >
+                                        З родиною ( разом з дітьми )
                                     </label>
                                 </div>
                             </div>
@@ -249,48 +310,96 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
                                 <h4 className={styles.questionName}>
                                     Роки виходу фільму:
                                 </h4>
-                                <div className={styles.radio_button_group}>
-                                    <input
-                                        type="radio"
-                                        id="email"
-                                        value="email"
-                                        {...register("contact")}
-                                        className={styles.hidden_radio}
-                                    />
-                                    <label
-                                        htmlFor="email"
-                                        className={`${styles.radio_label} ${selected === "email" ? styles.active_btn : ""}`}
-                                    >
-                                        Email
-                                    </label>
+                                <div className={styles.years_input_group}>
+                                    <div>
+                                        <label htmlFor="yearFrom">
+                                            Не раніше
+                                        </label>
+                                        <input
+                                            // type="number"
+                                            id="yearFrom"
+                                            placeholder="1950"
+                                            min={1950}
+                                            max={currentYear}
+                                            {...register("yearFrom", {
+                                                min: {
+                                                    value: 1950,
+                                                    message:
+                                                        "Рік не менше 1950",
+                                                },
+                                                max: {
+                                                    value: currentYear,
+                                                    message: `Рік не більше ${currentYear}`,
+                                                },
+                                                validate: {
+                                                    fourDigits: (v) =>
+                                                        !v ||
+                                                        /^\d{4}$/.test(v) ||
+                                                        "Рік введено некоретно",
+                                                    lessThanTo: (v) =>
+                                                        !v ||
+                                                        !watch("yearTo") ||
+                                                        Number(v) <
+                                                            Number(
+                                                                watch("yearTo"),
+                                                            ) ||
+                                                        "Перший рік має бути менше другого",
+                                                },
+                                            })}
+                                            className={styles.years_input}
+                                        />
+                                        {errors.yearFrom && (
+                                            <span className={styles.error}>
+                                                {errors.yearFrom.message}
+                                            </span>
+                                        )}
+                                    </div>
 
-                                    <input
-                                        type="radio"
-                                        id="phone"
-                                        value="phone"
-                                        {...register("contact")}
-                                        className={styles.hidden_radio}
-                                    />
-                                    <label
-                                        htmlFor="phone"
-                                        className={`${styles.radio_label} ${selected === "phone" ? styles.active_btn : ""}`}
-                                    >
-                                        Phone
-                                    </label>
-
-                                    <input
-                                        type="radio"
-                                        id="mail"
-                                        value="mail"
-                                        {...register("contact")}
-                                        className={styles.hidden_radio}
-                                    />
-                                    <label
-                                        htmlFor="mail"
-                                        className={`${styles.radio_label} ${selected === "mail" ? styles.active_btn : ""}`}
-                                    >
-                                        Mail
-                                    </label>
+                                    <div>
+                                        <label htmlFor="yearTo">
+                                            Не пізніше
+                                        </label>
+                                        <input
+                                            // type="number"
+                                            id="yearTo"
+                                            placeholder={String(currentYear)}
+                                            min={1950}
+                                            max={currentYear}
+                                            {...register("yearTo", {
+                                                min: {
+                                                    value: 1950,
+                                                    message:
+                                                        "Рік не менше 1950",
+                                                },
+                                                max: {
+                                                    value: currentYear,
+                                                    message: `Рік не більше ${currentYear}`,
+                                                },
+                                                validate: {
+                                                    fourDigits: (v) =>
+                                                        !v ||
+                                                        /^\d{4}$/.test(v) ||
+                                                        "Рік введено некоретно",
+                                                    moreThanFrom: (v) =>
+                                                        !v ||
+                                                        !watch("yearFrom") ||
+                                                        Number(v) >
+                                                            Number(
+                                                                watch(
+                                                                    "yearFrom",
+                                                                ),
+                                                            ) ||
+                                                        "Другий рік має бути більше першого",
+                                                },
+                                            })}
+                                            className={styles.years_input}
+                                        />
+                                        {errors.yearTo && (
+                                            <span className={styles.error}>
+                                                {errors.yearTo.message}
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -303,47 +412,46 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
                                     У яких жанрах шукатимемо фільм?
                                 </h4>
                                 <div className={styles.radio_button_group}>
-                                    <input
-                                        type="radio"
-                                        id="email"
-                                        value="email"
-                                        {...register("contact")}
-                                        className={styles.hidden_radio}
-                                    />
-                                    <label
-                                        htmlFor="email"
-                                        className={`${styles.radio_label} ${selected === "email" ? styles.active_btn : ""}`}
-                                    >
-                                        Email
-                                    </label>
-
-                                    <input
-                                        type="radio"
-                                        id="phone"
-                                        value="phone"
-                                        {...register("contact")}
-                                        className={styles.hidden_radio}
-                                    />
-                                    <label
-                                        htmlFor="phone"
-                                        className={`${styles.radio_label} ${selected === "phone" ? styles.active_btn : ""}`}
-                                    >
-                                        Phone
-                                    </label>
-
-                                    <input
-                                        type="radio"
-                                        id="mail"
-                                        value="mail"
-                                        {...register("contact")}
-                                        className={styles.hidden_radio}
-                                    />
-                                    <label
-                                        htmlFor="mail"
-                                        className={`${styles.radio_label} ${selected === "mail" ? styles.active_btn : ""}`}
-                                    >
-                                        Mail
-                                    </label>
+                                    {[
+                                        "Драма",
+                                        "Комедія",
+                                        "Бойовик",
+                                        "Трилер",
+                                        "Жахи",
+                                        "Фантастика",
+                                        "Фентезі",
+                                        "Пригоди",
+                                        "Мелодрама",
+                                        "Документальний фільм",
+                                        "Вестерн",
+                                        "Історичний фільм",
+                                        "Кримінал",
+                                        "Мюзикл",
+                                        "Анімаційний фільм",
+                                        "Спортивний фільм",
+                                        "Сімейний фільм",
+                                        "Комедійний бойовик",
+                                        "Науково-фантастичний трилер",
+                                        "Романтична фантастика",
+                                        "Пригодницьке фентезі",
+                                    ].map((genre) => (
+                                        <label
+                                            key={genre}
+                                            className={`${styles.radio_label} ${
+                                                watch("genres")?.includes(genre)
+                                                    ? styles.active_btn
+                                                    : ""
+                                            }`}
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                value={genre}
+                                                {...register("genres")}
+                                                className={styles.hidden_radio}
+                                            />
+                                            {genre}
+                                        </label>
+                                    ))}
                                 </div>
                             </div>
                         </li>
