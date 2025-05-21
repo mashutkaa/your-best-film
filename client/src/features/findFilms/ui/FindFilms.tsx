@@ -16,14 +16,18 @@ interface FindFilmsProps {
 
 export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
     const [modalActive, setModalActive] = useState(false);
+    const [minDuration, setMinDuration] = useState(0);
+    const [maxDuration, setMaxDuration] = useState(8);
+
     const { register, handleSubmit, watch } = useForm();
 
     const onSubmit = (data) => console.log(data);
 
-    const selected = watch("contact");
+    const selected = watch("mood");
 
     const handleOpen = () => setModalActive(true);
 
+    // модалка
     const trigger = cloneElement(children, {
         onClick: handleOpen,
     });
@@ -56,14 +60,14 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
                                 <div className={styles.radioImg_button_group}>
                                     <input
                                         type="radio"
-                                        id="email"
-                                        value="email"
-                                        {...register("contact")}
+                                        id="good"
+                                        value="Чудовий"
+                                        {...register("mood")}
                                         className={styles.hidden_radio}
                                     />
                                     <label
-                                        htmlFor="email"
-                                        className={`${styles.radioImg_label} ${selected === "email" ? styles.active_imgBtn : ""}`}
+                                        htmlFor="good"
+                                        className={`${styles.radioImg_label} ${selected === "Чудовий" ? styles.active_imgBtn : ""}`}
                                     >
                                         <img
                                             src={GoodMoodImg}
@@ -74,14 +78,14 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
 
                                     <input
                                         type="radio"
-                                        id="phone"
-                                        value="phone"
-                                        {...register("contact")}
+                                        id="bored"
+                                        value="Нудно"
+                                        {...register("mood")}
                                         className={styles.hidden_radio}
                                     />
                                     <label
-                                        htmlFor="phone"
-                                        className={`${styles.radioImg_label} ${selected === "phone" ? styles.active_imgBtn : ""}`}
+                                        htmlFor="bored"
+                                        className={`${styles.radioImg_label} ${selected === "Нудно" ? styles.active_imgBtn : ""}`}
                                     >
                                         <img src={BoredMoodImg} alt="Нудно" />
                                         <span>Нудно</span>
@@ -89,14 +93,14 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
 
                                     <input
                                         type="radio"
-                                        id="mail"
-                                        value="mail"
-                                        {...register("contact")}
+                                        id="sad"
+                                        value="Сумний"
+                                        {...register("mood")}
                                         className={styles.hidden_radio}
                                     />
                                     <label
-                                        htmlFor="mail"
-                                        className={`${styles.radioImg_label} ${selected === "mail" ? styles.active_imgBtn : ""}`}
+                                        htmlFor="sad"
+                                        className={`${styles.radioImg_label} ${selected === "Сумний" ? styles.active_imgBtn : ""}`}
                                     >
                                         <img
                                             src={SadMoodImg}
@@ -107,14 +111,14 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
 
                                     <input
                                         type="radio"
-                                        id="mail"
-                                        value="mail"
-                                        {...register("contact")}
+                                        id="tired"
+                                        value="Втомлений"
+                                        {...register("mood")}
                                         className={styles.hidden_radio}
                                     />
                                     <label
-                                        htmlFor="mail"
-                                        className={`${styles.radioImg_label} ${selected === "mail" ? styles.active_imgBtn : ""}`}
+                                        htmlFor="tired"
+                                        className={`${styles.radioImg_label} ${selected === "Втомлений" ? styles.active_imgBtn : ""}`}
                                     >
                                         <img
                                             src={TiredMoodImg}
@@ -136,39 +140,48 @@ export const FindFilms: React.FC<FindFilmsProps> = ({ children }) => {
                                     Яка тривалість фільму?
                                 </h4>
                                 <div className={styles.range_question}>
-                                    <div className={styles.sliders_control}>
-                                        <div
-                                            id="fromSliderTooltip"
-                                            className={styles.slider_tooltip}
-                                        >
-                                            0
-                                        </div>
-                                        <input
-                                            type="range"
-                                            value="0"
-                                            min="0"
-                                            max="8"
-                                            step="1"
-                                            id="fromSlider"
-                                            className={styles.range_slider}
-                                            {...register("duration")}
-                                        />
-                                        <div
-                                            id="toSliderTooltip"
-                                            className={styles.slider_tooltip}
-                                        >
-                                            8
-                                        </div>
-                                        <input
-                                            type="range"
-                                            value="8"
-                                            min="0"
-                                            max="8"
-                                            step="1"
-                                            id="toSlider"
-                                            className={styles.range_slider}
-                                            {...register("duration")}
-                                        />
+                                    <input
+                                        type="range"
+                                        min={0}
+                                        max={8}
+                                        step={1}
+                                        value={minDuration}
+                                        onChange={(e) =>
+                                            setMinDuration(
+                                                Math.min(
+                                                    Number(e.target.value),
+                                                    maxDuration - 1,
+                                                ),
+                                            )
+                                        }
+                                        className={`${styles.rangeSlider} ${styles.lower}`}
+                                    />
+                                    <input
+                                        type="range"
+                                        min={0}
+                                        max={8}
+                                        step={1}
+                                        value={maxDuration}
+                                        onChange={(e) =>
+                                            setMaxDuration(
+                                                Math.max(
+                                                    Number(e.target.value),
+                                                    minDuration + 1,
+                                                ),
+                                            )
+                                        }
+                                        className={`${styles.rangeSlider} ${styles.upper}`}
+                                    />
+                                    <div className={styles.sliderLabels}>
+                                        {[
+                                            "0 хв",
+                                            "2 год",
+                                            "4 год",
+                                            "6 год",
+                                            "8 год",
+                                        ].map((label, index) => (
+                                            <span key={index}>{label}</span>
+                                        ))}
                                     </div>
                                 </div>
                             </div>

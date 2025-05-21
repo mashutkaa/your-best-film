@@ -157,5 +157,80 @@
     }
 }
 
+// Range Slider
+
 .range_question {
+    position: relative;
+    width: 265px;
+    height: 5px;
+    margin-bottom: 25px;
+}
+
+.rangeSlider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 270px;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    left: 5px;
+}
+
+.rangeSlider::-webkit-slider-runnable-track {
+    height: 1px;
+    background: $color-text;
+    border-radius: 3px;
+}
+.rangeSlider::-moz-range-track {
+    height: 1px;
+    background: $color-text;
+    border-radius: 3px;
+}
+.rangeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 9px;
+    height: 9px;
+    background: #d9d9d9;
+    border-radius: 50%;
+    border: 2px solid $color-text;
+    cursor: pointer;
+    position: relative;
+    transform: translateY(-50%);
+}
+
+.sliderLabels {
+    display: flex;
+    justify-content: space-between;
+
+    width: 285px;
+    text-align: center;
+
+    color: $color-text;
+    position: relative;
+}
+
+.sliderLabels span {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    width: 20px;
+    top: 14px;
+    text-align: center;
+
+    color: $color-text;
+    text-align: center;
+    font-family: $font-family-secondary;
+    font-size: 10px;
+    font-weight: 300;
+}
+.sliderLabels span::after {
+    content: "";
+    width: 1px;
+    height: 16px;
+    background: $color-text;
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
 }
