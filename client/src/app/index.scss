@@ -50,7 +50,7 @@ body {
 
 * {
     scrollbar-width: thin;
-    scrollbar-color: rgba(217, 217, 217, 0.3) rgba(255, 255, 255, 0.3);
+    scrollbar-color: rgba(217, 217, 217, 0.3) $color-background;
 }
 
 *::-webkit-scrollbar {
@@ -58,7 +58,7 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.3);
+    background: $color-background;
     border-radius: 20px;
 }
 

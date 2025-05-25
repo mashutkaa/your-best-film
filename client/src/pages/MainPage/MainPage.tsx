@@ -9,7 +9,6 @@ export const MainPage: React.FC = () => {
         <section className={styles.mainPage__section}>
             <BestFilms />
             <FilmSearchWidget />
-            <hr />
             <AboutUs />
         </section>
     );
